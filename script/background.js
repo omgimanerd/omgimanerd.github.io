@@ -93,6 +93,12 @@ Background.prototype.buildBackgroundAnimation = function() {
   // Create the canvas.
   this.canvas_ = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   this.canvas_.setAttribute('id', 'background');
+  this.canvas_.style.position = 'absolute';
+  this.canvas_.style.top = 0;
+  this.canvas_.style.right = 0;
+  this.canvas_.style.bottom = 0;
+  this.canvas_.style.left = 0;
+  this.canvas_.style.zIndex = -100;
   document.body.appendChild(this.canvas_);
 
   // Measure the width and height of the body element.

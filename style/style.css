@@ -1,5 +1,6 @@
 /**
- * Author: Alvin Lin (alvin.lin@stuypulse.com
+ * Author: Alvin Lin (alvin.lin@stuypulse.com)
+ * Styling for the main page.
  */
 
 html, body {
@@ -8,13 +9,21 @@ html, body {
   margin: 0px;
   padding: 0px;
   text-align: center;
+  font-family: "Open Sans", sans-serif;
 }
 
 #background {
+  background: #ccc;
+}
+
+#content {
   position: absolute;
-  top: 0;
+  width: auto;
+  height: auto;
+  top: 40%;
   right: 0;
-  bottom: 0;
   left: 0;
-  margin: 0;
+  vertical-align: center;
+  text-align: center;
+  font-size: 50px;
 }

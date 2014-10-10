@@ -1,0 +1,83 @@
+/**
+ * Author: Alvin Lin (alvin.lin@stuypulse.com)
+ * Styling for the animations.
+ */
+
+#content {
+  opacity: 0;
+
+  -webkit-animation-name: fade-in;
+  -webkit-animation-duration: 2000ms;
+  -webkit-animation-delay: 500ms;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+
+  -moz-animation-name: fade-in;
+  -moz-animation-duration: 2000ms;
+  -moz-animation-delay: 500ms;
+  -moz-animation-fill-mode: forwards;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: 1;
+
+  -ms-animation-name: fade-in;
+  -ms-animation-duration: 2000ms;
+  -ms-animation-delay: 500ms;
+  -ms-animation-fill-mode: forwards;
+  -ms-animation-timing-function: linear;
+  -ms-animation-iteration-count: 1;
+
+  -o-animation-name: fade-in;
+  -o-animation-duration: 2000ms;
+  -o-animation-delay: 500ms;
+  -o-animation-fill-mode: forwards;
+  -o-animation-timing-function: linear;
+  -o-animation-iteration-count: 1;
+
+  animation-name: fade-in;
+  animation-duration: 2000ms;
+  animation-delay: 500ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
