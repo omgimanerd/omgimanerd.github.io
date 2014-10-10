@@ -27,3 +27,31 @@ html, body {
   text-align: center;
   font-size: 50px;
 }
+
+#media {
+  margin: auto;
+}
+
+#media a {
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+
+#media img {
+  width: auto;
+  height: 50px;
+  opacity: 0.5;
+  /* HACKY-ASS CRAP TO CENTER THE GITHUB LINK */
+  margin-left: -9px;
+
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -ms-transition: all 500ms;
+  -o-transition: all 500ms;
+  transition: all 500ms;
+}
+
+#media img:hover {
+  opacity: 1;
+}
