@@ -4,10 +4,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans' />
+    <link rel='stylesheet' type='text/css'
+          href='http://fonts.googleapis.com/css?family=Open+Sans' />
+    <link rel='stylesheet' type='text/css' href='style/style.css' />
+    <script type='text/javascript' src='script/background.js'></script>
   </head>
-  <body>
-    <svg>
+  <body id='body'>
+    <svg id='background' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     </svg>
+    <script type='text/javascript'>
+      var canvas = document.getElementById('background');
+      var backgroundObj = new Background(canvas);
+      backgroundObj.startAnimation();
+      backgroundObj.createDot(50, 50, 'red', 40, 500);
+      backgroundObj.createDot(100, 50, 'blue', 40, 1000);
+    </script>
   </body>
 </html>
