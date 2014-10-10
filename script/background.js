@@ -9,19 +9,39 @@ function bind(object, method) {
   };
 }
 
-function Background(canvas) {
-  this.canvas_ = canvas;
-  this.width_ = document.body.offsetWidth;
-  this.height_ = document.body.offsetHeight;
-}
+function Background() {}
 
-Background.prototype.createDot = function(x, y, color, maxRadius, animationTime) {
+/**
+ * This is an array containing all the possible colors of the dots.
+ */
+Background.DOT_COLORS = [
+  'red', 'blue', 'green', 'yellow', 'orange'];
+
+/**
+ * This value represents the maximum radius that the generated dots can be.
+ */
+Background.MIN_RADIUS = 25;
+
+/**
+ * This value represents the maximum radius that the generated dots can be.
+ */
+Background.MAX_RADIUS = 100;
+
+/**
+ * This value represents the maximum animation time that the generated dots
+ * can have.
+ */
+Background.MAX_ANIMATION_TIME = 1500;
+
+Background.prototype.createDot = function(x, y,
+                                          color,
+                                          maxRadius, animationTime) {
   var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   circle.setAttribute('cx', x.toString());
   circle.setAttribute('cy', y.toString());
   circle.setAttribute('r', '0');
   circle.setAttribute('fill', color);
-  circle.setAttribute('fill-opacity', 0.75);
+  circle.setAttribute('fill-opacity', 0.5);
   this.canvas_.appendChild(circle);
 
   var animationSteps = Math.floor(maxRadius / 2);
@@ -46,9 +66,31 @@ Background.prototype.createDot = function(x, y, color, maxRadius, animationTime)
   }), animationTime);
 };
 
-Background.prototype.startAnimation = function() {
+Background.prototype.generateRandomDot = function() {
+  var x = Math.floor(Math.random() * this.width_);
+  var y = Math.floor(Math.random() * this.height_);
+  var color = Background.DOT_COLORS[Math.floor(Math.random() *
+                                               Background.DOT_COLORS.length)];
+  var radius = Math.floor(Math.random() * Background.MAX_RADIUS) + 20;
+  var animationTime = Math.floor(Math.random() *
+                                 Background.MAX_ANIMATION_TIME) + 500;
+  this.createDot(x, y, color, radius, animationTime);
+};
+
+Background.prototype.buildBackgroundAnimation = function() {
+  // Create the canvas.
+  this.canvas_ = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  document.body.appendChild(this.canvas_);
+
+  // Measure the width and height of the body element.
+  this.width_ = document.body.offsetWidth;
+  this.height_ = document.body.offsetHeight;
+
   // Set the width and height of the SVG canvas to the width and height
-  //
+  // of the body (basically the entire page).
   this.canvas_.setAttribute('width', this.width_.toString()+'px');
   this.canvas_.setAttribute('height', this.height_.toString()+'px');
+
+  // Set the animation.
+  setInterval(bind(this, this.generateRandomDot), 500);
 };
