@@ -43,7 +43,7 @@ html, body {
   height: 50px;
   opacity: 0.5;
   /* HACKY-ASS CRAP TO CENTER THE GITHUB LINK */
-  margin-left: -9px;
+  margin-left: -15px;
 
   -webkit-transition: all 500ms;
   -moz-transition: all 500ms;
