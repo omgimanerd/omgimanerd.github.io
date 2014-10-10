@@ -10,12 +10,9 @@
     <script type='text/javascript' src='script/background.js'></script>
   </head>
   <body id='body'>
-    <svg id='background' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    </svg>
     <script type='text/javascript'>
-      var canvas = document.getElementById('background');
-      var backgroundObj = new Background(canvas);
-      backgroundObj.startAnimation();
+      var backgroundObj = new Background();
+      backgroundObj.buildBackgroundAnimation();
     </script>
   </body>
 </html>
