@@ -112,5 +112,5 @@ DotBackground.prototype.buildDotBackgroundAnimation = function() {
   this.canvas_.setAttribute('height', this.height_.toString()+'px');
 
   // Set the animation.
-  setInterval(bind(this, this.generateRandomDot), 400);
+  setInterval(bind(this, this.generateRandomDot), 100);
 };
