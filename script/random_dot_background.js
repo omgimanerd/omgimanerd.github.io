@@ -20,7 +20,8 @@ function RandomDotBackground() {}
 /**
  * This is an array containing all the possible colors of the dots.
  */
-RandomDotBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow', 'orange'];
+RandomDotBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow', 'orange',
+                                  'magenta', 'cyan'];
 
 /**
  * This value represents the maximum radius that the generated dots can be.
@@ -100,7 +101,7 @@ RandomDotBackground.prototype.createDot = function(x, y,
  * @private
  */
 RandomDotBackground.prototype.generateRandomDot = function() {
-  // Generates random coordinates, radii, animation times, and selects a
+  // Generates random coordinates, radii, animation time, and selects a
   // random color.
   var x = Math.floor(Math.random() * this.width_);
   var y = Math.floor(Math.random() * this.height_);

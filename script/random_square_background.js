@@ -19,15 +19,18 @@ function RandomSquareBackground() {}
 /**
  * This is an array containing all the possible colors of the squares.
  */
-RandomSquareBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow', 'orange'];
+RandomSquareBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow',
+                                     'orange', 'magenta', 'cyan'];
 
 /**
- * This value represents the minimum side length that the generated squares can be.
+ * This value represents the minimum side length that the generated
+ * squares can be.
  */
 RandomSquareBackground.MIN_SIDE_LENGTH = 50;
 
 /**
- * This value represents the maximum side length that the generated squares can be.
+ * This value represents the maximum side length that the generated squares
+ * can be.
  */
 RandomSquareBackground.MAX_SIDE_LENGTH = 200;
 
@@ -104,7 +107,7 @@ RandomSquareBackground.prototype.createSquare = function(x, y,
  * @private
  */
 RandomSquareBackground.prototype.generateRandomSquare = function() {
-  // Generates random coordinates, side length, animation times, and selects a
+  // Generates random coordinates, side length, animation time, and selects a
   // random color.
   var x = Math.floor(Math.random() * this.width_);
   var y = Math.floor(Math.random() * this.height_);

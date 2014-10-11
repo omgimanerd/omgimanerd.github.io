@@ -19,15 +19,18 @@ function FallingSquareBackground() {}
 /**
  * This is an array containing all the possible colors of the squares.
  */
-FallingSquareBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow', 'orange'];
+FallingSquareBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow',
+                                      'orange', 'magenta', 'cyan'];
 
 /**
- * This value represents the minimum side length that the generated squares can be.
+ * This value represents the minimum side length that the generated
+ * squares can be.
  */
 FallingSquareBackground.MIN_SIDE_LENGTH = 50;
 
 /**
- * This value represents the maximum side length that the generated squares can be.
+ * This value represents the maximum side length that the generated
+ * squares can be.
  */
 FallingSquareBackground.MAX_SIDE_LENGTH = 200;
 
