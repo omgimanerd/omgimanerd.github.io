@@ -63,7 +63,6 @@ FallingSquareBackground.prototype.createSquare = function(x,
                                         'rect');
   square.setAttribute('x', x);
   square.setAttribute('y', -sideLength);
-  console.log(-sideLength);
   square.setAttribute('width', sideLength);
   square.setAttribute('height', sideLength);
   square.setAttribute('fill', color);
