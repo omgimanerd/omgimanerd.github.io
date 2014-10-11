@@ -1,6 +1,7 @@
+// Copyright 2014 >:D
 /**
- * Script for the background animations.
  * @author Alvin Lin (alvin.lin@stuypulse.com)
+ * Script for the background animations.
  */
 
 function bind(object, method) {
@@ -9,38 +10,38 @@ function bind(object, method) {
   };
 }
 
-function Background() {}
+function DotBackground() {}
 
 /**
  * This is an array containing all the possible colors of the dots.
  */
-Background.DOT_COLORS = ['red', 'blue', 'green', 'yellow', 'orange'];
+DotBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow', 'orange'];
 
 /**
  * This value represents the maximum radius that the generated dots can be.
  */
-Background.MIN_RADIUS = 25;
+DotBackground.MIN_RADIUS = 25;
 
 /**
  * This value represents the maximum radius that the generated dots can be.
  */
-Background.MAX_RADIUS = 100;
+DotBackground.MAX_RADIUS = 100;
 
 /**
  * This value represents the minimum animation time that the generated dots
  * can have.
  */
-Background.MIN_ANIMATION_TIME = 500;
+DotBackground.MIN_ANIMATION_TIME = 500;
 
 /**
  * This value represents the maximum animation time that the generated dots
  * can have.
  */
-Background.MAX_ANIMATION_TIME = 1500;
+DotBackground.MAX_ANIMATION_TIME = 1500;
 
-Background.prototype.createDot = function(x, y,
-                                          color,
-                                          maxRadius, animationTime) {
+DotBackground.prototype.createDot = function(x, y,
+                                             color,
+                                             maxRadius, animationTime) {
   var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   circle.setAttribute('cx', x.toString());
   circle.setAttribute('cy', y.toString());
@@ -71,25 +72,25 @@ Background.prototype.createDot = function(x, y,
   }), animationTime);
 };
 
-Background.prototype.generateRandomDot = function() {
+DotBackground.prototype.generateRandomDot = function() {
   // Generates random coordinates, radii, animation times, and selects a
   // random color.
   var x = Math.floor(Math.random() * this.width_);
   var y = Math.floor(Math.random() * this.height_);
-  var color = Background.DOT_COLORS[Math.floor(Math.random() *
-      Background.DOT_COLORS.length)];
+  var color = DotBackground.DOT_COLORS[Math.floor(Math.random() *
+      DotBackground.DOT_COLORS.length)];
   var radius = Math.floor(Math.random() *
-      (Background.MAX_RADIUS - Background.MIN_RADIUS)) +
-      Background.MIN_RADIUS;
+      (DotBackground.MAX_RADIUS - DotBackground.MIN_RADIUS)) +
+      DotBackground.MIN_RADIUS;
   var animationTime = Math.floor(Math.random() *
-      (Background.MAX_ANIMATION_TIME - Background.MIN_ANIMATION_TIME)) +
-      Background.MIN_ANIMATION_TIME;
+      (DotBackground.MAX_ANIMATION_TIME - DotBackground.MIN_ANIMATION_TIME)) +
+      DotBackground.MIN_ANIMATION_TIME;
 
   // Creates the dot with the generated specifications.
   this.createDot(x, y, color, radius, animationTime);
 };
 
-Background.prototype.buildBackgroundAnimation = function() {
+DotBackground.prototype.buildDotBackgroundAnimation = function() {
   // Create the canvas.
   this.canvas_ = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   this.canvas_.setAttribute('id', 'background');
