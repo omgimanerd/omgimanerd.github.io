@@ -76,7 +76,7 @@ RandomDotBackground.prototype.createDot = function(x, y,
   // Sets the animation for the dots expanding.
   for (var i = 0; i < animationSteps; ++i) {
     animationTime += animationStepTime;
-    setTimeout(function(){
+    setTimeout(function() {
       circle.setAttribute('r', radius++);
     }, animationTime);
   }
@@ -84,7 +84,7 @@ RandomDotBackground.prototype.createDot = function(x, y,
   // Sets the animation for the dots contracting.
   for (var i = 0; i < animationSteps; ++i) {
     animationTime += animationStepTime;
-    setTimeout(function(){
+    setTimeout(function() {
       circle.setAttribute('r', radius--);
     }, animationTime);
   }

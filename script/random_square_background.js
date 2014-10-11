@@ -45,7 +45,7 @@ RandomSquareBackground.MAX_ANIMATION_TIME = 1500;
 
 /**
  * Generates a square at a specified coordinate that will be a specified color
- * and expand to a maximum radius from zero in a given animation time.
+ * and expand to a maximum side length from zero in a given animation time.
  * @param {number} x (Canvas coordinates)
  * @param {number} y (Canvas coordinates)
  * @param {string} color (Color)
@@ -76,7 +76,7 @@ RandomSquareBackground.prototype.createSquare = function(x, y,
   // Sets the animation for the squares expanding.
   for (var i = 0; i < animationSteps; ++i) {
     animationTime += animationStepTime;
-    setTimeout(function(){
+    setTimeout(function() {
       var newSideLength = sideLength++;
       square.setAttribute('width', newSideLength);
       square.setAttribute('height', newSideLength);
@@ -86,7 +86,7 @@ RandomSquareBackground.prototype.createSquare = function(x, y,
   // Sets the animation for the squares contracting.
   for (var i = 0; i < animationSteps; ++i) {
     animationTime += animationStepTime;
-    setTimeout(function(){
+    setTimeout(function() {
       var newSideLength = sideLength--;
       square.setAttribute('width', newSideLength);
       square.setAttribute('height', newSideLength);
