@@ -5,10 +5,11 @@
 
 html, body {
   width: 100%;
+  min-width: 800px;
   height: 100%;
+  min-height: 600px;
   margin: 0px;
   padding: 0px;
-  text-align: center;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -16,16 +17,46 @@ html, body {
   background: #ccc;
 }
 
+#navbar {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  line-height: 150px;
+  text-align: left;
+  padding-left: 50px;
+}
+
+#navbar a {
+  font-size: 25px;
+  padding: 5px;
+  text-decoration: none;
+  color: #000;
+  opacity: 0.5;
+
+  border-bottom: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #000;
+
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -ms-transition: all 500ms;
+  -o-transition: all 500ms;
+  transition: all 500ms;
+}
+
+#navbar a:hover {
+  opacity: 1;
+}
+
 #content {
   position: absolute;
-  width: auto;
-  min-width: 800px;
-  height: auto;
-  min-height: 800px;
-  top: 40%;
+  width: 100%;
+  height: 150px;
+  margin-top: -75px;
+  top: 50%;
   right: 0;
+  bottom: 0;
   left: 0;
-  vertical-align: center;
   text-align: center;
   font-size: 50px;
 }
@@ -52,9 +83,13 @@ html, body {
   z-index: 2;
 
   color: #fff;
-  background: rgba(20, 20, 20, 0.8);
+  background: rgba(20, 20, 20, 0.85);
   content: attr(title);
 
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
   border-radius: 5px;
 }
 
@@ -65,7 +100,7 @@ html, body {
   z-index: 1;
 
   border: solid;
-  border-color: #333 transparent;
+  border-color: #141414 transparent;
   border-width: 6px 6px 0 6px;
   content: "";
 }
