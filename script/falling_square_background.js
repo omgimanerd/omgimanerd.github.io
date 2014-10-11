@@ -32,13 +32,13 @@ FallingSquareBackground.MIN_SIDE_LENGTH = 50;
  * This value represents the maximum side length that the generated
  * squares can be.
  */
-FallingSquareBackground.MAX_SIDE_LENGTH = 200;
+FallingSquareBackground.MAX_SIDE_LENGTH = 150;
 
 /**
  * This value represents the minimum animation time that the generated squares
  * can have.
  */
-FallingSquareBackground.MIN_ANIMATION_TIME = 500;
+FallingSquareBackground.MIN_ANIMATION_TIME = 750;
 
 /**
  * This value represents the maximum animation time that the generated squares
@@ -66,7 +66,7 @@ FallingSquareBackground.prototype.createSquare = function(x,
   square.setAttribute('width', sideLength.toString());
   square.setAttribute('height', sideLength.toString());
   square.setAttribute('fill', color);
-  square.setAttribute('fill-opacity', 0.6);
+  square.setAttribute('fill-opacity', 0.5);
   this.canvas_.appendChild(square);
 
   var animationSteps = 50;
@@ -74,14 +74,16 @@ FallingSquareBackground.prototype.createSquare = function(x,
   var animationTime = 0;
   var fallDistance = 0;
   var fallDistanceStep = (this.height_ + sideLength) / animationSteps;
-
+  var opacity = 0.5;
+  var opacityStep = 0.01;
   // Sets the animation for the squares falling.
   for (var i = 0; i < animationSteps; ++i) {
     animationTime += animationStepTime;
     setTimeout(function() {
       fallDistance += fallDistanceStep;
-      var newY = fallDistance;
-      square.setAttribute('y', newY.toString());
+      opacity -= opacityStep;
+      square.setAttribute('y', fallDistance);
+      square.setAttribute('fill-opacity', opacity);
     }, animationTime);
   }
 
