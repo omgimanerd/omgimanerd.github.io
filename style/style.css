@@ -29,6 +29,7 @@ html, body {
 #navbar a {
   font-size: 25px;
   padding: 5px;
+  margin: 5px;
   text-decoration: none;
   color: #000;
   opacity: 0.5;
