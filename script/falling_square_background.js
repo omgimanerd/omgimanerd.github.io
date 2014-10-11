@@ -38,7 +38,7 @@ FallingSquareBackground.MAX_SIDE_LENGTH = 150;
  * This value represents the minimum animation time that the generated squares
  * can have.
  */
-FallingSquareBackground.MIN_ANIMATION_TIME = 750;
+FallingSquareBackground.MIN_ANIMATION_TIME = 1000;
 
 /**
  * This value represents the maximum animation time that the generated squares
@@ -61,10 +61,11 @@ FallingSquareBackground.prototype.createSquare = function(x,
                                                           animationTime) {
   var square = document.createElementNS('http://www.w3.org/2000/svg',
                                         'rect');
-  square.setAttribute('x', x.toString());
-  square.setAttribute('y', (0 - sideLength).toString());
-  square.setAttribute('width', sideLength.toString());
-  square.setAttribute('height', sideLength.toString());
+  square.setAttribute('x', x);
+  square.setAttribute('y', -sideLength);
+  console.log(-sideLength);
+  square.setAttribute('width', sideLength);
+  square.setAttribute('height', sideLength);
   square.setAttribute('fill', color);
   square.setAttribute('fill-opacity', 0.5);
   this.canvas_.appendChild(square);
@@ -73,17 +74,17 @@ FallingSquareBackground.prototype.createSquare = function(x,
   var animationStepTime = animationTime / animationSteps;
   var animationTime = 0;
   var fallDistance = 0;
-  var fallDistanceStep = (this.height_ + sideLength) / animationSteps;
+  var fallDistanceStep = this.height_ / animationSteps;
   var opacity = 0.5;
   var opacityStep = 0.01;
   // Sets the animation for the squares falling.
   for (var i = 0; i < animationSteps; ++i) {
     animationTime += animationStepTime;
     setTimeout(function() {
-      fallDistance += fallDistanceStep;
-      opacity -= opacityStep;
       square.setAttribute('y', fallDistance);
       square.setAttribute('fill-opacity', opacity);
+      fallDistance += fallDistanceStep;
+      opacity -= opacityStep;
     }, animationTime);
   }
 

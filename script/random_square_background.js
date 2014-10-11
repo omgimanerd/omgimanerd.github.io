@@ -62,12 +62,12 @@ RandomSquareBackground.prototype.createSquare = function(x, y,
                                                           animationTime) {
   var square = document.createElementNS('http://www.w3.org/2000/svg',
                                         'rect');
-  square.setAttribute('x', x.toString());
-  square.setAttribute('y', y.toString());
-  square.setAttribute('width', '0');
-  square.setAttribute('height', '0');
+  square.setAttribute('x', x);
+  square.setAttribute('y', y);
+  square.setAttribute('width', 0);
+  square.setAttribute('height', 0);
   square.setAttribute('fill', color);
-  square.setAttribute('fill-opacity', 0.6);
+  square.setAttribute('fill-opacity', 0.5);
   this.canvas_.appendChild(square);
 
   var animationSteps = Math.floor(maxSideLength / 2);

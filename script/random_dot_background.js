@@ -61,11 +61,11 @@ RandomDotBackground.prototype.createDot = function(x, y,
                                                    animationTime) {
   var circle = document.createElementNS('http://www.w3.org/2000/svg',
                                         'circle');
-  circle.setAttribute('cx', x.toString());
-  circle.setAttribute('cy', y.toString());
-  circle.setAttribute('r', '0');
+  circle.setAttribute('cx', x);
+  circle.setAttribute('cy', y);
+  circle.setAttribute('r', 0);
   circle.setAttribute('fill', color);
-  circle.setAttribute('fill-opacity', 0.6);
+  circle.setAttribute('fill-opacity', 0.5);
   this.canvas_.appendChild(circle);
 
   var animationSteps = Math.floor(maxRadius / 2);
