@@ -44,8 +44,7 @@ html, body {
   width: auto;
   height: 50px;
   opacity: 0.5;
-  /* HACKY-ASS CRAP TO CENTER THE GITHUB LINK */
-  margin-left: -20px;
+  margin: 0px;
 
   -webkit-transition: all 500ms;
   -moz-transition: all 500ms;
