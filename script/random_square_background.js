@@ -2,6 +2,9 @@
 /**
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  * Script for the falling squares background animation.
+ * To use this background template, instantiate a RandomSquareBackground
+ * object at the end of the body and call buildRandomSquareBackgroundAnimation()
+ * on the object.
  */
 
 // bind() function allows setTimeout to work on the objects.
@@ -96,6 +99,10 @@ RandomSquareBackground.prototype.createSquare = function(x, y,
   }), animationTime);
 };
 
+/**
+ * Generates a square with randomized parameters.
+ * @private
+ */
 RandomSquareBackground.prototype.generateRandomSquare = function() {
   // Generates random coordinates, side length, animation times, and selects a
   // random color.

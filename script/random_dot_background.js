@@ -3,6 +3,9 @@
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  * Script for the randomly appearing dots background animation.
  * Uses setTimeout() to control dot animation.
+ * To use this background template, instantiate a RandomDotBackground
+ * object at the end of the body and call buildRandomDotBackgroundAnimation()
+ * on the object.
  */
 
 // bind() function allows setTimeout to work on the objects.
@@ -92,6 +95,10 @@ RandomDotBackground.prototype.createDot = function(x, y,
   }), animationTime);
 };
 
+/**
+ * Generates a dot with randomized parameters.
+ * @private
+ */
 RandomDotBackground.prototype.generateRandomDot = function() {
   // Generates random coordinates, radii, animation times, and selects a
   // random color.
