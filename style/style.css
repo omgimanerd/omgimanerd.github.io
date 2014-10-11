@@ -34,10 +34,40 @@ html, body {
   margin: auto;
 }
 
-#media a {
+#media .media-tooltip {
+  position: relative;
   display: inline-block;
   width: auto;
   height: auto;
+}
+
+#media .media-tooltip:hover:after {
+  position: absolute;
+  width: auto;
+  height: 25px;
+  left: -100%;
+  bottom: 75px;
+  font-size: 15px;
+  padding: 5px;
+  z-index: 2;
+
+  color: #fff;
+  background: rgba(20, 20, 20, 0.8);
+  content: attr(title);
+
+  border-radius: 5px;
+}
+
+#media .media-tooltip:hover:before {
+  position: absolute;
+  left: 50%;
+  bottom: 70px;
+  z-index: 1;
+
+  border: solid;
+  border-color: #333 transparent;
+  border-width: 6px 6px 0 6px;
+  content: "";
 }
 
 #media img {
