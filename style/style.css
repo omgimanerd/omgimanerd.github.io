@@ -11,8 +11,9 @@ html, body {
   font-family: "Open Sans", sans-serif;
 }
 
-#background {
+body {
   background: #ccc;
+  z-index: -1000;
 }
 
 #navbar {
@@ -100,7 +101,7 @@ html, body {
 }
 
 #resume-content-text a:hover {
-  color: #ce4141;
+  color: #e22828;
 }
 
 #media {

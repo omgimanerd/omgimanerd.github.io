@@ -9,6 +9,8 @@
  * that defines the animation time counts from when the webpage is loaded, so
  * animations and circles added after the first 1500ms render at their end
  * animation state.
+ * This file is intended as a distributable standalone and thus does not have
+ * any dependencies on my internal library.
  */
 
 // bind() function allows setTimeout to work on the objects.
@@ -101,7 +103,7 @@ FallingSquareBackground.prototype.createSquare = function(x,
  * Generates a square with randomized parameters.
  * @private
  */
-FallingSquareBackground.prototype.generateFallingSquare = function() {
+FallingSquareBackground.prototype.generateRandomFallingSquare = function() {
   // Generates a random x coordinate, side length, animation time, and selects a
   // random color.
   var x = Math.floor(Math.random() * this.width_);
@@ -130,6 +132,7 @@ FallingSquareBackground.prototype.buildFallingSquareBackgroundAnimation = functi
   this.canvas_.style.bottom = 0;
   this.canvas_.style.left = 0;
   this.canvas_.style.zIndex = -100;
+  document.body.zIndex = -101;
   document.body.appendChild(this.canvas_);
 
   // Measure the width and height of the body element.
@@ -142,5 +145,5 @@ FallingSquareBackground.prototype.buildFallingSquareBackgroundAnimation = functi
   this.canvas_.setAttribute('height', this.height_.toString()+'px');
 
   // Set the animation.
-  setInterval(bind(this, this.generateFallingSquare), 200);
+  setInterval(bind(this, this.generateRandomFallingSquare), 200);
 };

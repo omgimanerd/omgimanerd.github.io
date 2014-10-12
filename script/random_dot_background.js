@@ -10,6 +10,8 @@
  * that defines the animation time counts from when the webpage is loaded, so
  * animations and circles added after the first 1500ms render at their end
  * animation state.
+ * This file is intended as a distributable standalone and thus does not have
+ * any dependencies on my internal library.
  */
 
 // bind() function allows setTimeout to work on the objects.
@@ -133,6 +135,7 @@ RandomDotBackground.prototype.buildRandomDotBackgroundAnimation = function() {
   this.canvas_.style.bottom = 0;
   this.canvas_.style.left = 0;
   this.canvas_.style.zIndex = -100;
+  document.body.zIndex = -101;
   document.body.appendChild(this.canvas_);
 
   // Measure the width and height of the body element.
