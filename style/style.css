@@ -104,6 +104,47 @@ body {
   color: #e22828;
 }
 
+#tap-content {
+  position: absolute;
+  width: 100%;
+  min-width: 960px;
+  height: 600px;
+  margin-top: -300px;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-size: 50px;
+}
+
+#tap-content-text {
+  width: auto;
+  height: auto;
+  margin: auto;
+  padding: 25px 0 20px 0;
+  font-size: 20px;
+}
+
+#tap-content-game {
+  width: 600px;
+  height: 400px;
+  margin: auto;
+  background: rgba(75, 75, 75, 0.9);
+
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+
+  -webkit-box-shadow: 0px 0px 30px 10px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px 0px 30px 10px rgba(50, 50, 50, 0.75);
+  -ms-box-shadow: 0px 0px 30px 10px rgba(50, 50, 50, 0.75);
+  -o-box-shadow: 0px 0px 30px 10px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px 0px 30px 10px rgba(50, 50, 50, 0.75);
+}
+
 #media {
   margin: auto;
 }
