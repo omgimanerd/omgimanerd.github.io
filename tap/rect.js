@@ -22,7 +22,7 @@ Rect.prototype.getSVG = function() {
 
 Rect.prototype.updateRect = function() {
   this.rect_.setAttribute('x', this.x_);
-  this.rect_.setAttribute('y', this.x);
+  this.rect_.setAttribute('y', this.y_);
   this.rect_.setAttribute('width', this.width_);
   this.rect_.setAttribute('height', this.height_);
   this.rect_.setAttribute('fill', this.fill_);

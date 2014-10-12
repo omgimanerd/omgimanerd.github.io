@@ -1,5 +1,6 @@
 // Copyright Alvin Lin 2014
 /**
+ * @author Alvin Lin (alvin.lin@stuypulse.com)
  * Generates and returns an SVG circle.
  * Has methods of mutability.
  */
