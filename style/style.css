@@ -21,6 +21,7 @@ html, body {
   height: 150px;
   line-height: 150px;
   text-align: left;
+  z-index: 1;
 }
 
 #navbar a:first-child {
@@ -162,9 +163,9 @@ html, body {
 }
 
 #copyright {
-  display: inline;
   position: absolute;
   width: 100%;
+  min-width: 960px;
   bottom: 0;
   padding-bottom: 20px;
   text-align: center;
