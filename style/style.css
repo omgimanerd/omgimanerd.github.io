@@ -3,6 +3,8 @@
  * Styling for the main page.
  */
 
+/* Global Styles */
+
 html, body {
   width: 100%;
   height: 100%;
@@ -14,6 +16,17 @@ html, body {
 body {
   background: #ccc;
   z-index: -1000;
+}
+
+button {
+  width: 75px;
+  height: 30px;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
 }
 
 #navbar {

@@ -4,15 +4,23 @@
  * Script for the tap game.
  */
 
+// bind() function allows setTimeout to work on the objects.
+function bind(object, method) {
+  return function() {
+    return method.apply(object, arguments);
+  };
+}
+
 function Tap(canvas) {
   this.canvas_ = canvas;
   this.width_ = canvas.offsetWidth;
   this.height_ = canvas.offsetHeight;
+  this.gameLoop_ = null;
 }
 
-Tap.prototype.buildGameBackground = function() {
-  console.log(this.width_, this.height_);
+Tap.FPS = 60;
 
+Tap.prototype.buildGameStart = function() {
   var backgroundHeight = this.height_ / 4;
 
   var red = new Rect(
@@ -30,6 +38,20 @@ Tap.prototype.buildGameBackground = function() {
   this.canvas_.appendChild(yellow.getSVG());
 }
 
-Tap.prototype.startGame = function() {
+Tap.prototype.update = function() {
+  var mouseX, mouseY;
+  document.onmousemove = function(e) {
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+  }
 
-}
+  console.log(mouseX, mouseY);
+};
+
+Tap.prototype.startGame = function() {
+  this.gameLoop_ = setInterval(bind(this, this.update), 1000 / Tap.FPS);
+};
+
+Tap.prototype.endGame = function() {
+  clearInterval(this.gameLoop_);
+};

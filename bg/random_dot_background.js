@@ -125,6 +125,17 @@ RandomDotBackground.prototype.generateRandomDot = function() {
   this.createDot(x, y, color, radius, animationTime);
 };
 
+RandomDotBackground.prototype.setCanvasSize = function() {
+  // Measure the width and height of the body element.
+  this.width_ = document.body.offsetWidth;
+  this.height_ = document.body.offsetHeight;
+
+  // Set the width and height of the SVG canvas to the width and height
+  // of the body (basically the entire page).
+  this.canvas_.setAttribute('width', this.width_.toString()+'px');
+  this.canvas_.setAttribute('height', this.height_.toString()+'px');
+};
+
 RandomDotBackground.prototype.buildRandomDotBackgroundAnimation = function() {
   // Create the canvas.
   this.canvas_ = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -137,16 +148,11 @@ RandomDotBackground.prototype.buildRandomDotBackgroundAnimation = function() {
   this.canvas_.style.zIndex = -100;
   document.body.zIndex = -101;
   document.body.appendChild(this.canvas_);
-
-  // Measure the width and height of the body element.
-  this.width_ = document.body.offsetWidth;
-  this.height_ = document.body.offsetHeight;
-
-  // Set the width and height of the SVG canvas to the width and height
-  // of the body (basically the entire page).
-  this.canvas_.setAttribute('width', this.width_.toString()+'px');
-  this.canvas_.setAttribute('height', this.height_.toString()+'px');
+  this.setCanvasSize();
 
   // Set the animation.
   setInterval(bind(this, this.generateRandomDot), 100);
+
+  // Refresh the size of the canvas every second.
+  setInterval(bind(this, this.setCanvasSize), 1000);
 };

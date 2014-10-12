@@ -154,6 +154,17 @@ LTRSineDotBackground.prototype.generateRandomLTRSineDot = function() {
   this.createLTRSineDot(y, color, radius, wavelength, amplitude, animationTime);
 };
 
+LTRSineDotBackground.prototype.setCanvasSize = function() {
+  // Measure the width and height of the body element.
+  this.width_ = document.body.offsetWidth;
+  this.height_ = document.body.offsetHeight;
+
+  // Set the width and height of the SVG canvas to the width and height
+  // of the body (basically the entire page).
+  this.canvas_.setAttribute('width', this.width_.toString()+'px');
+  this.canvas_.setAttribute('height', this.height_.toString()+'px');
+};
+
 LTRSineDotBackground.prototype.buildLTRSineDotBackgroundAnimation = function() {
   // Create the canvas.
   this.canvas_ = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -166,16 +177,11 @@ LTRSineDotBackground.prototype.buildLTRSineDotBackgroundAnimation = function() {
   this.canvas_.style.zIndex = -100;
   document.body.zIndex = -101;
   document.body.appendChild(this.canvas_);
-
-  // Measure the width and height of the body element.
-  this.width_ = document.body.offsetWidth;
-  this.height_ = document.body.offsetHeight;
-
-  // Set the width and height of the SVG canvas to the width and height
-  // of the body (basically the entire page).
-  this.canvas_.setAttribute('width', this.width_.toString()+'px');
-  this.canvas_.setAttribute('height', this.height_.toString()+'px');
+  this.setCanvasSize();
 
   // Set the animation.
   setInterval(bind(this, this.generateRandomLTRSineDot), 250);
+
+  // Refresh the size of the canvas every second.
+  setInterval(bind(this, this.setCanvasSize), 1000);
 };

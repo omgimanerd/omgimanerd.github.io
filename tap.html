@@ -29,6 +29,10 @@
       Tap
       <div id='tap-content-text'>
         Tap is a browser-based game made entirely with JavaScript.
+        <br />
+        <button type='button' onclick='tapObj.startGame()'>
+          Start
+        </button>
       </div>
       <svg id='tap-content-game'>
       <!--
@@ -50,7 +54,7 @@
       // Create the Tap object.
       var tapCanvas = document.getElementById('tap-content-game');
       var tapObj = new Tap(tapCanvas);
-      tapObj.buildGameBackground();
+      tapObj.buildGameStart();
     </script>
   </body>
 </html>
