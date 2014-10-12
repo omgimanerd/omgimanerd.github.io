@@ -3,7 +3,7 @@
  * Styling for the animations.
  */
 
-#home-content, #resume-content, #copyright {
+#home-content, #resume-content, #tap-content, #copyright {
   opacity: 0;
 
   -webkit-animation-name: fade-in;
