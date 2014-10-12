@@ -108,11 +108,10 @@ LTRSineDotBackground.prototype.createLTRSineDot = function(y,
   var animationTime = 0;
   var x = 0;
 
-  // Sets the animation for the dots expanding.
+  // Sets the animation for the dots moving in their sine wave.
   for (var i = 0; i < animationSteps; ++i) {
     animationTime += animationStepTime;
     setTimeout(function() {
-      var xInRadians = x * (Math.PI / 180);
       circle.setAttribute('cx', x++);
       circle.setAttribute('cy', y + amplitude * Math.sin(x / wavelength));
     }, animationTime);

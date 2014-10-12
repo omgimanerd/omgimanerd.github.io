@@ -129,6 +129,14 @@ button {
   left: 0;
   text-align: center;
   font-size: 50px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  cursor: default;
 }
 
 #tap-content-text {
