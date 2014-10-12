@@ -118,7 +118,7 @@ html, body {
   width: auto;
   height: 30px;
   left: -100%;
-  bottom: 75px;
+  bottom: 105px;
   font-size: 20px;
   padding: 5px;
   z-index: 2;
@@ -137,7 +137,7 @@ html, body {
 #media .media-tooltip:hover:before {
   position: absolute;
   left: 50%;
-  bottom: 70px;
+  bottom: 100px;
   z-index: 1;
 
   border: solid;
