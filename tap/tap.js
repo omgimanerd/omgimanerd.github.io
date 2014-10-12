@@ -37,8 +37,8 @@ Tap.AMPLITUDE = 150;
  * this range.
  */
 Tap.COLORS = [Colors.RED, Colors.BLUE, Colors.GREEN, Colors.YELLOW];
-Tap.MIN_WAVELENGTH = 25;
-Tap.MAX_WAVELENGTH = 100;
+Tap.MIN_WAVELENGTH = 50;
+Tap.MAX_WAVELENGTH = 75;
 Tap.MIN_SPEED = 4000;
 Tap.MAX_SPEED = 5000;
 
