@@ -76,10 +76,10 @@ html, body {
 #media .media-tooltip:hover:after {
   position: absolute;
   width: auto;
-  height: 25px;
+  height: 30px;
   left: -100%;
   bottom: 75px;
-  font-size: 15px;
+  font-size: 20px;
   padding: 5px;
   z-index: 2;
 
