@@ -5,6 +5,10 @@
  * To use this background template, instantiate a RandomSquareBackground
  * object at the end of the body and call buildRandomSquareBackgroundAnimation()
  * on the object.
+ * The reason we do not use an <animate> object is because the 'dur' attribute
+ * that defines the animation time counts from when the webpage is loaded, so
+ * animations and circles added after the first 1500ms render at their end
+ * animation state.
  */
 
 // bind() function allows setTimeout to work on the objects.
