@@ -68,7 +68,7 @@ Tap.prototype.makeDot = function(x, y, radius,
   var dot = new Circle(x, y, radius, color);
   this.canvas_.appendChild(dot.getSVG());
 
-  dot.getSVG().onclick = bind(this, function() {
+  dot.getSVG().onmousedown = bind(this, function() {
     var dotColorBounds = {
       RED : [0, 100],
       BLUE : [100, 200],
