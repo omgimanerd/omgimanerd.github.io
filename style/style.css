@@ -109,7 +109,7 @@ button {
 
 #media .media-tooltip:hover:after {
   position: absolute;
-  width: auto;
+  width: 350px;
   height: 30px;
   left: -100%;
   bottom: 105px;
