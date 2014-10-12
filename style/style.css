@@ -160,3 +160,12 @@ html, body {
 #media span:hover {
   opacity: 1;
 }
+
+#copyright {
+  display: inline;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding-bottom: 20px;
+  text-align: center;
+}
