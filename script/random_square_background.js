@@ -1,4 +1,4 @@
-// Copyright 2014 >:D
+// Copyright Alvin Lin 2014
 /**
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  * Script for the falling squares background animation.
