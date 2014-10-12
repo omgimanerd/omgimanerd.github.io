@@ -146,11 +146,9 @@ html, body {
   content: "";
 }
 
-#media img {
-  width: auto;
-  height: 50px;
+#media span {
+  color: #000;
   opacity: 0.5;
-  margin: 0px;
 
   -webkit-transition: all 500ms;
   -moz-transition: all 500ms;
@@ -159,6 +157,6 @@ html, body {
   transition: all 500ms;
 }
 
-#media img:hover {
+#media span:hover {
   opacity: 1;
 }
