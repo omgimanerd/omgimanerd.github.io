@@ -69,7 +69,7 @@ RandomDotBackground.prototype.createDot = function(x, y,
   circle.setAttribute('cy', y);
   circle.setAttribute('r', 0);
   circle.setAttribute('fill', color);
-  circle.setAttribute('fill-opacity', 0.5);
+  circle.setAttribute('fill-opacity', 0.4);
   this.canvas_.appendChild(circle);
 
   var animationSteps = Math.floor(maxRadius / 2);

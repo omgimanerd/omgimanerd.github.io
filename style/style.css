@@ -5,9 +5,7 @@
 
 html, body {
   width: 100%;
-  min-width: 800px;
   height: 100%;
-  min-height: 600px;
   margin: 0px;
   padding: 0px;
   font-family: "Open Sans", sans-serif;
@@ -23,7 +21,10 @@ html, body {
   height: 150px;
   line-height: 150px;
   text-align: left;
-  padding-left: 50px;
+}
+
+#navbar a:first-child {
+  margin-left: 50px;
 }
 
 #navbar a {
@@ -49,9 +50,10 @@ html, body {
   opacity: 1;
 }
 
-#content {
+#home-content {
   position: absolute;
   width: 100%;
+  min-width: 960px;
   height: 150px;
   margin-top: -75px;
   top: 50%;
@@ -60,6 +62,44 @@ html, body {
   left: 0;
   text-align: center;
   font-size: 50px;
+}
+
+#resume-content {
+  position: absolute;
+  width: 100%;
+  min-width: 960px;
+  height: 500px;
+  margin-top: -250px;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-size: 50px;
+}
+
+#resume-content-text {
+  width: 960px;
+  height: auto;
+  margin: auto;
+  padding-top: 50px;
+  font-size: 20px;
+  text-align: left;
+}
+
+#resume-content-text a {
+  text-decoration: none;
+  color: #8d8d8d;
+
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -ms-transition: all 500ms;
+  -o-transition: all 500ms;
+  transition: all 500ms;
+}
+
+#resume-content-text a:hover {
+  color: #ce4141;
 }
 
 #media {

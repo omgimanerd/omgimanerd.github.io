@@ -3,7 +3,7 @@
  * Styling for the animations.
  */
 
-#content {
+#home-content, #resume-content {
   opacity: 0;
 
   -webkit-animation-name: fade-in;
