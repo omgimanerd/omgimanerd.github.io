@@ -5,13 +5,6 @@
  * game loop.
  */
 
-// bind() function allows setTimeout to work on the objects.
-function bind(object, method) {
-  return function() {
-    return method.apply(object, arguments);
-  };
-}
-
 function Tap(canvas, scoreEl) {
   this.canvas_ = canvas;
   this.width_ = canvas.offsetWidth;
@@ -111,9 +104,14 @@ Tap.prototype.makeDot = function(x, y, radius,
     }, animationTime);
   }
 
+  var shouldContinue = true;
   // Removes the dots from the canvas when the animation finishes.
   setTimeout(bind(this, function() {
-    this.canvas_.removeChild(dot.getSVG());
+    console.log(isChildOf(this.canvas_, dot.getSVG()));
+    if (isChildOf(this.canvas_, dot.getSVG())) {
+      this.canvas_.removeChild(dot.getSVG());
+      this.endGame();
+    }
   }), animationTime);
 };
 
@@ -137,7 +135,7 @@ Tap.prototype.makeRandomDot = function() {
 Tap.prototype.startGame = function() {
   this.score_ = 0;
   this.scoreEl_.innerHTML = 'Score: ' + 0;
-  this.gameLoop_ = setInterval(bind(this, this.makeRandomDot), 750);
+  this.gameLoop_ = setInterval(bind(this, this.makeRandomDot), 1000);
 };
 
 Tap.prototype.endGame = function() {
