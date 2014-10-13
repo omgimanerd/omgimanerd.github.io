@@ -60,8 +60,8 @@ Tap.prototype.buildGameStart = function() {
 
   // Set up the score and highscore elements.
   this.scoreEl_.innerHTML = "Score: 0";
-  var highscore = document.cookie;
-  this.highScoreEl_.innerHTML = highscore;
+  var highscore = parseInt(document.cookie.split('=')[1]);
+  this.highScoreEl_.innerHTML = "High score: " + highscore;
 }
 
 Tap.prototype.makeDot = function(x, y, radius,
@@ -150,7 +150,7 @@ Tap.prototype.startGame = function() {
 
 Tap.prototype.endGame = function() {
   clearInterval(this.gameLoop_);
-  var highscore = parseInt(document.cookie.split('=')[1]);
+  var highscore =   parseInt(document.cookie.split('=')[1]);
   console.log(highscore);
   if (this.score_ > highscore) {
     document.cookie = 'tapHighScore='+this.score_.toString();
