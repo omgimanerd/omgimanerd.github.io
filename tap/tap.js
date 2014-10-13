@@ -12,7 +12,7 @@ function Tap(canvas, scoreEl, highScoreEl) {
 
   this.score_ = 0;
   this.scoreEl_ = scoreEl;
-  this.highScoreEl = highScoreEl;
+  this.highScoreEl_ = highScoreEl;
   this.gameLoop_ = null;
 }
 
