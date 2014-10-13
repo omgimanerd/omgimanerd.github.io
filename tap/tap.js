@@ -150,10 +150,10 @@ Tap.prototype.startGame = function() {
 
 Tap.prototype.endGame = function() {
   clearInterval(this.gameLoop_);
-  var highscore =   parseInt(document.cookie.split('=')[1]);
+  var highscore = parseInt(document.cookie.split('=')[1]);
   console.log(highscore);
   if (this.score_ > highscore) {
-    document.cookie = 'tapHighScore='+this.score_.toString();
-    this.highScoreEl.innerHTML = "High score: " + this.score_;
+    document.cookie = 'tapHighScore=' + this.score_.toString();
+    this.highScoreEl_.innerHTML = "High score: " + this.score_;
   }
 };
