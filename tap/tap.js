@@ -60,7 +60,11 @@ Tap.prototype.buildGameStart = function() {
 
   // Set up the score and highscore elements.
   this.scoreEl_.innerHTML = "Score: 0";
-  var highscore = parseInt(document.cookie.split('=')[1]);
+  if (document.cookie == '') {
+    var highscore = 0;
+  } else {
+    var highscore = parseInt(document.cookie.split('=')[1]);
+  }
   this.highScoreEl_.innerHTML = "High score: " + highscore;
 }
 
@@ -151,7 +155,7 @@ Tap.prototype.startGame = function() {
 Tap.prototype.endGame = function() {
   clearInterval(this.gameLoop_);
   var highscore = parseInt(document.cookie.split('=')[1]);
-  if (this.score_ > highscore) {
+  if (document.cookie == '' || this.score_ > highscore) {
     document.cookie = 'tapHighScore=' + this.score_.toString();
     this.highScoreEl_.innerHTML = "High score: " + this.score_;
   }
