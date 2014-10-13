@@ -137,12 +137,17 @@ Tap.prototype.makeRandomDot = function() {
       (Tap.MAX_WAVELENGTH -
       Tap.MIN_WAVELENGTH)) +
       Tap.MIN_WAVELENGTH;
-  var amplitude = Tap.AMPLITUDE;
+  if (Math.random() > 0.5) {
+    var amplitude = Tap.AMPLITUDE;
+  } else {
+    var amplitude = -Tap.AMPLITUDE;
+  }
   var color = Tap.COLORS[Math.floor(Math.random() *
       Tap.COLORS.length)];
   var speed = Math.floor(Math.random() *
       (Tap.MAX_SPEED - Tap.MIN_SPEED)) +
       Tap.MIN_SPEED;
+
   this.makeDot(x, y, radius, wavelength, amplitude, color, speed);
 };
 
