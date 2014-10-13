@@ -59,9 +59,9 @@ Tap.prototype.buildGameStart = function() {
   this.canvas_.appendChild(yellow.getSVG());
 
   // Set up the score and highscore elements.
-  this.scoreEl.innerHTML = "Score: 0";
+  this.scoreEl_.innerHTML = "Score: 0";
   var highscore = document.cookie;
-  this.highScoreEl.innerHTML = highscore;
+  this.highScoreEl_.innerHTML = highscore;
 }
 
 Tap.prototype.makeDot = function(x, y, radius,
