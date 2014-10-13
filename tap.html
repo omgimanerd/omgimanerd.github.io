@@ -38,12 +38,10 @@
         <button type='button' onclick='tapObj.startGame()'>
           Start
         </button>
-        <button type='button' onclick='window.alert(document.cookie);'>
-          Cookie
-        </button>
         <br />
         <span id='tap-content-game-score'>
-          Score&#58; 0
+        </span>
+        <span id='tap-content-game-highscore'>
         </span>
       </div>
       <svg id='tap-content-game'>
@@ -66,9 +64,13 @@
       background.buildLTRSineDotBackgroundAnimation();
 
       // Create the Tap object.
-      var tapCanvas = document.getElementById('tap-content-game');
-      var tapScoreEl = document.getElementById('tap-content-game-score');
-      var tapObj = new Tap(tapCanvas, tapScoreEl);
+      var tapCanvas = document.getElementById(
+          'tap-content-game');
+      var tapScoreEl = document.getElementById(
+          'tap-content-game-score');
+      var tapHighScoreEl = document.getElementById(
+          'tap-content-game-highscore');
+      var tapObj = new Tap(tapCanvas, tapScoreEl, tapHighScoreEl);
       tapObj.buildGameStart();
     </script>
   </body>

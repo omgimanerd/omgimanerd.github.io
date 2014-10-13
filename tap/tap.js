@@ -5,13 +5,14 @@
  * game loop.
  */
 
-function Tap(canvas, scoreEl) {
+function Tap(canvas, scoreEl, highScoreEl) {
   this.canvas_ = canvas;
   this.width_ = canvas.offsetWidth;
   this.height_ = canvas.offsetHeight;
 
   this.score_ = 0;
   this.scoreEl_ = scoreEl;
+  this.highScoreEl = highScoreEl;
   this.gameLoop_ = null;
 }
 
@@ -36,6 +37,7 @@ Tap.MIN_SPEED = 4000;
 Tap.MAX_SPEED = 5000;
 
 Tap.prototype.buildGameStart = function() {
+  // Build the background of the canvas.
   var backgroundHeight = this.height_ / 4;
 
   var red = new Rect(
@@ -55,6 +57,11 @@ Tap.prototype.buildGameStart = function() {
   this.canvas_.appendChild(blue.getSVG());
   this.canvas_.appendChild(green.getSVG());
   this.canvas_.appendChild(yellow.getSVG());
+
+  // Set up the score and highscore elements.
+  this.scoreEl.innerHTML = "Score: 0";
+  var highscore = document.cookie;
+  this.highScoreEl.innerHTML = highscore;
 }
 
 Tap.prototype.makeDot = function(x, y, radius,
@@ -143,6 +150,10 @@ Tap.prototype.startGame = function() {
 
 Tap.prototype.endGame = function() {
   clearInterval(this.gameLoop_);
-  document.cookie = 'highscore='+this.score_.toString();
-  console.log(document.cookie);
+  var highscore = parseInt(document.cookie.split('=')[1]);
+  console.log(highscore);
+  if (this.score_ > highscore) {
+    document.cookie = 'tapHighScore='+this.score_.toString();
+    this.highScoreEl.innerHTML = "High score: " + this.score_;
+  }
 };
