@@ -153,10 +153,10 @@ Tap.prototype.startGame = function() {
 };
 
 Tap.prototype.endGame = function() {
-  clearInterval(this.gameLoop_);
   var highscore = parseInt(document.cookie.split('=')[1]);
   if (document.cookie == '' || this.score_ > highscore) {
     document.cookie = 'tapHighScore=' + this.score_.toString();
     this.highScoreEl_.innerHTML = "High score: " + this.score_;
   }
+  clearInterval(this.gameLoop_);
 };
