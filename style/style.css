@@ -204,6 +204,16 @@ button {
   font-size: 18px;
 }
 
+#tap-content-stats {
+  width: 600px;
+  margin: 10px auto -5px;
+  text-align: left;
+}
+
+#tap-content-stats span {
+  margin-right: 50px;
+}
+
 #tap-content-game {
   width: 600px;
   height: 400px;
