@@ -14,6 +14,7 @@ function Tap(canvas, scoreEl, highScoreEl) {
   this.scoreEl_ = scoreEl;
   this.highScoreEl_ = highScoreEl;
   this.gameLoop_ = null;
+  this.lost_ = false;
 }
 
 /**
@@ -98,8 +99,10 @@ Tap.prototype.makeDot = function(x, y, radius,
         (dot.getFill() == Colors.YELLOW &&
         dot.getXY()[1] > dotColorBounds.YELLOW[0] &&
         dot.getXY()[1] < dotColorBounds.YELLOW[1])) {
-      this.score_++;
-      this.scoreEl_.innerHTML = 'Score: ' + this.score_;
+      if (!this.lost_) {
+        this.score_++;
+        this.scoreEl_.innerHTML = 'Score: ' + this.score_;
+      }
     } else {
       this.endGame();
     }
@@ -155,6 +158,7 @@ Tap.prototype.startGame = function() {
   this.score_ = 0;
   this.scoreEl_.innerHTML = 'Score: ' + 0;
   this.gameLoop_ = setInterval(bind(this, this.makeRandomDot), 1000);
+  this.lost_ = false;
 };
 
 Tap.prototype.endGame = function() {
@@ -163,5 +167,6 @@ Tap.prototype.endGame = function() {
     document.cookie = 'tapHighScore=' + this.score_.toString();
     this.highScoreEl_.innerHTML = "High score: " + this.score_;
   }
+  this.lost_ = true;
   clearInterval(this.gameLoop_);
 };
