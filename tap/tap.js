@@ -39,13 +39,17 @@ Tap.prototype.buildGameStart = function() {
   var backgroundHeight = this.height_ / 4;
 
   var red = new Rect(
-      0, 0, this.width_, backgroundHeight, 'red');
+      0, 0, this.width_,
+      backgroundHeight, Colors.TAP_RED);
   var blue = new Rect(
-      0, this.height_ / 4, this.width_, backgroundHeight, 'blue');
+      0, this.height_ / 4, this.width_,
+      backgroundHeight, Colors.TAP_BLUE);
   var green = new Rect(
-      0, this.height_ / 2, this.width_, backgroundHeight, 'green');
+      0, this.height_ / 2, this.width_,
+      backgroundHeight, Colors.TAP_GREEN);
   var yellow = new Rect(
-      0, 3 * this.height_ / 4, this.width_, backgroundHeight, 'yellow');
+      0, 3 * this.height_ / 4, this.width_,
+      backgroundHeight, Colors.TAP_YELLOW);
 
   this.canvas_.appendChild(red.getSVG());
   this.canvas_.appendChild(blue.getSVG());
@@ -107,7 +111,6 @@ Tap.prototype.makeDot = function(x, y, radius,
   var shouldContinue = true;
   // Removes the dots from the canvas when the animation finishes.
   setTimeout(bind(this, function() {
-    console.log(isChildOf(this.canvas_, dot.getSVG()));
     if (isChildOf(this.canvas_, dot.getSVG())) {
       this.canvas_.removeChild(dot.getSVG());
       this.endGame();
@@ -140,4 +143,6 @@ Tap.prototype.startGame = function() {
 
 Tap.prototype.endGame = function() {
   clearInterval(this.gameLoop_);
+  document.cookie = 'highscore='+this.score_.toString();
+  console.log(document.cookie);
 };
