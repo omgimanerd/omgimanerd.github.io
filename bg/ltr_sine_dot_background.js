@@ -28,7 +28,7 @@ function LTRSineDotBackground() {}
  * This is an array containing all the possible colors of the dots.
  */
 LTRSineDotBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow', 'orange',
-                                  'magenta', 'cyan'];
+                                   'magenta', 'cyan'];
 
 /**
  * This value represents the maximum radius that the generated dots can be.
@@ -38,7 +38,7 @@ LTRSineDotBackground.MIN_RADIUS = 25;
 /**
  * This value represents the maximum radius that the generated dots can be.
  */
-LTRSineDotBackground.MAX_RADIUS = 75;
+LTRSineDotBackground.MAX_RADIUS = 50;
 
 /**
  * This value represents the maximum wavelength that the generated dots can
@@ -68,7 +68,7 @@ LTRSineDotBackground.MAX_AMPLITUDE = 200;
  * This value represents the minimum animation time that the generated dots
  * can have.
  */
-LTRSineDotBackground.MIN_ANIMATION_TIME = 1000;
+LTRSineDotBackground.MIN_ANIMATION_TIME = 2000;
 
 /**
  * This value represents the maximum animation time that the generated dots
@@ -144,6 +144,9 @@ LTRSineDotBackground.prototype.generateRandomLTRSineDot = function() {
       (LTRSineDotBackground.MAX_AMPLITUDE -
       LTRSineDotBackground.MIN_AMPLITUDE)) +
       LTRSineDotBackground.MIN_AMPLITUDE;
+  if (Math.random() > 0.5) {
+    amplitude *= -1;
+  }
   var animationTime = Math.floor(Math.random() *
       (LTRSineDotBackground.MAX_ANIMATION_TIME -
       LTRSineDotBackground.MIN_ANIMATION_TIME)) +
@@ -179,7 +182,7 @@ LTRSineDotBackground.prototype.buildLTRSineDotBackgroundAnimation = function() {
   this.setCanvasSize();
 
   // Set the animation.
-  setInterval(bind(this, this.generateRandomLTRSineDot), 250);
+  setInterval(bind(this, this.generateRandomLTRSineDot), 200);
 
   // Refresh the size of the canvas every second.
   setInterval(bind(this, this.setCanvasSize), 1000);
