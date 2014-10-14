@@ -87,6 +87,8 @@ RandomSquareBackground.prototype.createSquare = function(x, y,
     animationTime += animationStepTime;
     setTimeout(function() {
       var newSideLength = sideLength++;
+      square.setAttribute('x', x - sideLength / 2);
+      square.setAttribute('y', y - sideLength / 2);
       square.setAttribute('width', newSideLength);
       square.setAttribute('height', newSideLength);
     }, animationTime);
@@ -97,6 +99,8 @@ RandomSquareBackground.prototype.createSquare = function(x, y,
     animationTime += animationStepTime;
     setTimeout(function() {
       var newSideLength = sideLength--;
+      square.setAttribute('x', x - sideLength / 2);
+      square.setAttribute('y', y - sideLength / 2);
       square.setAttribute('width', newSideLength);
       square.setAttribute('height', newSideLength);
     }, animationTime);
