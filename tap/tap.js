@@ -18,7 +18,7 @@ function Tap(canvas, scoreEl, highScoreEl) {
 }
 
 /**
- * Set values for the generation of the dots.
+ * Constant values for the generation of the dots and their movement.
  */
 Tap.X = -100;
 Tap.Y = 200;
@@ -29,7 +29,7 @@ Tap.AMPLITUDE = 150;
  * Randomized values for the generation of the dots.
  * A color is selected randomly from this array
  * and a wavelength and speed are randomly generated inside
- * this range.
+ * these ranges.
  */
 Tap.COLORS = [Colors.RED, Colors.BLUE, Colors.GREEN, Colors.YELLOW];
 Tap.MIN_WAVELENGTH = 50;
@@ -69,6 +69,19 @@ Tap.prototype.buildGameStart = function() {
   this.highScoreEl_.innerHTML = "High score: " + highscore;
 }
 
+/**
+ * Generates a dot with the given parameters and sets its onclick method
+ * so that it will disappear when clicked. Game logic is also handled
+ * in this function, if the dot reaches the end, or if it is clicked on
+ * the wrong color, then the game will end (dots will stop generating).
+ * @param {number} x (Canvas coordinates)
+ * @param {number} y (Canvas coordinates)
+ * @param {number} radius (Pixels)
+ * @param {number} wavelength (Pixels)
+ * @param {number} amplitude (Pixels)
+ * @param {string} color
+ * @param {number} speed (Milliseconds)
+ */
 Tap.prototype.makeDot = function(x, y, radius,
                                  wavelength,
                                  amplitude,
