@@ -173,8 +173,9 @@ Tap.prototype.startGame = function() {
   if (this.lost_) {
     this.gameLoop_ = setInterval(bind(this, this.makeRandomDot), 1000);
   }
-  while (this.canvas_.firstChild) {
-      this.canvas_.removeChild(this.canvas_.firstChild);
+  var circles = this.canvas_.getElementsByTagName('circle');
+  for (var i = 0; i < circles.length; ++i) {
+    this.canvas_.removeChild(circles[i]);
   }
   this.lost_ = false;
 };
