@@ -149,7 +149,7 @@ button {
 }
 
 #resume-content {
-  width: 600px;
+  width: 800px;
   height: 400px;
   margin: 0 auto 150px;
   text-align: center;
@@ -157,11 +157,11 @@ button {
 }
 
 #resume-content-text {
-  width: 600px;
+  width: 800px;
   height: auto;
   margin: auto;
   padding-top: 50px;
-  font-size: 20px;
+  font-size: 18px;
   text-align: left;
 }
 
