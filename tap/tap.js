@@ -14,7 +14,7 @@ function Tap(canvas, scoreEl, highScoreEl) {
   this.scoreEl_ = scoreEl;
   this.highScoreEl_ = highScoreEl;
   this.gameLoop_ = null;
-  this.lost_ = false;
+  this.lost_ = true;
 }
 
 /**
@@ -170,7 +170,9 @@ Tap.prototype.makeRandomDot = function() {
 Tap.prototype.startGame = function() {
   this.score_ = 0;
   this.scoreEl_.innerHTML = 'Score: ' + 0;
-  this.gameLoop_ = setInterval(bind(this, this.makeRandomDot), 1000);
+  if (this.lost_) {
+    this.gameLoop_ = setInterval(bind(this, this.makeRandomDot), 1000);
+  }
   this.lost_ = false;
 };
 
