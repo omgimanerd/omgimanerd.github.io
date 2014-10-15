@@ -5,18 +5,28 @@
 
 /* Global Styles */
 
-html, body {
+/**
+ * This html style will cause elements to leak out on tap.html,
+ * this is fine for the positioning of the canvas.
+ */
+html {
   width: 100%;
-  margin: 0px;
-  padding: 0px;
-  font-family: "Open Sans", sans-serif;
+  height: 100%;
+  margin: 0;
 }
 
 body {
+  width: 100%;
   min-width: 800px;
   min-height: 600px;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Open Sans", sans-serif;
   background: #ccc;
-  z-index: -1000;
+}
+
+#single-page-body {
+  height: 100%;
 }
 
 button {
