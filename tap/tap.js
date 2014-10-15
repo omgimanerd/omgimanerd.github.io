@@ -32,10 +32,10 @@ Tap.AMPLITUDE = 150;
  * these ranges.
  */
 Tap.COLORS = [Colors.RED, Colors.BLUE, Colors.GREEN, Colors.YELLOW];
-Tap.MIN_WAVELENGTH = 50;
-Tap.MAX_WAVELENGTH = 75;
-Tap.MIN_SPEED = 4000;
-Tap.MAX_SPEED = 5000;
+Tap.MIN_WAVELENGTH = 40;
+Tap.MAX_WAVELENGTH = 80;
+Tap.MIN_SPEED = 3500;
+Tap.MAX_SPEED = 4500;
 
 Tap.prototype.buildGameStart = function() {
   // Build the background of the canvas.
