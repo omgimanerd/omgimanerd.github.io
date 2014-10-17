@@ -38,6 +38,10 @@ Tap.MAX_WAVELENGTH = 80;
 Tap.MIN_SPEED = 3500;
 Tap.MAX_SPEED = 4500;
 
+/**
+ * Clears the canvas of dots.
+ * @deprecated
+ */
 Tap.prototype.clearCanvas = function() {
   var circles = this.canvas_.getElementsByTagName('circle');
   for (var i = 0; i < circles.length; ++i) {
@@ -138,12 +142,14 @@ Tap.prototype.makeDot = function(x, y, radius,
   // Sets the animation for the dots expanding.
   for (var i = 0; i < animationSteps; ++i) {
     animationTime += animationStepTime;
-    setTimeout(function() {
+    setTimeout(bind(this, function() {
       dot.setXY(x++, y - (amplitude * Math.sin(x / wavelength)));
-    }, animationTime);
+      if (this.lost_) {
+        this.canvas_.removeChild(dot.getSVG());
+      }
+    }), animationTime);
   }
 
-  var shouldContinue = true;
   // Removes the dots from the canvas when the animation finishes.
   setTimeout(bind(this, function() {
     if (isChildOf(this.canvas_, dot.getSVG())) {
@@ -177,7 +183,7 @@ Tap.prototype.makeRandomDot = function() {
 
 Tap.prototype.startGame = function() {
   this.score_ = 0;
-  this.scoreEl_.innerHTML = 'Score: ' + 0;
+  this.scoreEl_.innerHTML = 'Score: 0';
   if (this.lost_) {
     this.gameLoop_ = setInterval(bind(this, this.makeRandomDot), 1000);
   }
@@ -192,11 +198,11 @@ Tap.prototype.endGame = function() {
     document.cookie = 'tapHighScore=' + this.score_.toString();
     this.highScoreEl_.innerHTML = "High score: " + this.score_;
   }
-  this.clearCanvas();
+
   this.lost_ = true;
   clearInterval(this.gameLoop_);
 
   this.overlayEl_.style.lineHeight = '100px';
   this.overlayEl_.style.zIndex = 1;
-  this.overlayEl_.innerHTML = "You lost! <br /> Try again.";
+  this.overlayEl_.innerHTML = "You lost!<br />Try again.";
 };
