@@ -5,10 +5,11 @@
  * game loop.
  */
 
-function Tap(canvas, scoreEl, highScoreEl) {
+function Tap(canvas, tapOverlayEl, scoreEl, highScoreEl) {
   this.canvas_ = canvas;
   this.width_ = canvas.offsetWidth;
   this.height_ = canvas.offsetHeight;
+  this.overlayEl_ = tapOverlayEl;
 
   this.score_ = 0;
   this.scoreEl_ = scoreEl;
@@ -36,6 +37,13 @@ Tap.MIN_WAVELENGTH = 40;
 Tap.MAX_WAVELENGTH = 80;
 Tap.MIN_SPEED = 3500;
 Tap.MAX_SPEED = 4500;
+
+Tap.prototype.clearCanvas = function() {
+  var circles = this.canvas_.getElementsByTagName('circle');
+  for (var i = 0; i < circles.length; ++i) {
+    this.canvas_.removeChild(circles[i]);
+  }
+};
 
 Tap.prototype.buildGameStart = function() {
   // Build the background of the canvas.
@@ -173,11 +181,9 @@ Tap.prototype.startGame = function() {
   if (this.lost_) {
     this.gameLoop_ = setInterval(bind(this, this.makeRandomDot), 1000);
   }
-  var circles = this.canvas_.getElementsByTagName('circle');
-  for (var i = 0; i < circles.length; ++i) {
-    this.canvas_.removeChild(circles[i]);
-  }
   this.lost_ = false;
+
+  this.overlayEl_.style.zIndex = -1;
 };
 
 Tap.prototype.endGame = function() {
@@ -186,6 +192,11 @@ Tap.prototype.endGame = function() {
     document.cookie = 'tapHighScore=' + this.score_.toString();
     this.highScoreEl_.innerHTML = "High score: " + this.score_;
   }
+  this.clearCanvas();
   this.lost_ = true;
   clearInterval(this.gameLoop_);
+
+  this.overlayEl_.style.lineHeight = '100px';
+  this.overlayEl_.style.zIndex = 1;
+  this.overlayEl_.innerHTML = "You lost! <br /> Try again.";
 };

@@ -39,20 +39,21 @@
         let a dot reach the other side.
         <br />
         <br />
-        <button type='button' onclick='tapObj.startGame()'>
-          Start
-        </button>
-        <br />
         <div id='tap-content-stats'>
           <span id='tap-content-game-score'></span>
           <span id='tap-content-game-highscore'></span>
         </div>
       </div>
-      <svg id='tap-content-game'>
-      <!--
-      All content inside will be generated with JavaScript.
-      -->
-      </svg>
+      <div id='tap-content-game'>
+        <div id='tap-content-game-overlay' onclick='tapObj.startGame()'>
+          Start
+        </div>
+        <svg id='tap-content-game-svg'>
+        <!--
+        All content inside will be generated with JavaScript.
+        -->
+        </svg>
+      </div>
     </div>
     <div id='copyright'>
       Copyright &copy; Alvin Lin 2014
@@ -64,12 +65,14 @@
 
       // Create the Tap object.
       var tapCanvas = document.getElementById(
-          'tap-content-game');
+          'tap-content-game-svg');
+      var tapOverlay = document.getElementById(
+          'tap-content-game-overlay');
       var tapScoreEl = document.getElementById(
           'tap-content-game-score');
       var tapHighScoreEl = document.getElementById(
           'tap-content-game-highscore');
-      var tapObj = new Tap(tapCanvas, tapScoreEl, tapHighScoreEl);
+      var tapObj = new Tap(tapCanvas, tapOverlay, tapScoreEl, tapHighScoreEl);
       tapObj.buildGameStart();
     </script>
   </body>
