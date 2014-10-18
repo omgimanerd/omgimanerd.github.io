@@ -204,5 +204,5 @@ Tap.prototype.endGame = function() {
 
   this.overlayEl_.style.lineHeight = '100px';
   this.overlayEl_.style.zIndex = 1;
-  this.overlayEl_.innerHTML = "You lost!<br />Try again.";
+  this.overlayEl_.innerHTML = "You lost!<br />Try again";
 };
