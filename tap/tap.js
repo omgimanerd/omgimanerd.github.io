@@ -38,17 +38,6 @@ Tap.MAX_WAVELENGTH = 80;
 Tap.MIN_SPEED = 3500;
 Tap.MAX_SPEED = 4500;
 
-/**
- * Clears the canvas of dots.
- * @deprecated
- */
-Tap.prototype.clearCanvas = function() {
-  var circles = this.canvas_.getElementsByTagName('circle');
-  for (var i = 0; i < circles.length; ++i) {
-    this.canvas_.removeChild(circles[i]);
-  }
-};
-
 Tap.prototype.buildGameStart = function() {
   // Build the background of the canvas.
   var backgroundHeight = this.height_ / 4;
