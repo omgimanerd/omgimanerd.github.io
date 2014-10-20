@@ -133,7 +133,7 @@ Tap.prototype.makeDot = function(x, y, radius,
     animationTime += animationStepTime;
     setTimeout(bind(this, function() {
       dot.setXY(x++, y - (amplitude * Math.sin(x / wavelength)));
-      if (this.lost_) {
+      if (this.lost_ && isChildOf(this.canvas_, dot.getSVG())) {
         this.canvas_.removeChild(dot.getSVG());
       }
     }), animationTime);
