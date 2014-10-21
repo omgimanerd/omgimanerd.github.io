@@ -11,6 +11,8 @@
     <script type='text/javascript' src='bg/random_square_background.js'></script>
     <script type='text/javascript' src='lib/base.js'></script>
     <script type='text/javascript' src='lib/circle.js'></script>
+    <script type='text/javascript' src='lib/colors.js'></script>
+    <script type='text/javascript' src='lib/rect.js'></script>
     <script type='text/javascript' src='lib/physical_object_model.js'></script>
     <script type='text/javascript' src='klick/klick.js'></script>
   </head>
@@ -35,13 +37,17 @@
       Klick
       <div id='klick-content-text'>
         Klick is a browser-based game made entirely by me with JavaScript.
+        <br />
+        <br />
+        <div id='klick-content-stats'>
+          <span id='klick-content-game-score'></span>
+          <span id='klick-content-game-highscore'></span>
+        </div>
       </div>
       <div id='klick-content-game'>
-        <!--
         <div id='klick-content-game-overlay' onclick='klickObj.startGame()'>
           Start
         </div>
-        -->
         <svg id='klick-content-game-svg'>
         <!--
         All content inside will be generated and handled with JavaScript.
@@ -58,9 +64,17 @@
       //backgroundObj.buildRandomSquareBackgroundAnimation();
 
       // Create the Klick object.
-      var klickCanvas = document.getElementById('klick-content-game-svg');
-      var klickObj = new Klick(klickCanvas);
-      klickObj.startGame();
+      var klickCanvas =
+          document.getElementById('klick-content-game-svg');
+      var klickOverlay =
+          document.getElementById('klick-content-game-overlay');
+      var klickScoreEl =
+          document.getElementById('klick-content-game-score');
+      var klickHighScoreEl =
+          document.getElementById('klick-content-game-highscore');
+      var klickObj = new Klick(
+          klickCanvas, klickOverlay, klickScoreEl, klickHighScoreEl);
+      klickObj.buildGameStart();
     </script>
   </body>
 </html>
