@@ -2,7 +2,11 @@
 /**
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  * Script for the tap game. Unconventional as fuck because I don't use a
- * game loop.
+ * game loop. Tap is a game in which red, blue, green, and yellow circles
+ * move in a wave across red, blue, green, and yellow stripes and the player
+ * must click on the circle when it is above its corresponding color. The
+ * player loses when they click a dot on the wrong color or allow it to reach
+ * the other side.
  */
 
 function Tap(canvas, tapOverlayEl, scoreEl, highScoreEl) {
@@ -38,6 +42,11 @@ Tap.MAX_WAVELENGTH = 80;
 Tap.MIN_SPEED = 3500;
 Tap.MAX_SPEED = 4500;
 
+/**
+ * The name of the key correspond
+ */
+Tap.COOKIE_KEY = 'tapHighScore';
+
 Tap.prototype.buildGameStart = function() {
   // Build the background of the canvas.
   var backgroundHeight = this.height_ / 4;
@@ -61,13 +70,13 @@ Tap.prototype.buildGameStart = function() {
   this.canvas_.appendChild(yellow.getSVG());
 
   // Set up the score and highscore elements.
-  this.scoreEl_.innerHTML = "Score: 0";
+  this.scoreEl_.innerHTML = 'Score: 0';
   if (document.cookie == '') {
-    var highscore = 0;
+    var highscore = '0';
   } else {
-    var highscore = parseInt(document.cookie.split('=')[1]);
+    var highscore = getValueFromCookie(Tap.COOKIE_KEY);
   }
-  this.highScoreEl_.innerHTML = "High score: " + highscore;
+  this.highScoreEl_.innerHTML = 'High score: ' + highscore;
 }
 
 /**
@@ -93,10 +102,10 @@ Tap.prototype.makeDot = function(x, y, radius,
 
   dot.getSVG().onmousedown = bind(this, function() {
     var dotColorBounds = {
-      RED : [0, 100],
-      BLUE : [100, 200],
-      GREEN : [200, 300],
-      YELLOW : [300, 400]
+      RED : [0, 110],
+      BLUE : [90, 210],
+      GREEN : [190, 310],
+      YELLOW : [290, 400]
     };
     if ((dot.getFill() == Colors.RED &&
         dot.getXY()[1] > dotColorBounds.RED[0] &&
@@ -182,16 +191,21 @@ Tap.prototype.startGame = function() {
 };
 
 Tap.prototype.endGame = function() {
-  var highscore = parseInt(document.cookie.split('=')[1]);
-  if (document.cookie == '' || this.score_ > highscore) {
-    document.cookie = 'tapHighScore=' + this.score_.toString();
-    this.highScoreEl_.innerHTML = "High score: " + this.score_;
+  if (document.cookie == '') {
+    document.cookie = Tap.COOKIE_KEY + '=' + this.score_;
+  } else if (document.cookie.indexOf(Tap.COOKIE_KEY) == -1) {
+    document.cookie += ';' + Tap.COOKIE_KEY + '=' + this.score;
+  } else if (parseInt(getValueFromCookie(Tap.COOKIE_KEY)) > this.score_) {
+    replaceValueInCookie(Tap.COOKIE_KEY, this.score_);
   }
+  this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
 
+  // Stop the game loop.
   this.lost_ = true;
   clearInterval(this.gameLoop_);
 
+  // Bring back the overlay.
   this.overlayEl_.style.lineHeight = '100px';
   this.overlayEl_.style.zIndex = 1;
-  this.overlayEl_.innerHTML = "You lost!<br />Try again";
+  this.overlayEl_.innerHTML = 'You lost!<br />Try again';
 };
