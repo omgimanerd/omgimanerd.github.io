@@ -14,9 +14,9 @@ function Tap(canvas, tapOverlayEl, scoreEl, highScoreEl) {
   this.width_ = canvas.offsetWidth;
   this.height_ = canvas.offsetHeight;
   this.overlayEl_ = tapOverlayEl;
-
   this.score_ = 0;
   this.scoreEl_ = scoreEl;
+
   this.highScoreEl_ = highScoreEl;
   this.gameLoop_ = null;
   this.lost_ = true;
@@ -197,8 +197,8 @@ Tap.prototype.endGame = function() {
     document.cookie += ';' + Tap.COOKIE_KEY + '=' + this.score;
   } else if (parseInt(getValueFromCookie(Tap.COOKIE_KEY)) > this.score_) {
     replaceValueInCookie(Tap.COOKIE_KEY, this.score_);
+    this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
   }
-  this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
 
   // Stop the game loop.
   this.lost_ = true;
