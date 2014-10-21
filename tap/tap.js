@@ -43,7 +43,7 @@ Tap.MIN_SPEED = 3500;
 Tap.MAX_SPEED = 4500;
 
 /**
- * The name of the key correspond
+ * The name of the key corresponding to this game's highscore value.
  */
 Tap.COOKIE_KEY = 'tapHighScore';
 
@@ -195,6 +195,7 @@ Tap.prototype.endGame = function() {
     document.cookie = Tap.COOKIE_KEY + '=' + this.score_;
   } else if (document.cookie.indexOf(Tap.COOKIE_KEY) == -1) {
     document.cookie += ';' + Tap.COOKIE_KEY + '=' + this.score;
+    this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
   } else if (parseInt(getValueFromCookie(Tap.COOKIE_KEY)) > this.score_) {
     replaceValueInCookie(Tap.COOKIE_KEY, this.score_);
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
