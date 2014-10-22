@@ -34,11 +34,15 @@ Klick.prototype.buildGameStart = function() {
   this.canvas_.appendChild(this.background_.getSVG());
 };
 
-Klick.prototype.update = function(event) {
+Klick.prototype.onMouseClick = function(event) {
   var mouseX = event.pageX - this.canvas_.parentElement.offsetLeft;
   var mouseY = event.pageY - this.canvas_.parentElement.offsetTop;
   this.circle_.setVY(this.circle_.getY() - mouseY);
   this.circle_.setVX(mouseX - this.circle_.getX());
+};
+
+Klick.prototype.update = function() {
+
 };
 
 Klick.prototype.startGame = function() {
@@ -47,7 +51,7 @@ Klick.prototype.startGame = function() {
 
   // Add the canvas event handler.
   this.canvas_.onmousedown = bind(this, function(event) {
-    this.update(event);
+    this.onMouseClick(event);
   });
 
   // Start the game loop.
