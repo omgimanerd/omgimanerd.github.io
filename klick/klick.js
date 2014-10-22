@@ -21,12 +21,15 @@ function Klick(canvas, klickOverlayEl, scoreEl, highScoreEl) {
 Klick.prototype.buildGameStart = function() {
   // Necessary SVG elements and the physics model of the moving
   // circle.
-  this.circle_ = new Circle(100, 350, 10, 'red');
+  this.circle_ = new Circle(100, 350, 10, Colors.RED);
   this.circle_.addModel(new PhysicalObjectModel(
       100, 350, 0, 0, null, null));
   this.circle_.setBounce(0.5);
-  this.circle_.setBoundsX(10, 590);
-  this.circle_.setBoundsY(10, 390);
+  this.circle_.setBoundsX(7.5, 592.5);
+  this.circle_.setBoundsY(7.5, 390);
+
+  // This array will hold all the balls that the player does not control.
+  this.obstacleBalls_ = [];
 
   // Create the background.
   this.background_ = new Rect(
