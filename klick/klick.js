@@ -23,7 +23,10 @@ Klick.prototype.buildGameStart = function() {
   // circle.
   this.circle_ = new Circle(100, 350, 10, 'red');
   this.circle_.addModel(new PhysicalObjectModel(
-      100, 350, 0, 0, null, null, 375));
+      100, 350, 0, 0, null, null));
+  this.circle_.setBounce(0.5);
+  this.circle_.setBoundsX(10, 590);
+  this.circle_.setBoundsY(10, 390);
 
   // Create the background.
   this.background_ = new Rect(
@@ -31,7 +34,11 @@ Klick.prototype.buildGameStart = function() {
   this.canvas_.appendChild(this.background_.getSVG());
 };
 
-Klick.prototype.update = function() {
+Klick.prototype.update = function(event) {
+  var mouseX = event.pageX - this.canvas_.parentElement.offsetLeft;
+  var mouseY = event.pageY - this.canvas_.parentElement.offsetTop;
+  this.circle_.setVY(this.circle_.getY() - mouseY);
+  this.circle_.setVX(mouseX - this.circle_.getX());
 };
 
 Klick.prototype.startGame = function() {
@@ -39,8 +46,8 @@ Klick.prototype.startGame = function() {
   this.canvas_.appendChild(this.circle_.getSVG());
 
   // Add the canvas event handler.
-  this.canvas_.onmousedown = bind(this, function() {
-    this.circle_.setVY(this.circle_.getVY() + 100);
+  this.canvas_.onmousedown = bind(this, function(event) {
+    this.update(event);
   });
 
   // Start the game loop.
