@@ -31,8 +31,8 @@ Tap.RADIUS = 40;
 Tap.AMPLITUDE = 150;
 
 /**
- * Randomized values for the generation of the dots.
- * A color is selected randomly from this array
+ * Ranges for the randomly generated parameters of the dots.
+ * A color is selected randomly from Tap.COLORS
  * and a wavelength and speed are randomly generated inside
  * these ranges.
  */
@@ -92,7 +92,7 @@ Tap.prototype.buildGameStart = function() {
  * @param {string} color
  * @param {number} speed (Milliseconds)
  */
-Tap.prototype.makeDot = function(x, y, radius,
+Tap.prototype.createDot = function(x, y, radius,
                                  wavelength,
                                  amplitude,
                                  color,
@@ -157,7 +157,7 @@ Tap.prototype.makeDot = function(x, y, radius,
   }), animationTime);
 };
 
-Tap.prototype.makeRandomDot = function() {
+Tap.prototype.createRandomDot = function() {
   var x = Tap.X;
   var y = Tap.Y;
   var radius = Tap.RADIUS;
@@ -176,14 +176,14 @@ Tap.prototype.makeRandomDot = function() {
       (Tap.MAX_SPEED - Tap.MIN_SPEED)) +
       Tap.MIN_SPEED;
 
-  this.makeDot(x, y, radius, wavelength, amplitude, color, speed);
+  this.createDot(x, y, radius, wavelength, amplitude, color, speed);
 };
 
 Tap.prototype.startGame = function() {
   this.score_ = 0;
   this.scoreEl_.innerHTML = 'Score: 0';
   if (this.lost_) {
-    this.gameLoop_ = setInterval(bind(this, this.makeRandomDot), 1000);
+    this.gameLoop_ = setInterval(bind(this, this.createRandomDot), 1000);
   }
   this.lost_ = false;
 
