@@ -73,6 +73,14 @@ Klick.prototype.buildGameStart = function() {
 
   // Attach the onclick event to the overlay
   this.overlayEl_.onclick = bind(this, this.startGame);
+
+  // Set up the score and highscore elements.
+  this.scoreEl_.innerHTML = 'Score: 0';
+  var highscore = getValueFromCookie(Klick.COOKIE_KEY);
+  if (highscore === null) {
+    highscore = '0';
+  }
+  this.highScoreEl_.innerHTML = 'High score: ' + highscore;
 };
 
 Klick.prototype.onMouseClick = function(event) {
@@ -131,6 +139,7 @@ Klick.prototype.updateObstacleDots = function() {
         this.canvas_.removeChild(this.obstacleBalls_[i].getSVG());
         this.obstacleBalls_.splice(i, 1);
         this.score_++;
+        this.scoreEl_.innerHTML = 'Score: ' + this.score_;
       }
     } else if (absDistance(
         this.obstacleBalls_[i].getXY(), this.playerdot_.getXY()) <
@@ -141,6 +150,9 @@ Klick.prototype.updateObstacleDots = function() {
 };
 
 Klick.prototype.startGame = function() {
+  this.score_ = 0;
+  this.scoreEl_.innerHTML = 'Score: 0';
+
   // Clear the canvas.
   var dots = this.canvas_.getElementsByTagName('circle');
   for (var i = 0; i < dots.length; ++i) {

@@ -306,6 +306,16 @@ button {
   font-size: 18px;
 }
 
+#klick-content-stats {
+  width: 600px;
+  margin: 10px auto -5px;
+  text-align: left;
+}
+
+#klick-content-stats span {
+  margin-right: 50px;
+}
+
 #klick-content-game-overlay {
   position: absolute;
   top: 50px;

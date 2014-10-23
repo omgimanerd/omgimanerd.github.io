@@ -71,10 +71,9 @@ Tap.prototype.buildGameStart = function() {
 
   // Set up the score and highscore elements.
   this.scoreEl_.innerHTML = 'Score: 0';
-  if (document.cookie == '') {
-    var highscore = '0';
-  } else {
-    var highscore = getValueFromCookie(Tap.COOKIE_KEY);
+  var highscore = getValueFromCookie(Tap.COOKIE_KEY);
+  if (highscore === null) {
+    highscore = '0';
   }
   this.highScoreEl_.innerHTML = 'High score: ' + highscore;
 }
