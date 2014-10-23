@@ -206,6 +206,7 @@ Tap.prototype.endGame = function() {
   var expirationDate = date.getTime() + 3600 * 24 * 365;
   date.setTime(expirationDate);
   replaceValueInCookie('expires', date.toGMTString());
+  console.log(document.cookie);
 
   // Stop the game loop.
   this.lost_ = true;
