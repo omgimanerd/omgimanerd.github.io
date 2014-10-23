@@ -190,7 +190,7 @@ Klick.prototype.startGame = function() {
 Klick.prototype.endGame = function() {
   // Set the cookie to record the highscore.
   if (getValueInCookie(Klick.COOKIE_KEY) === null ||
-      parseInt(getValueFromCookie(Klick.COOKIE_KEY)) < this.score_) {
+      parseInt(getValueInCookie(Klick.COOKIE_KEY)) < this.score_) {
     setValueInCookie(Klick.COOKIE_KEY, this.score_);
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
   }
