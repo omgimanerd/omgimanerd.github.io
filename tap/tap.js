@@ -170,8 +170,7 @@ Tap.prototype.createRandomDot = function() {
   } else {
     var amplitude = -Tap.AMPLITUDE;
   }
-  var color = Tap.COLORS[Math.floor(Math.random() *
-      Tap.COLORS.length)];
+  var color = Tap.COLORS[Math.floor(Math.random() * Tap.COLORS.length)];
   var speed = Math.floor(Math.random() *
       (Tap.MAX_SPEED - Tap.MIN_SPEED)) +
       Tap.MIN_SPEED;
@@ -196,7 +195,7 @@ Tap.prototype.endGame = function() {
   } else if (document.cookie.indexOf(Tap.COOKIE_KEY) == -1) {
     document.cookie += ';' + Tap.COOKIE_KEY + '=' + this.score;
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
-  } else if (parseInt(getValueFromCookie(Tap.COOKIE_KEY)) > this.score_) {
+  } else if (parseInt(getValueFromCookie(Tap.COOKIE_KEY)) < this.score_) {
     replaceValueInCookie(Tap.COOKIE_KEY, this.score_);
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
   }
