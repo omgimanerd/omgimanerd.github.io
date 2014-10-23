@@ -26,6 +26,8 @@ function Klick(canvas, klickOverlayEl, scoreEl, highScoreEl) {
  * Constant values for the generation of the dots.
  */
 Klick.DOT_RADIUS = 10;
+Klick.PLAYER_DOT_INITIAL_X = 200;
+Klick.PLAYER_DOT_INITIAL_Y = 350;
 Klick.PLAYER_DOT_XBOUNDS = [7.5, 592.5];
 Klick.PLAYER_DOT_YBOUNDS = [7.5, 390];
 Klick.OBSTACLE_DOT_XBOUNDS = [-1000, 1000];
@@ -56,9 +58,8 @@ Klick.COOKIE_KEY = 'klickHighScore';
 Klick.prototype.buildGameStart = function() {
   // Necessary SVG elements and the physics model of the moving
   // circle.
-  this.playerdot_ = new Circle(200, 350, 10, Colors.RED);
-  this.playerdot_.addModel(new PhysicalObjectModel(
-      200, 350, 0, 0, null, null));
+  this.playerdot_ = new Circle(0, 0, 10, Colors.RED);
+  this.playerdot_.addModel(new PhysicalObjectModel(0, 0, 0, 0, null, null));
   this.playerdot_.setBounce(0.5);
   this.playerdot_.setBoundsX(Klick.PLAYER_DOT_XBOUNDS);
   this.playerdot_.setBoundsY(Klick.PLAYER_DOT_YBOUNDS);
@@ -150,22 +151,25 @@ Klick.prototype.updateObstacleDots = function() {
 };
 
 Klick.prototype.startGame = function() {
-  console.log('game started');
+  // Reset the global variables and the score.
   this.score_ = 0;
   this.scoreEl_.innerHTML = 'Score: 0';
 
-  // Clear any obstacle balls if any were left over.
-  for (var i = 0; i < this.obstacleBalls_.length; ++i) {
-    if (isChildOf(this.canvas_, this.obstacleBalls_[i].getSVG())) {
-      this.canvas_.removeChild(this.obstacleBalls_[i].getSVG());
-    }
+  // Add the player ball if it does not yet exist.
+  this.playerdot_.setXY(Klick.PLAYER_DOT_INITIAL_X,
+                        Klick.PLAYER_DOT_INITIAL_Y);
+  if (!isChildOf(this.canvas_, this.playerdot_.getSVG())) {
+    this.canvas_.appendChild(this.playerdot_.getSVG());
   }
+
+  // Clear all the obstacle balls from the canvas.
+  for (var i = 0; i < this.obstacleBalls_.length; ++i) {
+    this.canvas_.removeChild(this.obstacleBalls_[i].getSVG());
+  }
+  this.obstacleBalls_ = [];
 
   // Hide the overlay.
   this.overlayEl_.style.zIndex = -1;
-
-  // Add the circle to the canvas.
-  this.canvas_.appendChild(this.playerdot_.getSVG());
 
   // Add the canvas event handler.
   this.canvas_.onmousedown = bind(this, function(event) {
@@ -195,11 +199,6 @@ Klick.prototype.endGame = function() {
   // Stop the game loops and clear the canvas.
   clearInterval(this.gameLoop_);
   clearInterval(this.gameLoop2_);
-  for (var i = 0; i < this.obstacleBalls_.length; ++i) {
-    if (isChildOf(this.canvas_, this.obstacleBalls_[i].getSVG())) {
-      this.canvas_.removeChild(this.obstacleBalls_[i].getSVG());
-    }
-  }
 
   // Bring back the overlay.
   this.overlayEl_.style.lineHeight = '100px';
