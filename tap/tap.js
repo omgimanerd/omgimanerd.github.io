@@ -191,17 +191,9 @@ Tap.prototype.startGame = function() {
 
 Tap.prototype.endGame = function() {
   // Set the cookie to record the highscore.
-  if (document.cookie == '') {
-    var date = new Date();
-    var expirationDate = date.getTime() + 1000 * 3600 * 24 * 365;
-    date.setTime(expirationDate);
-    document.cookie = Tap.COOKIE_KEY + '=' + this.score_ +
-        ';path=/;expires=' + date.toUTCString();
-  } else if (getValueFromCookie(Tap.COOKIE_KEY) === null) {
-    document.cookie += ';' + Tap.COOKIE_KEY + '=' + this.score;
-    this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
-  } else if (parseInt(getValueFromCookie(Tap.COOKIE_KEY)) < this.score_) {
-    replaceValueInCookie(Tap.COOKIE_KEY, this.score_);
+  if (getValueFromCookie(Tap.COOKIE_KEY) === null ||
+      parseInt(getValueFromCookie(Tap.COOKIE_KEY)) < this.score_) {
+    setValueInCookie(Tap.COOKIE_KEY, this.score_);
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
   }
 
