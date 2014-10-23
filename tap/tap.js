@@ -196,6 +196,7 @@ Tap.prototype.endGame = function() {
     setValueInCookie(Tap.COOKIE_KEY, this.score_);
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
   }
+  refreshCookieExpirationDate();
 
   // Stop the game loop.
   this.lost_ = true;
