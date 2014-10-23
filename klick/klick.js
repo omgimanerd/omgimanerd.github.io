@@ -150,13 +150,15 @@ Klick.prototype.updateObstacleDots = function() {
 };
 
 Klick.prototype.startGame = function() {
+  console.log('game started');
   this.score_ = 0;
   this.scoreEl_.innerHTML = 'Score: 0';
 
-  // Clear the canvas.
-  var dots = this.canvas_.getElementsByTagName('circle');
-  for (var i = 0; i < dots.length; ++i) {
-    this.canvas_.removeChild(dots[i]);
+  // Clear any obstacle balls if any were left over.
+  for (var i = 0; i < this.obstacleBalls_.length; ++i) {
+    if (isChildOf(this.canvas_, this.obstacleBalls_[i].getSVG())) {
+      this.canvas_.removeChild(this.obstacleBalls_[i].getSVG());
+    }
   }
 
   // Hide the overlay.
@@ -193,9 +195,10 @@ Klick.prototype.endGame = function() {
   // Stop the game loops and clear the canvas.
   clearInterval(this.gameLoop_);
   clearInterval(this.gameLoop2_);
-  var dots = this.canvas_.getElementsByTagName('circle');
-  for (var i = 0; i < dots.length; ++i) {
-    this.canvas_.removeChild(dots[i]);
+  for (var i = 0; i < this.obstacleBalls_.length; ++i) {
+    if (isChildOf(this.canvas_, this.obstacleBalls_[i].getSVG())) {
+      this.canvas_.removeChild(this.obstacleBalls_[i].getSVG());
+    }
   }
 
   // Bring back the overlay.
