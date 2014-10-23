@@ -182,7 +182,13 @@ Klick.prototype.startGame = function() {
 };
 
 Klick.prototype.endGame = function() {
-  // TODO: insert cookie score counting
+  // Set the cookie to record the highscore.
+  if (getValueFromCookie(Klick.COOKIE_KEY) === null ||
+      parseInt(getValueFromCookie(Klick.COOKIE_KEY)) < this.score_) {
+    setValueInCookie(Klick.COOKIE_KEY, this.score_);
+    this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
+  }
+  refreshCookieExpirationDate();
 
   // Stop the game loops and clear the canvas.
   clearInterval(this.gameLoop_);
