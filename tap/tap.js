@@ -193,6 +193,7 @@ Tap.prototype.endGame = function() {
   // Set the cookie to record the highscore.
   if (document.cookie == '') {
     document.cookie = Tap.COOKIE_KEY + '=' + this.score_ + ';path=/;expires=0';
+    console.log(document.cookie);
   } else if (getValueFromCookie(Tap.COOKIE_KEY) === null) {
     document.cookie += ';' + Tap.COOKIE_KEY + '=' + this.score;
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
@@ -205,7 +206,8 @@ Tap.prototype.endGame = function() {
   var date = new Date();
   var expirationDate = date.getTime() + 3600 * 24 * 365;
   date.setTime(expirationDate);
-  replaceValueInCookie('expires', date.toGMTString());
+  console.log(document.cookie);
+  replaceValueInCookie('expires', date.toUTCString());
   console.log(document.cookie);
 
   // Stop the game loop.
