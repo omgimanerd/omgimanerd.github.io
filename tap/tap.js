@@ -39,8 +39,8 @@ Tap.AMPLITUDE = 150;
 Tap.COLORS = [Colors.RED, Colors.BLUE, Colors.GREEN, Colors.YELLOW];
 Tap.MIN_WAVELENGTH = 40;
 Tap.MAX_WAVELENGTH = 80;
-Tap.MIN_SPEED = 3500;
-Tap.MAX_SPEED = 4500;
+Tap.MIN_SPEED = 3000;
+Tap.MAX_SPEED = 4000;
 
 /**
  * The name of the key corresponding to this game's highscore value.
