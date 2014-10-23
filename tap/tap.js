@@ -193,7 +193,7 @@ Tap.prototype.endGame = function() {
   // Set the cookie to record the highscore.
   if (document.cookie == '') {
     var date = new Date();
-    var expirationDate = date.getTime() + 3600 * 24 * 365;
+    var expirationDate = date.getTime() + 1000 * 3600 * 24 * 365;
     date.setTime(expirationDate);
     document.cookie = Tap.COOKIE_KEY + '=' + this.score_ +
         ';path=/;expires=' + date.toUTCString();
