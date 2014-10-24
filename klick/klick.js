@@ -43,11 +43,12 @@ Klick.OBSTACLE_DOT_MIN_Y = 10;
 Klick.OBSTACLE_DOT_MAX_Y = 390;
 Klick.OBSTACLE_DOT_MIN_VX = 150;
 Klick.OBSTACLE_DOT_MAX_VX = 250;
-Klick.OBSTACLE_DOT_MIN_VY = -100;
-Klick.OBSTACLE_DOT_MAX_VY = 100;
-Klick.OBSTACLE_DOT_AX = 0;
-Klick.OBSTACLE_DOT_MIN_AY = -100;
-Klick.OBSTACLE_DOT_MAX_AY = 100;
+Klick.OBSTACLE_DOT_MIN_VY = -300;
+Klick.OBSTACLE_DOT_MAX_VY = 300;
+Klick.OBSTACLE_DOT_MIN_AX = 0;
+Klick.OBSTACLE_DOT_MAX_AX = 100;
+Klick.OBSTACLE_DOT_MIN_AY = -250;
+Klick.OBSTACLE_DOT_MAX_AY = -100;
 Klick.OBSTACLE_COLORS = ['#fff', '#aaa', '#bbb'];
 
 /**
@@ -94,7 +95,8 @@ Klick.prototype.onMouseClick = function(event) {
 Klick.prototype.createObstacleDot = function(x, y,
                                              vx, vy,
                                              ax, ay,
-                                             bounceFactor, fill) {
+                                             bounceFactor,
+                                             fill) {
   var obstacleBall = new Circle(x, y, Klick.DOT_RADIUS, fill);
   obstacleBall.addModel(new PhysicalObjectModel(
       x, y, vx, vy, ax, ay));
@@ -114,17 +116,20 @@ Klick.prototype.createRandomObstacleDot = function() {
   var vx = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_VX - Klick.OBSTACLE_DOT_MIN_VX)) +
       Klick.OBSTACLE_DOT_MIN_VX;
-  if (x == 610) {
-    vx *= -1;
-  }
   var vy = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_VY - Klick.OBSTACLE_DOT_MIN_VY)) +
       Klick.OBSTACLE_DOT_MIN_VY;
-  var ax = Klick.OBSTACLE_DOT_AX;
+  var ax = Math.floor(Math.random() *
+      (Klick.OBSTACLE_DOT_MAX_AX - Klick.OBSTACLE_DOT_MIN_AX)) +
+      Klick.OBSTACLE_DOT_MIN_AX;
   var ay = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_AY - Klick.OBSTACLE_DOT_MIN_AY)) +
       Klick.OBSTACLE_DOT_MIN_AY;
-  var bounceFactor = Math.random();
+  if (x == 610) {
+    vx *= -1;
+    ax *= -1;
+  }
+  var bounceFactor = Math.random() + 0.5;
   var fill = Klick.OBSTACLE_COLORS[
       Math.floor(Math.random() * Klick.OBSTACLE_COLORS.length)];
 
