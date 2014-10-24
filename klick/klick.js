@@ -47,7 +47,7 @@ Klick.OBSTACLE_DOT_MIN_VY = -300;
 Klick.OBSTACLE_DOT_MAX_VY = 300;
 Klick.OBSTACLE_DOT_MIN_AX = 0;
 Klick.OBSTACLE_DOT_MAX_AX = 100;
-Klick.OBSTACLE_DOT_MIN_AY = -250;
+Klick.OBSTACLE_DOT_MIN_AY = -200;
 Klick.OBSTACLE_DOT_MAX_AY = -100;
 Klick.OBSTACLE_COLORS = ['#fff', '#aaa', '#bbb'];
 
@@ -60,7 +60,7 @@ Klick.prototype.buildGameStart = function() {
   // Necessary SVG elements and the physics model of the moving
   // circle.
   this.playerdot_ = new Circle(0, 0, 10, Colors.RED);
-  this.playerdot_.addModel(new PhysicalObjectModel(0, 0, 0, 0, null, null));
+  this.playerdot_.setModel(new PhysicalObjectModel(0, 0, 0, 0, null, null));
   this.playerdot_.setBounce(0.5);
   this.playerdot_.setBoundsX(Klick.PLAYER_DOT_XBOUNDS);
   this.playerdot_.setBoundsY(Klick.PLAYER_DOT_YBOUNDS);
@@ -129,7 +129,7 @@ Klick.prototype.createRandomObstacleDot = function() {
     vx *= -1;
     ax *= -1;
   }
-  var bounceFactor = Math.random() + 0.5;
+  var bounceFactor = Math.random() * 0.25 + 0.75;
   var fill = Klick.OBSTACLE_COLORS[
       Math.floor(Math.random() * Klick.OBSTACLE_COLORS.length)];
 
