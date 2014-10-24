@@ -36,7 +36,8 @@ Tap.AMPLITUDE = 150;
  * and a wavelength and speed are randomly generated inside
  * these ranges.
  */
-Tap.COLORS = [Colors.RED, Colors.BLUE, Colors.GREEN, Colors.YELLOW];
+Tap.COLORS = [Colors.TAP_RED, Colors.TAP_BLUE,
+              Colors.TAP_GREEN, Colors.TAP_YELLOW];
 Tap.MIN_WAVELENGTH = 40;
 Tap.MAX_WAVELENGTH = 80;
 Tap.MIN_SPEED = 3000;
@@ -53,16 +54,16 @@ Tap.prototype.buildGameStart = function() {
 
   var red = new Rect(
       0, 0, this.width_,
-      backgroundHeight, Colors.TAP_RED);
+      backgroundHeight, Colors.TAP_BG_RED);
   var blue = new Rect(
       0, this.height_ / 4, this.width_,
-      backgroundHeight, Colors.TAP_BLUE);
+      backgroundHeight, Colors.TAP_BG_BLUE);
   var green = new Rect(
       0, this.height_ / 2, this.width_,
-      backgroundHeight, Colors.TAP_GREEN);
+      backgroundHeight, Colors.TAP_BG_GREEN);
   var yellow = new Rect(
       0, 3 * this.height_ / 4, this.width_,
-      backgroundHeight, Colors.TAP_YELLOW);
+      backgroundHeight, Colors.TAP_BG_YELLOW);
 
   this.canvas_.appendChild(red.getSVG());
   this.canvas_.appendChild(blue.getSVG());
@@ -106,19 +107,19 @@ Tap.prototype.createDot = function(x, y, radius,
       GREEN : [190, 310],
       YELLOW : [290, 400]
     };
-    if ((dot.getFill() == Colors.RED &&
+    if ((dot.getFill() == Colors.TAP_RED &&
         dot.getXY()[1] > dotColorBounds.RED[0] &&
         dot.getXY()[1] < dotColorBounds.RED[1])
         ||
-        (dot.getFill() == Colors.BLUE &&
+        (dot.getFill() == Colors.TAP_BLUE &&
         dot.getXY()[1] > dotColorBounds.BLUE[0] &&
         dot.getXY()[1] < dotColorBounds.BLUE[1])
         ||
-        (dot.getFill() == Colors.GREEN &&
+        (dot.getFill() == Colors.TAP_GREEN &&
         dot.getXY()[1] > dotColorBounds.GREEN[0] &&
         dot.getXY()[1] < dotColorBounds.GREEN[1])
         ||
-        (dot.getFill() == Colors.YELLOW &&
+        (dot.getFill() == Colors.TAP_YELLOW &&
         dot.getXY()[1] > dotColorBounds.YELLOW[0] &&
         dot.getXY()[1] < dotColorBounds.YELLOW[1])) {
       if (!this.lost_) {

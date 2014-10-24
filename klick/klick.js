@@ -23,15 +23,14 @@ function Klick(canvas, klickOverlayEl, scoreEl, highScoreEl) {
 }
 
 /**
- * Constant values for the generation of the dots.
+ * Values for the generation of the player dot.
  */
-Klick.DOT_RADIUS = 10;
+Klick.PLAYER_DOT_RADIUS = 10;
+Klick.PLAYER_DOT_COLOR = Colors.KLICK_RED;
 Klick.PLAYER_DOT_INITIAL_X = 200;
 Klick.PLAYER_DOT_INITIAL_Y = 350;
 Klick.PLAYER_DOT_XBOUNDS = [7.5, 592.5];
 Klick.PLAYER_DOT_YBOUNDS = [7.5, 390];
-Klick.OBSTACLE_DOT_XBOUNDS = [-1000, 1000];
-Klick.OBSTACLE_DOT_YBOUNDS = [7.5, 392.5];
 
 /**
  * Ranges for the randomly generated parameters of the obstacle dots.
@@ -49,7 +48,11 @@ Klick.OBSTACLE_DOT_MIN_AX = 0;
 Klick.OBSTACLE_DOT_MAX_AX = 100;
 Klick.OBSTACLE_DOT_MIN_AY = -200;
 Klick.OBSTACLE_DOT_MAX_AY = -100;
-Klick.OBSTACLE_COLORS = ['#fff', '#aaa', '#bbb'];
+Klick.OBSTACLE_DOT_XBOUNDS = [-1000, 1000];
+Klick.OBSTACLE_DOT_YBOUNDS = [7.5, 392.5];
+Klick.OBSTACLE_DOT_RADIUS = 10;
+Klick.OBSTACLE_COLORS = [Colors.KLICK_GREY1, Colors.KLICK_GREY2,
+                         Colors.KLICK_GREY3, Colors.KLICK_GREY4];
 
 /**
  * The name of the key corresponding to this game's highscore value.
@@ -59,7 +62,9 @@ Klick.COOKIE_KEY = 'klickHighScore';
 Klick.prototype.buildGameStart = function() {
   // Necessary SVG elements and the physics model of the moving
   // circle.
-  this.playerdot_ = new Circle(0, 0, 10, Colors.RED);
+  this.playerdot_ = new Circle(0, 0,
+                               Klick.PLAYER_DOT_RADIUS,
+                               Klick.PLAYER_DOT_COLOR);
   this.playerdot_.setModel(new PhysicalObjectModel(0, 0, 0, 0, null, null));
   this.playerdot_.setBounce(0.5);
   this.playerdot_.setBoundsX(Klick.PLAYER_DOT_XBOUNDS);
@@ -70,7 +75,7 @@ Klick.prototype.buildGameStart = function() {
 
   // Create the background.
   this.background_ = new Rect(
-      0, 0, this.width_, this.height_, Colors.KLICK_BACKGROUND);
+      0, 0, this.width_, this.height_, Colors.KLICK_BG);
   this.canvas_.appendChild(this.background_.getSVG());
 
   // Attach the onclick event to the overlay
@@ -97,7 +102,7 @@ Klick.prototype.createObstacleDot = function(x, y,
                                              ax, ay,
                                              bounceFactor,
                                              fill) {
-  var obstacleBall = new Circle(x, y, Klick.DOT_RADIUS, fill);
+  var obstacleBall = new Circle(x, y, Klick.OBSTACLE_DOT_RADIUS, fill);
   obstacleBall.setModel(new PhysicalObjectModel(
       x, y, vx, vy, ax, ay));
   obstacleBall.setBounce(bounceFactor);
@@ -149,7 +154,7 @@ Klick.prototype.updateObstacleDots = function() {
       }
     } else if (absDistance(
         this.obstacleBalls_[i].getXY(), this.playerdot_.getXY()) <
-        Klick.DOT_RADIUS * 2) {
+        this.obstacleBalls_[i].getRadius() + this.playerdot_.getRadius()) {
       this.endGame();
     }
   }
