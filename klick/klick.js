@@ -152,7 +152,7 @@ Klick.prototype.updateObstacleDots = function() {
         this.score_++;
         this.scoreEl_.innerHTML = 'Score: ' + this.score_;
       }
-    } else if (absDistance(
+    } else if (Maf.absDistance(
         this.obstacleBalls_[i].getXY(), this.playerdot_.getXY()) <
         this.obstacleBalls_[i].getRadius() + this.playerdot_.getRadius()) {
       this.endGame();
