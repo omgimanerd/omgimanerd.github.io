@@ -145,7 +145,7 @@ BouncingBallsBackground.prototype.buildBouncingBallsBackgroundAnimation = functi
   this.setCanvasSize();
 
   // Generate dots every 100ms. They should be constantly updated.
-  setInterval(bind(this, this.generateRandomBouncingDot), 250);
+  setInterval(bind(this, this.generateRandomBouncingDot), 500);
   setInterval(bind(this, this.updateBouncingDots), 1);
 
   // Refresh the size of the canvas every second in case the user resizes.
