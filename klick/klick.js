@@ -98,7 +98,7 @@ Klick.prototype.createObstacleDot = function(x, y,
                                              bounceFactor,
                                              fill) {
   var obstacleBall = new Circle(x, y, Klick.DOT_RADIUS, fill);
-  obstacleBall.addModel(new PhysicalObjectModel(
+  obstacleBall.setModel(new PhysicalObjectModel(
       x, y, vx, vy, ax, ay));
   obstacleBall.setBounce(bounceFactor);
   obstacleBall.setBoundsX(Klick.OBSTACLE_DOT_XBOUNDS);

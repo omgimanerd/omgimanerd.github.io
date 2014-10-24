@@ -8,7 +8,7 @@
           href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' />
     <link rel='stylesheet' type='text/css' href='style/style.css' />
     <link rel='stylesheet' type='text/css' href='style/animation.css' />
-    <script type='text/javascript' src='bg/random_square_background.js'></script>
+    <script type='text/javascript' src='bg/bouncing_balls_background.js'></script>
     <script type='text/javascript' src='lib/base.js'></script>
     <script type='text/javascript' src='lib/circle.js'></script>
     <script type='text/javascript' src='lib/colors.js'></script>
@@ -61,8 +61,8 @@
     </div>
     <script type='text/javascript'>
       // Create the background object and apply the background.
-      var backgroundObj = new RandomSquareBackground();
-      //backgroundObj.buildRandomSquareBackgroundAnimation();
+      var backgroundObj = new BouncingBallsBackground();
+      backgroundObj.buildBouncingBallsBackgroundAnimation();
 
       // Create the Klick object.
       var klickCanvas =
