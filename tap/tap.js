@@ -73,6 +73,7 @@ Tap.prototype.buildGameStart = function() {
   // Set up the score and highscore elements.
   this.scoreEl_.innerHTML = 'Score: 0';
   var highscore = getValueInCookie(Tap.COOKIE_KEY);
+  console.log(highscore);
   if (highscore === undefined) {
     highscore = '0';
   }
