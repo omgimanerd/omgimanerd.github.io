@@ -51,8 +51,8 @@ Klick.OBSTACLE_DOT_MAX_AY = -100;
 Klick.OBSTACLE_DOT_XBOUNDS = [-1000, 1000];
 Klick.OBSTACLE_DOT_YBOUNDS = [7.5, 392.5];
 Klick.OBSTACLE_DOT_RADIUS = 10;
-Klick.OBSTACLE_COLORS = [Colors.KLICK_GREY1, Colors.KLICK_GREY2,
-                         Colors.KLICK_GREY3, Colors.KLICK_GREY4];
+Klick.OBSTACLE_COLORS = [Colors.KLICK_BLUE, Colors.KLICK_GREEN,
+                         Colors.KLICK_ORANGE, Colors.KLICK_PURPLE];
 
 /**
  * The name of the key corresponding to this game's highscore value.
