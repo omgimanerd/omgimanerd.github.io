@@ -57,7 +57,7 @@ FallingSquareBackground.MAX_ANIMATION_TIME = 1500;
  * and side length and fall down the screen in a given animation time.
  * @param {number} x (Canvas coordinate)
  * @param {string} color (Color)
- * @param {number} maxSideLength
+ * @param {number} sideLength
  * @param {number} animationTime (Milliseconds)
  * @private
  */
@@ -104,8 +104,8 @@ FallingSquareBackground.prototype.createSquare = function(x,
  * @private
  */
 FallingSquareBackground.prototype.generateRandomFallingSquare = function() {
-  // Generates a random x coordinate, side length, animation time, and selects a
-  // random color.
+  // Generates a random x coordinate, side length, animation time, and selects
+  // a random color.
   var x = Math.floor(Math.random() * this.width_);
   var color = FallingSquareBackground.DOT_COLORS[Math.floor(Math.random() *
       FallingSquareBackground.DOT_COLORS.length)];
