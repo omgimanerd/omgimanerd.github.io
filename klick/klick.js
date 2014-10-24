@@ -84,7 +84,7 @@ Klick.prototype.buildGameStart = function() {
   // Set up the score and highscore elements.
   this.scoreEl_.innerHTML = 'Score: 0';
   var highscore = getValueInCookie(Klick.COOKIE_KEY);
-  if (highscore === null) {
+  if (highscore === undefined) {
     highscore = '0';
   }
   this.highScoreEl_.innerHTML = 'High score: ' + highscore;
@@ -199,7 +199,7 @@ Klick.prototype.startGame = function() {
 
 Klick.prototype.endGame = function() {
   // Set the cookie to record the highscore.
-  if (getValueInCookie(Klick.COOKIE_KEY) === null ||
+  if (getValueInCookie(Klick.COOKIE_KEY) === undefined ||
       parseInt(getValueInCookie(Klick.COOKIE_KEY)) < this.score_) {
     setValueInCookie(Klick.COOKIE_KEY, this.score_);
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
