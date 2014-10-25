@@ -183,9 +183,9 @@ button {
   text-align: left;
 }
 
-#resume-content-text a {
+#resume-content-text a, #resume-content-text a:visited {
   text-decoration: none;
-  color: #8d8d8d;
+  color: #777;
 
   -webkit-transition: all 500ms;
   -moz-transition: all 500ms;
