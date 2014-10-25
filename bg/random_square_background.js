@@ -3,12 +3,13 @@
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  * Script for the falling squares background animation.
  * To use this background template, instantiate a RandomSquareBackground
- * object at the end of the body and call buildRandomSquareBackgroundAnimation()
+ * object at the end of the body and call
+ * buildRandomSquareBackgroundAnimation()
  * on the object.
  * The reason we do not use an <animate> object is because the 'dur' attribute
  * that defines the animation time counts from when the webpage is loaded, so
  * animations and circles added after the first 1500ms render at their end
- * animation state.
+ * animation state and disappear immediately.
  * This file is intended as a distributable standalone and thus does not have
  * any dependencies on my internal library.
  */
@@ -136,6 +137,11 @@ RandomSquareBackground.prototype.generateRandomSquare = function() {
   this.createSquare(x, y, color, radius, animationTime);
 };
 
+/**
+ * Refreshes the size of the canvas.
+ * This function is meant to be called every second or so.
+ * @private
+ */
 RandomSquareBackground.prototype.setCanvasSize = function() {
   // Measure the width and height of the body element.
   this.width_ = document.body.offsetWidth;

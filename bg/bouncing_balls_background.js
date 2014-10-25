@@ -10,7 +10,7 @@
  * The reason we do not use an <animate> object is because the 'dur' attribute
  * that defines the animation time counts from when the webpage is loaded, so
  * animations and circles added after the first 1500ms render at their end
- * animation state.
+ * animation state and disappear immediately.
  * This file is intended as a distributable standalone but unlike other bg
  * animations, this file has a dependency on circle and physical_object_model
  * from my internal library.
@@ -31,7 +31,7 @@ function BouncingBallsBackground() {
 }
 
 /**
- * Ranges for generating the random start values of the dots. The
+ * Ranges for generating the random initial values of the dots. The
  * x and y coordinates are dependent on the size of the canvas, and thus
  * are not stored hither.
  */
@@ -48,6 +48,21 @@ BouncingBallsBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow',
 BouncingBallsBackground.MIN_RADIUS = 10;
 BouncingBallsBackground.MAX_RADIUS = 50;
 
+/**
+ * Generates a dot that is governed by the laws of physics.
+ * @param {number} x (Canvas coordinates)
+ * @param {number} y (Canvas coordinates)
+ * @param {number} vx (Pixels/second)
+ * @param {number} vy (Pixels/second)
+ * @param {number} ax (Pixels/second^2)
+ * @param {number} ay (Pixels/second^2)
+ * @param {number} radius (Pixels)
+ * @param {number} bounceFactor (Energy retained from 0~1)
+ * @param {string} fill
+ * @param {[number, number]} xbounds (Canvas coordinates)
+ * @param {[number, number]} ybounds (Canvas coordinates)
+ * @private
+ */
 BouncingBallsBackground.prototype.createBouncingDot = function(x, y,
                                                        vx, vy,
                                                        ax, ay,
@@ -65,6 +80,10 @@ BouncingBallsBackground.prototype.createBouncingDot = function(x, y,
   this.bouncingDots_.push(circle);
 };
 
+/**
+ * Generates a bouncing dot with randomized parameters.
+ * @private
+ */
 BouncingBallsBackground.prototype.generateRandomBouncingDot = function() {
   // Generates random coordinates, radii, animation time, and selects a
   // random color.
@@ -106,6 +125,11 @@ BouncingBallsBackground.prototype.generateRandomBouncingDot = function() {
                          radius, bounceFactor, fill, xbounds, ybounds);
 };
 
+/**
+ * Updates the bouncing dots according to the laws of physics.
+ * Should be called every millisecond.
+ * @private
+ */
 BouncingBallsBackground.prototype.updateBouncingDots = function() {
   for (var i = 0; i < this.bouncingDots_.length; ++i) {
     this.bouncingDots_[i].updateWithPhysics();
@@ -119,6 +143,11 @@ BouncingBallsBackground.prototype.updateBouncingDots = function() {
   }
 };
 
+/**
+ * Refreshes the size of the canvas.
+ * This function is meant to be called every second or so.
+ * @private
+ */
 BouncingBallsBackground.prototype.setCanvasSize = function() {
   // Measure the width and height of the body element.
   this.width_ = document.body.offsetWidth;

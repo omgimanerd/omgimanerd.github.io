@@ -1,8 +1,8 @@
 // Copyright Alvin Lin 2014
 /**
  * @author Alvin Lin (alvin.lin@stuypulse.com)
- * Script for the background animation with dots scrolling from the left to the
- * right in a sine wave motion.
+ * Script for the background animation with dots scrolling from the left to
+ * the right in a sine wave motion.
  * Uses setTimeout() to control dot animation.
  * To use this background template, instantiate a LTRSineDotBackground
  * object at the end of the body and call buildLTRSineDotBackgroundAnimation()
@@ -10,7 +10,7 @@
  * The reason we do not use an <animate> object is because the 'dur' attribute
  * that defines the animation time counts from when the webpage is loaded, so
  * animations and circles added after the first 1500ms render at their end
- * animation state.
+ * animation state and disappear immediately.
  * This file is intended as a distributable standalone and thus does not have
  * any dependencies on my internal library.
  */
@@ -156,6 +156,11 @@ LTRSineDotBackground.prototype.generateRandomLTRSineDot = function() {
   this.createLTRSineDot(y, color, radius, wavelength, amplitude, animationTime);
 };
 
+/**
+ * Refreshes the size of the canvas.
+ * This function is meant to be called every second or so.
+ * @private
+ */
 LTRSineDotBackground.prototype.setCanvasSize = function() {
   // Measure the width and height of the body element.
   this.width_ = document.body.offsetWidth;

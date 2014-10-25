@@ -3,7 +3,8 @@
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  * Script for the falling squares background animation.
  * To use this background template, instantiate a FallingSquareBackground
- * object at the end of the body and call buildFallingSquareBackgroundAnimation()
+ * object at the end of the body and call
+ * buildFallingSquareBackgroundAnimation()
  * on the object.
  * The reason we do not use an <animate> object is because the 'dur' attribute
  * that defines the animation time counts from when the webpage is loaded, so
@@ -20,7 +21,11 @@ function bind(object, method) {
   };
 }
 
-function FallingSquareBackground() {}
+function FallingSquareBackground() {
+  this.canvas_ = null;
+  this.width_ = 0;
+  this.height_ = 0;
+}
 
 /**
  * This is an array containing all the possible colors of the squares.
@@ -122,6 +127,11 @@ FallingSquareBackground.prototype.generateRandomFallingSquare = function() {
   this.createSquare(x, color, sideLength, animationTime);
 };
 
+/**
+ * Refreshes the size of the canvas.
+ * This function is meant to be called every second or so.
+ * @private
+ */
 FallingSquareBackground.prototype.setCanvasSize = function() {
   // Measure the width and height of the body element.
   this.width_ = document.body.offsetWidth;

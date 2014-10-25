@@ -9,7 +9,7 @@
  * The reason we do not use an <animate> object is because the 'dur' attribute
  * that defines the animation time counts from when the webpage is loaded, so
  * animations and circles added after the first 1500ms render at their end
- * animation state.
+ * animation state and disappear immediately.
  * This file is intended as a distributable standalone and thus does not have
  * any dependencies on my internal library.
  */
@@ -125,6 +125,11 @@ RandomDotBackground.prototype.generateRandomDot = function() {
   this.createDot(x, y, color, radius, animationTime);
 };
 
+/**
+ * Refreshes the size of the canvas.
+ * This function is meant to be called every second or so.
+ * @private
+ */
 RandomDotBackground.prototype.setCanvasSize = function() {
   // Measure the width and height of the body element.
   this.width_ = document.body.offsetWidth;
