@@ -56,12 +56,6 @@ RandomSquareBackground.MAX_ANIMATION_TIME = 1500;
 /**
  * Generates a square at a specified coordinate that will be a specified color
  * and expand to a maximum side length from zero in a given animation time.
- * @param {number} x (Canvas coordinates)
- * @param {number} y (Canvas coordinates)
- * @param {string} color (Color)
- * @param {number} maxSideLength
- * @param {number} animationTime (Milliseconds)
- * @private
  */
 RandomSquareBackground.prototype.createSquare = function(x, y,
                                                           color,
@@ -115,7 +109,6 @@ RandomSquareBackground.prototype.createSquare = function(x, y,
 
 /**
  * Generates a square with randomized parameters.
- * @private
  */
 RandomSquareBackground.prototype.generateRandomSquare = function() {
   // Generates random coordinates, side length, animation time, and selects a
@@ -140,7 +133,6 @@ RandomSquareBackground.prototype.generateRandomSquare = function() {
 /**
  * Refreshes the size of the canvas.
  * This function is meant to be called every second or so.
- * @private
  */
 RandomSquareBackground.prototype.setCanvasSize = function() {
   // Measure the width and height of the body element.

@@ -54,12 +54,6 @@ RandomDotBackground.MAX_ANIMATION_TIME = 1500;
 /**
  * Generates a dot at a specified coordinate that will be a specified color
  * and expand to a maximum radius from zero in a given animation time.
- * @param {number} x (Canvas coordinates)
- * @param {number} y (Canvas coordinates)
- * @param {string} color (Color)
- * @param {number} maxRadius (Pixels)
- * @param {number} animationTime (Milliseconds)
- * @private
  */
 RandomDotBackground.prototype.createDot = function(x, y,
                                                    color,
@@ -104,7 +98,6 @@ RandomDotBackground.prototype.createDot = function(x, y,
 
 /**
  * Generates a dot with randomized parameters.
- * @private
  */
 RandomDotBackground.prototype.generateRandomDot = function() {
   // Generates random coordinates, radii, animation time, and selects a
@@ -128,7 +121,6 @@ RandomDotBackground.prototype.generateRandomDot = function() {
 /**
  * Refreshes the size of the canvas.
  * This function is meant to be called every second or so.
- * @private
  */
 RandomDotBackground.prototype.setCanvasSize = function() {
   // Measure the width and height of the body element.

@@ -49,19 +49,8 @@ BouncingBallsBackground.MIN_RADIUS = 10;
 BouncingBallsBackground.MAX_RADIUS = 50;
 
 /**
- * Generates a dot that is governed by the laws of physics.
- * @param {number} x (Canvas coordinates)
- * @param {number} y (Canvas coordinates)
- * @param {number} vx (Pixels/second)
- * @param {number} vy (Pixels/second)
- * @param {number} ax (Pixels/second^2)
- * @param {number} ay (Pixels/second^2)
- * @param {number} radius (Pixels)
- * @param {number} bounceFactor (Energy retained from 0~1)
- * @param {string} fill
- * @param {[number, number]} xbounds (Canvas coordinates)
- * @param {[number, number]} ybounds (Canvas coordinates)
- * @private
+ * Generates a dot with the given parameters that is governed by
+ * the laws of physics.
  */
 BouncingBallsBackground.prototype.createBouncingDot = function(x, y,
                                                        vx, vy,
@@ -82,7 +71,6 @@ BouncingBallsBackground.prototype.createBouncingDot = function(x, y,
 
 /**
  * Generates a bouncing dot with randomized parameters.
- * @private
  */
 BouncingBallsBackground.prototype.generateRandomBouncingDot = function() {
   // Generates random coordinates, radii, animation time, and selects a
@@ -128,7 +116,6 @@ BouncingBallsBackground.prototype.generateRandomBouncingDot = function() {
 /**
  * Updates the bouncing dots according to the laws of physics.
  * Should be called every millisecond.
- * @private
  */
 BouncingBallsBackground.prototype.updateBouncingDots = function() {
   for (var i = 0; i < this.bouncingDots_.length; ++i) {
@@ -146,7 +133,6 @@ BouncingBallsBackground.prototype.updateBouncingDots = function() {
 /**
  * Refreshes the size of the canvas.
  * This function is meant to be called every second or so.
- * @private
  */
 BouncingBallsBackground.prototype.setCanvasSize = function() {
   // Measure the width and height of the body element.

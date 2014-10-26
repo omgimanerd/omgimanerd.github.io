@@ -80,13 +80,6 @@ LTRSineDotBackground.MAX_ANIMATION_TIME = 2500;
  * Generates a dot that will be a specified color
  * and radius and move from the left of the screen at the given y
  * coordinate to the right of the screen in a sine wave pattern.
- * @param {number} y (Canvas coordinates)
- * @param {string} color (Color)
- * @param {number} radius (Pixels)
- * @param {number} wavelength (Pixels)
- * @param {number} amplitude (Pixels)
- * @param {number} animationTime (Milliseconds)
- * @private
  */
 LTRSineDotBackground.prototype.createLTRSineDot = function(y,
                                                            color,
@@ -125,7 +118,6 @@ LTRSineDotBackground.prototype.createLTRSineDot = function(y,
 
 /**
  * Generates a dot with randomized parameters.
- * @private
  */
 LTRSineDotBackground.prototype.generateRandomLTRSineDot = function() {
   // Generates random coordinates, radii, animation time, and selects a
@@ -159,7 +151,6 @@ LTRSineDotBackground.prototype.generateRandomLTRSineDot = function() {
 /**
  * Refreshes the size of the canvas.
  * This function is meant to be called every second or so.
- * @private
  */
 LTRSineDotBackground.prototype.setCanvasSize = function() {
   // Measure the width and height of the body element.

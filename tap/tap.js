@@ -84,13 +84,6 @@ Tap.prototype.buildGameStart = function() {
  * so that it will disappear when clicked. Game logic is also handled
  * in this function, if the dot reaches the end, or if it is clicked on
  * the wrong color, then the game will end (dots will stop generating).
- * @param {number} x (Canvas coordinates)
- * @param {number} y (Canvas coordinates)
- * @param {number} radius (Pixels)
- * @param {number} wavelength (Pixels)
- * @param {number} amplitude (Pixels)
- * @param {string} color
- * @param {number} speed (Milliseconds)
  */
 Tap.prototype.createDot = function(x, y, radius,
                                  wavelength,
@@ -176,6 +169,11 @@ Tap.prototype.createRandomDot = function() {
       Tap.MIN_SPEED;
 
   this.createDot(x, y, radius, wavelength, amplitude, color, speed);
+
+  // Additional 25% chance that an extra dot will be generated.
+  if (Math.random() < 0.25) {
+    this.createRandomDot();
+  }
 };
 
 Tap.prototype.startGame = function() {
