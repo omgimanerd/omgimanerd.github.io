@@ -52,9 +52,8 @@ Klick.OBSTACLE_DOT_MIN_AX = 0;
 Klick.OBSTACLE_DOT_MAX_AX = 100;
 Klick.OBSTACLE_DOT_MIN_AY = -200;
 Klick.OBSTACLE_DOT_MAX_AY = -100;
-Klick.OBSTACLE_DOT_XBOUNDS = [-1000, 1000];
-Klick.OBSTACLE_DOT_YBOUNDS = [7.5, 392.5];
-Klick.OBSTACLE_DOT_RADIUS = 10;
+Klick.OBSTACLE_DOT_MIN_RADIUS = 10;
+Klick.OBSTACLE_DOT_MAX_RADIUS = 25;
 Klick.OBSTACLE_COLORS = [Colors.KLICK_BLUE, Colors.KLICK_GREEN,
                          Colors.KLICK_ORANGE, Colors.KLICK_PURPLE];
 
@@ -102,14 +101,14 @@ Klick.prototype.onMouseClick = function(event) {
 Klick.prototype.createObstacleDot = function(x, y,
                                              vx, vy,
                                              ax, ay,
+                                             radius,
                                              bounceFactor,
                                              fill) {
-  var obstacleBall = new Circle(x, y, Klick.OBSTACLE_DOT_RADIUS, fill);
+  var obstacleBall = new Circle(x, y, radius, fill);
   obstacleBall.setModel(new PhysicalObjectModel(
       x, y, vx, vy, ax, ay));
   obstacleBall.setBounce(bounceFactor);
-  obstacleBall.setBoundsX(Klick.OBSTACLE_DOT_XBOUNDS);
-  obstacleBall.setBoundsY(Klick.OBSTACLE_DOT_YBOUNDS);
+  obstacleBall.setBoundsY(radius, this.height_ - radius);
   this.obstacleBalls_.push(obstacleBall);
   this.canvas_.appendChild(obstacleBall.getSVG());
 };
@@ -136,11 +135,14 @@ Klick.prototype.createRandomObstacleDot = function() {
     vx *= -1;
     ax *= -1;
   }
+  var radius = Math.floor(Math.random() *
+      (Klick.OBSTACLE_DOT_MAX_RADIUS - Klick.OBSTACLE_DOT_MIN_RADIUS)) +
+      Klick.OBSTACLE_DOT_MIN_RADIUS;
   var bounceFactor = Math.random() * 0.25 + 0.75;
   var fill = Klick.OBSTACLE_COLORS[
       Math.floor(Math.random() * Klick.OBSTACLE_COLORS.length)];
 
-  this.createObstacleDot(x, y, vx, vy, ax, ay, bounceFactor, fill);
+  this.createObstacleDot(x, y, vx, vy, ax, ay, radius, bounceFactor, fill);
 };
 
 Klick.prototype.updateObstacleDots = function() {
