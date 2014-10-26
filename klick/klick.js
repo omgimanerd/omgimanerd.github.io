@@ -18,8 +18,12 @@ function Klick(canvas, klickOverlayEl, scoreEl, highScoreEl) {
 
   // Necessary global variables.
   this.score_ = 0;
+  this.highscore_ = 0;
   this.gameLoop_ = null;
   this.gameLoop2_ = null;
+
+  // This array will hold all the balls that the player does not control.
+  this.obstacleBalls_ = [];
 }
 
 /**
@@ -55,7 +59,8 @@ Klick.OBSTACLE_COLORS = [Colors.KLICK_BLUE, Colors.KLICK_GREEN,
                          Colors.KLICK_ORANGE, Colors.KLICK_PURPLE];
 
 /**
- * The name of the key corresponding to this game's highscore value.
+ * The name of the key corresponding to this game's highscore value
+ * that is stored in the site's cookies.
  */
 Klick.COOKIE_KEY = 'klickHighScore';
 
@@ -70,24 +75,21 @@ Klick.prototype.buildGameStart = function() {
   this.playerdot_.setBoundsX(Klick.PLAYER_DOT_XBOUNDS);
   this.playerdot_.setBoundsY(Klick.PLAYER_DOT_YBOUNDS);
 
-  // This array will hold all the balls that the player does not control.
-  this.obstacleBalls_ = [];
-
   // Create the background.
   this.background_ = new Rect(
       0, 0, this.width_, this.height_, Colors.KLICK_BG);
   this.canvas_.appendChild(this.background_.getSVG());
 
-  // Attach the onclick event to the overlay
-  this.overlayEl_.onclick = bind(this, this.startGame);
-
   // Set up the score and highscore elements.
   this.scoreEl_.innerHTML = 'Score: 0';
-  var highscore = getValueInCookie(Klick.COOKIE_KEY);
-  if (highscore === null) {
-    highscore = '0';
+  this.highscore_ = getValueInCookie(Klick.COOKIE_KEY);
+  if (this.highscore_ === null) {
+    this.highscore_ = 0;
   }
-  this.highScoreEl_.innerHTML = 'High score: ' + highscore;
+  this.highScoreEl_.innerHTML = 'High score: ' + this.highscore_;
+
+  // Bind the startGame() method to the overlay.
+  this.overlayEl_.onclick = bind(this, this.startGame);
 };
 
 Klick.prototype.onMouseClick = function(event) {
@@ -181,7 +183,7 @@ Klick.prototype.startGame = function() {
   // Hide the overlay.
   this.overlayEl_.style.zIndex = -1;
 
-  // Add the canvas event handler.
+  // Bind onMouseClick() to the canvas.
   this.canvas_.onmousedown = bind(this, function(event) {
     this.onMouseClick(event);
   });
@@ -199,13 +201,13 @@ Klick.prototype.startGame = function() {
 
 Klick.prototype.endGame = function() {
   // Set the cookie to record the highscore.
-  if (getValueInCookie(Klick.COOKIE_KEY) === null ||
-      parseInt(getValueInCookie(Klick.COOKIE_KEY)) < this.score_) {
+  if (this.highscore_ < this.score_) {
     setValueInCookie(Klick.COOKIE_KEY, this.score_);
+    this.highscore_ = this.score_;
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
   }
 
-  // Stop the game loops and clear the canvas.
+  // Stop the game loops.
   clearInterval(this.gameLoop_);
   clearInterval(this.gameLoop2_);
 

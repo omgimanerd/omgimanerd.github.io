@@ -48,7 +48,8 @@ Tap.MIN_SPEED = 3000;
 Tap.MAX_SPEED = 4000;
 
 /**
- * The name of the key corresponding to this game's highscore value.
+ * The name of the key corresponding to this game's highscore value
+ * that is stored in the site's cookies.
  */
 Tap.COOKIE_KEY = 'tapHighScore';
 
