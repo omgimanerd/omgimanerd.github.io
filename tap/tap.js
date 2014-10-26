@@ -14,11 +14,15 @@ function Tap(canvas, tapOverlayEl, scoreEl, highScoreEl) {
   this.width_ = canvas.offsetWidth;
   this.height_ = canvas.offsetHeight;
   this.overlayEl_ = tapOverlayEl;
-  this.score_ = 0;
   this.scoreEl_ = scoreEl;
-
   this.highScoreEl_ = highScoreEl;
+
+  this.score_ = 0;
+  this.highscore_ = 0;
   this.gameLoop_ = null;
+
+  // Do not remove this.lost_, it deletes the dots from the canvas if
+  // the player has lost and there are other dots on the canvas.
   this.lost_ = true;
 }
 
@@ -72,11 +76,14 @@ Tap.prototype.buildGameStart = function() {
 
   // Set up the score and highscore elements.
   this.scoreEl_.innerHTML = 'Score: 0';
-  var highscore = getValueInCookie(Tap.COOKIE_KEY);
-  if (highscore === null) {
-    highscore = '0';
+  this.highscore_ = getValueInCookie(Tap.COOKIE_KEY);
+  if (this.highscore_ === null) {
+    this.highscore_ = 0;
   }
-  this.highScoreEl_.innerHTML = 'High score: ' + highscore;
+  this.highScoreEl_.innerHTML = 'High score: ' + this.highscore_;
+
+  // Bind the startGame() method to the overlay.
+  this.overlayEl_.onclick = bind(this, this.startGame);
 }
 
 /**
@@ -141,7 +148,9 @@ Tap.prototype.createDot = function(x, y, radius,
     }), animationTime);
   }
 
-  // Removes the dots from the canvas when the animation finishes.
+  // Removes the dots from the canvas when the animation finishes unless
+  // they already have been removed. If they have not already been removed,
+  // it means the player failed to click it in time and they lost.
   setTimeout(bind(this, function() {
     if (isChildOf(this.canvas_, dot.getSVG())) {
       this.canvas_.removeChild(dot.getSVG());
@@ -170,28 +179,32 @@ Tap.prototype.createRandomDot = function() {
 
   this.createDot(x, y, radius, wavelength, amplitude, color, speed);
 
-  // Additional 25% chance that an extra dot will be generated.
-  if (Math.random() < 0.25) {
+  // Additional 10% chance that an extra dot will be generated.
+  if (Math.random() < 0.1) {
     this.createRandomDot();
   }
 };
 
 Tap.prototype.startGame = function() {
+  // Reset the score and score display element.
   this.score_ = 0;
   this.scoreEl_.innerHTML = 'Score: 0';
+
+  // Start the game loop.
   if (this.lost_) {
     this.gameLoop_ = setInterval(bind(this, this.createRandomDot), 1000);
   }
   this.lost_ = false;
 
+  // Hide the overlay.
   this.overlayEl_.style.zIndex = -1;
 };
 
 Tap.prototype.endGame = function() {
   // Set the cookie to record the highscore.
-  if (getValueInCookie(Tap.COOKIE_KEY) === null ||
-      parseInt(getValueInCookie(Tap.COOKIE_KEY)) < this.score_) {
+  if (this.highscore_ < this.score_) {
     setValueInCookie(Tap.COOKIE_KEY, this.score_);
+    this.highscore_ = this.score_;
     this.highScoreEl_.innerHTML = 'High score: ' + this.score_;
   }
 
