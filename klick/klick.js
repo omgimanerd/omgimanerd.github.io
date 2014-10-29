@@ -170,8 +170,12 @@ Klick.prototype.startGame = function() {
   this.scoreEl_.innerHTML = 'Score: 0';
 
   // Add the player ball if it does not yet exist.
+  // Every time the game starts we will reset its velocity and
+  // position.
   this.playerdot_.setXY(Klick.PLAYER_DOT_INITIAL_X,
                         Klick.PLAYER_DOT_INITIAL_Y);
+  this.playerdot_.setVX(0);
+  this.playerdot_.setVY(0);
   if (!isChildOf(this.canvas_, this.playerdot_.getSVG())) {
     this.canvas_.appendChild(this.playerdot_.getSVG());
   }
