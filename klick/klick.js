@@ -69,7 +69,7 @@ Klick.prototype.buildGameStart = function() {
   this.playerdot_ = new Circle(0, 0,
                                Klick.PLAYER_DOT_RADIUS,
                                Klick.PLAYER_DOT_COLOR);
-  this.playerdot_.setModel(new PhysicalObjectModel(0, 0, 0, 0, null, null));
+  this.playerdot_.setModel(new ObjectPhysicsModel(0, 0, 0, 0, null, null));
   this.playerdot_.setBounce(0.5);
   this.playerdot_.setBoundsX(Klick.PLAYER_DOT_XBOUNDS);
   this.playerdot_.setBoundsY(Klick.PLAYER_DOT_YBOUNDS);
@@ -105,7 +105,7 @@ Klick.prototype.createObstacleDot = function(x, y,
                                              bounceFactor,
                                              fill) {
   var obstacleBall = new Circle(x, y, radius, fill);
-  obstacleBall.setModel(new PhysicalObjectModel(
+  obstacleBall.setModel(new ObjectPhysicsModel(
       x, y, vx, vy, ax, ay));
   obstacleBall.setBounce(bounceFactor);
   obstacleBall.setBoundsY(radius, this.height_ - radius);

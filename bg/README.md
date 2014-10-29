@@ -9,4 +9,4 @@ HAS DEPENDENCIES:
 ========
   - bouncing_balls_background:
     - lib/circle
-    - lib/physical_object_model
+    - lib/object_physics_model

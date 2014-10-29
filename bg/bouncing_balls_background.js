@@ -12,7 +12,7 @@
  * animations and circles added after the first 1500ms render at their end
  * animation state and disappear immediately.
  * This file is intended as a distributable standalone but unlike other bg
- * animations, this file has a dependency on circle and physical_object_model
+ * animations, this file has a dependency on circle and object_physics_model
  * from my internal library.
  */
 
@@ -60,7 +60,7 @@ BouncingBallsBackground.prototype.createBouncingDot = function(x, y,
                                                        fill,
                                                        xbounds, ybounds) {
   var circle = new Circle(x, y, radius, fill);
-  circle.setModel(new PhysicalObjectModel(x, y, vx, vy, ax, ay));
+  circle.setModel(new ObjectPhysicsModel(x, y, vx, vy, ax, ay));
   circle.setBounce(bounceFactor);
   circle.setBoundsX(xbounds);
   circle.setBoundsY(ybounds);
