@@ -181,7 +181,7 @@ Tap.prototype.createRandomDot = function() {
   this.createDot(x, y, radius, wavelength, amplitude, color, speed);
 
   // Additional 10% chance that an extra dot will be generated.
-  if (Math.random() < 0.2) {
+  if (Math.random() < 0.15) {
     this.createRandomDot();
   }
 };
