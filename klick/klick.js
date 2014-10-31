@@ -24,6 +24,10 @@ function Klick(canvas, klickOverlayEl, scoreEl, highScoreEl) {
 
   // This array will hold all the balls that the player does not control.
   this.obstacleBalls_ = [];
+
+  // this.lost_ prevents the canvas and game from breaking if the user
+  // doubleclicks the overlay.
+  this.lost_ = true;
 }
 
 /**
@@ -197,12 +201,16 @@ Klick.prototype.startGame = function() {
   // Start the game loops. We will use two independent game loops, one
   // for updating the player ball's position and position of the obstacle
   // balls, and the other for creating obstacle dots.
-  this.gameLoop_ = setInterval(bind(this, function() {
-    this.playerdot_.updateWithPhysics();
-    this.updateObstacleDots();
-  }), 1);
-  this.gameLoop2_ = setInterval(
-      bind(this, this.createRandomObstacleDot), 400);
+  if (this.lost_) {
+    this.gameLoop_ = setInterval(bind(this, function() {
+      this.playerdot_.updateWithPhysics();
+      this.updateObstacleDots();
+    }), 1);
+    this.gameLoop2_ = setInterval(
+        bind(this, this.createRandomObstacleDot), 400);
+  }
+
+  this.lost_ = false;
 };
 
 Klick.prototype.endGame = function() {
@@ -216,6 +224,7 @@ Klick.prototype.endGame = function() {
   // Stop the game loops.
   clearInterval(this.gameLoop_);
   clearInterval(this.gameLoop2_);
+  this.lost_ = true;
 
   // Bring back the overlay.
   this.overlayEl_.style.lineHeight = '100px';
