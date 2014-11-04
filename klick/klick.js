@@ -6,6 +6,7 @@
  * jump towards the player's cursor whenever the player clicks. Other colored
  * balls will bounce across the screen, and the player must avoid touch all
  * other balls.
+ * TODO: consider renaming Klick
  */
 
 function Klick(canvas, klickOverlayEl, scoreEl, highScoreEl) {
