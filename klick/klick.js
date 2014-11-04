@@ -47,20 +47,18 @@ Klick.PLAYER_DOT_YBOUNDS = [7.5, 390];
  * are generated inside the specifed range.
  */
 Klick.OBSTACLE_DOT_POSSIBLE_X = [-10, 610];
-Klick.OBSTACLE_DOT_MIN_Y = 10;
-Klick.OBSTACLE_DOT_MAX_Y = 390;
+Klick.OBSTACLE_DOT_MIN_Y = 100;
+Klick.OBSTACLE_DOT_MAX_Y = 300;
 Klick.OBSTACLE_DOT_MIN_VX = 50;
 Klick.OBSTACLE_DOT_MAX_VX = 200;
-Klick.OBSTACLE_DOT_MIN_VY = -300;
-Klick.OBSTACLE_DOT_MAX_VY = 300;
+Klick.OBSTACLE_DOT_MIN_VY = -200;
+Klick.OBSTACLE_DOT_MAX_VY = 200;
 Klick.OBSTACLE_DOT_MIN_AX = 0;
 Klick.OBSTACLE_DOT_MAX_AX = 100;
-Klick.OBSTACLE_DOT_MIN_AY = -200;
-Klick.OBSTACLE_DOT_MAX_AY = -100;
+Klick.OBSTACLE_DOT_MIN_AY = 100;
+Klick.OBSTACLE_DOT_MAX_AY = 200;
 Klick.OBSTACLE_DOT_MIN_RADIUS = 10;
-Klick.OBSTACLE_DOT_MAX_RADIUS = 25;
-Klick.OBSTACLE_COLORS = [Colors.KLICK_BLUE, Colors.KLICK_GREEN,
-                         Colors.KLICK_ORANGE, Colors.KLICK_PURPLE];
+Klick.OBSTACLE_DOT_MAX_RADIUS = 20;
 
 /**
  * The name of the key corresponding to this game's highscore value
@@ -122,6 +120,10 @@ Klick.prototype.createObstacleDot = function(x, y,
 Klick.prototype.createRandomObstacleDot = function() {
   var x = Klick.OBSTACLE_DOT_POSSIBLE_X[
       Math.floor(Math.random() * Klick.OBSTACLE_DOT_POSSIBLE_X.length)];
+  if (x == 610) {
+    vx *= -1;
+    ax *= -1;
+  }
   var y = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_Y - Klick.OBSTACLE_DOT_MIN_Y)) +
       Klick.OBSTACLE_DOT_MIN_Y;
@@ -137,16 +139,15 @@ Klick.prototype.createRandomObstacleDot = function() {
   var ay = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_AY - Klick.OBSTACLE_DOT_MIN_AY)) +
       Klick.OBSTACLE_DOT_MIN_AY;
-  if (x == 610) {
-    vx *= -1;
-    ax *= -1;
+  var fill = Colors.KLICK_BLUE;
+  if (Math.random() > 0.5) {
+    ay *= -1;
+    fill = Colors.KLICK_GREEN;
   }
   var radius = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_RADIUS - Klick.OBSTACLE_DOT_MIN_RADIUS)) +
       Klick.OBSTACLE_DOT_MIN_RADIUS;
   var bounceFactor = Math.random() * 0.25 + 0.75;
-  var fill = Klick.OBSTACLE_COLORS[
-      Math.floor(Math.random() * Klick.OBSTACLE_COLORS.length)];
 
   this.createObstacleDot(x, y, vx, vy, ax, ay, radius, bounceFactor, fill);
 };
