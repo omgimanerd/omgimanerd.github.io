@@ -95,7 +95,7 @@ Klick.prototype.buildGameStart = function() {
   this.overlayEl_.onclick = bind(this, this.startGame);
 };
 
-Klick.prototype.onMouseClick = function(event) {
+Klick.prototype.onMouseMove = function(event) {
   var mouseX = event.pageX - this.canvas_.parentElement.offsetLeft;
   var mouseY = event.pageY - this.canvas_.parentElement.offsetTop;
   this.playerdot_.setVY(this.playerdot_.getY() - mouseY);
@@ -193,9 +193,9 @@ Klick.prototype.startGame = function() {
   // Hide the overlay.
   this.overlayEl_.style.zIndex = -1;
 
-  // Bind onMouseClick() to the canvas.
-  this.canvas_.onmousedown = bind(this, function(event) {
-    this.onMouseClick(event);
+  // Bind onMouseMove() to the canvas.
+  this.canvas_.onmousemove = bind(this, function(event) {
+    this.onMouseMove(event);
   });
 
   // Start the game loops. We will use two independent game loops, one
