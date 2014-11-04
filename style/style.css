@@ -197,3 +197,9 @@ button {
 #resume-content-text a:hover {
   color: #e22828;
 }
+
+#hug {
+  width: 300px;
+  height: 100px;
+  font-size: 25px;
+}
