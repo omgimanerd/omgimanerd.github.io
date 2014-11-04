@@ -120,10 +120,6 @@ Klick.prototype.createObstacleDot = function(x, y,
 Klick.prototype.createRandomObstacleDot = function() {
   var x = Klick.OBSTACLE_DOT_POSSIBLE_X[
       Math.floor(Math.random() * Klick.OBSTACLE_DOT_POSSIBLE_X.length)];
-  if (x == 610) {
-    vx *= -1;
-    ax *= -1;
-  }
   var y = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_Y - Klick.OBSTACLE_DOT_MIN_Y)) +
       Klick.OBSTACLE_DOT_MIN_Y;
@@ -136,6 +132,10 @@ Klick.prototype.createRandomObstacleDot = function() {
   var ax = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_AX - Klick.OBSTACLE_DOT_MIN_AX)) +
       Klick.OBSTACLE_DOT_MIN_AX;
+  if (x == 610) {
+    vx *= -1;
+    ax *= -1;
+  }
   var ay = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_AY - Klick.OBSTACLE_DOT_MIN_AY)) +
       Klick.OBSTACLE_DOT_MIN_AY;
