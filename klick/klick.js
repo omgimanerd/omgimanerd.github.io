@@ -74,7 +74,8 @@ Klick.prototype.buildGameStart = function() {
                                Klick.PLAYER_DOT_RADIUS,
                                Klick.PLAYER_DOT_COLOR);
   this.playerdot_.setModel(new ObjectPhysicsModel(0, 0, 0, 0, null, null));
-  this.playerdot_.setBounce(0.5);
+  this.playerdot_.setAY(0);
+  this.playerdot_.setBounce(1.0);
   this.playerdot_.setBoundsX(Klick.PLAYER_DOT_XBOUNDS);
   this.playerdot_.setBoundsY(Klick.PLAYER_DOT_YBOUNDS);
 
