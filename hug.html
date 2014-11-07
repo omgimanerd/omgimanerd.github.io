@@ -41,9 +41,9 @@
         if (getValueInCookie('hugCount') !== null &&
             getValueInCookie('hugCount') !== undefined) {
           document.getElementById('hugs').innerHTML =
-              getValueInCookie('hugCount');
+              'Hugs given: ' + getValueInCookie('hugCount');
         } else {
-          document.getElementById('hugs').innerHTML = 0;
+          document.getElementById('hugs').innerHTML = 'Hugs given: ' + 0;
         }
       }, 10);
     </script>
