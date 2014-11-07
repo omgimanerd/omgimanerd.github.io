@@ -1,5 +1,6 @@
 <!--
   Author: Alvin Lin (alvin.lin@stuypulse.com)
+  I was too lazy to export the JavaScript to an external file.
 -->
 <!DOCTYPE html>
 <html>
@@ -14,8 +15,11 @@
     <script type='text/javascript'
             src='bg/random_square_background.js'></script>
     <script type='text/javascript'>
+      var hugCount = getValueInCookie('hugCount');
       function increaseHugCount() {
-        setValueInCookie('hugCount', getValueInCookie('hugCount') + 1);
+        setValueInCookie('hugCount', hugCount++);
+        document.getElementById('hugs').innerHTML =
+            'Hugs given: ' + hugCount;
       }
     </script>
   </head>
@@ -37,15 +41,8 @@
       var backgroundObj = new RandomSquareBackground();
       backgroundObj.buildRandomSquareBackgroundAnimation();
 
-      setInterval(function() {
-        if (getValueInCookie('hugCount') !== null &&
-            getValueInCookie('hugCount') !== undefined) {
-          document.getElementById('hugs').innerHTML =
-              'Hugs given: ' + getValueInCookie('hugCount');
-        } else {
-          document.getElementById('hugs').innerHTML = 'Hugs given: ' + 0;
-        }
-      }, 10);
+      // Set the initial hug count.
+      document.getElementById('hugs').innerHTML = 'Hugs given: ' + hugCount;
     </script>
   </body>
 </html>
