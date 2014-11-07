@@ -49,14 +49,10 @@ Klick.PLAYER_DOT_YBOUNDS = [7.5, 390];
 Klick.OBSTACLE_DOT_POSSIBLE_X = [-10, 610];
 Klick.OBSTACLE_DOT_MIN_Y = 100;
 Klick.OBSTACLE_DOT_MAX_Y = 300;
-Klick.OBSTACLE_DOT_MIN_VX = 50;
-Klick.OBSTACLE_DOT_MAX_VX = 200;
+Klick.OBSTACLE_DOT_MIN_VX = 100;
+Klick.OBSTACLE_DOT_MAX_VX = 150;
 Klick.OBSTACLE_DOT_MIN_VY = -200;
 Klick.OBSTACLE_DOT_MAX_VY = 200;
-Klick.OBSTACLE_DOT_MIN_AX = 0;
-Klick.OBSTACLE_DOT_MAX_AX = 100;
-Klick.OBSTACLE_DOT_MIN_AY = 100;
-Klick.OBSTACLE_DOT_MAX_AY = 200;
 Klick.OBSTACLE_DOT_MIN_RADIUS = 10;
 Klick.OBSTACLE_DOT_MAX_RADIUS = 20;
 
@@ -104,13 +100,12 @@ Klick.prototype.onMouseMove = function(event) {
 
 Klick.prototype.createObstacleDot = function(x, y,
                                              vx, vy,
-                                             ax, ay,
                                              radius,
                                              bounceFactor,
                                              fill) {
   var obstacleBall = new Circle(x, y, radius, fill);
   obstacleBall.setModel(new ObjectPhysicsModel(
-      x, y, vx, vy, ax, ay));
+      x, y, vx, vy, 0, 0));
   obstacleBall.setBounce(bounceFactor);
   obstacleBall.setBoundsY(radius, this.height_ - radius);
   this.obstacleBalls_.push(obstacleBall);
@@ -129,19 +124,11 @@ Klick.prototype.createRandomObstacleDot = function() {
   var vy = Math.floor(Math.random() *
       (Klick.OBSTACLE_DOT_MAX_VY - Klick.OBSTACLE_DOT_MIN_VY)) +
       Klick.OBSTACLE_DOT_MIN_VY;
-  var ax = Math.floor(Math.random() *
-      (Klick.OBSTACLE_DOT_MAX_AX - Klick.OBSTACLE_DOT_MIN_AX)) +
-      Klick.OBSTACLE_DOT_MIN_AX;
   if (x == 610) {
     vx *= -1;
-    ax *= -1;
   }
-  var ay = Math.floor(Math.random() *
-      (Klick.OBSTACLE_DOT_MAX_AY - Klick.OBSTACLE_DOT_MIN_AY)) +
-      Klick.OBSTACLE_DOT_MIN_AY;
   var fill = Colors.KLICK_BLUE;
   if (Math.random() > 0.5) {
-    ay *= -1;
     fill = Colors.KLICK_GREEN;
   }
   var radius = Math.floor(Math.random() *
@@ -149,7 +136,7 @@ Klick.prototype.createRandomObstacleDot = function() {
       Klick.OBSTACLE_DOT_MIN_RADIUS;
   var bounceFactor = Math.random() * 0.25 + 0.75;
 
-  this.createObstacleDot(x, y, vx, vy, ax, ay, radius, bounceFactor, fill);
+  this.createObstacleDot(x, y, vx, vy, radius, bounceFactor, fill);
 };
 
 Klick.prototype.updateObstacleDots = function() {
