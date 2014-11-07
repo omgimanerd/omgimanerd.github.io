@@ -18,18 +18,18 @@
       var hugCount = getValueInCookie('hugCount');
       function increaseHugCount() {
         setValueInCookie('hugCount', hugCount++);
-        document.getElementById('hugs').innerHTML =
+        document.getElementById('hug-display').innerHTML =
             'Hugs given: ' + hugCount;
       }
     </script>
   </head>
   <body id='single-page-body'>
-    <div id='home-content'>
+    <div id='hug-content'>
       <button type='button' id='hug'
               onclick='increaseHugCount()'>
         Hug Alvin!
       </button>
-      <div id='hugs'>
+      <div id='hug-display'>
       </div>
     </div>
     <div id='copyright'>
@@ -42,7 +42,8 @@
       backgroundObj.buildRandomSquareBackgroundAnimation();
 
       // Set the initial hug count.
-      document.getElementById('hugs').innerHTML = 'Hugs given: ' + hugCount;
+      document.getElementById('hug-display').innerHTML =
+          'Hugs given: ' + hugCount;
     </script>
   </body>
 </html>
