@@ -35,32 +35,30 @@ function BouncingBallsBackground() {
  * x and y coordinates are dependent on the size of the canvas, and thus
  * are not stored hither.
  */
-BouncingBallsBackground.MIN_Y = 250;
+BouncingBallsBackground.MIN_Y = 100;
 BouncingBallsBackground.MIN_VX = 100;
 BouncingBallsBackground.MAX_VX = 300;
-BouncingBallsBackground.MIN_VY = -150;
-BouncingBallsBackground.MAX_VY = 150;
-BouncingBallsBackground.AX = 0;
-BouncingBallsBackground.MIN_AY = -250;
-BouncingBallsBackground.MAX_AY = -150;
+BouncingBallsBackground.MIN_VY = 100;
+BouncingBallsBackground.MAX_VY = 200;
 BouncingBallsBackground.DOT_COLORS = ['red', 'blue', 'green', 'yellow',
                                       'orange', 'magenta', 'cyan'];
 BouncingBallsBackground.MIN_RADIUS = 10;
 BouncingBallsBackground.MAX_RADIUS = 50;
+BouncingBallsBackground.BOUNCE_FACTOR = 1;
 
 /**
  * Generates a dot with the given parameters that is governed by
  * the laws of physics.
  */
-BouncingBallsBackground.prototype.createBouncingDot = function(x, y,
-                                                       vx, vy,
-                                                       ax, ay,
-                                                       radius,
-                                                       bounceFactor,
-                                                       fill,
-                                                       xbounds, ybounds) {
+BouncingBallsBackground.prototype.createBouncingDot = function(
+    x, y,
+    vx, vy,
+    radius,
+    bounceFactor,
+    fill,
+    xbounds, ybounds) {
   var circle = new Circle(x, y, radius, fill);
-  circle.setModel(new ObjectPhysicsModel(x, y, vx, vy, ax, ay));
+  circle.setModel(new ObjectPhysicsModel(x, y, vx, vy, 0, 0));
   circle.setBounce(bounceFactor);
   circle.setBoundsX(xbounds);
   circle.setBoundsY(ybounds);
@@ -75,11 +73,6 @@ BouncingBallsBackground.prototype.createBouncingDot = function(x, y,
 BouncingBallsBackground.prototype.generateRandomBouncingDot = function() {
   // Generates random coordinates, radii, animation time, and selects a
   // random color.
-  if (Math.random() > 0.5) {
-    var x = -50;
-  } else {
-    var x = this.width_ + 50;
-  }
   var y = Math.floor(Math.random() *
       (this.height_ - BouncingBallsBackground.MIN_Y) -
       BouncingBallsBackground.MIN_Y);
@@ -91,25 +84,26 @@ BouncingBallsBackground.prototype.generateRandomBouncingDot = function() {
       (BouncingBallsBackground.MAX_VY -
       BouncingBallsBackground.MIN_VY) +
       BouncingBallsBackground.MIN_VY);
-  var ax = BouncingBallsBackground.AX;
-  var ay = Math.floor(Math.random() *
-      (BouncingBallsBackground.MAX_AY -
-      BouncingBallsBackground.MIN_AY) +
-      BouncingBallsBackground.MIN_AY);
   var radius = Math.floor(Math.random() *
       (BouncingBallsBackground.MAX_RADIUS -
       BouncingBallsBackground.MIN_RADIUS)) +
       BouncingBallsBackground.MIN_RADIUS;
-  var bounceFactor = 1;
+  var bounceFactor = BouncingBallsBackground.BOUNCE_FACTOR;
   var fill = BouncingBallsBackground.DOT_COLORS[Math.floor(Math.random() *
       BouncingBallsBackground.DOT_COLORS.length)];
   var xbounds = [-150, this.width_ + 150];
   var ybounds = [0, this.height_ - radius];
+  if (Math.random() > 0.5) {
+    var x = -50;
+    vy *= -1;
+  } else {
+    var x = this.width_ + 50;
+  }
   if (x != -50) {
     vx *= -1;
   }
   // Creates the dot with the generated specifications.
-  this.createBouncingDot(x, y, vx, vy, ax, ay,
+  this.createBouncingDot(x, y, vx, vy,
                          radius, bounceFactor, fill, xbounds, ybounds);
 };
 
