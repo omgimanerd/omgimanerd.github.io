@@ -51,7 +51,7 @@ Klick.OBSTACLE_DOT_MIN_Y = 100;
 Klick.OBSTACLE_DOT_MAX_Y = 300;
 Klick.OBSTACLE_DOT_MIN_VX = 100;
 Klick.OBSTACLE_DOT_MAX_VX = 150;
-Klick.OBSTACLE_DOT_MIN_VY = -200;
+Klick.OBSTACLE_DOT_MIN_VY = 100;
 Klick.OBSTACLE_DOT_MAX_VY = 200;
 Klick.OBSTACLE_DOT_MIN_RADIUS = 10;
 Klick.OBSTACLE_DOT_MAX_RADIUS = 20;
@@ -129,6 +129,7 @@ Klick.prototype.createRandomObstacleDot = function() {
   }
   var fill = Colors.KLICK_BLUE;
   if (Math.random() > 0.5) {
+    vy *= -1;
     fill = Colors.KLICK_GREEN;
   }
   var radius = Math.floor(Math.random() *
