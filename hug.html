@@ -16,7 +16,6 @@
     <script type='text/javascript'>
       function increaseHugCount() {
         setValueInCookie('hugCount', getValueInCookie('hugCount') + 1);
-        console.log(getValueInCookie('hugCount') + 1);
       }
     </script>
   </head>
@@ -39,10 +38,14 @@
       backgroundObj.buildRandomSquareBackgroundAnimation();
 
       setInterval(function() {
-        document.getElementById('hugs').innerHTML =
-            getValueInCookie('hugCount');
-        console.log(getValueInCookie('hugCount'));
-      }, 100);
+        if (getValueInCookie('hugCount') !== null &&
+            getValueInCookie('hugCount') !== undefined) {
+          document.getElementById('hugs').innerHTML =
+              getValueInCookie('hugCount');
+        } else {
+          document.getElementById('hugs').innerHTML = 0;
+        }
+      }, 10);
     </script>
   </body>
 </html>
