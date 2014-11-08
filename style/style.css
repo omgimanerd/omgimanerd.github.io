@@ -184,8 +184,9 @@ body {
 #hug-content {
   width: 100%;
   min-width: 800px;
-  height: 250px;
-  margin: 150px auto 150px;
+  height: auto;
+  margin: auto;
+  padding: 250px 0px;
   text-align: center;
   font-size: 50px;
 }
@@ -194,6 +195,9 @@ body {
   width: 300px;
   height: 100px;
   font-size: 25px;
+  margin: 20px;
+  background-color: #a0a0a0;
+  border: 1px solid #a0a0a0;
 
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -206,11 +210,27 @@ body {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
+
+  -webkit-box-shadow: 0px 0px 10px 20px #a0a0a0;
+  -moz-box-shadow: 0px 0px 10px 20px #a0a0a0;
+  -ms-box-shadow: 0px 0px 10px 20px #a0a0a0;
+  -o-box-shadow: 0px 0px 10px 20px #a0a0a0;
+  box-shadow: 0px 0px 10px 20px #a0a0a0;
+
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -ms-transition: all 500ms;
+  -o-transition: all 500ms;
+  transition: all 500ms;
 }
 
-#hug-content {
-  width: auto;
-  height: 100px;
-  line-height: 100px;
-  margin: 10px 0px;
+#hug-button:hover {
+  background-color: #676767;
+  border: 1px solid #676767;
+
+  -webkit-box-shadow: 0px 0px 10px 10px #676767;
+  -moz-box-shadow: 0px 0px 10px 10px #676767;
+  -ms-box-shadow: 0px 0px 10px 10px #676767;
+  -o-box-shadow: 0px 0px 10px 10px #676767;
+  box-shadow: 0px 0px 10px 10px #676767;
 }

@@ -12,10 +12,14 @@
           href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' />
     <link rel='stylesheet' type='text/css' href='style/style.css' />
     <link rel='stylesheet' type='text/css' href='style/animation.css' />
+    <script type='text/javascript' src='lib/base.js'></script>
     <script type='text/javascript'
             src='bg/random_square_background.js'></script>
     <script type='text/javascript'>
       var hugCount = getValueInCookie('hugCount');
+      if (hugCount == null || hugCount == undefined) {
+        hugCount = 0;
+      }
       function increaseHugCount() {
         setValueInCookie('hugCount', hugCount++);
         document.getElementById('hug-display').innerHTML =
@@ -25,7 +29,7 @@
   </head>
   <body id='single-page-body'>
     <div id='hug-content'>
-      <button type='button' id='hug'
+      <button type='button' id='hug-button'
               onclick='increaseHugCount()'>
         Hug Alvin!
       </button>
@@ -35,7 +39,6 @@
     <div id='copyright'>
       Copyright &copy; Alvin Lin 2014
     </div>
-    <script type='text/javascript' src='lib/base.js'></script>
     <script type='text/javascript'>
       // Create the background object and apply the background.
       var backgroundObj = new RandomSquareBackground();
