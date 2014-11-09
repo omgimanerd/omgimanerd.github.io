@@ -1,11 +1,10 @@
 // Copyright Alvin Lin 2014
 /**
  * @author Alvin Lin (alvin.lin@stuypulse.com)
- * Script for the klick game. Repel is a game in which the player controls
- * a red ball that is governed by the laws of normal physics. The ball will
- * jump towards the player's cursor whenever the player clicks. Other colored
- * balls will bounce across the screen, and the player must avoid touch all
- * other balls.
+ * Script for the Repel game. Repel is a game in which the player controls
+ * a red ball that always moves toward the mouse cursor. The ball will
+ * deflect other balls, and the player must deflect all the balls away from
+ * a central purple ball.
  * Recycles code from Klick.
  */
 
@@ -138,17 +137,14 @@ Repel.prototype.createRandomObstacleDot = function() {
   if (x == 610) {
     vx *= -1;
   }
-  var fill = Colors.REPEL_BLUE;
   if (Math.random() > 0.5) {
     vy *= -1;
-  }
-  if (Math.random() > 0.5) {
-    fill = Colors.REPEL_YELLOW;
   }
   var radius = Math.floor(Math.random() *
       (Repel.OBSTACLE_DOT_MAX_RADIUS - Repel.OBSTACLE_DOT_MIN_RADIUS)) +
       Repel.OBSTACLE_DOT_MIN_RADIUS;
   var bounceFactor = Math.random() * 0.25 + 0.75;
+  var fill = Colors.REPEL_BLUE;
 
   this.createObstacleDot(x, y, vx, vy, radius, bounceFactor, fill);
 };

@@ -2,7 +2,7 @@
 /**
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  * Script for the klick game. Klick is a game in which the player controls
- * a red ball that is governed by the laws of normal physics. The ball will
+ * a red ball that always moves towards the player's cursor. The ball will
  * jump towards the player's cursor whenever the player clicks. Other colored
  * balls will bounce across the screen, and the player must avoid touch all
  * other balls.
