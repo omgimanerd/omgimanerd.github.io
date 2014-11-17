@@ -2,7 +2,7 @@ Personal webpage
 ========
 Git repository for personal webpage data.
 Experimental styling will be tested here.
-<br>
+<br><br>
 /lib contains the all the internal JavaScript dependencies that the site
   uses.
 <br>
