@@ -7,6 +7,7 @@ Experimental styling will be tested here.
   uses.
 <br>
 /bg contains all the scripts that generate the background on each page.
+<br>
 /style contains most of the css styles used in styling and animation each
   page.
 <br>
