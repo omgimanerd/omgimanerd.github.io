@@ -19,6 +19,7 @@ function Tap(canvas, tapOverlayEl, scoreEl, highScoreEl) {
 
   this.score_ = 0;
   this.highscore_ = 0;
+  this.ballgencount_ = 0;
   this.gameLoop_ = null;
 
   // Do not remove this.lost_, it deletes the dots from the canvas if
@@ -100,6 +101,7 @@ Tap.prototype.createDot = function(x, y, radius,
                                  speed) {
   var dot = new Circle(x, y, radius, color);
   this.canvas_.appendChild(dot.getSVG());
+  this.ballgencount_++;
 
   dot.getSVG().onmousedown = bind(this, function() {
     var dotColorBounds = {
@@ -180,9 +182,11 @@ Tap.prototype.createRandomDot = function() {
 
   this.createDot(x, y, radius, wavelength, amplitude, color, speed);
 
-  // Additional 15% chance that an extra dot will be generated.
-  if (Math.random() < 0.15) {
+  // Additional 15% chance that an extra dot will be generated if and only
+  // if a double ball was not generated last time.
+  if (Math.random() < 0.15 && this.ballgencount_ > 1) {
     this.createRandomDot();
+    this.ballgencount_ = 0;
   }
 };
 
