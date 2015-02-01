@@ -1,0 +1,11 @@
+Money dropping app
+1c
+5c
+10c
+25c
+$1
+
+Containers at bottom
+user ui click and drag the falling money to correct container
+red envelopes can be $$$ or bomb, depending on which can be collected
+or dodged
