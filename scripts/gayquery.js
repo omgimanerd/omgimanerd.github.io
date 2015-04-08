@@ -18,7 +18,7 @@ $('a[href^="#"]').click(function(event) {
   event.preventDefault();
   scroll_to($(target));
   currentPage = parseInt(target.charAt(-1));
-  console.log(target);
+  console.log(currentPage);
 });
 
 
