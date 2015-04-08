@@ -27,11 +27,11 @@ $(window).scroll(function() {
   if (!isAutoScrolling) {
     var currentScrollTop = $(this).scrollTop();
     if (currentScrollTop > lastScrollTop) {
-      console.log(currentPage);
+      console.log('upped ' + currentPage);
       currentPage = Math.max(currentPage - 1, 0);
       scroll_to($('#anchor' + currentPage.toString()));
     } else {
-      console.log(currentPage);
+      console.log('downed ' + currentPage);
       currentPage = Math.min(currentPage + 1, MAX_PAGE);
       scroll_to($('#anchor' + currentPage.toString()));
     }
