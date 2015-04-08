@@ -23,7 +23,7 @@ $('a[href^="#"]').click(function(event) {
   currentPage = parseInt(target.charAt(target.length - 1));
 });
 
-$(document).scroll(function() {
+$(window).scroll(function() {
   console.log(currentPage);
   if (!isAutoScrolling) {
     var currentScrollTop = $(this).scrollTop();
