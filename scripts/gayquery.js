@@ -18,17 +18,15 @@ $('a[href^="#"]').click(function(event) {
   event.preventDefault();
   scroll_to($(target));
   currentPage = parseInt(target.charAt(target.length - 1));
-  console.log(currentPage);
 });
 
 
 var lastScrollTop = $(document).scrollTop;
 $(document).scroll(function() {
+  console.log(isScrolling);
   if (!isScrolling) {
     if ($(document).scrollTop > lastScrollTop) {
-      console.log('scrolled up');
     } else {
-      console.log('scrolled down');
     }
   }
 });
