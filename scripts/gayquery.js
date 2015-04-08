@@ -1,15 +1,15 @@
-var isScrolling = false;
+var isAutoScrolling = false;
 var lastScrollTop = $(document).scrollTop;
 var currentPage = 0;
 
 scroll_to($("#anchor0"));
 
 function scroll_to(div) {
-  isScrolling = true;
+  isAutoScrolling = true;
   $('html, body').animate({
     scrollTop: div.offset().top
   }, 1000, null, function() {
-    isScrolling = false;
+    isAutoScrolling = false;
   });
 }
 
@@ -23,10 +23,11 @@ $('a[href^="#"]').click(function(event) {
 
 var lastScrollTop = $(document).scrollTop;
 $(document).scroll(function() {
-  console.log(isScrolling);
-  if (!isScrolling) {
+  console.log(isAutoScrolling);
+  if (!isAutoScrolling) {
     if ($(document).scrollTop > lastScrollTop) {
     } else {
     }
+    lastScrollTop = $(document).scrollTop;
   }
 });
