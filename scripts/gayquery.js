@@ -25,10 +25,12 @@ $('a[href^="#"]').click(function(event) {
 
 var lastScrollTop = $(document).scrollTop;
 $(document).scroll(function() {
+  console.log(isAutoScrolling);
   if (!isAutoScrolling) {
     if ($(document).scrollTop > lastScrollTop) {
       console.log("up");
     } else {
+      console.log("down");
     }
     lastScrollTop = $(document).scrollTop;
   }
