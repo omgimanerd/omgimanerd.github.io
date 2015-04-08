@@ -1,4 +1,3 @@
-$(document).ready(function() {
-  $('#page-container').fadeIn(2500);
+$(document).on("load", function() {
+  $('#page-container').fadeIn(3000);
 });
-

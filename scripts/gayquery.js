@@ -5,9 +5,8 @@ function scroll_to(div) {
   }, 1000);
 }
 
-$('a[href^="#"]').on('click', function(event) {
+$('a[href^="#"]').click(function(event) {
   var target = $(this).attr('href');
   event.preventDefault();
   scroll_to($(target));
-  currentPage = target.substr(0, -1);
 });
