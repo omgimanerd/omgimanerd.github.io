@@ -27,9 +27,11 @@ $(document).scroll(function() {
   console.log(currentPage);
   if (!isAutoScrolling) {
     if ($(this).scrollTop() > lastScrollTop) {
+      console.log('upped');
       currentPage = Math.max(currentPage - 1, 0);
       scroll_to($('#anchor' + currentPage.toString()));
     } else {
+      console.log('downed');
       currentPage = Math.min(currentPage + 1, MAX_PAGE);
       scroll_to($('#anchor' + currentPage.toString()));
     }
