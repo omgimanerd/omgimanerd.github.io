@@ -2,7 +2,7 @@ var isAutoScrolling = false;
 var lastScrollTop = $(document).scrollTop;
 var currentPage = 0;
 
-scroll_to($("#anchor0"));
+scroll_to($('#anchor0'));
 
 function scroll_to(div) {
   isAutoScrolling = true;
@@ -24,11 +24,10 @@ $('a[href^="#"]').click(function(event) {
 
 
 var lastScrollTop = $(document).scrollTop;
-$(document).scroll(function(event) {
-  event.preventDefault();
-  console.log(isAutoScrolling);
+$(document).scroll(function() {
   if (!isAutoScrolling) {
     if ($(document).scrollTop > lastScrollTop) {
+      console.log("up");
     } else {
     }
     lastScrollTop = $(document).scrollTop;
