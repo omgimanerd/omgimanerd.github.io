@@ -26,15 +26,14 @@ $('a[href^="#"]').click(function(event) {
 $(document).scroll(function() {
   console.log(currentPage);
   if (!isAutoScrolling) {
-    if ($(this).scrollTop() > lastScrollTop) {
-      console.log('upped');
+    var currentScrollTop = $(this).scrollTop();
+    if (currentScrollTop > lastScrollTop) {
       currentPage = Math.max(currentPage - 1, 0);
       scroll_to($('#anchor' + currentPage.toString()));
     } else {
-      console.log('downed');
       currentPage = Math.min(currentPage + 1, MAX_PAGE);
       scroll_to($('#anchor' + currentPage.toString()));
     }
-    lastScrollTop = $(this).scrollTop();
+    lastScrollTop = currentScrollTop;
   }
 });
