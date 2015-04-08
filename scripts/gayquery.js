@@ -12,7 +12,7 @@ function scroll_to(div) {
   }, 1000, null, function() {
     setTimeout(function() {
       isAutoScrolling = false;
-    }, 750);
+    }, 0);
   });
 }
 
