@@ -24,13 +24,14 @@ $('a[href^="#"]').click(function(event) {
 });
 
 $(window).scroll(function() {
-  console.log(currentPage);
   if (!isAutoScrolling) {
     var currentScrollTop = $(this).scrollTop();
     if (currentScrollTop > lastScrollTop) {
+      console.log(currentPage);
       currentPage = Math.max(currentPage - 1, 0);
       scroll_to($('#anchor' + currentPage.toString()));
     } else {
+      console.log(currentPage);
       currentPage = Math.min(currentPage + 1, MAX_PAGE);
       scroll_to($('#anchor' + currentPage.toString()));
     }
