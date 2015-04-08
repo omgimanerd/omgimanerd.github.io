@@ -27,11 +27,11 @@ var lastScrollTop = $(document).scrollTop;
 $(document).scroll(function() {
   console.log(isAutoScrolling);
   if (!isAutoScrolling) {
-    if ($(document).scrollTop > lastScrollTop) {
+    if ($(this).scrollTop() > lastScrollTop) {
       console.log("up");
     } else {
       console.log("down");
     }
-    lastScrollTop = $(document).scrollTop;
+    lastScrollTop = $(this).scrollTop();
   }
 });
