@@ -11,7 +11,7 @@ function scroll_to(div) {
   }, 1000, null, function() {
     setTimeout(function() {
       isAutoScrolling = false;
-    }, 500);
+    }, 1000);
   });
 }
 
@@ -24,7 +24,8 @@ $('a[href^="#"]').click(function(event) {
 
 
 var lastScrollTop = $(document).scrollTop;
-$(document).scroll(function() {
+$(document).scroll(function(event) {
+  event.preventDefault();
   console.log(isAutoScrolling);
   if (!isAutoScrolling) {
     if ($(document).scrollTop > lastScrollTop) {
