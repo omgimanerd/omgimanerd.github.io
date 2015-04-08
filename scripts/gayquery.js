@@ -1,5 +1,5 @@
 var isAutoScrolling = false;
-var lastScrollTop = $(document).scrollTop;
+var lastScrollTop = $(document).scrollTop();
 var currentPage = 0;
 var MAX_PAGE = 2;
 
@@ -23,17 +23,16 @@ $('a[href^="#"]').click(function(event) {
   currentPage = parseInt(target.charAt(target.length - 1));
 });
 
-
-var lastScrollTop = $(document).scrollTop;
 $(document).scroll(function() {
-  console.log(isAutoScrolling);
   if (!isAutoScrolling) {
     if ($(this).scrollTop() > lastScrollTop) {
       currentPage = Math.min(currentPage - 1, 0);
-      scroll_to($('#anchor' + currentPage));
+      console.log(currentPage);
+      scroll_to($('#anchor' + currentPage.toString()));
     } else {
       currentPage = Math.max(currentPage + 1, MAX_PAGE);
-      scroll_to($('#anchor' + currentPage));
+      console.log(currentPage);
+      scroll_to($('#anchor' + currentPage.toString()));
     }
     lastScrollTop = $(this).scrollTop();
   }
