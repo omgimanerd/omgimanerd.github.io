@@ -24,6 +24,7 @@ $('a[href^="#"]').click(function(event) {
 });
 
 $(document).scroll(function() {
+  console.log(currentPage);
   if (!isAutoScrolling) {
     if ($(this).scrollTop() > lastScrollTop) {
       currentPage = Math.max(currentPage - 1, 0);
