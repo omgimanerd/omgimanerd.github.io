@@ -1,6 +1,7 @@
 var isAutoScrolling = false;
 var lastScrollTop = $(document).scrollTop;
 var currentPage = 0;
+var MAX_PAGE = 2;
 
 scroll_to($('#anchor0'));
 
@@ -28,9 +29,11 @@ $(document).scroll(function() {
   console.log(isAutoScrolling);
   if (!isAutoScrolling) {
     if ($(this).scrollTop() > lastScrollTop) {
-      console.log("up");
+      currentPage = Math.min(currentPage - 1, 0);
+      scroll_to($('#anchor' + currentPage));
     } else {
-      console.log("down");
+      currentPage = Math.max(currentPage + 1, MAX_PAGE);
+      scroll_to($('#anchor' + currentPage));
     }
     lastScrollTop = $(this).scrollTop();
   }
