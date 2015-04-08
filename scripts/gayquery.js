@@ -26,12 +26,10 @@ $('a[href^="#"]').click(function(event) {
 $(document).scroll(function() {
   if (!isAutoScrolling) {
     if ($(this).scrollTop() > lastScrollTop) {
-      currentPage = Math.min(currentPage - 1, 0);
-      console.log(currentPage);
+      currentPage = Math.max(currentPage - 1, 0);
       scroll_to($('#anchor' + currentPage.toString()));
     } else {
-      currentPage = Math.max(currentPage + 1, MAX_PAGE);
-      console.log(currentPage);
+      currentPage = Math.min(currentPage + 1, MAX_PAGE);
       scroll_to($('#anchor' + currentPage.toString()));
     }
     lastScrollTop = $(this).scrollTop();
