@@ -9,7 +9,9 @@ function scroll_to(div) {
   $('html, body').animate({
     scrollTop: div.offset().top
   }, 1000, null, function() {
-    isAutoScrolling = false;
+    setTimeout(function() {
+      isAutoScrolling = false;
+    }, 500);
   });
 }
 
