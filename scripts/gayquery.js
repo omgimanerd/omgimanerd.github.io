@@ -1,8 +1,9 @@
 function scroll_to(div) {
-  scrolling = true;
   $('html, body').animate({
     scrollTop: div.offset().top
-  }, 1000);
+  }, 1000, null, function() {
+    console.log("finished");
+  });
 }
 
 $('a[href^="#"]').click(function(event) {
@@ -10,3 +11,10 @@ $('a[href^="#"]').click(function(event) {
   event.preventDefault();
   scroll_to($(target));
 });
+
+/*
+var lastScrollTop = $(document).scrollTop;
+$(document).scroll(function() {
+  if ($(document).scrollTop > lastScrollTop) {
+    console.log('scrolled down')
+    */
