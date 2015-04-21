@@ -1,0 +1,59 @@
+<!--
+  Author: Alvin Lin (alvin.lin@stuypulse.com)
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alvin Lin</title>
+    <link rel='stylesheet' type='text/css'
+          href='http://fonts.googleapis.com/css?family=Open+Sans' />
+    <link rel='stylesheet'
+          href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' />
+    <link rel='stylesheet' type='text/css' href='style/style.css' />
+    <link rel='stylesheet' type='text/css' href='style/animation.css' />
+    <script type='text/javascript' src='bg/falling_square_background.js'></script>
+  </head>
+  <body id='single-page-body'>
+    <div id='navbar'>
+      <a>
+        Home
+      </a>
+      <a href='resume.html'>
+        R&#233;sum&#233;
+      </a>
+      <a href='tap.html'>
+        Tap
+      </a>
+      <a href='klick.html'>
+        Klick
+      </a>
+    </div>
+    <div id='home-content'>
+      Alvin Lin
+      <div id='media'>
+        <a href='https://github.com/omgimanerd'
+           title='https://github.com/omgimanerd'
+           class='media-tooltip'>
+          <span class='fa fa-github-square fa-2x'></span>
+        </a>
+        <a href='https://facebook.com/omgimanerd'
+           title='https://facebook.com/omgimanerd'
+           class='media-tooltip'>
+          <span class='fa fa-facebook-square fa-2x'></span>
+        </a>
+        <a title='alvin&#46;lin&#64;stuypulse&#46;com'
+           class='media-tooltip'>
+          <span class='fa fa-envelope-square fa-2x'></span>
+        </a>
+      </div>
+    </div>
+    <div id='copyright'>
+      Copyright &copy; Alvin Lin 2014
+    </div>
+    <script type='text/javascript'>
+      // Create the background object and apply the background.
+      var backgroundObj = new FallingSquareBackground();
+      backgroundObj.buildFallingSquareBackgroundAnimation();
+    </script>
+  </body>
+</html>
