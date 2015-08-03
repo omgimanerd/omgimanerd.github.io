@@ -10,20 +10,28 @@
     <link rel='stylesheet' type='text/css'
           href='http://fonts.googleapis.com/css?family=Open+Sans' />
     <link rel='stylesheet'
-          href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-    <link rel='stylesheet'
           href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' />
     <link rel='stylesheet'
           type='text/css'
           href='style/styles.css' />
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'>
     </script>
-    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'>
+    <script src='scripts/random_dot_background.js'>
     </script>
     <title>Alvin Lin</title>
   </head>
   <body>
     <div class='page-container'>
+      <div class='page-header'>
+      </div>
+      <div class='page-content-splash'>
+        <svg class="dot-background"></svg>
+        <div class='name'>
+          <h2>
+            My name is Alvin Lin
+          </h2>
+        </div>
+      </div>
       <div class='app-icons'>
         <a href=''>
           <img src='data/tap.png' />
@@ -36,7 +44,13 @@
         </a>
       </div>
     </div>
+
+    <script>
+      var background = new RandomDotBackground(
+          document.getElementsByClassName('page-content-splash')[0],
+          document.getElementsByClassName('dot-background')[0]
+      );
+      background.buildRandomDotBackgroundAnimation();
+    </script>
   </body>
-  <script src='scripts/yayquery.js'></script>
-  <script src='scripts/gayquery.js'></script>
 </html>
