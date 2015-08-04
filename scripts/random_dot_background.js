@@ -29,7 +29,8 @@ function bind(object, method) {
  * is the SVG canvas itself.
  */
 function RandomDotBackground(container, canvas, minRadius, maxRadius,
-                             minAnimationtime, maxAnimationTime, dotColors) {
+                             minAnimationtime, maxAnimationTime,
+                             defaultGenerationInterval, dotColors) {
   this.container_ = container;
   this.canvas_ = canvas;
 
@@ -39,6 +40,8 @@ function RandomDotBackground(container, canvas, minRadius, maxRadius,
       RandomDotBackground.DEFAULT_MIN_ANIMATION_TIME;
   this.maxAnimationTime_ = maxAnimationTime ||
       RandomDotBackground.DEFAULT_MAX_ANIMATION_TIME;
+  this.defaultGenerationInterval_ = defaultGenerationInterval ||
+      RandomDotBackground.DEFAULT_GENERATION_INTERVAL;
   this.dotColors_ = dotColors || RandomDotBackground.DEFAULT_DOT_COLORS;
 };
 
@@ -65,6 +68,11 @@ RandomDotBackground.DEFAULT_MIN_ANIMATION_TIME = 500;
  * dots can have.
  */
 RandomDotBackground.DEFAULT_MAX_ANIMATION_TIME = 1500;
+
+/**
+ * This values represents the default interval that the dots generate in.
+ */
+RandomDotBackground.DEFAULT_GENERATION_INTERVAL = 100;
 
 /**
  * This is an array containing all the default possible colors of the dots.
@@ -146,12 +154,11 @@ RandomDotBackground.prototype.setCanvasSize = function() {
   this.width_ = this.container_.offsetWidth;
   this.height_ = this.container_.offsetHeight;
 
+  console.log(this.width_, this.height_);
   // Set the width and height of the SVG canvas to the width and height
   // of the container.
-  this.canvas_.position = 'absolute';
   this.canvas_.setAttribute('width', this.width_ + 'px');
   this.canvas_.setAttribute('height', this.height_ + 'px');
-  this.canvas_.style.top = this.container_.offsetTop;
 };
 
 RandomDotBackground.prototype.buildRandomDotBackgroundAnimation = function() {
@@ -159,7 +166,7 @@ RandomDotBackground.prototype.buildRandomDotBackgroundAnimation = function() {
   this.setCanvasSize();
 
   // Set the animation.
-  setInterval(bind(this, this.generateRandomDot), 100);
+  //setInterval(bind(this, this.generateRandomDot), 100);
 
   // Refresh the size of the canvas every second in case the screen resizes.
   setInterval(bind(this, this.setCanvasSize), 1000);
