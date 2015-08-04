@@ -90,7 +90,7 @@ RandomDotBackground.DEFAULT_DOT_COLORS = ['#C8E6C9'];
  * This represents the amount that the dots will deviate from the cursor in
  * terms of a percentage of the user's screen size.
  */
-RandomDotBackground.SCREEN_PERCENTAGE_DEVIATION = 0.2;
+RandomDotBackground.SCREEN_PERCENTAGE_DEVIATION = 0.15;
 
 /**
  * Generates a dot at a specified coordinate that will be a specified color

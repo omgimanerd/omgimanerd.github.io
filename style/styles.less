@@ -17,6 +17,21 @@ html, body {
   border: 0;
   font-family: 'Open Sans', sans-serif;
   color: #727272;
+
+  background: url('../data/bg.png');
+}
+
+a {
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: all 200ms;
+
+  &:hover {
+    color: #448AFF;
+  }
+
+  &:visited {
+  }
 }
 
 hr {
@@ -29,8 +44,6 @@ hr {
   min-width: 1080px;
   height: 100%;
   min-height: 800px;
-
-  background: url('../data/bg.png') repeat;
 }
 
 .page-header {
@@ -39,7 +52,10 @@ hr {
   background-color: #388E3C;
 
   div {
-    display: inline-block;
+    display: inline;
+    height: 50px;
+    padding: 0 25px;
+    line-height: 50px;
   }
 }
 
