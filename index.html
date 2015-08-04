@@ -14,9 +14,7 @@
     <link rel='stylesheet'
           type='text/css'
           href='style/styles.css' />
-    <script src='scripts/jquery-1.11.3.min.js'>
-    </script>
-    <script src='scripts/yayquery.js'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'>
     </script>
     <script src='scripts/random_dot_background.js'>
     </script>
@@ -24,41 +22,32 @@
   </head>
   <body>
     <div class='page-container'>
-      <svg class="dot-background"></svg>
-
-<!--
       <div class='page-header'>
       </div>
-
-      <div class='page-content'>
-        <div class='splash-text'>
-          <h2 id='name-fadein'>
+      <div class='page-content-splash'>
+        <svg class="dot-background"></svg>
+        <div class='name'>
+          <h2>
             My name is Alvin Lin
           </h2>
-          <h3 id='description-fadein'>
-            I am a software developer in New York
-          </h3>
         </div>
       </div>
--->
-<!--
       <div class='app-icons'>
-        <a href='https://play.google.com/store/apps/details?id=io.github.omgimanerd.tap'>
+        <a href=''>
           <img src='data/tap.png' />
         </a>
-        <a href='https://play.google.com/store/apps/details?id=io.github.omgimanerd.shockwave'>
+        <a href=''>
           <img src='data/shockwave.png' />
         </a>
-        <a href='#' onclick='return false;'>
+        <a href=''>
           <img src='data/bouncy-square.png' />
         </a>
       </div>
--->
     </div>
 
     <script>
       var background = new RandomDotBackground(
-          document.getElementsByClassName('page-container')[0],
+          document.getElementsByClassName('page-content-splash')[0],
           document.getElementsByClassName('dot-background')[0]
       );
       background.buildRandomDotBackgroundAnimation();
