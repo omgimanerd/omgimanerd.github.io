@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Alvin Lin</title>
+
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
@@ -14,22 +16,28 @@
     <link rel='stylesheet'
           type='text/css'
           href='style/styles.css' />
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'>
+
+    <script src='scripts/jquery-1.11.3.min.js'>
     </script>
     <script src='scripts/random_dot_background.js'>
     </script>
-    <title>Alvin Lin</title>
+    <script src='scripts/yayquery.js'>
+    </script>
   </head>
+
   <body>
     <div class='page-container'>
       <div class='page-header'>
       </div>
       <div class='page-content-splash'>
         <svg class="dot-background"></svg>
-        <div class='name'>
-          <h2>
+        <div class='splash-text'>
+          <h2 id='name-fadein'>
             My name is Alvin Lin
           </h2>
+          <h3 id='description-fadein'>
+            I am a software developer in New York
+          </h3>
         </div>
       </div>
       <div class='app-icons'>

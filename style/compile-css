@@ -1,0 +1,3 @@
+#!/bin/bash
+
+lessc styles.less --clean-css="-s0 --advanced" > styles.css

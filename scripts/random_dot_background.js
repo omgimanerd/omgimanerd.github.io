@@ -29,17 +29,23 @@ function bind(object, method) {
  * is the SVG canvas itself.
  */
 function RandomDotBackground(container, canvas, minRadius, maxRadius,
-                             minAnimationtime, maxAnimationTime, dotColors) {
+                             minAnimationtime, maxAnimationTime,
+                             dotGenerationInterval, dotColors) {
   this.container_ = container;
   this.canvas_ = canvas;
 
-  this.minRadius_ = minRadius || RandomDotBackground.DEFAULT_MIN_RADIUS;
-  this.maxRadius_ = maxRadius || RandomDotBackground.DEFAULT_MAX_RADIUS;
+  this.minRadius_ = minRadius ||
+      RandomDotBackground.DEFAULT_MIN_RADIUS;
+  this.maxRadius_ = maxRadius ||
+      RandomDotBackground.DEFAULT_MAX_RADIUS;
   this.minAnimationTime_ = minAnimationtime ||
       RandomDotBackground.DEFAULT_MIN_ANIMATION_TIME;
   this.maxAnimationTime_ = maxAnimationTime ||
       RandomDotBackground.DEFAULT_MAX_ANIMATION_TIME;
-  this.dotColors_ = dotColors || RandomDotBackground.DEFAULT_DOT_COLORS;
+  this.dotGenerationInterval_ = dotGenerationInterval ||
+      RandomDotBackground.DEFAULT_DOT_GENERATION_INTERVAL;
+  this.dotColors_ = dotColors ||
+      RandomDotBackground.DEFAULT_DOT_COLORS;
 };
 
 /**
@@ -65,6 +71,11 @@ RandomDotBackground.DEFAULT_MIN_ANIMATION_TIME = 500;
  * dots can have.
  */
 RandomDotBackground.DEFAULT_MAX_ANIMATION_TIME = 1500;
+
+/**
+ * This value represents the default interval that the dots will generate at.
+ */
+RandomDotBackground.DEFAULT_DOT_GENERATION_INTERVAL = 100;
 
 /**
  * This is an array containing all the default possible colors of the dots.
@@ -148,7 +159,6 @@ RandomDotBackground.prototype.setCanvasSize = function() {
 
   // Set the width and height of the SVG canvas to the width and height
   // of the container.
-  this.canvas_.position = 'absolute';
   this.canvas_.setAttribute('width', this.width_ + 'px');
   this.canvas_.setAttribute('height', this.height_ + 'px');
   this.canvas_.style.top = this.container_.offsetTop;
@@ -159,7 +169,7 @@ RandomDotBackground.prototype.buildRandomDotBackgroundAnimation = function() {
   this.setCanvasSize();
 
   // Set the animation.
-  setInterval(bind(this, this.generateRandomDot), 100);
+  setInterval(bind(this, this.generateRandomDot), this.dotGenerationInterval_);
 
   // Refresh the size of the canvas every second in case the screen resizes.
   setInterval(bind(this, this.setCanvasSize), 1000);
