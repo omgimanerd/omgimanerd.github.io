@@ -17,7 +17,8 @@
  * user.
  */
 
-// bind() function allows setTimeout to work on the objects.
+// bind() function allows setTimeout to work on the objects by changing the
+// context from which they are run.
 function bind(object, method) {
   return function() {
     return method.apply(object, arguments);
@@ -46,6 +47,9 @@ function RandomDotBackground(container, canvas, minRadius, maxRadius,
       RandomDotBackground.DEFAULT_DOT_GENERATION_INTERVAL;
   this.dotColors_ = dotColors ||
       RandomDotBackground.DEFAULT_DOT_COLORS;
+
+  // Stores the location of the user's mouse for any skewing.
+  this.userMouseCoords_ = null;
 };
 
 /**
@@ -81,6 +85,12 @@ RandomDotBackground.DEFAULT_DOT_GENERATION_INTERVAL = 100;
  * This is an array containing all the default possible colors of the dots.
  */
 RandomDotBackground.DEFAULT_DOT_COLORS = ['#C8E6C9'];
+
+/**
+ * This represents the amount that the dots will deviate from the cursor in
+ * terms of a percentage of the user's screen size.
+ */
+RandomDotBackground.SCREEN_PERCENTAGE_DEVIATION = 0.2;
 
 /**
  * Generates a dot at a specified coordinate that will be a specified color
@@ -133,8 +143,16 @@ RandomDotBackground.prototype.createDot = function(x, y,
 RandomDotBackground.prototype.generateRandomDot = function() {
   // Generates random coordinates, radii, animation time, and selects a
   // random color.
-  var x = Math.floor(Math.random() * this.width_);
-  var y = Math.floor(Math.random() * this.height_);
+  var x, y;
+  if (this.userMouseCoords_) {
+    var deviation = this.width_ *
+        RandomDotBackground.SCREEN_PERCENTAGE_DEVIATION;
+    x = this.userMouseCoords_[0] + (Math.random() - 0.5) * deviation;
+    y = this.userMouseCoords_[1] + (Math.random() - 0.5) * deviation;
+  } else {
+    x = Math.floor(Math.random() * this.width_);
+    y = Math.floor(Math.random() * this.height_);
+  }
   var color = this.dotColors_[Math.floor(Math.random() *
       this.dotColors_.length)];
   var radius = Math.floor(Math.random() *
@@ -164,9 +182,21 @@ RandomDotBackground.prototype.setCanvasSize = function() {
   this.canvas_.style.top = this.container_.offsetTop;
 };
 
+RandomDotBackground.prototype.onMouseMove = function(event) {
+  this.userMouseCoords_ = [event.layerX, event.layerY];
+};
+
+RandomDotBackground.prototype.onMouseOut = function() {
+  this.userMouseCoords_ = null;
+};
+
 RandomDotBackground.prototype.buildRandomDotBackgroundAnimation = function() {
   // Initialize the canvas.
   this.setCanvasSize();
+
+  // Store the user's mouse coordinates.
+  this.canvas_.onmousemove = bind(this, this.onMouseMove);
+  this.canvas_.onmouseout = bind(this, this.onMouseOut);
 
   // Set the animation.
   setInterval(bind(this, this.generateRandomDot), this.dotGenerationInterval_);
