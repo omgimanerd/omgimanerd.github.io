@@ -4,6 +4,8 @@
  */
 
 @defaultSpinAnimationTime: 15s;
+@defaultDelayTime: 2s;
+@defaultFadeInAnimationTime: 800ms;
 
 .spin(@spinAnimationTime:@defaultSpinAnimationTime) {
   -webkit-animation: spin @spinAnimationTime linear infinite;
@@ -11,21 +13,55 @@
   animation: spin @spinAnimationTime linear infinite;
 }
 
+.fadeIn(@delayTime:@defaultDelayTime,
+        @fadeInAnimationTime:@defaultFadeInAnimationTime) {
+  opacity: 0;
+  -webkit-animation: fadeIn @fadeInAnimationTime linear forwards;
+  -webkit-animation-delay: @delayTime;
+  -moz-animation: fadeIn @fadeInAnimationTime linear forwards;
+  -moz-animation-delay: @delayTime;
+  animation: fadeIn @fadeInAnimationTime linear forwards;
+  animation-delay: @delayTime;
+}
+
 @-webkit-keyframes spin {
   100% {
     -webkit-transform: rotate(360deg);
   }
 }
-
 @-moz-keyframes spin {
   100% {
     -moz-transform: rotate(360deg);
   }
 }
-
 @keyframes spin {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

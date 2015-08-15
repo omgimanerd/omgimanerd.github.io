@@ -25,9 +25,9 @@ $(document).ready(function() {
         cursorAnimator.setEventHandlers();
       } else {
         $('<span>').text(string[charCounter]).
-        appendTo(dest).hide().fadeIn(500);
+        appendTo(dest).hide().fadeIn(400);
         charCounter += 1;
       }
-    }, 250);
+    }, 200);
   });
 });
