@@ -15,18 +15,18 @@ $(document).ready(function() {
   $(function() {
     var string = "Alvin Lin";
     var dest = $('#name');
-    var c = 0;
+    var charCounter = 0;
     var i = setInterval(function() {
-      if (c >= string.length) {
+      if (charCounter >= string.length) {
         clearInterval(i);
         dest.text(string);
         // Set the cursor animator's event handlers when the name animation
         // is done.
         cursorAnimator.setEventHandlers();
       } else {
-        $('<span>').text(string[c]).
+        $('<span>').text(string[charCounter]).
         appendTo(dest).hide().fadeIn(500);
-        c += 1;
+        charCounter += 1;
       }
     }, 250);
   });

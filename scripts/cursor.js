@@ -50,7 +50,7 @@ CursorAnimator.LINE_COLOR = '#00E4FF';
 CursorAnimator.prototype.initialize = function() {
   this.canvas_.style.position = 'fixed';
   this.updateCanvasSize();
-  this.cursorCurrent_ = [this.canvas_.width / 2, -1000];
+  this.cursorCurrent_ = [this.canvas_.width / 2, -100];
   this.cursorTarget_ = [this.canvas_.width / 2, this.canvas_.height / 2];
 
   this.context_ = this.canvas_.getContext('2d');
