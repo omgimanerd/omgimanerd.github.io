@@ -36,6 +36,8 @@ Cursor.LINE_COLOR = '#00E4FF';
 Cursor.prototype.initialize = function() {
   this.canvas_.style.position = 'fixed';
   this.updateCanvasSize();
+  this.cursorCurrent_ = [this.canvas_.width / 2, this.canvas_.height / 2];
+  this.cursorTarget_ = [this.canvas_.width / 2, this.canvas_.height / 2];
 
   this.context_ = this.canvas_.getContext('2d');
 
@@ -81,6 +83,7 @@ Cursor.prototype.updateCursor = function() {
   // Clear the canvas.
   this.context_.clearRect(0, 0, this.canvas_.width, this.canvas_.height);
 
+  // Draw the lines from the corners to the cursor image.
   var x = this.cursorCurrent_[0];
   var y = this.cursorCurrent_[1];
   this.drawCursorLine(0, 0, x, y);
@@ -88,11 +91,11 @@ Cursor.prototype.updateCursor = function() {
   this.drawCursorLine(0, this.canvas_.height, x, y);
   this.drawCursorLine(this.canvas_.width, this.canvas_.height, x, y);
 
+  // Draw the cursor image.
   this.context_.drawImage(
       this.cursorImage_,
       this.cursorCurrent_[0] - this.cursorImage_.width / 2,
       this.cursorCurrent_[1] - this.cursorImage_.height / 2);
-
 };
 
 /**
