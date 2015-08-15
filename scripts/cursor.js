@@ -13,6 +13,8 @@ function CursorAnimator(canvas) {
   this.cursorTarget_ = [0, 0];
 
   this.cursorRotationAngle_ = 0;
+
+  this.isAnimating_ = false;
 }
 
 /**
@@ -63,6 +65,22 @@ CursorAnimator.prototype.initialize = function() {
 CursorAnimator.prototype.setEventHandlers = function() {
   window.addEventListener('mousemove', bind(this, this.onMouseMove));
   setInterval(bind(this, this.updateAnimation), CursorAnimator.UPDATE_DELAY);
+  this.isAnimating_ = true;
+};
+
+/**
+ * This function starts the cursor animation if the canvas and context have
+ * been initialized.
+ */
+CursorAnimator.prototype.startAnimation = function() {
+  this.isAnimating_ = true;
+};
+
+/**
+ * This function suspends the cursor animation.
+ */
+CursorAnimator.prototype.suspendAnimation = function() {
+  this.isAnimating_ = false;
 };
 
 /**
@@ -94,31 +112,33 @@ CursorAnimator.prototype.updateAnimation = function() {
   this.cursorCurrent_[1] += (this.cursorTarget_[1] - this.cursorCurrent_[1]) *
       CursorAnimator.RESPONSIVENESS;
 
-  // We call updateCanvasSize() in case the user resizes their window.
-  this.updateCanvasSize();
+  if (this.isAnimating_) {
+    // We call updateCanvasSize() in case the user resizes their window.
+    this.updateCanvasSize();
 
-  // Clear the canvas.
-  this.context_.clearRect(0, 0, this.canvas_.width, this.canvas_.height);
+    // Clear the canvas.
+    this.context_.clearRect(0, 0, this.canvas_.width, this.canvas_.height);
 
-  // Draw the lines from the corners to the cursor image.
-  var x = this.cursorCurrent_[0];
-  var y = this.cursorCurrent_[1];
-  this.drawCursorLine(0, 0, x, y);
-  this.drawCursorLine(this.canvas_.width, 0, x, y);
-  this.drawCursorLine(0, this.canvas_.height, x, y);
-  this.drawCursorLine(this.canvas_.width, this.canvas_.height, x, y);
+    // Draw the lines from the corners to the cursor image.
+    var x = this.cursorCurrent_[0];
+    var y = this.cursorCurrent_[1];
+    this.drawCursorLine(0, 0, x, y);
+    this.drawCursorLine(this.canvas_.width, 0, x, y);
+    this.drawCursorLine(0, this.canvas_.height, x, y);
+    this.drawCursorLine(this.canvas_.width, this.canvas_.height, x, y);
 
-  this.context_.save();
-  this.context_.translate(this.cursorCurrent_[0], this.cursorCurrent_[1]);
-  this.context_.rotate(this.cursorRotationAngle_);
-  // Draw the cursor image.
-  this.context_.drawImage(
-      this.cursorImage_,
-      -this.cursorImage_.width / 2,
-      -this.cursorImage_.height / 2);
-  this.context_.restore();
+    this.context_.save();
+    this.context_.translate(this.cursorCurrent_[0], this.cursorCurrent_[1]);
+    this.context_.rotate(this.cursorRotationAngle_);
+    // Draw the cursor image.
+    this.context_.drawImage(
+        this.cursorImage_,
+        -this.cursorImage_.width / 2,
+        -this.cursorImage_.height / 2);
+    this.context_.restore();
 
-  this.cursorRotationAngle_ += 0.025;
+    this.cursorRotationAngle_ += 0.025;
+  }
 };
 
 /**

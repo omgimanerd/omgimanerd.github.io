@@ -1,5 +1,6 @@
 /**
  * This initializes the animations and necessary JavaScript objects.
+ * @author Alvin Lin (alvin.lin@stuypulse.com)
  */
 
 $(document).ready(function() {
