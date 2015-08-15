@@ -1,0 +1,31 @@
+/**
+ * This stylesheet defines animations that are used in the webpage.
+ * @author Alvin Lin (alvin.lin@stuypulse.com)
+ */
+
+@defaultSpinAnimationTime: 15s;
+
+.spin(@spinAnimationTime:@defaultSpinAnimationTime) {
+  -webkit-animation: spin @spinAnimationTime linear infinite;
+  -moz-animation: spin @spinAnimationTime linear infinite;
+  animation: spin @spinAnimationTime linear infinite;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

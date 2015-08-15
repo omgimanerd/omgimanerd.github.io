@@ -1,6 +1,9 @@
 /**
  * Main stylesheet for webpage.
+ * @author Alvin Lin (alvin.lin@stuypulse.com)
  */
+
+@import 'animation.less';
 
 @font-face {
   font-family: univox;
@@ -13,6 +16,7 @@
 }
 
 @webBlue: rgba(0, 228, 255, 0.4);
+@webLightBlue: #448AFF;
 
 html, body {
   width: 100%;
@@ -33,11 +37,11 @@ body {
 
 a {
   text-decoration: none;
-  color: #FFFFFF;
+  color: @webBlue;
   transition: all 200ms;
 
   &:hover {
-    color: #448AFF;
+    color: @webLightBlue;
   }
 
   &:visited {
@@ -59,6 +63,7 @@ a {
 
 .header {
   width: 100%;
+  overflow: hidden;
 }
 
 .header-dial {
@@ -69,6 +74,7 @@ a {
 
 .header-links {
   display: inline-table;
+  padding: 0 40px;
   font-size: 25px;
 }
 
@@ -78,10 +84,14 @@ a {
   width: 100px;
   height: auto;
   margin: 20px;
+
+  .spin;
 }
 
 .title {
   width: 100%;
+
+  padding: 150px 0;
 
   color: @webBlue;
   font-family: univox;
