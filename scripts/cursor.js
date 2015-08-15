@@ -85,7 +85,9 @@ CursorAnimator.prototype.suspendAnimation = function() {
 
 /**
  * This method fits the canvas to the document body. It is used to initialize
- * the canvas and set its size if the user resizes the window.
+ * the canvas and set its size if the user resizes the window. This works off
+ * the assumption that the document body is always 100% of the screen's width
+ * and height.
  */
 CursorAnimator.prototype.updateCanvasSize = function() {
   this.canvas_.width = document.body.offsetWidth;

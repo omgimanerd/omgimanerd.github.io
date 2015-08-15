@@ -20,7 +20,8 @@ $(document).ready(function() {
       if (c >= string.length) {
         clearInterval(i);
         dest.text(string);
-        // Set the cursor animator's event handlers when the name animation is done.
+        // Set the cursor animator's event handlers when the name animation
+        // is done.
         cursorAnimator.setEventHandlers();
       } else {
         $('<span>').text(string[c]).
