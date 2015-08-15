@@ -1,0 +1,18 @@
+{
+  "name": "omgimanerd.github.io",
+  "version": "0.0.0",
+  "homepage": "https://github.com/omgimanerd/omgimanerd.github.io",
+  "authors": [
+    "Alvin Lin <alvin.lin@stuypulse.com>"
+  ],
+  "description": "Personal Webpage",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,3 +1,4 @@
 #!/bin/bash
 
 lessc styles.less --clean-css="-s0 --advanced" > styles.css
+echo "CSS compiled into styles.css"
