@@ -17,70 +17,19 @@
 
     <script src='scripts/jquery-1.11.3.min.js'>
     </script>
-    <script src='scripts/random_dot_background.js'>
+    <script src='scripts/base.js'>
+    </script>
+    <script src='scripts/cursor.js'>
     </script>
     <script src='scripts/yayquery.js'>
     </script>
   </head>
 
   <body>
-    <div class='page-container'>
-      <div class='page-header'>
-        <div>
-          <a href='#' onclick='return false;'>Home</a>
-        </div>
-        <div class='header-contact'>
-          <a href='http://github.com/omgimanerd'>
-            <span class='fa fa-github'></span>
-            Testing
-          </a>
-          <a href='mailto:alvin.lin@stuypulse.com'>
-            <span class='fa fa-envelope'></span>
-          </a>
-        </div>
-      </div>
-      <div class='page-content-splash'>
-        <div class='splash-text'>
-          <h1 id='name-fadein'>
-            My name is Alvin Lin
-          </h1>
-          <h2 id='description-fadein'>
-            I am a software developer in New York
-          </h2>
-        </div>
-        <svg class="dot-background"></svg>
-      </div>
-      <div class='page-content-apps'>
-        <h3>
-          <span class='fa fa-android'></span>
-          Android apps&#58;
-        </h3>
-
-        <hr />
-
-        <div class='app-icons'>
-          <a href='https://play.google.com/store/apps/details?id=io.github.omgimanerd.tap'>
-            <img src='data/tap.png' id='tap-link' />
-          </a>
-          <a href='https://play.google.com/store/apps/details?id=io.github.omgimanerd.shockwave'>
-            <img src='data/shockwave.png' id='shockwave-link' />
-          </a>
-          <a href='#' onclick='return false;'>
-            <img src='data/bouncy-square.png' id='bouncy-square-link' />
-          </a>
-        </div>
-      </div>
-      <div class='footer'>
-        Copyright &copy; Alvin Lin 2015
-      </div>
+    <div class='overlay'>
+      <canvas id='cursor-canvas'></canvas>
     </div>
-
-    <script>
-      var background = new RandomDotBackground(
-          document.getElementsByClassName('page-content-splash')[0],
-          document.getElementsByClassName('dot-background')[0]
-      );
-      background.buildRandomDotBackgroundAnimation();
-    </script>
+    <div class='container'>
+    </div>
   </body>
 </html>
