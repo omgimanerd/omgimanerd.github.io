@@ -1,5 +1,5 @@
 /**
- *
+ * This initializes the animations and necessary JavaScript objects.
  */
 
 $(document).ready(function() {
