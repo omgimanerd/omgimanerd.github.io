@@ -1,0 +1,21 @@
+/**
+ * This stylesheet contains base styles and cross-browser styles in the form of
+ * LESS mixins. (Helper methods)
+ * @author Alvin Lin (alvin.lin@stuypulse.com)
+ */
+
+.border-radius(@borderRadius) {
+  -webkit-border-radius: @borderRadius;
+  -moz-border-radius: @borderRadius;
+  -ms-border-radius: @borderRadius;
+  -o-border-radius: @borderRadius;
+  border-radius: @borderRadius;
+}
+
+.transition(@transition) {
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -ms-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
+}

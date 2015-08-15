@@ -1,0 +1,25 @@
+/**
+ * This stylesheet defines classes in LESS that allows for the rendering of
+ * shapes. Depends on base.less.
+ * @author Alvin Lin (alvin.lin@stuypulse.com)
+ */
+
+@import 'base.less';
+
+.circle(@rx, @ry, @color, @border) {
+  width: (@rx * 2);
+  height: (@ry * 2);
+  background-color: @color;
+  border: @border;
+
+  .border-radius(100%);
+}
+
+.rect(@w, @h, @borderRadius, @color, @border) {
+  width: @w;
+  height: @h;
+  background-color: @color;
+  border: @border;
+
+  .border-radius(@borderRadius);
+}
