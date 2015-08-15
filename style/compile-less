@@ -1,8 +1,8 @@
 #!/bin/bash
 # This script compiles the css dependencies for the website.
 # Author: Alvin Lin (alvin.lin@stuypulse.com)
+# Dependencies: inotify-tools (sudo apt-get)
 
 while inotifywait -r *.less; do
     lessc styles.less --clean-css="-s0 --advanced" > styles.css
-    echo "CSS compiled into styles.css"
 done
