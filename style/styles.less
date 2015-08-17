@@ -72,8 +72,6 @@ a {
   overflow: hidden;
   display: table;
 
-  .fadeIn;
-
   div {
     display: table-cell;
   }
@@ -81,6 +79,8 @@ a {
   .header-dial {
     width: 140px;
     height: auto;
+
+    .slideInLeft(2s, 0.5s);
 
     img {
       width: 140px;
@@ -92,10 +92,13 @@ a {
     padding: 40px;
     font-size: 25px;
 
+    .slideInLeft;
   }
 
   .header-dial2 {
     width: 100px;
+
+    .slideInRight;
 
     img {
       height: auto;
@@ -118,7 +121,7 @@ a {
   width: 100%;
   height: 600px;
 
-  .fadeIn;
+  .slideInLeft;
 
   .hover-circle {
     position: absolute;
@@ -137,14 +140,25 @@ a {
 
   // TODO: turn stat1 into a link and shit;
   .stat1 {
-    position: absolute;
+    position: relative;
     opacity: 0;
-    .transition(all 1000ms);
+    .transition(all 500ms);
 
-    .circle(25px, 25px, red, 5px solid green);
+    .circle(25px, 25px, @webBlue, 5px solid @webLightBlue);
   }
 
   &:hover .stat1 {
     opacity: 1;
+    top: -50%;
+    left: -50%;
   }
+}
+
+.footer {
+  padding: 5px 0;
+  text-align: center;
+  font-size: 12px;
+  color: @webLightBlue;
+
+  .fadeIn;
 }
