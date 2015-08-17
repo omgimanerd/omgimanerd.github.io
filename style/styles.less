@@ -68,58 +68,22 @@ a {
 }
 
 .header {
-  width: 100%;
-  overflow: hidden;
-  display: table;
-
-  div {
-    display: table-cell;
-  }
-
-  .header-dial {
-    width: 140px;
-    height: auto;
-
-    .slideInLeft(3s, 0.5s);
-
-    img {
-      width: 140px;
-      height: auto;
-    }
-  }
-
-  .header-links {
-    padding: 40px;
-    font-size: 25px;
-
-    .slideInLeft;
-  }
-
-  .header-dial2 {
-    width: 100px;
-
-    .slideInRight;
-
-    img {
-      height: auto;
-      margin: 20px;
-      .spin;
-    }
+  #name {
+    width: 1000px;
+    margin: auto;
+    padding: 50px;
+    color: @webBlue;
+    font-family: univox;
+    font-size: 50px;
   }
 }
 
-#name {
-  width: 1000px;
-  margin: 80px auto 0;
-  color: @webBlue;
-  font-family: univox;
-  font-size: 50px;
-}
 
 .hover-area {
   position: relative;
-  width: 100%;
-  height: 600px;
+  width: 800px;
+  height: 400px;
+  margin: auto;
 
   .slideInLeft;
 
@@ -128,29 +92,59 @@ a {
     top: 50%;
     left: 50%;
     margin: -50px 0 0 -50px;
+
     .transition(all 500ms);
 
-    .circle(50px, 50px, @webBlue, 5px solid @webLightBlue);
+    .circle(50px, 50px, transparent, 2px solid @webBlue);
+
+    img {
+      width: 100px;
+      height: 100px;
+
+      .below-cursor;
+      .transition(all 500ms);
+    }
   }
 
   &:hover .hover-circle {
     margin: -100px 0 0 -100px;
-    .circle(100px, 100px, @webBlue, 5px solid @webLightBlue);
+    .circle(100px, 100px, transparent, 4px solid @webBlue);
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
   }
 
-  // TODO: turn stat1 into a link and shit;
-  .stat1 {
-    position: relative;
+  .hover-stat div {
+    position: absolute;
+    text-align: center;
+    padding: 20px;
+    color: @webLightBlue;
     opacity: 0;
-    .transition(all 500ms);
 
-    .circle(25px, 25px, @webBlue, 5px solid @webLightBlue);
+    .transition(all 500ms);
+    .circle(25px, 25px, transparent, 2px solid @webBlue);
   }
 
-  &:hover .stat1 {
+  &:hover .hover-stat div {
     opacity: 1;
-//    top: -50%;
-//    left: -50%;
+    .circle(30px, 30px, transparent, 4px solid @webBlue);
+  }
+
+  .stat1 {
+    top: 0px;
+    left: 0px;
+  }
+
+  .stat2 {
+    top: 50px;
+    left: 600px;
+  }
+
+  .stat3 {
+    top: 250px;
+    left: 700px;
   }
 }
 
