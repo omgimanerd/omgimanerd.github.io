@@ -20,9 +20,11 @@ $(document).ready(function() {
       if (charCounter >= string.length) {
         clearInterval(i);
         dest.text(string);
-        // Set the cursor animator's event handlers when the name animation
+        // Set the cursor animator's event handlers 1s after the name animation
         // is done.
-        cursorAnimator.setEventHandlers();
+        setTimeout(function() {
+          cursorAnimator.setEventHandlers();
+        }, 1000);
       } else {
         $('<span>').text(string[charCounter]).
         appendTo(dest).hide().fadeIn(400);
