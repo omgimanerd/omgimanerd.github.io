@@ -94,7 +94,6 @@ a {
     margin: -50px 0 0 -50px;
 
     .transition(all 500ms);
-
     .circle(50px, 50px, transparent, 2px solid @webBlue);
 
     img {
@@ -108,6 +107,7 @@ a {
 
   &:hover .hover-circle {
     margin: -100px 0 0 -100px;
+
     .circle(100px, 100px, transparent, 4px solid @webBlue);
 
     img {
@@ -117,34 +117,48 @@ a {
   }
 
   .hover-stat div {
-    position: absolute;
-    text-align: center;
-    padding: 20px;
-    color: @webLightBlue;
     opacity: 0;
 
-    .transition(all 500ms);
-    .circle(25px, 25px, transparent, 2px solid @webBlue);
+    .transition(all 250ms, 500ms);
   }
 
   &:hover .hover-stat div {
     opacity: 1;
-    .circle(30px, 30px, transparent, 4px solid @webBlue);
   }
 
-  .stat1 {
+  .hover-stat .stat {
+    position: absolute;
+    text-align: center;
+    padding: 20px;
+    color: @webLightBlue;
+
+    .circle(25px, 25px, transparent, 2px solid @webBlue);
+  }
+
+  .profile {
     top: 0px;
     left: 0px;
   }
 
-  .stat2 {
+  .skills {
     top: 50px;
     left: 600px;
   }
 
-  .stat3 {
-    top: 250px;
-    left: 700px;
+  .profile1 {
+    .line(200px, 200px, 100px, 0, @webLightBlue, 2px);
+  }
+
+  .profile2 {
+    .line(79px, 79px, 170px, 45deg, @webLightBlue, 2px);
+  }
+
+  .skills1 {
+    .line(508px, 200px, 100px, 0, @webLightBlue, 2px);
+  }
+
+  .skills2 {
+    .line(608px, 200px, 66px, -68deg, @webLightBlue, 2px);
   }
 }
 

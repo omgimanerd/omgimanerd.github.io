@@ -4,6 +4,8 @@
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  */
 
+@defaultTransitionTime: 0s;
+
 .border-radius(@borderRadius) {
   -webkit-border-radius: @borderRadius;
   -moz-border-radius: @borderRadius;
@@ -12,10 +14,23 @@
   border-radius: @borderRadius;
 }
 
-.transition(@transition) {
+.rotate(@angle) {
+  -webkit-transform: rotate(@angle);
+  -moz-transform: rotate(@angle);
+  -ms-transform: rotate(@angle);
+  -o-transform: rotate(@angle);
+  transform: rotate(@angle);
+}
+
+.transition(@transition, @transitionDelay:@defaultTransitionTime) {
   -webkit-transition: @transition;
+  -webkit-transition-delay: @transitionDelay;
   -moz-transition: @transition;
+  -moz-transition-delay: @transitionDelay;
   -ms-transition: @transition;
+  -ms-transition-delay: @transitionDelay;
   -o-transition: @transition;
+  -o-transition-delay: @transitionDelay;
   transition: @transition;
+  transition-delay: @transitionDelay;
 }

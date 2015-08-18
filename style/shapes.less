@@ -6,6 +6,23 @@
 
 @import 'base.less';
 
+.line(@xStart, @yStart, @length, @angle, @color, @thickness) {
+  position: absolute;
+  left: @xStart;
+  top: @yStart;
+  width: @length;
+  height: @thickness;
+  background-color: @color;
+
+  .rotate(@angle);
+
+  -webkit-transform-origin: 0 100%;
+  -moz-transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  -o-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+
 .circle(@rx, @ry, @color, @border) {
   width: (@rx * 2);
   height: (@ry * 2);
