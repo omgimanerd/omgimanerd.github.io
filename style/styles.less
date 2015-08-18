@@ -93,37 +93,41 @@ a {
     left: 50%;
     margin: -50px 0 0 -50px;
 
-    .transition(all 500ms);
+    .transition(all 500ms ease 500ms);
     .circle(50px, 50px, transparent, 2px solid @webBlue);
 
     img {
       width: 100px;
       height: 100px;
 
-      .below-cursor;
-      .transition(all 500ms);
+      .transition(all 500ms ease 500ms);
     }
   }
 
   &:hover .hover-circle {
     margin: -100px 0 0 -100px;
 
+    .transition(all 500ms ease 0s);
     .circle(100px, 100px, transparent, 4px solid @webBlue);
 
     img {
       width: 200px;
       height: 200px;
+
+      .transition(all 500ms ease 0s);
     }
   }
 
   .hover-stat div {
     opacity: 0;
 
-    .transition(all 250ms, 500ms);
+    .transition(all 500ms ease 0s);
   }
 
   &:hover .hover-stat div {
     opacity: 1;
+
+    .transition(all 500ms ease 500ms);
   }
 
   .hover-stat .stat {
