@@ -6,10 +6,10 @@
 
 @import 'base.less';
 
-.line(@xStart, @yStart, @length, @angle, @color, @thickness) {
+.line(@relX, @relY, @length, @angle, @color, @thickness) {
   position: absolute;
-  left: @xStart;
-  top: @yStart;
+  left: @relX;
+  top: @relY;
   width: @length;
   height: @thickness;
   background-color: @color;
