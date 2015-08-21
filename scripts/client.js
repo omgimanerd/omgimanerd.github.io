@@ -34,3 +34,7 @@ $(document).ready(function() {
     }
   }, 150);
 });
+
+window.oncontextmenu = function() {
+  return false;
+}
