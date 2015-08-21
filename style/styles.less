@@ -17,8 +17,12 @@
   src: url('../data/fonts/neogrey.otf');
 }
 
-@webBlue: rgba(0, 228, 255, 0.4);
-@webLightBlue: #448AFF;
+@blue: rgba(0, 228, 255, 0.4);
+@darkBlue: #08237c;
+@lightBlue: #448AFF;
+@transparentBlue: rgba(13, 158, 175, 0.25);
+
+@lightGrey: #cccccc;
 
 html, body {
   width: 100%;
@@ -39,11 +43,11 @@ body {
 
 a {
   text-decoration: none;
-  color: @webBlue;
-  .transition(all 200ms);
+  color: @blue;
+  .transition(all 200ms ease 0s);
 
   &:hover {
-    color: @webLightBlue;
+    color: @lightBlue;
   }
 
   &:visited {
@@ -72,12 +76,11 @@ a {
     width: 1000px;
     margin: auto;
     padding: 100px;
-    color: @webBlue;
+    color: @blue;
     font-family: univox;
     font-size: 50px;
   }
 }
-
 
 .hover-area {
   position: relative;
@@ -94,7 +97,7 @@ a {
     margin: -50px 0 0 -50px;
 
     .transition(all 500ms ease 500ms);
-    .circle(50px, 50px, transparent, 2px solid @webBlue);
+    .circle(50px, 50px, transparent, 2px solid @blue);
 
     img {
       width: 100px;
@@ -108,7 +111,7 @@ a {
     margin: -100px 0 0 -100px;
 
     .transition(all 500ms ease 0s);
-    .circle(100px, 100px, transparent, 4px solid @webBlue);
+    .circle(100px, 100px, transparent, 4px solid @blue);
 
     img {
       width: 200px;
@@ -130,13 +133,29 @@ a {
     .transition(all 500ms ease 500ms);
   }
 
-  .hover-stat .stat {
+  .stat {
     position: absolute;
     text-align: center;
-    padding: 20px;
-    color: @webLightBlue;
+    color: @lightBlue;
 
-    .circle(25px, 25px, transparent, 2px solid @webBlue);
+    .circle(50px, 50px, transparent, 2px solid @blue);
+
+    a {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      left: 0;
+      line-height: 100px;
+      cursor: pointer;
+
+      .border-radius(100%);
+      .transition(all 0s);
+
+      &:hover {
+        background: @transparentBlue;
+        color: @lightGrey;
+      }
+    }
   }
 
   .profile {
@@ -150,19 +169,19 @@ a {
   }
 
   .profile1 {
-    .line(200px, 200px, 100px, 0, @webLightBlue, 2px);
+    .line(200px, 200px, 100px, 0, @lightBlue, 2px);
   }
 
   .profile2 {
-    .line(79px, 79px, 170px, 45deg, @webLightBlue, 2px);
+    .line(88px, 88px, 158px, 45deg, @lightBlue, 2px);
   }
 
   .skills1 {
-    .line(508px, 200px, 100px, 0, @webLightBlue, 2px);
+    .line(508px, 200px, 100px, 0, @lightBlue, 2px);
   }
 
   .skills2 {
-    .line(608px, 200px, 66px, -68deg, @webLightBlue, 2px);
+    .line(608px, 200px, 58px, -68deg, @lightBlue, 2px);
   }
 }
 
@@ -170,7 +189,7 @@ a {
   padding: 5px 0;
   text-align: center;
   font-size: 12px;
-  color: @webLightBlue;
+  color: @lightBlue;
 
   .fadeIn;
 }
