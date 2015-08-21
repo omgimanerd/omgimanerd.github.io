@@ -12,10 +12,14 @@ $(document).ready(function() {
   // Name fade-in function.
   // Credit to Roy J (Stack Overflow):
   // http://jsfiddle.net/bGsa3/6/
-  var string = "Alvin Lin";
+  var string = 'Alvin Lin';
   var dest = $('#name');
   var charCounter = 0;
   var i = setInterval(function() {
+    if (string[charCounter] == ' ') {
+      $('<span>').text(string[charCounter]).appendTo(dest)
+      charCounter++;
+    }
     if (charCounter >= string.length) {
       clearInterval(i);
       dest.text(string);
@@ -25,9 +29,8 @@ $(document).ready(function() {
         cursorAnimator.setEventHandlers();
       }, 1000);
     } else {
-      $('<span>').text(string[charCounter]).
-      appendTo(dest).hide().fadeIn(400);
-      charCounter += 1;
+      $('<span>').text(string[charCounter]).appendTo(dest).hide().fadeIn(300);
+      charCounter++;
     }
-  }, 200);
+  }, 150);
 });

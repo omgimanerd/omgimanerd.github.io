@@ -32,7 +32,7 @@ CursorAnimator.UPDATE_DELAY = 10;
  * This is the rotation rate of the cursor image in radians per
  * CursorAnimator.UPDATE_DELAY.
  */
-CursorAnimator.ROTATION_RATE = 0.025
+CursorAnimator.ROTATION_RATE = 0.025;
 
 /**
  * This is the path to the image used for the cursor.
@@ -50,7 +50,7 @@ CursorAnimator.LINE_COLOR = '#00E4FF';
 CursorAnimator.prototype.initialize = function() {
   this.canvas_.style.position = 'fixed';
   this.updateCanvasSize();
-  this.cursorCurrent_ = [this.canvas_.width / 2, -100];
+  this.cursorCurrent_ = [this.canvas_.width / 2, -10];
   this.cursorTarget_ = [this.canvas_.width / 2, this.canvas_.height / 2];
 
   this.context_ = this.canvas_.getContext('2d');
