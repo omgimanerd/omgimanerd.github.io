@@ -10,3 +10,11 @@ function bind(object, method) {
   };
 }
 
+function generateRandomAlphaNum(length) {
+  var choice = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+  var result = "";
+  for (var i = 0; i < length; ++i) {
+    result += choice[Math.floor(Math.random() * choice.length)]
+  }
+  return result;
+};
