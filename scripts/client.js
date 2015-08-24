@@ -14,19 +14,16 @@ $(document).ready(function() {
   var i = 1;
   var charCounter = 0;
   var interval = setInterval(function() {
-    if (charCounter > string.length) {
-      clearInterval(interval);
-      setTimeout(function() {
-        cursorAnimator.setEventHandlers();
-      }, 1000);
-    }
     $('#name').text(string.substr(0, charCounter) +
                  generateRandomAlphaNum(string.length - charCounter));
     ++i;
-    if (i > 15 && i % 6 == 0) {
+    if (i > 10 && i % 4 == 0) {
       charCounter++;
     }
   }, 50);
+  setTimeout(function() {
+    cursorAnimator.setEventHandlers();
+  }, 2500);
 });
 
 window.oncontextmenu = function() {
