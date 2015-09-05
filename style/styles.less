@@ -3,10 +3,12 @@
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  */
 
+// Dependencies
 @import 'base.less';
 @import 'animation.less';
 @import 'shapes.less';
 
+// Custom fonts
 @font-face {
   font-family: neogrey;
   src: url('../data/fonts/neogrey.otf');
@@ -17,6 +19,7 @@
   src: url('../data/fonts/instruction.otf');
 }
 
+// Local color constants
 @blue: rgba(0, 228, 255, 0.4);
 @darkBlue: #08237c;
 @lightBlue: #1572ac;
@@ -24,6 +27,7 @@
 
 @lightGrey: #cccccc;
 
+// Style sets
 html, body {
   width: 100%;
   min-width: 800px;
@@ -185,6 +189,15 @@ a {
   }
 }
 
+.footer {
+  padding: 5px 0;
+  text-align: center;
+  font-size: 12px;
+  color: @lightBlue;
+
+  .fadeIn;
+}
+
 .portfolio-overlay {
   position: absolute;
   width: 100%;
@@ -203,13 +216,13 @@ a {
       cursor: pointer;
     }
   }
-}
 
-.portfolio-container {
-  width: 80%;
-  height: 80%;
-  margin: 5% auto 0;
-  background: rgba(68, 172, 227, 0.5);
+  .portfolio-container {
+    width: 80%;
+    height: 80%;
+    margin: 5% auto 0;
+    background: rgba(68, 172, 227, 0.5);
+  }
 }
 
 .skills-overlay {
@@ -230,20 +243,11 @@ a {
       cursor: pointer;
     }
   }
-}
 
-.skills-container {
-  width: 80%;
-  height: 80%;
-  margin: 5% auto 0;
-  background: rgba(68, 172, 227, 0.5);
-}
-
-.footer {
-  padding: 5px 0;
-  text-align: center;
-  font-size: 12px;
-  color: @lightBlue;
-
-  .fadeIn;
+  .skills-container {
+    width: 80%;
+    height: 80%;
+    margin: 5% auto 0;
+    background: rgba(68, 172, 227, 0.5);
+  }
 }
