@@ -37,7 +37,7 @@ CursorAnimator.ROTATION_RATE = 0.025;
 /**
  * This is the path to the image used for the cursor.
  */
-CursorAnimator.IMAGE_SRC = 'data/cursor.png';
+CursorAnimator.IMAGE_SRC = 'data/img/cursor.png';
 
 /**
  * This is the color to set gradient lines for the cursor.
