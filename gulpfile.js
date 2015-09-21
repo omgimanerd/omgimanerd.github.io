@@ -7,7 +7,6 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
 var minifyCss = require('gulp-minify-css');
-var notify = require('gulp-notify');
 
 gulp.task('less', function() {
   return gulp.src('./static/less/styles.less')
