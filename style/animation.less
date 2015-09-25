@@ -3,89 +3,31 @@
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  */
 
-@defaultSpinAnimationTime: 15s;
 @defaultDelayTime: 2500ms;
 @defaultFadeInAnimationTime: 800ms;
 @defaultSlideInAnimationTime: 500ms;
 
-.spin(@spinAnimationTime:@defaultSpinAnimationTime) {
-  -webkit-animation: spin @spinAnimationTime linear infinite;
-  -moz-animation: spin @spinAnimationTime linear infinite;
-  animation: spin @spinAnimationTime linear infinite;
-}
-
 .fadeIn(@delayTime:@defaultDelayTime,
         @fadeInAnimationTime:@defaultFadeInAnimationTime) {
   opacity: 0;
-  -webkit-animation: fadeIn @fadeInAnimationTime linear forwards;
-  -webkit-animation-delay: @delayTime;
-  -moz-animation: fadeIn @fadeInAnimationTime linear forwards;
-  -moz-animation-delay: @delayTime;
   animation: fadeIn @fadeInAnimationTime linear forwards;
   animation-delay: @delayTime;
 }
 
 .slideInLeft(@delayTime:@defaultDelayTime,
              @slideInAnimationTime:@defaultSlideInAnimationTime) {
-  -webkit-transform: translateX(-1000px);
-  -moz-transform: translateX(-1000px);
-  transform: translateX(-1000px);
-
-  -webkit-animation: slideInLeft @slideInAnimationTime linear forwards;
-  -webkit-animation-delay: @delayTime;
-  -moz-animation: slideInLeft @slideInAnimationTime linear forwards;
-  -moz-animation-delay: @delayTime;
+  transform: translateX(-1500px);
   animation: slideInLeft @slideInAnimationTime linear forwards;
   animation-delay: @delayTime;
 }
 
 .slideInRight(@delayTime:@defaultDelayTime,
               @slideInAnimationTime:@defaultSlideInAnimationTime) {
-  -webkit-transform: translateX(1000px);
-  -moz-transform: translateX(1000px);
-  transform: translateX(1000px);
-
-  -webkit-animation: slideInRight @slideInAnimationTime linear forwards;
-  -webkit-animation-delay: @delayTime;
-  -moz-animation: slideInRight @slideInAnimationTime linear forwards;
-  -moz-animation-delay: @delayTime;
+  transform: translateX(1500px);
   animation: slideInRight @slideInAnimationTime linear forwards;
   animation-delay: @delayTime;
 }
 
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg);
-  }
-}
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -95,56 +37,20 @@
   }
 }
 
-@-webkit-keyframes slideInLeft {
-  0% {
-    -webkit-transform: translateX(-1000px);
-  }
-  100% {
-    -webkit-transform: translateX(0px);
-  }
-}
-@-moz-keyframes slideInLeft {
-  0% {
-    -moz-transform: translateX(-1000px);
-  }
-  100% {
-    -moz-transform: translateX(0px);
-  }
-}
 @keyframes slideInLeft {
   0% {
-    -webkit-transform: translateX(-1000px);
     transform: translateX(-1000px);
   }
   100% {
-    -webkit-transform: translateX(0px);
     transform: translateX(0px);
   }
 }
 
-@-webkit-keyframes slideInRight {
-  0% {
-    -webkit-transform: translateX(1000px);
-  }
-  100% {
-    -webkit-transform: translateX(0px);
-  }
-}
-@-moz-keyframes slideInRight {
-  0% {
-    -moz-transform: translateX(1000px);
-  }
-  100% {
-    -moz-transform: translateX(0px);
-  }
-}
 @keyframes slideInRight {
   0% {
-    -webkit-transform: translateX(1000px);
     transform: translateX(1000px);
   }
   100% {
-    -webkit-transform: translateX(0px);
     transform: translateX(0px);
   }
 }

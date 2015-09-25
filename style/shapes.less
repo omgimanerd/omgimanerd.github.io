@@ -4,8 +4,6 @@
  * @author Alvin Lin (alvin.lin@stuypulse.com)
  */
 
-@import 'base.less';
-
 .line(@relX, @relY, @length, @angle, @color, @thickness) {
   position: absolute;
   left: @relX;
@@ -14,12 +12,7 @@
   height: @thickness;
   background-color: @color;
 
-  .rotate(@angle);
-
-  -webkit-transform-origin: 0 100%;
-  -moz-transform-origin: 0 100%;
-  -ms-transform-origin: 0 100%;
-  -o-transform-origin: 0 100%;
+  transform: rotate(@angle);
   transform-origin: 0 100%;
 }
 
@@ -28,8 +21,7 @@
   height: (@ry * 2);
   background-color: @color;
   border: @border;
-
-  .border-radius(100%);
+  border-radius: 100%;
 }
 
 .rect(@w, @h, @borderRadius, @color, @border) {
@@ -37,6 +29,5 @@
   height: @h;
   background-color: @color;
   border: @border;
-
-  .border-radius(@borderRadius);
+  border-radius: @borderRadius;
 }

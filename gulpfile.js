@@ -12,7 +12,7 @@ var notify = require('gulp-notify');
 gulp.task('less', function() {
   return gulp.src('./style/styles.less')
     .pipe(less({ compress: true}))
-    .pipe(autoprefixer())
+    .pipe(autoprefixer({ browsers: ['last 10 versions']}))
     .pipe(minifyCss())
     .pipe(gulp.dest('./style'))
     .pipe(notify('LESS compiled and minified'));
