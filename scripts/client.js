@@ -24,7 +24,7 @@ $(document).ready(function() {
     $('#name').text(string.substr(0, charCounter) +
                  generateRandomAlphaNum(string.length - charCounter));
     ++i;
-    if (i > 10 && i % 4 == 0) {
+    if (i > 10 && i % 3 == 0) {
       charCounter++;
     }
   }, 50);
