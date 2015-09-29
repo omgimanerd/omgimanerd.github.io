@@ -56,4 +56,8 @@ $(document).ready(function() {
       top: '-100%'
     }, 1000);
   });
+
+  $('.skills-container').simplebar({
+    autoHide: false
+  });
 });
