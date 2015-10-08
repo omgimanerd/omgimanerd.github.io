@@ -34,30 +34,38 @@ $(document).ready(function() {
 
   // JQuery code to bind click and animations to HTML DOM elements.
   $('.portfolio-link').click(function() {
-    $('.portfolio-overlay').animate({
+    $('.portfolio').animate({
       top: '0'
     }, 1000);
   });
 
-  $('.portfolio-overlay > .close').click(function() {
-    $('.portfolio-overlay').animate({
-      top: '-100%'
-    }, 1000);
+  $('.portfolio-container').simplebar({
+    autoHide: false
   });
 
   $('.skills-link').click(function() {
-    $('.skills-overlay').animate({
+    $('.skills').animate({
       top: '0'
-    }, 1000);
-  });
-
-  $('.skills-overlay > .close').click(function() {
-    $('.skills-overlay').animate({
-      top: '-100%'
     }, 1000);
   });
 
   $('.skills-container').simplebar({
     autoHide: false
+  });
+
+  $('.contact-link').click(function() {
+    $('.contact').animate({
+      top: '0'
+    }, 1000);
+  });
+
+  $('contact-container').simplebar({
+    autoHide: false
+  });
+
+  $('.close').click(function() {
+    $('.overlay').animate({
+      top: '-100%'
+    }, 1000);
   });
 });

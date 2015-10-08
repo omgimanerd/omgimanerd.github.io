@@ -205,7 +205,7 @@ a {
   .fadeIn;
 }
 
-.portfolio-overlay {
+.overlay {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -222,87 +222,75 @@ a {
     &:hover {
       cursor: pointer;
     }
-  }
-
-  .portfolio-container {
-    width: 80%;
-    height: 80%;
-    margin: 5% auto 0;
-    background: rgba(68, 172, 227, 0.5);
-    box-shadow: inset 0px 0px 140px 52px rgba(0, 0, 0, 0.4);
   }
 }
 
-.skills-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -100%;
-  background: rgba(0, 0, 0, 0.5);
-  text-align: center;
+.portfolio-container {
+  width: 80%;
+  height: 80%;
+  margin: 5% auto 0;
+  background: rgba(68, 172, 227, 0.5);
+  box-shadow: inset 0px 0px 140px 52px rgba(0, 0, 0, 0.4);
+}
 
-  .close {
-    position: absolute;
-    right: 0;
-    top: 0;
-    color: #ccc;
+.skills-container {
+  width: 80%;
+  height: 80%;
+  margin: 5% auto 0;
+  background: rgba(73, 219, 174, 0.5);
+  box-shadow: inset 0px 0px 140px 52px rgba(0, 0, 0, 0.4);
 
-    &:hover {
-      cursor: pointer;
+  .skills {
+    width: 100%;
+    margin: auto;
+
+    th {
+      font-size: 30px;
+    }
+
+    td {
+      width: 33%;
+    }
+
+    img {
+      width: auto;
+      height: 80px;
+      margin: 25px;
+
+      background: rgba(230, 206, 206, 0.4);
+      border-radius: 15px;
+      box-shadow: 0px 0px 40px 20px rgba(230, 206, 206, 0.4);
     }
   }
 
-  .skills-container {
-    width: 80%;
-    height: 80%;
-    margin: 5% auto 0;
-    background: rgba(73, 219, 174, 0.5);
-    box-shadow: inset 0px 0px 140px 52px rgba(0, 0, 0, 0.4);
+  .tools {
+    width: 100%;
+    margin: auto;
 
-    .skills {
-      width: 100%;
-      margin: auto;
-
-      th {
-        font-size: 30px;
-      }
-
-      td {
-        width: 33%;
-      }
-
-      img {
-        width: auto;
-        height: 80px;
-        margin: 25px;
-
-        background: rgba(230, 206, 206, 0.4);
-        border-radius: 15px;
-        box-shadow: 0px 0px 40px 20px rgba(230, 206, 206, 0.4);
-      }
+    th {
+      font-size: 30px;
     }
 
-    .tools {
-      width: 100%;
-      margin: auto;
+    td {
+      width: 20%;
+    }
 
-      th {
-        font-size: 30px;
-      }
+    img {
+      width: auto;
+      height: 50px;
+      margin: 25px;
 
-      td {
-        width: 20%;
-      }
-
-      img {
-        width: auto;
-        height: 50px;
-        margin: 25px;
-
-        background: rgba(230, 206, 206, 0.4);
-        border-radius: 15px;
-        box-shadow: 0px 0px 40px 20px rgba(230, 206, 206, 0.4);
-      }
+      background: rgba(230, 206, 206, 0.4);
+      border-radius: 15px;
+      box-shadow: 0px 0px 40px 20px rgba(230, 206, 206, 0.4);
     }
   }
+}
+
+.contact-container {
+  width: 80%;
+  height: 80%;
+  margin: 5% auto 0;
+  background: rgba(24, 147, 109, 0.5);
+  box-shadow: inset 0px 0px 140px 52px rgba(0, 0, 0, 0.4);
 }
