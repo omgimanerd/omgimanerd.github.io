@@ -34,7 +34,7 @@ $(document).ready(function() {
 
   // JQuery code to bind click and animations to HTML DOM elements.
   $('.portfolio-link').click(function() {
-    $('.portfolio').animate({
+    $('.portfolio-overlay').animate({
       top: '0'
     }, 1000);
   });
@@ -44,7 +44,7 @@ $(document).ready(function() {
   });
 
   $('.skills-link').click(function() {
-    $('.skills').animate({
+    $('.skills-overlay').animate({
       top: '0'
     }, 1000);
   });
@@ -54,7 +54,7 @@ $(document).ready(function() {
   });
 
   $('.contact-link').click(function() {
-    $('.contact').animate({
+    $('.contact-overlay').animate({
       top: '0'
     }, 1000);
   });
