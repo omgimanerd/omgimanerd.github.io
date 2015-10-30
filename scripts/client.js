@@ -1,6 +1,6 @@
 /**
  * This initializes the animations and necessary JavaScript objects.
- * @author Alvin Lin (alvin.lin@stuypulse.com)
+ * @author Alvin Lin (alvin.lin.dev@gmail.com)
  */
 
 window.oncontextmenu = function() {

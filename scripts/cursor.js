@@ -1,7 +1,7 @@
 /**
  * This is the class that draws the animation that follows the user's
  * cursor.
- * @author Alvin Lin (alvin.lin@stuypulse.com)
+ * @author Alvin Lin (alvin.lin.dev@gmail.com)
  */
 
 function CursorAnimator(canvas) {
