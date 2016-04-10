@@ -29,7 +29,7 @@ gulp.task('less', function() {
     .pipe(plumber())
     .pipe(getLessConfiguration())
     .pipe(rename('minified.css'))
-    .pipe(gulp.dest('./public/style'));
+    .pipe(gulp.dest('./style'));
 });
 
 gulp.task('watch', function() {

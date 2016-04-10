@@ -6,214 +6,32 @@
   <head>
     <title>Alvin Lin</title>
 
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel='stylesheet'
-          href='bower_components/fontawesome/css/font-awesome.min.css' />
-    <link rel='stylesheet'
-          href='bower_components/simplebar/dist/simplebar.css' />
-    <link rel='stylesheet'
-          type='text/css'
-          href='dist/minified.css' />
+    <link rel="stylesheet"
+          href="bower/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet"
+        href="bower/jquery.terminal/css/jquery.terminal.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="style/minified.css" />
 
-    <script src='bower_components/jquery/dist/jquery.min.js'>
+    <script src="bower/jquery/dist/jquery.min.js">
     </script>
-    <script src='bower_components/simplebar/dist/simplebar.min.js'>
+    <script src="bower/angular/angular.min.js">
     </script>
-    <script src='dist/minified.js'>
+    <script src="bower/jquery.terminal/js/jquery.terminal-min.js">
+    </script>
+    <script src="bower/jquery.terminal/js/jquery.mousewheel-min.js">
     </script>
   </head>
 
   <body>
-    <div class='container'>
-      <canvas id='cursor-canvas'>
-        Canvas isn't supported by your browser.
-        What kind of brick are you using?
-      </canvas>
-
-      <div class='content'>
-        <div class='header'>
-          <div id='name'>
-          </div>
-        </div>
-
-        <div class='hover-area'>
-          <div class='hover-circle'>
-            <img src='data/img/dial.gif' />
-          </div>
-          <div class='hover-stat'>
-            <div class='stat portfolio'>
-              <a class='portfolio-link'>Portfolio</a>
-            </div>
-            <div class='line portfolio-line1'></div>
-            <div class='line portfolio-line2'></div>
-
-            <div class='stat skills'>
-              <a class='skills-link'>Skills</a>
-            </div>
-            <div class='line skills-line1'></div>
-            <div class='line skills-line2'></div>
-
-            <div class='stat contact'>
-              <a class='contact-link'>Contact</a>
-            </div>
-            <div class='line contact-line1'></div>
-            <div class='line contact-line2'></div>
-          </div>
-        </div>
-
-        <div class='footer'>
-          I do not own the images used in the page. All images belong to
-          their respective owners.
-        </div>
-
-        <div class='portfolio-overlay overlay'>
-          <span class='close fa fa-close fa-4x'></span>
-          <div class='portfolio-container'>
-            <h1>
-              Portfolio
-            </h1>
-            <div class='apps'>
-              <h2>
-                Android Apps
-              </h2>
-              <a href='https://play.google.com/store/apps/details?id=io.github.omgimanerd.tap'
-                 class='tooltip'>
-                <img src='data/img/tap.png' alt='Tap' />
-                <span>
-                  Tap
-                </span>
-              </a>
-              <a href='https://play.google.com/store/apps/details?id=io.github.omgimanerd.shockwave'
-                 class='tooltip'>
-                <img src='data/img/shockwave.png' alt='Shockwave' />
-                <span>
-                  Shockwave
-                </span>
-              </a>
-              <a href='https://play.google.com/store/apps/details?id=io.github.omgimanerd.bouncysquare'
-                 class='tooltip'>
-                <img src='data/img/bouncy-square.png' alt='Bouncy Square' />
-                <span>
-                  Bouncy Square
-                </span>
-              </a>
-            </div>
-            <div class='penumbra-games'>
-              <a href='http://tankanarchy.herokuapp.com'
-                 class='tooltip'>
-                <img src='data/img/tankanarchy.png' />
-                <span>
-                  Tank Anarchy
-                </span>
-              </a>
-              <a href='http://blockwars.herokuapp.com'
-                 class='tooltip'>
-                <img src='data/img/blockwars.png' />
-                <span>
-                  Block Wars
-                </span>
-              </a>
-              <a href='http://obsidio.herokuapp/com'
-                 class='tooltip'>
-                <img src='data/img/obsidio.png' />
-                <span>
-                  Obsidio
-                </span>
-              </a>
-            </div>
-            <div class='misc'>
-              <a href='http://www.github.com/omgimanerd?tab=repositories'
-                 class='misc-link'>
-                Miscellaneous Hacks
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class='skills-overlay overlay'>
-          <span class='close fa fa-close fa-4x'></span>
-          <div class='skills-container simplebar'>
-            <table class='skills'>
-              <tr>
-                <th colspan='3'>
-                  Skills
-                </th>
-              </tr>
-              <tr>
-                <td>
-                  <img src='data/img/html.png'/>
-                </td>
-                <td>
-                  <img src='data/img/css.png' />
-                </td>
-                <td>
-                  <img src='data/img/js.png' />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src='data/img/nodejs.png' />
-                </td>
-                <td>
-                  <img src='data/img/python.png' />
-                </td>
-                <td>
-                  <img src='data/img/sql.png' />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src='data/img/java.png' />
-                </td>
-                <td>
-                  <img src='data/img/android.png' />
-                </td>
-                <td>
-                </td>
-              </tr>
-            </table>
-            <table class='tools'>
-              <tr>
-                <th colspan='3'>
-                  Tools Used
-                </th>
-              </tr>
-              <tr>
-                <td>
-                  <img src='data/img/git.png' />
-                </td>
-                <td>
-                  <img src='data/img/github.png' />
-                </td>
-                <td>
-                  <img src='data/img/heroku.png' />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src='data/img/aws.png' />
-                </td>
-                <td>
-                  <img src='data/img/cloud9.png' />
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-        <div class='contact-overlay overlay'>
-          <span class='close fa fa-close fa-4x'></span>
-          <div class='contact-container simplebar'>
-            <div class='content'>
-              <a href='http://www.github.com/omgimanerd'>
-                <span class='fa fa-4x fa-github'></span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="container">
+      <div id="terminal"></div>
     </div>
   </body>
+
+  <script src="scripts/client.js"></script>
 </html>
