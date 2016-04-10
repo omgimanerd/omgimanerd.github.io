@@ -19,7 +19,8 @@
 }
 
 // Local color constants
-@background: #300A24;
+@backgroundPurple: #300A24;
+@backgroundBeige: #95724F;
 @green: #1EC503;
 @red: #CC0219;
 @lightGrey: #58564E;
@@ -33,130 +34,169 @@ html, body {
   min-height: 760px;
   margin: 0;
   border: 0;
-
-  font-family: Neogrey, sans-serif;
   background-color: black;
+  box-sizing: border-box;
+}
+
+*, * :before, * :after {
+  box-sizing: inherit;
 }
 
 .container {
   position: relative;
-  padding-top: 100px;
+  width: 100%;
+  height: 100%;
+
+  .window {
+    position: relative;
+
+    .topbar {
+      position: relative;
+      width: 400px;
+      height: 15px;
+      padding: 0;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      left: -1px;
+      .gradient(@lightGrey, @darkGrey)
+    }
+
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    color: white;
+    font-family: UbuntoMono, monospace, sans-serif;
+    background-color: @backgroundPurple;
+    border: 1px solid @darkGrey;
+    border-radius: 5px;
+  }
 
   #matrix {
-    position: absolute;
+    position: fixed;
     top: -100px;
     width: 100%;
     background-color: white;
+    font-family: Neogrey, UbuntuMono, monospace, sans-serif;
 
     div {
       position: absolute;
       color: @green;
     }
   }
-}
 
-#sidebar {
-  position: fixed;
-  width: 250px;
-  height: 100%;
-  top: 0px;
-  right: -251px;
+  #navigation {
+    position: fixed;
+    width: 45px;
+    height: 100%;
+    top: 0;
+    left: -45px;
+    background-color: @backgroundBeige;
+    border-right: 1px solid #FADAB2;
+  }
 
-  background: @background;
-  border-left: 1px solid @darkGrey;
+  #options {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    top: 0px;
+    right: -250px;
 
-  .topbar {
-    width: 100%;
-    padding: 0;
-    .gradient(@lightGrey, @darkGrey);
+    background: @backgroundPurple;
+    border-left: 1px solid @darkGrey;
 
-    img {
-      margin: 4px 0px 0px 4px;
-      opacity: 0.75;
-      transition: all 200ms;
+    .topbar {
+      width: 100%;
+      padding: 0;
+      .gradient(@lightGrey, @darkGrey);
 
-      &:hover {
-        opacity: 1;
+      img {
+        margin: 4px 0px 0px 4px;
+        opacity: 0.75;
+        transition: all 200ms;
+
+        &:hover {
+          opacity: 1;
+        }
       }
     }
   }
-}
 
-#terminal {
-  * {
-    background-color: @background !important;
-    font-family: UbuntuMono !important;
-  }
+  #terminal {
+    * {
+      background-color: @backgroundPurple !important;
+      font-family: UbuntuMono !important;
+    }
 
-  .red {
-    color: @red;
-  }
+    .red {
+      color: @red;
+    }
 
-  .green {
-    color: @green;
-  }
+    .green {
+      color: @green;
+    }
 
-  background-color: @background !important;
-  margin: auto;
-  border: 1px solid @darkGrey;
-  border-radius: 8px;
+    background-color: @backgroundPurple !important;
+    margin: auto;
+    border: 1px solid @darkGrey;
+    border-radius: 10px;
 
-  /**
-   * The following styles override the colors set in jquery.terminal.css
-   */
-  .terminal .inverted, .cmd .inverted, .cmd .cursor.blink {
+    /**
+     * The following styles override the colors set in jquery.terminal.css
+     */
+    .terminal .inverted, .cmd .inverted, .cmd .cursor.blink {
       background-color: #aaa;
-      color: @background;
-  }
+      color: @backgroundPurple;
+    }
 
-  .cmd .cursor.blink {
+    .cmd .cursor.blink {
       -webkit-animation: terminal-blink 1s infinite steps(1, start);
          -moz-animation: terminal-blink 1s infinite steps(1, start);
           -ms-animation: terminal-blink 1s infinite steps(1, start);
               animation: terminal-blink 1s infinite steps(1, start);
+    }
   }
 }
 
 @-webkit-keyframes terminal-blink {
   0%, 100% {
-      background-color: @background;
-      color: #aaa;
+    background-color: @backgroundPurple;
+    color: #aaa;
   }
   50% {
-      background-color: #bbb;
-      color: @background;
+    background-color: #bbb;
+    color: @backgroundPurple;
   }
 }
 
 @-ms-keyframes terminal-blink {
   0%, 100% {
-      background-color: @background;
-      color: #aaa;
+    background-color: @backgroundPurple;
+    color: #aaa;
   }
   50% {
-      background-color: #bbb;
-      color: @background;
+    background-color: #bbb;
+    color: @backgroundPurple;
   }
 }
 
 @-moz-keyframes terminal-blink {
   0%, 100% {
-      background-color: @background;
-      color: #aaa;
+    background-color: @backgroundPurple;
+    color: #aaa;
   }
   50% {
-      background-color: #bbb;
-      color: @background;
+    background-color: #bbb;
+    color: @backgroundPurple;
   }
 }
 
 @keyframes terminal-blink {
   0%, 100% {
-      background-color: @background;
+      background-color: @backgroundPurple;
       color: #aaa;
   }
   50% {
       background-color: #bbb;
-      color: @background;
+      color: @backgroundPurple;
   }
 }

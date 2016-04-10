@@ -21,6 +21,25 @@ var randRangeInt = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
+var toggleNavigationBar = (function() {
+  var showing = false;
+
+  var wrapped_fn = function(delay) {
+    showing = !showing;
+    if (delay == 0 || !delay) {
+      delay = 0;
+    }
+    $('#navigation').delay(delay).animate({
+      left: showing ? "0px": "-45px"
+    }, {
+      duration: 500,
+      easing: "swing"
+    })
+  };
+
+  return wrapped_fn;
+})();
+
 var toggleOptionsMenu = (function() {
   var showing = false;
 
@@ -30,10 +49,10 @@ var toggleOptionsMenu = (function() {
       delay = 0;
     }
 
-    $('#sidebar').delay(delay).animate({
-      right: showing ? "0px": "-251px"
+    $('#options').delay(delay).animate({
+      right: showing ? "0px": "-250px"
     }, {
-      duration: 1000,
+      duration: 500,
       easing: "swing"
     });
   };
@@ -81,8 +100,9 @@ $(document).ready(function() {
     return false;
   };
 
+  // Stuff that happens first.
   toggleOptionsMenu(1000);
-
+  toggleNavigationBar(1000);
   createMatrixAnimation(1000);
 
   // If the user clicks the 'X', then close the sidebar.
@@ -98,12 +118,16 @@ $(document).ready(function() {
       terminal.echo('[[;;;green]hacking...]');
       createMatrixAnimation();
       setTimeout(function() {
-        terminal.echo('[[;;;green]hacked!]');
+        terminal.echo('[[;;;green]hacked! All your base are belong to us!]');
         terminal.resume();
       }, 1000);
     },
     help: function(terminal) {
       terminal.echo('Available commands: ' + Object.keys(commands).join(', '));
+    },
+    navigation: function(terminal) {
+      terminal.echo('Toggling navigation bar...');
+      toggleNavigationBar();
     },
     options: function(terminal) {
       terminal.echo('Toggling options menu...');
