@@ -3,6 +3,77 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
+var randRange = function(min, max) {
+  if (min >= max) {
+    var swap = min;
+    min = max;
+    max = swap;
+  }
+  return (Math.random() * (max - min)) + min;
+};
+
+var randRangeInt = function(min, max) {
+  if (min >= max) {
+    var swap = min;
+    min = max;
+    max = swap;
+  }
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
+var toggleOptionsMenu = (function() {
+  var showing = false;
+
+  var wrapped_fn = function(delay) {
+    showing = !showing;
+    if (delay == 0 || !delay) {
+      delay = 0;
+    }
+
+    $('#sidebar').delay(delay).animate({
+      right: showing ? "0px": "-251px"
+    }, {
+      duration: 1000,
+      easing: "swing"
+    });
+  };
+
+  return wrapped_fn;
+})();
+
+var createMatrixAnimation = (function() {
+  var divs = [];
+  var maxWidth = $('#matrix').width() - 200;
+
+  var wrapped_fn = function(delay) {
+    if (delay == 0 || !delay) {
+      delay = 0;
+    }
+
+    if (divs.length == 0) {
+      for (var i = 0; i < 150; ++i) {
+        $('#matrix').append($('<div></div>'));
+      }
+    }
+
+    $('#matrix div').each(function(index) {
+      $(this).text(randRangeInt(0, 2))
+          .css({
+            left: Math.floor(Math.random() * maxWidth) + 100,
+            top: 0,
+            opacity: 1
+          })
+          .delay(delay)
+          .animate({
+            top: $(document).height(),
+            opacity: '0'
+          }, randRange(500, 2500));
+    });
+  };
+
+  return wrapped_fn;
+})();
+
 $(document).ready(function() {
 
   // Disable the right click menu
@@ -10,26 +81,13 @@ $(document).ready(function() {
     return false;
   };
 
-  // Create the matrix animation in the beginning.
-  for (var i = 0; i < 150; ++i) {
-    var maxWidth = $('#matrix').width() - 200;
-    var fallingDiv = $('<div></div>').text(Math.floor(Math.random() * 2));
-    fallingDiv.css('left', Math.floor(Math.random() * maxWidth) + 100);
-    fallingDiv.delay(1000).animate({
-      top: $(document).height(),
-      opacity: '0'
-    }, Math.floor(Math.random() * 2500) + 1000);
-    $('#matrix').append(fallingDiv);
-  }
+  toggleOptionsMenu(1000);
+
+  createMatrixAnimation(1000);
 
   // If the user clicks the 'X', then close the sidebar.
   $('#close-sidebar').click(function() {
-    $('#sidebar').animate({
-      right: "-251px"
-    }, {
-      duration: 1000,
-      easing: "swing"
-    });
+    toggleOptionsMenu();
   });
 
   // The available commands are stored in an object here along with their
@@ -39,25 +97,18 @@ $(document).ready(function() {
       terminal.clear();
       terminal.pause();
       terminal.echo('[[;;;green]hacking...]');
+      createMatrixAnimation();
       setTimeout(function() {
-        terminal.echo('[[;;;green]hacking...]');
-        setTimeout(function() {
-          terminal.echo('[[;;;green]hacked!]');
-          terminal.resume();
-        }, 1000);
+        terminal.echo('[[;;;green]hacked!]');
+        terminal.resume();
       }, 1000);
     },
     help: function(terminal) {
       terminal.echo('Available commands: ' + Object.keys(commands).join(', '));
     },
     options: function(terminal) {
-      terminal.echo('Opening options menu...');
-      $('#sidebar').animate({
-        right: "0px"
-      }, {
-        duration: 1000,
-        easing: "swing"
-      });
+      terminal.echo('Toggling options menu...');
+      toggleOptionsMenu();
     },
     who: function(terminal) {
       terminal.echo('[[bg;;;red]Alvin Lin] (alvin.lin.dev@gmail.com) is a ' +
