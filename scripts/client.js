@@ -94,7 +94,6 @@ $(document).ready(function() {
   // corresponding actions.
   var commands = {
     hack: function(terminal) {
-      terminal.clear();
       terminal.pause();
       terminal.echo('[[;;;green]hacking...]');
       createMatrixAnimation();

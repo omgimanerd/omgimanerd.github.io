@@ -63,7 +63,7 @@ html, body {
   right: -251px;
 
   background: @background;
-  border-left: 1px solid grey;
+  border-left: 1px solid @darkGrey;
 
   .topbar {
     width: 100%;
@@ -98,8 +98,8 @@ html, body {
 
   background-color: @background !important;
   margin: auto;
-  border: 1px solid @lightGrey;
-  border-radius: 5px;
+  border: 1px solid @darkGrey;
+  border-radius: 8px;
 
   /**
    * The following styles override the colors set in jquery.terminal.css
@@ -156,7 +156,7 @@ html, body {
       color: #aaa;
   }
   50% {
-      background-color: #bbb; /* not #aaa because it's seems there is Google Chrome bug */
+      background-color: #bbb;
       color: @background;
   }
 }
