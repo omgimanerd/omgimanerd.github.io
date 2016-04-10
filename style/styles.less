@@ -33,17 +33,28 @@ html, body {
   min-height: 760px;
   margin: 0;
   border: 0;
-  background-color: @background;
 
   font-family: Neogrey, sans-serif;
+  background-color: black;
 }
 
 .container {
   padding-top: 100px;
 }
 
+.sidebar {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  right: 0;
+
+  background: @background;
+  border-left: 1px solid grey;
+}
+
 #terminal {
   * {
+    background-color: @background !important;
     font-family: UbuntuMono !important;
   }
 
@@ -55,7 +66,67 @@ html, body {
     color: @green;
   }
 
+  background-color: @background !important;
   margin: auto;
-  border: 2px solid grey;
-  border-radius: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+/**
+ * The following styles override the colors set in jquery.terminal.css
+ */
+.terminal .inverted, .cmd .inverted, .cmd .cursor.blink {
+    background-color: #aaa;
+    color: @background;
+}
+
+.cmd .cursor.blink {
+    -webkit-animation: terminal-blink 1s infinite steps(1, start);
+       -moz-animation: terminal-blink 1s infinite steps(1, start);
+        -ms-animation: terminal-blink 1s infinite steps(1, start);
+            animation: terminal-blink 1s infinite steps(1, start);
+}
+
+@-webkit-keyframes terminal-blink {
+  0%, 100% {
+      background-color: @background;
+      color: #aaa;
+  }
+  50% {
+      background-color: #bbb;
+      color: @background;
+  }
+}
+
+@-ms-keyframes terminal-blink {
+  0%, 100% {
+      background-color: @background;
+      color: #aaa;
+  }
+  50% {
+      background-color: #bbb;
+      color: @background;
+  }
+}
+
+@-moz-keyframes terminal-blink {
+  0%, 100% {
+      background-color: @background;
+      color: #aaa;
+  }
+  50% {
+      background-color: #bbb;
+      color: @background;
+  }
+}
+
+@keyframes terminal-blink {
+  0%, 100% {
+      background-color: @background;
+      color: #aaa;
+  }
+  50% {
+      background-color: #bbb; /* not #aaa because it's seems there is Google Chrome bug */
+      color: @background;
+  }
 }

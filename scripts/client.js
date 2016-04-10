@@ -27,7 +27,7 @@ $(document).ready(function() {
     },
     who: function(terminal) {
       terminal.echo("[[bg;;;red]Alvin Lin] (alvin.lin.dev@gmail.com) is a " +
-          "stack web developer from New York City.");
+          "full stack web developer from New York.");
     }
   }
 
@@ -40,7 +40,8 @@ $(document).ready(function() {
       terminal.error(command + ': command not found');
     }
   }, {
-    greetings: 'omgimanerd.github.io - Type help for available commands',
+    greetings: '[[;;;green]omgimanerd.github.io - Type help for available' +
+      ' commands]',
     width: 600,
     height: 300,
     prompt: '[[;;;red]user_' + userNumber + ']:[[;;;green]$] ',
