@@ -21,6 +21,21 @@ var randRangeInt = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
+var outputToWindow = function(data) {
+  $('#window').empty();
+  var delayCounter = 0;
+  for (var i = 0; i < data.length; ++i) {
+    delayCounter += data[i].delay;
+    (function(text, delay) {
+      setTimeout(function() {
+        $('#window').append(text);
+        $('#window').append('<br />');
+        $('#window').scrollTop(999999);
+      }, delay);
+    })(data[i].text, delayCounter);
+  }
+};
+
 var toggleNavigationBar = (function() {
   var showing = false;
 
@@ -30,7 +45,7 @@ var toggleNavigationBar = (function() {
       delay = 0;
     }
     $('#navigation').delay(delay).animate({
-      left: showing ? "0px": "-45px"
+      left: showing ? "0px": "-50px"
     }, {
       duration: 500,
       easing: "swing"
@@ -135,7 +150,8 @@ $(document).ready(function() {
     },
     who: function(terminal) {
       terminal.echo('[[bg;;;red]Alvin Lin] (alvin.lin.dev@gmail.com) is a ' +
-          'full stack web developer from New York.');
+          'full stack web developer from NYC.');
+      outputToWindow(dataWho);
     }
   }
 
