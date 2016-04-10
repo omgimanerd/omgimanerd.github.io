@@ -1,51 +1,37 @@
 /**
- * Javascript Task Runner
- * @author Alvin Lin (alvin.lin.dev@gmail.com)
+ * @fileoverview This is the file that determines the behavior of the Gulp task
+ *   runner.
+ * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-var gulp = require("gulp");
+var gulp = require('gulp');
 
-var autoprefixer = require("gulp-autoprefixer");
-var closureCompiler = require("gulp-closure-compiler");
-var cssnano = require("gulp-cssnano");
-var less = require("gulp-less");
-var notify = require("gulp-notify");
-var rename = require("gulp-rename");
+var less = require('gulp-less');
+var plumber = require('gulp-plumber');
+var rename = require('gulp-rename');
+var lessAutoprefix = require('less-plugin-autoprefix');
+var lessCleancss = require('less-plugin-clean-css');
 
-gulp.task("default", ["js", "less"]);
+var getLessConfiguration = function() {
+  var autoprefix = new lessAutoprefix({
+    browsers: ["last 2 versions"]
+  });
+  var cleancss = new lessCleancss({
+    advanced: true
+  });
+  return less({
+    plugins: [autoprefix, cleancss]
+  });
+};
 
-gulp.task("js", function() {
-  return gulp.src("./scripts/*.js")
-    .pipe(closureCompiler({
-      compilerPath: "bower_components/closure-compiler/compiler.jar",
-      fileName: "minified.js"
-    }))
-    .pipe(gulp.dest("./dist"))
-    .pipe(notify("JS compiled and minified"));
+gulp.task('less', function() {
+  return gulp.src('./style/*.less')
+    .pipe(plumber())
+    .pipe(getLessConfiguration())
+    .pipe(rename('minified.css'))
+    .pipe(gulp.dest('./public/style'));
 });
 
-gulp.task("less", function() {
-  return gulp.src("./style/styles.less")
-    .pipe(less({ compress: true}))
-    .pipe(autoprefixer({ browsers: ["last 10 versions"]}))
-    .pipe(cssnano())
-    .pipe(rename(function(path) {
-      path.basename = "minified";
-      path.extname = ".css";
-    }))
-    .pipe(gulp.dest("./dist"))
-    .pipe(notify("LESS compiled and minified"));
-});
-
-gulp.task("watch-js", function() {
-  gulp.watch("./scripts/*.js", ["js"]);
-});
-
-gulp.task("watch-less", function() {
-  gulp.watch("./style/*.less", ["less"]);
-});
-
-gulp.task("watch", function() {
-  gulp.watch("./scripts/*.js", ["js"]);
-  gulp.watch("./style/*.less", ["less"]);
+gulp.task('watch', function() {
+  gulp.watch('./style/*.less', ['less']);
 });
