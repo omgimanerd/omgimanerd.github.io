@@ -1,11 +1,21 @@
 /**
- * This stylesheet defines animations that are used in the webpage.
+ * This stylesheet defines animations and mixins that are used in the webpage.
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
  */
 
 @defaultDelayTime: 2500ms;
 @defaultFadeInAnimationTime: 800ms;
 @defaultSlideInAnimationTime: 500ms;
+
+.gradient(@startColor: #eee, @endColor: white) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor),
+    to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+}
 
 .fadeIn(@delayTime:@defaultDelayTime,
         @fadeInAnimationTime:@defaultFadeInAnimationTime) {

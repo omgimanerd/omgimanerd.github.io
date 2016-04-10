@@ -7,7 +7,6 @@
 var gulp = require('gulp');
 
 var less = require('gulp-less');
-var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var lessAutoprefix = require('less-plugin-autoprefix');
 var lessCleancss = require('less-plugin-clean-css');
@@ -26,7 +25,6 @@ var getLessConfiguration = function() {
 
 gulp.task('less', function() {
   return gulp.src('./style/*.less')
-    .pipe(plumber())
     .pipe(getLessConfiguration())
     .pipe(rename('minified.css'))
     .pipe(gulp.dest('./style'));

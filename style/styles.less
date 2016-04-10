@@ -5,7 +5,7 @@
  */
 
 // Dependencies
-@import 'animation.less';
+@import 'mixin.less';
 
 // Custom fonts
 @font-face {
@@ -22,8 +22,8 @@
 @background: #300A24;
 @green: #4E9A06;
 @red: #CC0219;
-
-@lightGrey: #cccccc;
+@lightGrey: #58564E;
+@darkGrey: #403F3A;
 
 // Style sets
 html, body {
@@ -42,14 +42,30 @@ html, body {
   padding-top: 100px;
 }
 
-.sidebar {
+#sidebar {
   position: fixed;
   width: 250px;
   height: 100%;
-  right: 0;
+  right: 0px;
 
   background: @background;
   border-left: 1px solid grey;
+
+  .topbar {
+    width: 100%;
+    padding: 0;
+    .gradient(@lightGrey, @darkGrey);
+
+    img {
+      margin: 4px 0px 0px 4px;
+      opacity: 0.75;
+      transition: all 200ms;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 #terminal {
@@ -68,23 +84,23 @@ html, body {
 
   background-color: @background !important;
   margin: auto;
-  border: 1px solid grey;
+  border: 1px solid @lightGrey;
   border-radius: 5px;
-}
 
-/**
- * The following styles override the colors set in jquery.terminal.css
- */
-.terminal .inverted, .cmd .inverted, .cmd .cursor.blink {
-    background-color: #aaa;
-    color: @background;
-}
+  /**
+   * The following styles override the colors set in jquery.terminal.css
+   */
+  .terminal .inverted, .cmd .inverted, .cmd .cursor.blink {
+      background-color: #aaa;
+      color: @background;
+  }
 
-.cmd .cursor.blink {
-    -webkit-animation: terminal-blink 1s infinite steps(1, start);
-       -moz-animation: terminal-blink 1s infinite steps(1, start);
-        -ms-animation: terminal-blink 1s infinite steps(1, start);
-            animation: terminal-blink 1s infinite steps(1, start);
+  .cmd .cursor.blink {
+      -webkit-animation: terminal-blink 1s infinite steps(1, start);
+         -moz-animation: terminal-blink 1s infinite steps(1, start);
+          -ms-animation: terminal-blink 1s infinite steps(1, start);
+              animation: terminal-blink 1s infinite steps(1, start);
+  }
 }
 
 @-webkit-keyframes terminal-blink {

@@ -8,8 +8,18 @@ $(document).ready(function() {
     return false;
   };
 
+  $('#close-sidebar').click(function() {
+    $('#sidebar').animate({
+      right: "-251px"
+    }, {
+      duration: 1000,
+      easing: "swing"
+    });
+  });
+
   var userNumber = Math.round(Math.random() * 10000);
   var commands = {
+    "": function(terminal) {},
     hack: function(terminal) {
       terminal.clear();
       terminal.pause();
@@ -23,11 +33,20 @@ $(document).ready(function() {
       }, 1000);
     },
     help: function(terminal) {
-      terminal.echo("Available commands: " + Object.keys(commands).join(", "));
+      terminal.echo('Available commands: ' + Object.keys(commands).join(', '));
+    },
+    options: function(terminal) {
+      terminal.echo('Opening options menu...');
+      $('#sidebar').animate({
+        right: "0px"
+      }, {
+        duration: 1000,
+        easing: "swing"
+      });
     },
     who: function(terminal) {
-      terminal.echo("[[bg;;;red]Alvin Lin] (alvin.lin.dev@gmail.com) is a " +
-          "full stack web developer from New York.");
+      terminal.echo('[[bg;;;red]Alvin Lin] (alvin.lin.dev@gmail.com) is a ' +
+          'full stack web developer from New York.');
     }
   }
 
@@ -35,7 +54,7 @@ $(document).ready(function() {
     if (commands[command]) {
       commands[command](terminal);
     } else if (command == 'christine') {
-      terminal.echo('i <3 u');
+      terminal.echo('sqrt(-1) [[;;;red]<3] u');
     } else {
       terminal.error(command + ': command not found');
     }
