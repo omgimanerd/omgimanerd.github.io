@@ -4,10 +4,25 @@
  */
 
 $(document).ready(function() {
+
+  // Disable the right click menu
   window.oncontextmenu = function() {
     return false;
   };
 
+  // Create the matrix animation in the beginning.
+  for (var i = 0; i < 150; ++i) {
+    var maxWidth = $('#matrix').width() - 200;
+    var fallingDiv = $('<div></div>').text(Math.floor(Math.random() * 2));
+    fallingDiv.css('left', Math.floor(Math.random() * maxWidth) + 100);
+    fallingDiv.delay(1000).animate({
+      top: $(document).height(),
+      opacity: '0'
+    }, Math.floor(Math.random() * 2500) + 1000);
+    $('#matrix').append(fallingDiv);
+  }
+
+  // If the user clicks the 'X', then close the sidebar.
   $('#close-sidebar').click(function() {
     $('#sidebar').animate({
       right: "-251px"
@@ -17,9 +32,9 @@ $(document).ready(function() {
     });
   });
 
-  var userNumber = Math.round(Math.random() * 10000);
+  // The available commands are stored in an object here along with their
+  // corresponding actions.
   var commands = {
-    "": function(terminal) {},
     hack: function(terminal) {
       terminal.clear();
       terminal.pause();
@@ -51,7 +66,9 @@ $(document).ready(function() {
   }
 
   $('#terminal').terminal(function(command, terminal) {
-    if (commands[command]) {
+    if (!command) {
+      return;
+    } else if (commands[command]) {
       commands[command](terminal);
     } else if (command == 'christine') {
       terminal.echo('sqrt(-1) [[;;;red]<3] u');
@@ -63,7 +80,8 @@ $(document).ready(function() {
       ' commands]',
     width: 600,
     height: 300,
-    prompt: '[[;;;red]user_' + userNumber + ']:[[;;;green]$] ',
+    prompt: '[[;;;red]user_' + Math.floor(Math.random() * 10000) +
+        ']:[[;;;green]$] ',
     completion: Object.keys(commands)
   });
 });
