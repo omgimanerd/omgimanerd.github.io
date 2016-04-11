@@ -21,19 +21,25 @@ var randRangeInt = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-var outputToWindow = function(data) {
+var outputToWindow = function(data, finishedCallback) {
   $('#window').empty();
   var delayCounter = 0;
   for (var i = 0; i < data.length; ++i) {
     delayCounter += data[i].delay;
-    (function(text, delay) {
+    (function(text, clear, delay) {
       setTimeout(function() {
-        $('#window').append(text);
-        $('#window').append('<br />');
-        $('#window').scrollTop(999999);
+        if (clear) {
+          $('#window').empty();
+        } else {
+          $('#window').append(text);
+          $('#window').scrollTop(999999);
+        }
       }, delay);
-    })(data[i].text, delayCounter);
+    })(data[i].text, data[i].clear, delayCounter);
   }
+  setTimeout(function() {
+    finishedCallback();
+  }, delayCounter);
 };
 
 var toggleNavigationBar = (function() {
@@ -149,9 +155,12 @@ $(document).ready(function() {
       toggleOptionsMenu();
     },
     who: function(terminal) {
+      terminal.pause();
       terminal.echo('[[bg;;;red]Alvin Lin] (alvin.lin.dev@gmail.com) is a ' +
-          'full stack web developer from NYC.');
-      outputToWindow(dataWho);
+          'software developer from NYC.');
+      outputToWindow(dataWho, function() {
+        terminal.resume();
+      });
     }
   }
 

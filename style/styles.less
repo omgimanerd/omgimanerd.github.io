@@ -26,6 +26,8 @@
 @lightGrey: #58564E;
 @darkGrey: #403F3A;
 
+@borderRadius: 5px;
+
 // Style sets
 html, body {
   width: 100%;
@@ -46,6 +48,26 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
+
+  .window {
+    background-color: @backgroundPurple;
+    border: 1px solid @lightGrey;
+
+    .topbar {
+      width: 100%;
+      padding: 0;
+
+      img {
+        margin: 4px 0px 0px 4px;
+        opacity: 0.75;
+        transition: all 200ms;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
 
   #matrix {
     position: fixed;
@@ -70,16 +92,26 @@ html, body {
     border-right: 1px solid @lightGrey;
 
     .clickable {
-      width: 60px;
-      height: 60px;
-      margin: 10px;
-      border-radius: 10px;
-      opacity: 0.9;
-    }
-
-    img {
       width: 40px;
       height: 40px;
+      padding: 3px;
+      margin: 10px auto;
+      border-radius: @borderRadius;
+      opacity: 0.9;
+
+      box-shadow: inset 0 0 25px #ccc;
+      transition: all 200ms;
+
+      .shake-on-hover;
+
+      &:hover {
+        box-shadow: inset 0 0 25px #fff;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
@@ -91,12 +123,12 @@ html, body {
     right: -250px;
 
     background: @backgroundPurple;
-    border-left: 1px solid @darkGrey;
+    border-left: 1px solid @lightGrey;
 
     .topbar {
       width: 100%;
       padding: 0;
-      .gradient(@lightGrey, @darkGrey);
+      background-color: @lightGrey;
 
       img {
         margin: 4px 0px 0px 4px;
@@ -121,6 +153,7 @@ html, body {
     * {
       background-color: @backgroundPurple;
       font-family: UbuntuMono;
+      font-size: 14px;
     }
 
     .red {
@@ -131,11 +164,11 @@ html, body {
       color: @green;
     }
 
-    background-color: @backgroundPurple;
     margin: 0 30%;
-    border: 1px solid @darkGrey;
-    border-top: 20px solid @darkGrey;
-    border-radius: 10px;
+    background-color: @backgroundPurple;
+    border: 1px solid @lightGrey;
+    border-top: 20px solid @lightGrey;
+    border-radius: @borderRadius;
 
     /**
      * The following styles override the colors set in jquery.terminal.css
@@ -153,7 +186,7 @@ html, body {
     }
   }
 
-  #window {
+  #terminal2 {
     position: relative;
     width: 400px;
     height: 300px;
@@ -161,11 +194,20 @@ html, body {
     padding: 10px;
     color: white;
     font-family: UbuntoMono, monospace, sans-serif;
+    font-size: 14px;
     background-color: @backgroundPurple;
     border: 1px solid @darkGrey;
     border-top: 20px solid @darkGrey;
-    border-radius: 5px;
-    overflow-y: hidden;;
+    border-radius: @borderRadius;
+    overflow-y: hidden;
+
+    .red {
+      color: @red;
+    }
+
+    .green {
+      color: @green;
+    }
   }
 }
 

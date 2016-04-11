@@ -3,10 +3,6 @@
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
  */
 
-@defaultDelayTime: 2500ms;
-@defaultFadeInAnimationTime: 800ms;
-@defaultSlideInAnimationTime: 500ms;
-
 .gradient(@startColor, @endColor) {
 	background-color: @startColor;
 	background: -webkit-gradient(linear, left top, left bottom, from(@startColor),
@@ -17,28 +13,7 @@
 	background: -o-linear-gradient(top, @startColor, @endColor);
 }
 
-.fadeIn(@delayTime:@defaultDelayTime,
-        @fadeInAnimationTime:@defaultFadeInAnimationTime) {
-  opacity: 0;
-  animation: fadeIn @fadeInAnimationTime linear forwards;
-  animation-delay: @delayTime;
-}
-
-.slideInLeft(@delayTime:@defaultDelayTime,
-             @slideInAnimationTime:@defaultSlideInAnimationTime) {
-  transform: translateX(-1500px);
-  animation: slideInLeft @slideInAnimationTime linear forwards;
-  animation-delay: @delayTime;
-}
-
-.slideInRight(@delayTime:@defaultDelayTime,
-              @slideInAnimationTime:@defaultSlideInAnimationTime) {
-  transform: translateX(1500px);
-  animation: slideInRight @slideInAnimationTime linear forwards;
-  animation-delay: @delayTime;
-}
-
-.shake {
+.shake-on-hover {
   transform-origin: center center;
 
   &:hover {
@@ -47,33 +22,6 @@
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
     animation-delay: 0s;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInLeft {
-  0% {
-    transform: translateX(-1000px);
-  }
-  100% {
-    transform: translateX(0px);
-  }
-}
-
-@keyframes slideInRight {
-  0% {
-    transform: translateX(1000px);
-  }
-  100% {
-    transform: translateX(0px);
   }
 }
 
