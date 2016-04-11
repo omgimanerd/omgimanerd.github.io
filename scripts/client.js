@@ -22,17 +22,17 @@ var randRangeInt = function(min, max) {
 };
 
 var outputToWindow = function(data, finishedCallback) {
-  $('#window').empty();
+  $('#terminal2').empty();
   var delayCounter = 0;
   for (var i = 0; i < data.length; ++i) {
     delayCounter += data[i].delay;
     (function(text, clear, delay) {
       setTimeout(function() {
         if (clear) {
-          $('#window').empty();
+          $('#terminal2').empty();
         } else {
-          $('#window').append(text);
-          $('#window').scrollTop(999999);
+          $('#terminal2').append(text);
+          $('#terminal2').scrollTop(999999);
         }
       }, delay);
     })(data[i].text, data[i].clear, delayCounter);

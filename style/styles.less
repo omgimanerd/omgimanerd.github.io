@@ -1,4 +1,3 @@
-// out: ../dist/minified.css, compress: true, strictMath: true, autoprefixer: true
 /**
  * Main stylesheet for webpage.
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
@@ -11,6 +10,10 @@
 @font-face {
   font-family: Neogrey;
   src: url('../assets/fonts/neogrey.otf');
+}
+
+@font-face {
+  font-family: Ubuntu;
 }
 
 @font-face {
@@ -50,22 +53,18 @@ html, body {
   height: 100%;
 
   .window {
+    position: relative;
     background-color: @backgroundPurple;
     border: 1px solid @lightGrey;
+    border-top: 20px solid @lightGrey;
+    border-radius: @borderRadius;
 
     .topbar {
+      position: absolute;
       width: 100%;
+      height: 20px;
+      top: -20px;
       padding: 0;
-
-      img {
-        margin: 4px 0px 0px 4px;
-        opacity: 0.75;
-        transition: all 200ms;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
     }
   }
 
@@ -97,8 +96,7 @@ html, body {
       padding: 3px;
       margin: 10px auto;
       border-radius: @borderRadius;
-      opacity: 0.9;
-
+      color: black;
       box-shadow: inset 0 0 25px #ccc;
       transition: all 200ms;
 
@@ -108,9 +106,25 @@ html, body {
         box-shadow: inset 0 0 25px #fff;
       }
 
+      a {
+        display: inline-block;
+      }
+
       img {
         width: 100%;
         height: 100%;
+      }
+
+      span {
+        width: 100%;
+        height: 100%;
+        margin: 2px;
+        color: black;
+        text-align: center;
+      }
+
+      .twitter {
+        color: #00ACED;
       }
     }
   }
@@ -122,34 +136,29 @@ html, body {
     top: 0px;
     right: -250px;
 
-    background: @backgroundPurple;
-    border-left: 1px solid @lightGrey;
-
     .topbar {
       width: 100%;
       padding: 0;
       background-color: @lightGrey;
 
-      img {
+      span {
         margin: 4px 0px 0px 4px;
-        opacity: 0.75;
+        color: #ccc;
         transition: all 200ms;
 
         &:hover {
-          opacity: 1;
+          color: white;
+          cursor: pointer;
         }
       }
     }
   }
 
-  .spacer {
-    width: 100%;
-    height: 100px;
-    color: white;
-    text-align: center;
-  }
-
   #terminal {
+    position: relative;
+    top: 100px;
+    left: 42%;
+
     * {
       background-color: @backgroundPurple;
       font-family: UbuntuMono;
@@ -163,12 +172,6 @@ html, body {
     .green {
       color: @green;
     }
-
-    margin: 0 30%;
-    background-color: @backgroundPurple;
-    border: 1px solid @lightGrey;
-    border-top: 20px solid @lightGrey;
-    border-radius: @borderRadius;
 
     /**
      * The following styles override the colors set in jquery.terminal.css
@@ -190,15 +193,11 @@ html, body {
     position: relative;
     width: 400px;
     height: 300px;
-    margin: 20px 180px;
+    left: 15%;
     padding: 10px;
     color: white;
     font-family: UbuntoMono, monospace, sans-serif;
     font-size: 14px;
-    background-color: @backgroundPurple;
-    border: 1px solid @darkGrey;
-    border-top: 20px solid @darkGrey;
-    border-radius: @borderRadius;
     overflow-y: hidden;
 
     .red {
