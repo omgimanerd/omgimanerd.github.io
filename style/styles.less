@@ -85,10 +85,25 @@ html, body {
     position: fixed;
     width: 50px;
     height: 100%;
+    min-height: 760px;
     top: 0;
     left: -50px;
     background-color: @backgroundBeige;
     border-right: 1px solid @lightGrey;
+
+    .top {
+      position: absolute;
+      width: 50px;
+      top: 0;
+      left: 0;
+    }
+
+    .bottom {
+      position: absolute;
+      width: 50px;
+      bottom: 0;
+      left: 0;
+    }
 
     .clickable {
       width: 40px;

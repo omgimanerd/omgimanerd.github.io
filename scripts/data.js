@@ -4,134 +4,172 @@
 * @author alvin.lin.dev@gmail.com (Alvin Lin)
 */
 
+/**
+ * The delay will happen after the text id displayed.
+ */
 var dataWho = [
   {
-    text: '<span class="green">Initializing...</span><br />',
-    delay: 0,
-  },
-  {
-    text: '<span>Starting swag engine...</span><br />',
+    content: '<span class="green">Initializing...<br />',
     delay: 2000,
   },
   {
-    text: '<span>Fetching developer tools...</span><br />',
+    content: 'Starting swag engine...<br />',
     delay: 50,
   },
   {
-    text: '<span>Buying more ramen...</span><br />',
+    content: 'Fetching developer tools...<br />',
     delay: 50,
   },
   {
-    text: '<span>Never giving you up...</span><br />',
+    content: 'Buying more ramen...<br />',
     delay: 50,
   },
   {
-    text: '<span>Never letting you go...</span><br />',
+    content: 'Kissing Christine...<br />',
+    delay: 50
+  },
+  {
+    content: 'Never giving you up...<br />',
     delay: 50,
   },
   {
-    text: '<span>Writing romantic poetry...</span><br />',
+    content: 'Never letting you go...<br />',
     delay: 50,
   },
   {
-    text: '<span>Compiling...</span><br />',
+    content: 'Writing romantic poetry...<br />',
     delay: 50,
   },
   {
-    text: '<span>Compressing files...</span><br />',
+    content: 'Compiling...<br />',
     delay: 50,
   },
   {
-    text: '<span>Fluffing unicorns...</span><br />',
+    content: 'Compressing files...<br />',
     delay: 50,
   },
   {
-    text: '<span>Pushing to GitHub...</span><br />',
+    content: 'Fluffing unicorns...<br />',
     delay: 50,
   },
   {
-    text: '<span>Resolving merge conflicts...</span><br />',
+    content: 'Pushing to GitHub...<br />',
     delay: 50,
   },
   {
-    text: '<span>Searching StackOverflow...</span><br />',
+    content: 'Resolving merge conflicts...<br />',
     delay: 50,
   },
   {
-    text: '<span>Playing League of Legends...</span><br />',
+    content: 'Searching StackOverflow...<br />',
     delay: 50,
   },
   {
-    text: '<span>Arguing with QA...</span><br />',
+    content: 'Playing League of Legends...<br />',
     delay: 50,
   },
   {
-    text: '<span>Fending off zombies...</span><br />',
+    content: 'Arguing with QA...<br />',
     delay: 50,
   },
   {
-    text: '<span>Consuming caffeine...</span><br />',
+    content: 'Fending off zombies...<br />',
     delay: 50,
   },
   {
-    text: '<span>Quantum bogosorting...</span><br />',
+    content: 'Consuming caffeine...<br />',
     delay: 50,
   },
   {
-    text: '<span>Fixing bugs...</span><br />',
+    content: 'Quantum bogosorting...<br />',
     delay: 50,
   },
   {
-    text: '<span>Playing piano...</span><br />',
+    content: 'Fixing bugs...<br />',
     delay: 50,
   },
   {
-    text: '<span>Shooting hoops...</span><br />',
+    content: 'Playing piano...<br />',
     delay: 50,
   },
   {
-    text: '<span>Solving Rubik\'s cube...</span><br />',
+    content: 'Shooting hoops...<br />',
     delay: 50,
   },
   {
-    text: '<span>Sorting in O(n) time...</span><br />',
+    content: 'Solving Rubik\'s cube...<br />',
     delay: 50,
   },
   {
-    text: '<span>Doing magic...</span><br />',
+    content: 'Sorting in O(n) time...<br />',
     delay: 50,
   },
   {
-    text: '<span>Blowing stuff up...</span><br />',
+    content: 'Doing magic...<br />',
     delay: 50,
   },
   {
-    text: '<span>Toasting s\'mores...</span><br />',
+    content: 'Blowing stuff up...<br />',
     delay: 50,
   },
   {
+    content: 'Toasting s\'mores...<br />',
+    delay: 2000,
+  },
+  {
+    content: 'Alvin Lin is a software developer from New York City.' +
+        '<br /><br />',
     clear: true,
-    delay: 2000,
+    delay: 1000
   },
   {
-    text: '<span>Alvin Lin is a software developer from New York City.' +
-        '</span><br />',
+    content: 'Experienced with:<br />',
+    delay: 1000
+  },
+  {
+    content: 'Full Stack Web Development',
+    delay: 800,
+    teletype: true,
+    speed: 10
+  },
+  {
+    content: '<br />',
     delay: 0
   },
   {
-    text: '<span>Experienced with:</span><br />',
+    content: 'Android Development',
+    teletype: true,
+    speed: 10,
+    delay: 800
+  },
+  {
+    content: '<br />',
+    delay: 0
+  },
+  {
+    content: 'Project Management and Deployment',
+    teletype: true,
+    speed: 10,
     delay: 1000
   },
   {
-    text: '<span>Full Stack Web Development</span><br />',
+    content: '<br /><br />Main Languages:<br />',
     delay: 1000
   },
   {
-    text: '<span>Project Management and Deployment</span><br />',
+    content: 'HTML/CSS/JavaScript/NodeJS, Python, Java',
+    teletype: true,
+    speed: 10,
     delay: 1000
   },
   {
-    text: '<span></span>',
+    content: '<br /><br />Technologies Used:<br />',
     delay: 1000
+  },
+  {
+    content: 'Git/GitHub, AWS, DigitalOcean, Heroku, ' +
+        'MongoDB, SQL.',
+    teletype: true,
+    speed: 10
   }
 ];

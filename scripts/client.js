@@ -25,17 +25,29 @@ var outputToWindow = function(data, finishedCallback) {
   $('#terminal2').empty();
   var delayCounter = 0;
   for (var i = 0; i < data.length; ++i) {
-    delayCounter += data[i].delay;
-    (function(text, clear, delay) {
-      setTimeout(function() {
-        if (clear) {
-          $('#terminal2').empty();
-        } else {
-          $('#terminal2').append(text);
+    if (data[i].teletype) {
+      for (var letter of data[i].content) {
+        delayCounter += data[i].speed;
+        (function(char, delay) {
+          setTimeout(function() {
+            $('#terminal2').append(char);
+            $('#terminal2').scrollTop(999999);
+          }, delay);
+        })(letter, delayCounter);
+      }
+      delayCounter += data[i].delay;
+    } else {
+      (function(content, clear, delay) {
+        setTimeout(function() {
+          if (clear) {
+            $('#terminal2').empty();
+          }
+          $('#terminal2').append(content);
           $('#terminal2').scrollTop(999999);
-        }
-      }, delay);
-    })(data[i].text, data[i].clear, delayCounter);
+        }, delay);
+      })(data[i].content, data[i].clear, delayCounter);
+      delayCounter += data[i].delay;
+    }
   }
   setTimeout(function() {
     finishedCallback();
