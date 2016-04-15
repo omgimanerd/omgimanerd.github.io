@@ -1,0 +1,99 @@
+<!--
+Author: Alvin Lin (alvin.lin.dev@gmail.com)
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alvin Lin</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet"
+  href="/public/bower/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet"
+  href="/public/bower/jquery.terminal/css/jquery.terminal.css" />
+  <link rel="stylesheet" type="text/css" href="/public/dist/minified.css" />
+
+  <script src="/public/bower/jquery/dist/jquery.min.js">
+  </script>
+  <script src="/public/bower/jquery.terminal/js/jquery.terminal-min.js">
+  </script>
+  <script src="/public/bower/jquery.terminal/js/jquery.mousewheel-min.js">
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div id="matrix"></div>
+
+    <div id="navigation">
+      <div class='top'>
+        <div class="clickable">
+          <a href="https://play.google.com/store/apps/developer?id=Alvin+Lin"
+          target="__blank" title="Apps">
+            <img src="/public/assets/img/play-store.png" />
+          </a>
+        </div>
+        <div class="clickable">
+          <a href="https://play.google.com/store/apps/details?id=io.github.omgimanerd.tap" target="_blank">
+            <img src="/public/assets/img/tap.png" title="Tap" />
+          </a>
+        </div>
+        <div class="clickable">
+          <a href="https://play.google.com/store/apps/details?id=io.github.omgimanerd.shockwave"
+          target="_blank">
+            <img src="/public/assets/img/shockwave.png" title="Shockwave" />
+          </a>
+        </div>
+        <div class="clickable">
+          <a href="https://play.google.com/store/apps/details?id=io.github.omgimanerd.bouncysquare" target="_blank">
+            <img src="/public/assets/img/bouncysquare.png"
+              title="Bouncy Square" />
+          </a>
+        </div>
+      </div>
+      <div class='bottom'>
+        <div class="clickable">
+          <a href="https://github.com/omgimanerd" target="_blank">
+            <img src="/public/assets/img/github.png" title="GitHub" />
+          </a>
+        </div>
+        <div class="clickable">
+          <a href="https://twitter.com/omgimanerd" target="_blank">
+            <img src="/public/assets/img/twitter.png" title="Twitter" />
+          </a>
+        </div>
+        <div class="clickable">
+          <a href="mailto:alvin.lin.dev@gmail.com" target="_blank">
+            <img src="/public/assets/img/email.png" title="Email" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="options" class='window'>
+      <div class="topbar">
+        <a id="close-sidebar">
+          <span class="fa fa-chevron-right"></span>
+        </a>
+      </div>
+    </div>
+
+    <div id="terminal" class='window'>
+    </div>
+
+    <div id='terminal2' class='window'>
+      Waiting for input...
+    </div>
+  </div>
+</body>
+
+{% if dev_mode %}
+  <script src="/public/js/client.js"></script>
+  <script src="/public/js/data.js"></script>
+{% else %}
+  <script src="/public/dist/minified.js"></script>
+{% endif %}
+
+</html>

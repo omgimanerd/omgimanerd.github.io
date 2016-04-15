@@ -16,12 +16,20 @@
     "url": "https://github.com/omgimanerd/omgimanerd.github.io/issues"
   },
   "homepage": "https://github.com/omgimanerd/omgimanerd.github.io",
-  "devDependencies": {
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
     "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.0",
     "gulp-less": "^3.0.5",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "jshint": "^2.9.1",
     "less-plugin-autoprefix": "^1.5.1",
-    "less-plugin-clean-css": "^1.5.1"
+    "less-plugin-clean-css": "^1.5.1",
+    "merge-stream": "^1.0.0",
+    "morgan": "^1.7.0",
+    "swig": "^1.4.2"
   }
 }
