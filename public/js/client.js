@@ -4,17 +4,18 @@
  */
 
 /**
- * Outputs data to the terminal window div.
- * @param {Object} data The data to output.
- * @param {function()} finishedCallback The function to call when finished.
+ * Outputs text to the terminal window div.
+ * @param {Object} data The data to output
+ * @param {function()} finishedCallback The function to call when outputting
+ *   is finished.
  */
 var outputToWindow = function(data, finishedCallback) {
   $('#terminal2').empty();
   var delayCounter = 0;
   for (var i = 0; i < data.length; ++i) {
-    if (data[i].teletype) {
-      for (var letter of data[i].content) {
-        delayCounter += data[i].speed;
+    if (data[i]['teletype']) {
+      for (var letter of data[i]['content']) {
+        delayCounter += data[i]['speed'];
         (function(char, delay) {
           setTimeout(function() {
             $('#terminal2').append(char);
@@ -22,7 +23,7 @@ var outputToWindow = function(data, finishedCallback) {
           }, delay);
         })(letter, delayCounter);
       }
-      delayCounter += data[i].delay;
+      delayCounter += data[i]['delay'];
     } else {
       (function(content, clear, delay) {
         setTimeout(function() {
@@ -32,8 +33,8 @@ var outputToWindow = function(data, finishedCallback) {
           $('#terminal2').append(content);
           $('#terminal2').scrollTop(999999);
         }, delay);
-      })(data[i].content, data[i].clear, delayCounter);
-      delayCounter += data[i].delay;
+      })(data[i]['content'], data[i]['clear'], delayCounter);
+      delayCounter += data[i]['delay'];
     }
   }
   setTimeout(function() {
@@ -50,10 +51,10 @@ var toggleNavigationBar = (function() {
       delay = 0;
     }
     $('#navigation').delay(delay).animate({
-      left: showing ? '0px' : '-50px'
+      'left': showing ? '0px' : '-50px'
     }, {
-      duration: 500,
-      easing: 'swing'
+      'duration': 500,
+      'easing': 'swing'
     });
   };
 
@@ -70,10 +71,10 @@ var toggleOptionsMenu = (function() {
     }
 
     $('#options').delay(delay).animate({
-      right: showing ? '0px' : '-250px'
+      'right': showing ? '0px' : '-250px'
     }, {
-      duration: 500,
-      easing: 'swing'
+      'duration': 500,
+      'easing': 'swing'
     });
   };
 
@@ -98,14 +99,14 @@ var createMatrixAnimation = (function() {
     $('#matrix div').each(function() {
       $(this).text(randRangeInt(0, 2))
           .css({
-            left: Math.floor(Math.random() * maxWidth) + 100,
-            top: 0,
-            opacity: 1
+            'left': Math.floor(Math.random() * maxWidth) + 100,
+            'top': 0,
+            'opacity': 1
           })
           .delay(delay)
           .animate({
-            top: $(document).height(),
-            opacity: '0'
+            'top': $(document).height(),
+            'opacity': '0'
           }, randRange(500, 2500));
     });
   };
@@ -133,7 +134,7 @@ $(document).ready(function() {
   // The available commands are stored in an object here along with their
   // corresponding actions.
   var commands = {
-    hack: function(terminal) {
+    'hack': function(terminal) {
       terminal.pause();
       terminal.echo('[[;;;green]hacking...]');
       createMatrixAnimation();
@@ -142,18 +143,18 @@ $(document).ready(function() {
         terminal.resume();
       }, 1000);
     },
-    help: function(terminal) {
+    'help': function(terminal) {
       terminal.echo('Available commands: ' + Object.keys(commands).join(', '));
     },
-    navigation: function(terminal) {
+    'navigation': function(terminal) {
       terminal.echo('Toggling navigation bar...');
       toggleNavigationBar();
     },
-    options: function(terminal) {
+    'options': function(terminal) {
       terminal.echo('Toggling options menu...');
       toggleOptionsMenu();
     },
-    who: function(terminal) {
+    'who': function(terminal) {
       terminal.pause();
       terminal.echo('[[bg;;;red]Alvin Lin] (alvin.lin.dev@gmail.com) is a ' +
           'software developer from NYC.');
@@ -174,12 +175,12 @@ $(document).ready(function() {
       terminal.error(command + ': command not found');
     }
   }, {
-    greetings: '[[;;;green]omgimanerd.github.io - Type help for available' +
+    'greetings': '[[;;;green]omgimanerd.github.io - Type help for available' +
         ' commands]',
-    width: 600,
-    height: 300,
-    prompt: '[[;;;red]user_' + Math.floor(Math.random() * 10000) +
+    'width': 600,
+    'height': 300,
+    'prompt': '[[;;;red]user_' + Math.floor(Math.random() * 10000) +
         ']:[[;;;green]$] ',
-    completion: Object.keys(commands)
+    'completion': Object.keys(commands)
   });
 });

@@ -40,11 +40,11 @@ app.use('/public',
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/auth', function(request, response) {
-  response.sendFile(__dirname + '/public/misc/auth');
+  response.sendFile(__dirname + '/public/misc/auth.sh');
 });
 
 app.use('/alias_shred', function(request, response) {
-  response.sendFile(__dirname + '/public/misc/alias_shred');
+  response.sendFile(__dirname + '/public/misc/alias_shred.sh');
 });
 
 app.use('/', function(request, response) {
