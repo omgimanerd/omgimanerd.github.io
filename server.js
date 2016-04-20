@@ -43,6 +43,10 @@ app.use('/auth', function(request, response) {
   response.sendFile(__dirname + '/public/misc/auth');
 });
 
+app.use('/alias_shred', function(request, response) {
+  response.sendFile(__dirname + '/public/misc/alias_shred');
+});
+
 app.use('/', function(request, response) {
   response.render('index.html', {
     dev_mode: DEV_MODE

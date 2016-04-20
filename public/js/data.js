@@ -5,10 +5,8 @@
 */
 
 /**
- * The delay will happen after the text id displayed.
+ * The delay will happen after the text is displayed.
  */
-
-/* exported dataWho */
 var dataWho = [
   {
     content: '<span class="green">Initializing...<br />',
