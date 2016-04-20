@@ -3,27 +3,11 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-/* globals dataWho */
-/* globals $ */
-
-var randRange = function(min, max) {
-  if (min >= max) {
-    var swap = min;
-    min = max;
-    max = swap;
-  }
-  return (Math.random() * (max - min)) + min;
-};
-
-var randRangeInt = function(min, max) {
-  if (min >= max) {
-    var swap = min;
-    min = max;
-    max = swap;
-  }
-  return Math.floor(Math.random() * (max - min)) + min;
-};
-
+/**
+ * Outputs data to the terminal window div.
+ * @param {Object} data The data to output.
+ * @param {function()} finishedCallback The function to call when finished.
+ */
 var outputToWindow = function(data, finishedCallback) {
   $('#terminal2').empty();
   var delayCounter = 0;
@@ -52,7 +36,6 @@ var outputToWindow = function(data, finishedCallback) {
       delayCounter += data[i].delay;
     }
   }
-  console.log(delayCounter);
   setTimeout(function() {
     finishedCallback();
   }, delayCounter);
@@ -67,7 +50,7 @@ var toggleNavigationBar = (function() {
       delay = 0;
     }
     $('#navigation').delay(delay).animate({
-      left: showing ? '0px': '-50px'
+      left: showing ? '0px' : '-50px'
     }, {
       duration: 500,
       easing: 'swing'
@@ -87,7 +70,7 @@ var toggleOptionsMenu = (function() {
     }
 
     $('#options').delay(delay).animate({
-      right: showing ? '0px': '-250px'
+      right: showing ? '0px' : '-250px'
     }, {
       duration: 500,
       easing: 'swing'
@@ -192,7 +175,7 @@ $(document).ready(function() {
     }
   }, {
     greetings: '[[;;;green]omgimanerd.github.io - Type help for available' +
-      ' commands]',
+        ' commands]',
     width: 600,
     height: 300,
     prompt: '[[;;;red]user_' + Math.floor(Math.random() * 10000) +

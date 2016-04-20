@@ -5,8 +5,6 @@
 
 // Constants
 var DEV_MODE = false;
-var FRAME_RATE = 1000 / 60;
-var LOBBY_UPDATE_RATE = 500;
 var IP = process.env.IP || 'localhost';
 var PORT_NUMBER = process.env.PORT || 5000;
 
@@ -42,7 +40,7 @@ app.use('/public',
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/auth', function(request, response) {
-  response.sendFile(__dirname + '/public/misc/auth.sh');
+  response.sendFile(__dirname + '/public/misc/auth');
 });
 
 app.use('/', function(request, response) {
@@ -57,5 +55,4 @@ server.listen(PORT_NUMBER, function() {
   if (DEV_MODE) {
     console.log('DEVELOPMENT MODE ENABLED: SERVING UNCOMPILED JAVASCRIPT!');
   }
-
 });
