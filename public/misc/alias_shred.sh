@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo "
 function cat() {
   echo \"\$(< \$@)\"

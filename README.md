@@ -5,10 +5,11 @@ You are free to use any of the source code in this repository so long as you
 link back here or credit me as its source.
 
 ## Branches
-  - apple - The oldest version, contains the JavaScript prototypes of my
+  - 1.0.0 - The oldest version, contains the JavaScript prototypes of my
     Android apps
-  - pineapple - The second version, contains the futuristic themed build
-  - starfruit - The latest version, with the terminal emulator
+  - 2.0.0 - The second version, contains the futuristic themed build
+  - 3.0.0 - The latest version, with the terminal emulator and scripts, hosted
+    instead of static
 
 ## License
 Copyright &copy; Alvin Lin 2016
