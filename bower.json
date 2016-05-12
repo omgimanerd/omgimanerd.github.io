@@ -19,6 +19,7 @@
     "jquery": "^2.2.3",
     "ubuntu-font": "*",
     "font-awesome": "fontawesome#^4.5.0",
-    "jquery.terminal": "^0.9.3"
+    "jquery.terminal": "^0.9.3",
+    "Materialize": "materialize#^0.97.6"
   }
 }
