@@ -10,13 +10,13 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet"
-        href="http://fonts.googleapis.com/icon?family=Material+Icons" />
+      href="/public/bower/material-design-icons/iconfont/material-icons.css" />
     <link rel="stylesheet"
-        href="/public/bower/font-awesome/css/font-awesome.min.css" />
+      href="/public/bower/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet"
-        href="/public/bower/Materialize/dist/css/materialize.min.css" />
+      href="/public/bower/Materialize/dist/css/materialize.min.css" />
     <link rel="stylesheet"
-        href="/public/dist/minified.css" />
+      href="/public/dist/minified.css" />
 
     <script src="/public/bower/jquery/dist/jquery.min.js">
     </script>
@@ -25,9 +25,11 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
   </head>
 
   <body>
+
+    <!-- NAVBAR -->
     <div class="navbar-fixed">
       <nav>
-        <div class="nav-wrapped blue lighten-3">
+        <div class="nav-wrapped blue-grey darken-3">
           Alvin Lin
         </div>
       </nav>
@@ -41,78 +43,51 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
             src="/public/img/me.png" />
       </div>
     </div>
+
+
     <div class="container">
       <div class="row">
         <h2 class="center-align">My name is Alvin Lin</h1>
       </div>
+    </div>
+
+    <div class="container">
+      <div class="divider"></div>
+    </div>
+
+    <!-- APPS AND PROJECTS-->
+    <div class="container">
       <div class="row">
-        <div class="col l4 m4 s12">
-          <div class="card">
+        {% for app in renderData.apps %}
+        <div class="col s12 m12 l4">
+          <div class="card teal lighten-5 z-depth-5">
             <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="/public/img/bouncy_square.png" />
+              <img class="activator" src="{{ app.image }}" />
             </div>
             <div class="card-content">
               <span class="card-title activator">
-                Bouncy Square
+                {{ app.name }}
                 <i class="material-icons right">more_vert</i>
               </span>
             </div>
             <div class="card-action">
-              Get It HERE!
+              <a href="{{ app.link }}">Get It Here!</a>
             </div>
             <div class="card-reveal">
               <span class="card-title activator">
-                Bouncy Square
+                {{ app.name }}
                 <i class="material-icons right">close</i>
               </span>
+              <p>
+                {{ app.description }}
+              </p>
             </div>
           </div>
         </div>
-        <div class="col l4 m4 s12">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="/public/img/shockwave.png" />
-            </div>
-            <div class="card-content">
-              <span class="card-title activator">
-                Shockwave
-                <i class="material-icons right">more_vert</i>
-              </span>
-            </div>
-            <div class="card-action">
-              Get It HERE!
-            </div>
-            <div class="card-reveal">
-              <span class="card-title activator">
-                Shockwave
-                <i class="material-icons right">close</i>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="col l4 m4 s12">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="/public/img/tap.png" />
-            </div>
-            <div class="card-content">
-              <span class="card-title activator">
-                Tap
-                <i class="material-icons right">more_vert</i>
-              </span>
-            </div>
-            <div class="card-action">
-              Get It HERE!
-            </div>
-            <div class="card-reveal">
-              <span class="card-title activator">
-                Tap
-                <i class="material-icons right">close</i>
-              </span>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
+    </div>
+    <div class="container">
       <div class="row">
         <div class="col l3 m6 s12">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae ante lacus. Cras id accumsan est, quis porttitor urna. Maecenas dictum quis orci eu luctus. Fusce suscipit neque a tellus porttitor faucibus. Integer finibus mauris quam, quis ullamcorper tellus aliquet sit amet. Vestibulum eget ante quis diam interdum tincidunt at posuere erat. Aliquam bibendum elementum sapien, nec efficitur ex molestie at.
@@ -122,22 +97,109 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
         </div>
         <div class="col l3 m6 s12">
         Etiam efficitur ultricies urna, quis vestibulum ipsum sollicitudin quis. Sed in convallis sapien. Aenean id nunc arcu. Nulla ut diam vulputate libero imperdiet bibendum. Fusce maximus, nisi nec pharetra dictum, enim odio scelerisque purus, eu aliquet sem mi et odio. Quisque vel sem sollicitudin augue tristique eleifend sed vel ante. Aliquam pretium vel lorem in molestie. Maecenas tempus congue nunc, non aliquet mi dignissim quis. Maecenas fermentum dui eleifend massa euismod gravida eget in orci. Pellentesque non congue nulla. Curabitur tincidunt, ante eget mattis congue, metus massa placerat nisi, at suscipit leo nibh nec velit. Suspendisse eros magna, finibus eget semper porta, tempus ut arcu.
-
         Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris vehicula pellentesque ante, et tristique nunc bibendum in. Pellentesque sodales interdum augue, a pulvinar ex tristique eget. Praesent posuere velit magna, vitae egestas libero dignissim et. Nunc id massa eu orci pharetra auctor. Vestibulum faucibus, tortor ut varius congue, felis ligula condimentum mauris, a commodo enim nibh non ipsum. Praesent est lectus, finibus ut lacus vitae, tincidunt varius turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In in cursus est. Suspendisse potenti. Vivamus molestie faucibus nisl, eget commodo augue dapibus id. Mauris condimentum justo at eros elementum, at egestas dolor convallis. Aenean sed fermentum ligula. Suspendisse tincidunt, neque ut pulvinar vehicula, arcu tellus euismod ante, eu condimentum ante enim et turpis.
+
         </div>
         <div class="col l3 m6 s12">
         Vestibulum leo elit, laoreet ut turpis ac, egestas rhoncus velit. Praesent nec augue pretium, finibus nisl quis, auctor arcu. Morbi vitae augue in leo pulvinar suscipit at convallis lectus. Fusce nec egestas mauris. Nulla facilisis, turpis id convallis vestibulum, nulla ipsum feugiat ipsum, in rutrum nisl tellus a dui. Praesent pulvinar libero quis ex gravida, quis cursus purus semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras nec metus enim. Mauris sed scelerisque odio. Nam vitae congue lacus. Curabitur iaculis orci non tincidunt porta. Duis consectetur diam orci, a suscipit massa hendrerit vel. Curabitur convallis vel risus vel eleifend.
         </div>
       </div>
     </div>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 l6">
+            <h5 class="white-text">Want to contact me?</h5>
+            Email me at
+            <a href="mailto:alvin.lin.dev@gmail.com"
+              class="deep-purple-text darken-4-text">
+              alvin&#46;lin&#46;dev&#64;gmail&#46;com
+            </a>
+            or
+            <a class="modal-trigger deep-purple-text darken-4-text"
+              href="#contact-modal">
+              leave a message here.
+            </a>
+
+            <div id="contact-modal" class="modal">
+              <div class="modal-content container">
+                <h4 class="center-align">Leave A Message</h4>
+                <div class="divider"></div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="name" type="text" class="validate"
+                      autocomplete="off" />
+                    <label for="name" data-error="Who are you?">Name</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <input id="email" type="email" class="validate"
+                      autocomplete="off" />
+                    <label for="email" data-error="Invalid email!">Email</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">subject</i>
+                    <textarea id="message" class="materialize-textarea">
+                    </textarea>
+                    <label for="message">Message</label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a class="waves-effect waves-light btn center-align send">
+                  Send
+                  <i class="material-icons right">send</i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6 l6 right-align">
+            <h5 class="white-text">Connect with me</h5>
+            <a href="https://twitter.com/omgimanerd"
+              class="twitter-follow-button"
+              data-show-count="true"
+              data-size="large">
+              Follow @omgimanerd
+            </a>
+            <a class="github-button" href="https://github.com/omgimanerd"
+              data-style="mega"
+              data-count-href="/omgimanerd/followers"
+              data-count-api="/users/omgimanerd#followers"
+              data-count-aria-label="# followers on GitHub"
+              aria-label="Follow @omgimanerd on GitHub">
+              Follow @omgimanerd
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          &copy; Alvin Lin 2016. Made with Materialize and
+          <span class="fa fa-heart red-text accent-4-text"></span>
+        </div>
+      </div>
+    </footer>
+
   </body>
 
   <script>
-
-  $(document).ready(function() {
-    $('.parallax').parallax();
-  });
-
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
   </script>
+  <script async defer id="github-bjs"
+          src="https://buttons.github.io/buttons.js">
+  </script>
+
+  {% if dev_mode %}
+  <script src="/public/js/client.js">
+  </script>
+  {% else %}
+  <script src="/public/dist/minified.js">
+  </script>
+  {% endif %}
 
 </html>

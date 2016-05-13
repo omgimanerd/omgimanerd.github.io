@@ -19,12 +19,20 @@ process.argv.forEach(function(value, index, array) {
 var assert = require('assert');
 var bodyParser = require('body-parser');
 var express = require('express');
+var gmailSend = require('gmail-send');
 var http = require('http');
 var morgan = require('morgan');
 var swig = require('swig');
 
+var renderData = require('./shared/data');
+
 // Initialization.
 var app = express();
+var send = gmailSend({
+  user: process.env.GMAIL_ACCOUNT,
+  pass: process.env.GMAIL_APPLICATION_PASSWORD,
+  to: process.env.GMAIL_ACCOUNT
+});
 var server = http.Server(app);
 
 app.engine('html', swig.renderFile);
@@ -47,10 +55,32 @@ app.use('/alias_shred', function(request, response) {
   response.sendFile(__dirname + '/public/misc/alias_shred.sh');
 });
 
-app.use('/', function(request, response) {
+app.get('/', function(request, response) {
   response.render('index.html', {
-    dev_mode: DEV_MODE
+    dev_mode: DEV_MODE,
+    renderData: renderData
   });
+});
+
+app.post('/message', function(request, response) {
+  if (DEV_MODE) {
+    response.send({
+      error: null,
+      result: null
+    });
+  } else {
+    send({
+      from: request.body.email,
+      replyTo: request.body.email,
+      subject: 'omgimanerd.tech - Message from ' + request.body.name,
+      text: request.body.message
+    }, function(error, result) {
+      response.send({
+        error: error,
+        result: result
+      });
+    });
+  }
 });
 
 // Starts the server.
@@ -58,5 +88,11 @@ server.listen(PORT_NUMBER, function() {
   console.log('STARTING SERVER ON PORT ' + PORT_NUMBER);
   if (DEV_MODE) {
     console.log('DEVELOPMENT MODE ENABLED: SERVING UNCOMPILED JAVASCRIPT!');
+  }
+  if (!process.env.GMAIL_ACCOUNT) {
+    throw new Error('No Gmail account specified!');
+  }
+  if (!process.env.GMAIL_APPLICATION_PASSWORD) {
+    throw new Error('No Gmail application password specified!');
   }
 });

@@ -20,6 +20,7 @@
     "ubuntu-font": "*",
     "font-awesome": "fontawesome#^4.5.0",
     "jquery.terminal": "^0.9.3",
-    "Materialize": "materialize#^0.97.6"
+    "Materialize": "materialize#^0.97.6",
+    "material-design-icons": "^2.2.3"
   }
 }
