@@ -1,4 +1,6 @@
 node_modules
 public/bower
 public/dist
+.gulp-scss-cache
+.sass-cache
 setup

@@ -7,6 +7,7 @@
 var gulp = require('gulp');
 
 var compilerPackage = require('google-closure-compiler');
+var cleanCss = require('gulp-clean-css');
 var gjslint = require('gulp-gjslint');
 var rename = require('gulp-rename');
 var scss = require('gulp-scss');
@@ -56,7 +57,8 @@ gulp.task('js-compile', function() {
 
 gulp.task('scss', function() {
   return gulp.src(['./public/scss/*.scss'])
-    .pipe(scss({ 'bundleExec': true }))
+    .pipe(scss())
+    .pipe(cleanCss())
     .pipe(rename('minified.css'))
     .pipe(gulp.dest('./public/dist'));
 });
