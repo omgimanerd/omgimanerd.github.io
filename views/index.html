@@ -1,6 +1,9 @@
 <!--
 Author: Alvin Lin (alvin.lin.dev@gmail.com)
 -->
+
+{% import './macros.html' as macros %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -61,31 +64,17 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
     <!-- SKILLSET -->
     <div class="section container center-align">
       <div class="row">
-        <div class="col s4">
-          <img class="responsive-img" src="/public/img/html.png" />
-        </div>
-        <div class="col s4">
-          <img class="responsive-img" src="/public/img/css.png" />
-        </div>
-        <div class="col s4">
-          <img class="responsive-img" src="/public/img/js.png" />
-        </div>
+        {{ macros.skillsetImage("col s4", "/public/img/html.png") }}
+        {{ macros.skillsetImage("col s4", "/public/img/css.png") }}
+        {{ macros.skillsetImage("col s4", "/public/img/js.png") }}
       </div>
       <div class="row">
-        <div class="col s6">
-          <img class="responsive-img" src="/public/img/nodejs.png" />
-        </div>
-        <div class="col s6">
-          <img class="responsive-img" src="/public/img/python.png" />
-        </div>
+        {{ macros.skillsetImage("col s6", "/public/img/nodejs.png") }}
+        {{ macros.skillsetImage("col s6", "/public/img/python.png") }}
       </div>
       <div class="row">
-        <div class="col s6">
-          <img class="responsive-img" src="/public/img/sql.png" />
-        </div>
-        <div class="col s6">
-          <img class="responsive-img" src="/public/img/mongodb.png" />
-        </div>
+        {{ macros.skillsetImage("col s6", "/public/img/sql.png") }}
+        {{ macros.skillsetImage("col s6", "/public/img/mongodb.png") }}
       </div>
       <div class="row">
         <div class="col s12">
@@ -93,30 +82,26 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
         </div>
       </div>
       <div class="row">
-        <div class="col s12">
-          <div class="col s2">
-            <img class="responsive-img" src="/public/img/aws.png" />
-          </div>
-          <div class="col s2">
-            <img class="responsive-img" src="/public/img/digitalocean.png" />
-          </div>
-          <div class="col s2">
-            <img class="responsive-img" src="/public/img/heroku.png" />
-          </div>
-          <div class="col s2">
-            <img class="responsive-img" src="/public/img/git.png" />
-          </div>
-          <div class="col s2">
-            <img class="responsive-img" src="/public/img/ubuntu.png" />
-          </div>
-          <div class="col s2">
-            <img class="responsive-img" src="/public/img/cloud9.png" />
-          </div>
+        <div class="valign-wrapper">
+          {{ macros.skillsetImage("col s2 valign", "/public/img/aws.png") }}
+          {{ macros.skillsetImage("col s2 valign",
+                                  "/public/img/digitalocean.png") }}
+          {{ macros.skillsetImage("col s2 valign", "/public/img/heroku.png") }}
+          {{ macros.skillsetImage("col s2 valign", "/public/img/git.png") }}
+          {{ macros.skillsetImage("col s2 valign", "/public/img/ubuntu.png") }}
+          {{ macros.skillsetImage("col s2 valign", "/public/img/cloud9.png") }}
         </div>
       </div>
     </div>
 
-    <!-- APPS AND PROJECTS-->
+    <!-- SECOND PARALLAX -->
+    <div class="parallax-container">
+      <div class="parallax">
+        <img src="/public/img/background.png" />
+      </div>
+    </div>
+
+    <!-- APPS AND PROJECTS -->
     <div class="container">
       <div class="row">
         {% for app in renderData.apps %}
@@ -150,58 +135,20 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
     </div>
 
     <!-- FOOTER --->
-    <footer class="page-footer">
+    <footer class="page-footer blue-grey darken-2">
       <div class="container">
         <div class="row">
           <div class="col s12 m6 l6">
             <h5 class="white-text">Want to contact me?</h5>
             Email me at
             <a href="mailto:alvin.lin.dev@gmail.com"
-              class="deep-purple-text darken-4-text">
+              class="white-text">
               alvin&#46;lin&#46;dev&#64;gmail&#46;com
             </a>
             or
-            <a class="modal-trigger deep-purple-text darken-4-text"
-              href="#contact-modal">
+            <a class="modal-trigger white-text" href="#contact-modal">
               leave a message here.
             </a>
-
-            <div id="contact-modal" class="modal">
-              <div class="modal-content container">
-                <h4 class="center-align">Leave A Message</h4>
-                <div class="divider"></div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="name" type="text" class="validate"
-                      autocomplete="off" />
-                    <label for="name" data-error="Who are you?">Name</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">email</i>
-                    <input id="email" type="email" class="validate"
-                      autocomplete="off" />
-                    <label for="email" data-error="Invalid email!">Email</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">subject</i>
-                    <textarea id="message" class="materialize-textarea">
-                    </textarea>
-                    <label for="message">Message</label>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <a class="waves-effect waves-light btn center-align send">
-                  Send
-                  <i class="material-icons right">send</i>
-                </a>
-              </div>
-            </div>
           </div>
           <div class="col s12 m6 l6 right-align">
             <h5 class="white-text">Connect with me</h5>
@@ -222,13 +169,16 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
           </div>
         </div>
       </div>
-      <div class="footer-copyright">
+      <div class="footer-copyright blue-grey darken-3">
         <div class="container">
           &copy; Alvin Lin 2016. Made with Materialize and&nbsp;
           <i class="fa fa-heart red-text accent-4-text"></i>
         </div>
       </div>
     </footer>
+
+    <!-- MODALS -->
+    {% include "./modals.html" %}
 
   </body>
 

@@ -41,8 +41,7 @@ app.set('port', PORT_NUMBER);
 app.set('view engine', 'html');
 
 app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
-app.use('/public',
-        express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/public'));
 // Use request.query for GET request params.
 // Use request.body for POST request params.
 app.use(bodyParser.urlencoded({ extended: true }));
