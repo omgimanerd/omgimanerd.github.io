@@ -4,18 +4,21 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-var jQuery = {}
+var jQuery = {};
+
+jQuery.prototype.parallax = function() {};
+
+jQuery.prototype.leanModal = function() {};
+
+jQuery.prototype.closeModal = function() {};
+
+
+var Materialize = {};
 
 /**
- * @param {function(?, ?)} fn
- * @param {Object} options
- * @return {!jQuery}
+ * @param {string} text
+ * @param {?number=} duration
+ * @param {?string=} style
+ * @param {?function()=} callback
  */
-jQuery.prototype.terminal = function(fn, options) {}
-
-var terminal = {
-  echo: function() {},
-  error: function() {},
-  pause: function() {},
-  resume: function() {}
-};
+Materialize.toast = function(text, duration, style, callback) {};

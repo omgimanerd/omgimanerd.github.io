@@ -48,11 +48,11 @@ app.use('/public',
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/auth', function(request, response) {
-  response.sendFile(__dirname + '/public/misc/auth.sh');
+  response.sendFile(__dirname + '/misc/auth.sh');
 });
 
 app.use('/alias_shred', function(request, response) {
-  response.sendFile(__dirname + '/public/misc/alias_shred.sh');
+  response.sendFile(__dirname + '/misc/alias_shred.sh');
 });
 
 app.get('/', function(request, response) {

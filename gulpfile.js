@@ -8,10 +8,8 @@ var gulp = require('gulp');
 
 var compilerPackage = require('google-closure-compiler');
 var gjslint = require('gulp-gjslint');
-var less = require('gulp-less');
 var rename = require('gulp-rename');
-var lessAutoprefix = require('less-plugin-autoprefix');
-var lessCleancss = require('less-plugin-clean-css');
+var scss = require('gulp-scss');
 var path = require('path');
 
 var getClosureCompilerConfiguration = function(outputFile) {
@@ -29,19 +27,7 @@ var getClosureCompilerConfiguration = function(outputFile) {
   });
 };
 
-var getLessConfiguration = function() {
-  var autoprefix = new lessAutoprefix({
-    browsers: ["last 2 versions"]
-  });
-  var cleancss = new lessCleancss({
-    advanced: true
-  });
-  return less({
-    plugins: [autoprefix, cleancss]
-  });
-};
-
-gulp.task('default', ['js-lint', 'js-compile', 'less']);
+gulp.task('default', ['js-lint', 'js-compile', 'scss']);
 
 gulp.task('js', ['js-lint', 'js-compile']);
 
@@ -68,28 +54,21 @@ gulp.task('js-compile', function() {
     .pipe(gulp.dest('./public/dist'));
 });
 
-gulp.task('less', function() {
-  return gulp.src(['./public/less/*.less'])
-    .pipe(getLessConfiguration())
+gulp.task('scss', function() {
+  return gulp.src(['./public/scss/*.scss'])
+    .pipe(scss({ 'bundleExec': true }))
     .pipe(rename('minified.css'))
     .pipe(gulp.dest('./public/dist'));
 });
 
 gulp.task('watch-js', function() {
-  gulp.watch(['./extern/*.js',
-              './lib/**/*.js',
-              './public/js/**/*.js',
-              './shared/*.js' ], ['js-compile']);
+  gulp.watch(['./public/js/*.js',
+              './shared/*.js',
+              './extern/*.js'], ['js-compile']);
 });
 
-gulp.task('watch-less', function() {
-  gulp.watch('./public/less/*.less', ['less']);
+gulp.task('watch-scss', function() {
+  gulp.watch('./public/scss/*.scss', ['scss']);
 });
 
-gulp.task('watch', function() {
-  gulp.watch(['./extern/*.js',
-              './lib/**/*.js',
-              './public/js/**/*.js',
-              './shared/*.js' ], ['js-compile']);
-  gulp.watch('./public/less/*.less', ['less']);
-});
+gulp.task('watch', ['watch-js', 'watch-scss']);
