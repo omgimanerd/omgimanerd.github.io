@@ -4,14 +4,31 @@
  */
 
 module.exports = {
-  skillChips: [
+  skills: [
     {
-      text: 'CSS',
-      image: '/public/img/css.png'
+      text: 'HTML/CSS',
+      image: '/public/img/html.png',
+      value: 9
     },
     {
-      text: 'node.js',
-      image: '/public/img/nodejs.png'
+      text: 'CSS',
+      image: '/public/img/css.png',
+      value: 8
+    },
+    {
+      text: 'JavaScript',
+      image: '/public/img/js.png',
+      value: 10
+    },
+    {
+      text: 'NodeJS',
+      image: '/public/img/nodejs.png',
+      value: 10
+    },
+    {
+      text: 'Python',
+      image: '/public/img/python.png',
+      value: 9
     }
   ],
   apps: [
@@ -19,7 +36,7 @@ module.exports = {
       name: 'Bouncy Square',
       description: 'Bouncy Square is an addictive casual game involving hand-eye coordination. Tap the left and right sides of the screen to rotate the square clockwise and counterclockwise. Tilt your device to move the square left and right. To bounce, you have to land on the platform with the side of the square that has the same color as the platform. Get as far as you can!',
       link: 'https://play.google.com/store/apps/details?id=io.github.omgimanerd.bouncysquare',
-      image: '/public/img/bouncy_square.png'
+      image: '/public/img/bouncysquare.png'
     },
     {
       name: 'Shockwave',
