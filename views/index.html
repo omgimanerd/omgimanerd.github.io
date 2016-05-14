@@ -31,9 +31,16 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
 
     <!-- NAVBAR -->
     <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapped blue-grey darken-3">
-          Alvin Lin
+      <nav class="blue-grey darken-3">
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down table-of-contents">
+            <li>
+              <a href="#skills">Skills</a>
+            </li>
+            <li>
+              <a href="#projects">Projects</a>
+            </li>
+          </ul>
         </div>
       </nav>
     </div>
@@ -61,8 +68,8 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
       </div>
     </div>
 
-    <!-- SKILLSET -->
-    <div class="section container center-align">
+    <!-- SKILLS -->
+    <div class="section container center-align scrollspy" id="skills">
       <div class="row">
         {{ macros.skillsetImage("col s4", "/public/img/html.png") }}
         {{ macros.skillsetImage("col s4", "/public/img/css.png") }}
@@ -103,11 +110,14 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
     </div>
 
     <!-- APPS AND PROJECTS -->
-    <div class="container">
+    <div class="container scrollspy" id="projects">
+      <div class="row">
+        <h4 class="center-align">Projects</h4>
+      </div>
       <div class="row">
         {% for app in renderData.apps %}
         <div class="col s12 m12 l4">
-          <div class="card teal lighten-5 z-depth-5">
+          <div class="card teal lighten-5 hoverable">
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="{{ app.image }}" />
             </div>

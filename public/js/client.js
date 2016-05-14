@@ -6,6 +6,7 @@
 $(document).ready(function() {
   $('.parallax').parallax();
   $('.modal-trigger').leanModal();
+  $('.scrollspy').scrollSpy();
 
   $('#message').val('');
   $('#message').trigger('autoresize');
