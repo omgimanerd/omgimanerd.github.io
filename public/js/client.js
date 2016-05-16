@@ -28,7 +28,7 @@ $(document).ready(function() {
       $('#message').attr('disabled', false);
       $('#message').val('');
       $('.modal').closeModal();
-      if (result.error) {
+      if (result['error']) {
         Materialize.toast('There was an error! Try again later', 4000);
       } else {
         Materialize.toast('Message sent!', 4000);
@@ -38,9 +38,9 @@ $(document).ready(function() {
 
   Materialize.scrollFire([
     {
-      selector: '#skills',
-      offset: 350,
-      callback: function() {
+      'selector': '#skills',
+      'offset': 350,
+      'callback': function() {
         Materialize.showStaggeredList('#skills ul');
       }
     }

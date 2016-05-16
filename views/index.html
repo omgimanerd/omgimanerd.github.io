@@ -39,6 +39,9 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
               <a class="blue-text" href="#skills">Skills</a>
             </li>
             <li>
+              <a class="blue-text" href="#experience">Experience</a>
+            </li>
+            <li>
               <a class="blue-text" href="#projects">Projects</a>
             </li>
           </ul>
@@ -57,8 +60,8 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
       </div>
     </div>
 
-    <!-- HEAD -->
-    <div class="section container">
+    <!-- SKILLS -->
+    <div class="section container center-align scrollspy" id="skills">
       <div class="row center-align">
         <h2>
           My name is Alvin Lin
@@ -68,11 +71,7 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
           I am a full-stack web developer in New York. I work with:
         </h4>
       </div>
-    </div>
-
-    <!-- SKILLS -->
-    <div class="section container center-align scrollspy" id="skills">
-      <ul>
+      <ul class="row">
         <li class="row">
           {{ macros.skillsetImage("col s4 skillset", "/public/img/html.png") }}
           {{ macros.skillsetImage("col s4 skillset", "/public/img/css.png") }}
@@ -111,9 +110,27 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
     </div>
 
     <!-- SECOND PARALLAX -->
-    <div class="parallax-container parallax-2">
+    <div class="parallax-container parallax-2 scrollspy" id="experience">
       <div class="parallax">
         <img src="/public/img/parallax2.png" />
+      </div>
+      <div class="container center-align">
+        <h2>Work Experience</h2>
+        <ul class="collapsible popout" data-collapsible="accordion">
+          {% for experience in renderData.experience %}
+          <li>
+            <div class="collapsible-header left-align">
+              <i class="material-icons">{{ experience.icon }}</i>
+              {{ experience.title }}
+            </div>
+            <div class="collapsible-body">
+              <p class="white black-text">
+                {{ experience.content }}
+              </p>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
 
@@ -132,13 +149,13 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
             <div class="card-content">
               <span class="card-title activator">
                 {{ app.name }}
-                <i class="material-icons right">more_vert</i>
+                <i class="material-icons right">expand_less</i>
               </span>
             </div>
             <div class="card-action">
               <a href="{{ app.link }}">Get It Here!</a>
             </div>
-            <div class="card-reveal">
+            <div class="card-reveal teal lighten-5">
               <span class="card-title activator">
                 {{ app.name }}
                 <i class="material-icons right">close</i>

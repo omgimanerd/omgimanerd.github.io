@@ -23,3 +23,13 @@ var Materialize = {};
  * @param {?function()=} callback
  */
 Materialize.toast = function(text, duration, style, callback) {};
+
+/**
+ * @param {Object} options
+ */
+Materialize.scrollFire = function(options) {};
+
+/**
+ * @param {string} selector
+ */
+Materialize.showStaggeredList = function(selector) {};
