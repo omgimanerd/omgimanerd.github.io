@@ -33,12 +33,13 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
     <div class="navbar-fixed">
       <nav class="blue-grey darken-3">
         <div class="nav-wrapper">
+          <a href="#" class="alpha">&alpha;</a>
           <ul class="right hide-on-med-and-down table-of-contents">
             <li>
-              <a class="nav-link" href="#skills">Skills</a>
+              <a class="blue-text" href="#skills">Skills</a>
             </li>
             <li>
-              <a class="nav-link" href="#projects">Projects</a>
+              <a class="blue-text" href="#projects">Projects</a>
             </li>
           </ul>
         </div>
@@ -46,7 +47,7 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
     </div>
 
     <!-- PARALLAX -->
-    <div class="parallax-container">
+    <div class="parallax-container parallax-1">
       <div class="parallax">
         <img src="/public/img/parallax1.png" />
       </div>
@@ -62,6 +63,7 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
         <h2>
           My name is Alvin Lin
         </h2>
+        <div class="divider"></div>
         <h4>
           I am a full-stack web developer in New York. I work with:
         </h4>
@@ -70,42 +72,46 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
 
     <!-- SKILLS -->
     <div class="section container center-align scrollspy" id="skills">
-      <div class="row">
-        {{ macros.skillsetImage("col s4 skillset", "/public/img/html.png") }}
-        {{ macros.skillsetImage("col s4 skillset", "/public/img/css.png") }}
-        {{ macros.skillsetImage("col s4 skillset", "/public/img/js.png") }}
-      </div>
-      <div class="row">
-        {{ macros.skillsetImage("col s6 skillset", "/public/img/nodejs.png") }}
-        {{ macros.skillsetImage("col s6 skillset", "/public/img/python.png") }}
-      </div>
-      <div class="row">
-        {{ macros.skillsetImage("col s6 skillset", "/public/img/sql.png") }}
-        {{ macros.skillsetImage("col s6 skillset", "/public/img/mongodb.png") }}
-      </div>
-      <div class="row">
-        <div class="col s1 skillset2">
+      <ul>
+        <li class="row">
+          {{ macros.skillsetImage("col s4 skillset", "/public/img/html.png") }}
+          {{ macros.skillsetImage("col s4 skillset", "/public/img/css.png") }}
+          {{ macros.skillsetImage("col s4 skillset", "/public/img/js.png") }}
+        </li>
+        <li class="row">
+          {{ macros.skillsetImage("col s6 skillset",
+                                  "/public/img/nodejs.png") }}
+          {{ macros.skillsetImage("col s6 skillset",
+                                  "/public/img/python.png") }}
+        </li>
+        <li class="row">
+          {{ macros.skillsetImage("col s6 skillset",
+                                  "/public/img/sql.png") }}
+          {{ macros.skillsetImage("col s6 skillset",
+                                  "/public/img/mongodb.png") }}
+        </li>
+        <li class="row">
           <h4>...using...</h4>
-        </div>
-      </div>
-      <div class="row valign-wrapper">
-        {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                "/public/img/aws.png") }}
-        {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                "/public/img/digitalocean.png") }}
-        {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                "/public/img/heroku.png") }}
-        {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                "/public/img/git.png") }}
-        {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                "/public/img/ubuntu.png") }}
-        {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                "/public/img/android.png") }}
-      </div>
+        </li>
+        <li class="row valign-wrapper">
+          {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                  "/public/img/aws.png") }}
+          {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                  "/public/img/digitalocean.png") }}
+          {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                  "/public/img/heroku.png") }}
+          {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                  "/public/img/git.png") }}
+          {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                  "/public/img/ubuntu.png") }}
+          {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                  "/public/img/android.png") }}
+        </li>
+      </ul>
     </div>
 
     <!-- SECOND PARALLAX -->
-    <div class="parallax-container">
+    <div class="parallax-container parallax-2">
       <div class="parallax">
         <img src="/public/img/parallax2.png" />
       </div>
@@ -160,10 +166,27 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
             </a>
             or
             <a class="modal-trigger white-text" href="#contact-modal">
-              leave a message here.
+              leave a message.
             </a>
           </div>
-          <div class="col s12 m6 l6 right-align">
+          <div class="col s12 m6 l6 right-align hide-on-small-only">
+            <h5 class="white-text">Connect with me</h5>
+            <a href="https://twitter.com/omgimanerd"
+              class="twitter-follow-button"
+              data-show-count="true"
+              data-size="large">
+              Follow @omgimanerd
+            </a>
+            <a class="github-button" href="https://github.com/omgimanerd"
+              data-style="mega"
+              data-count-href="/omgimanerd/followers"
+              data-count-api="/users/omgimanerd#followers"
+              data-count-aria-label="# followers on GitHub"
+              aria-label="Follow @omgimanerd on GitHub">
+              Follow @omgimanerd
+            </a>
+          </div>
+          <div class="col s12 m6 l6 left-align hide-on-med-and-up">
             <h5 class="white-text">Connect with me</h5>
             <a href="https://twitter.com/omgimanerd"
               class="twitter-follow-button"

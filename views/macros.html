@@ -3,6 +3,12 @@ This file contains Swig macros used in index.html
 Author: alvin.lin.dev@gmail.com (Alvin Lin)
 -->
 
+{% macro divider() %}
+<div class="container">
+  <div class="divider"></div>
+</div>
+{% endmacro %}
+
 {% macro skillsetImage(columnClass, imageSrc) %}
 <div class="{{ columnClass }}">
   <img class="responsive-img" src="{{ imageSrc }}" />

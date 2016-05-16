@@ -35,4 +35,14 @@ $(document).ready(function() {
       }
     });
   });
+
+  Materialize.scrollFire([
+    {
+      selector: '#skills',
+      offset: 350,
+      callback: function() {
+        Materialize.showStaggeredList('#skills ul');
+      }
+    }
+  ]);
 });

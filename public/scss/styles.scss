@@ -3,10 +3,27 @@
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
  */
 
+.alpha {
+  font-size: 50px;
+  margin-left: 10px;
+}
+
+.parallax-1 {
+  height: 600px;
+}
+
+.parallax-2 {
+  height: 100px;
+}
+
 .parallax {
   opacity: 0.8;
 }
 
 #me {
-  margin: 155px auto;
+  margin: 185px auto;
+}
+
+#skills li {
+  opacity: 0;
 }

@@ -35,7 +35,7 @@ gulp.task('js', ['js-lint', 'js-compile']);
 gulp.task('lint', ['js-lint']);
 
 gulp.task('js-lint', function() {
-  return gulp.src(['./public/js/*.js'])
+  gulp.src(['./public/js/*.js'])
     .pipe(gjslint({
       flags: ['--jslint_error indentation',
               '--jslint_error well_formed_author',
@@ -50,13 +50,13 @@ gulp.task('js-lint', function() {
 });
 
 gulp.task('js-compile', function() {
-  return gulp.src(['./public/js/*.js'])
+  gulp.src(['./public/js/*.js'])
     .pipe(getClosureCompilerConfiguration('minified.js'))
     .pipe(gulp.dest('./public/dist'));
 });
 
 gulp.task('scss', function() {
-  return gulp.src(['./public/scss/*.scss'])
+  gulp.src(['./public/scss/styles.scss'])
     .pipe(scss())
     .pipe(cleanCss())
     .pipe(rename('minified.css'))
