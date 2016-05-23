@@ -322,7 +322,7 @@
     <!-- CANDIDATE WORD FREQUENCY ANALYSIS -->
     <div class="section center-align">
       <h4>
-        Presidential Candidate Word Frequency Analysis
+        Presidential Candidate Word Frequency
       </h4>
       <h5 class="left-align">
         The following data has been scraped from 16 presidential debates. While
@@ -333,22 +333,6 @@
         </a>
         I used to do the data scraping is publicly available here on my GitHub.
       </h5>
-      <ul class="collapsible" data-collapsible="accordion">
-        <li>
-          <div class="collapsible-header">
-            Sources
-          </div>
-          <div class="collapsible-body">
-            {% for link in data["transcriptLinks"] %}
-              <a href="{{ link['link'] }}">
-                {{ link['date'] }} - {{ link['party'] }}
-              </a>
-              <br />
-            {% endfor %}
-          </div>
-        </li>
-      </ul>
-
       <div class="row">
         {% for candidate, words in data["wordFrequency"] %}
         <div class="col s4 center-align">
@@ -369,6 +353,21 @@
         </div>
         {% endfor %}
       </div>
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header">
+            Sources
+          </div>
+          <div class="collapsible-body">
+            {% for link in data["transcriptLinks"] %}
+              <a href="{{ link['link'] }}">
+                {{ link['date'] }} - {{ link['party'] }}
+              </a>
+              <br />
+            {% endfor %}
+          </div>
+        </li>
+      </ul>
     </div>
 
     <div class="divider"></div>

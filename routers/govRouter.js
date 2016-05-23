@@ -19,9 +19,5 @@ module.exports = function(options) {
     });
   });
 
-  router.get('/markov', function(request, response) {
-    // response
-  });
-
   return router;
 };
