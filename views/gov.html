@@ -2,8 +2,131 @@
 
 {% block body %}
 
+  <div class="navbar-fixed">
+    <nav class="blue-grey darken-3">
+      <div class="nav-wrapper">
+        <a href="#" class="alpha">&alpha;</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+
+    <!-- PRESIDENTIAL CANDIDATES COLLECTION -->
+    <div class="section">
+      <h5>
+        Leading Presidential Candidates
+      </h5>
+
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="/public/gov/donald_trump.png" class="circle">
+          <span class="title">
+            Donald John Trump - Born June 14<sup>th</sup>, 1946 (age 69)
+          </span>
+          <br />
+          <span>
+            Politician, Businessman: Studied at the University of
+            Pennsylvania
+            <br />
+            <span class="red-text">
+              Republican
+            </span>
+          </span>
+        </li>
+        <li class="collection-item avatar">
+          <img src="/public/gov/hillary_clinton.png" class="circle">
+          <span class="title">
+            Hillary Diane Rodham Clinton - Born October 26<sup<th</sup>, 1947
+            (age 68)
+          </span>
+          <br />
+          <span>
+            Politician, Senator, First Lady: Studied at Wellesley College and
+            Yale Law School
+            <br />
+            <span class="blue-text">
+              Democratic
+            </span>
+          </span>
+        </li>
+        <li class="collection-item avatar">
+          <img src="/public/gov/bernie_sanders.png" class="circle">
+          <span class="title">
+            Bernard Sanders - Born September 8<sup>th</sup>, 1941 (age 74)
+          </span>
+          <br />
+          <span>
+            Politician, Mayor, Representative: Studied at Brooklyn College and
+            the University of Chicago
+            <br />
+            <span class="blue-text">
+              Democratic
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section center-align">
+      <img class="responsive-img" src="/public/gov/primaries.png" />
+      <h5>
+        2016 presidential primaries
+      </h5>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <h2 class="center-align">
+        Media Coverage of the Candidates
+      </h2>
+      <h5>
+        Donald Trump's presence in the 2016 presidential race presents us with
+        a lot of interesting data.
+      </h5>
+
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s6">
+              <a href="#candidate-network-mentions">
+                Candidate Mentions By News Network
+              </a>
+            </li>
+            <li class="tab col s6">
+              <a href="#candidate-television-mentions">
+                Candidate Mentions On Television
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="candidate-network-mentions" class="col s12">
+          <img class="responsive-img"
+            src="/public/gov/candidate_network_mentions.png" />
+        </div>
+        <div id="candidate-television-mentions" class="col s12">
+          <img class="responsive-img"
+            src="/public/gov/candidate_television_mentions.png" />
+        </div>
+      </div>
+      <h5>
+        Unsurprisingly, Donald Trump is the candidate with the most media
+        attention by far, owing to his radical and outrageous remarks and
+        policies.
+      </h5>
+    </div>
+
+  </div>
+
 {% endblock %}
 
 {% block scripts %}
+
+  <script>
+    $(document).ready(function() {
+
+    });
+  </script>
 
 {% endblock %}

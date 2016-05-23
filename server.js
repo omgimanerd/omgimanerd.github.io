@@ -24,7 +24,9 @@ var http = require('http');
 var morgan = require('morgan');
 var swig = require('swig');
 
-var govRouter = require('./routers/govRouter');
+var govRouter = require('./routers/govRouter')({
+  dev_mode: DEV_MODE
+});
 
 var renderData = require('./shared/data');
 

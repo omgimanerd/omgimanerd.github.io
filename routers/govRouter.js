@@ -5,11 +5,17 @@
 
 var express = require('express');
 
-module.exports = function() {
+module.exports = function(options) {
+
   var router = express.Router();
 
+  var dev_mode = options.dev_mode;
+
   router.get('/', function(request, response) {
-    response.render('gov.html');
+    console.log('called');
+    response.render('gov.html', {
+      dev_mode: dev_mode
+    });
   });
 
   return router;
