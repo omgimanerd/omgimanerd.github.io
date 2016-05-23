@@ -12,10 +12,13 @@ module.exports = function(options) {
   var dev_mode = options.dev_mode;
 
   router.get('/', function(request, response) {
-    console.log('called');
     response.render('gov.html', {
       dev_mode: dev_mode
     });
+  });
+
+  router.get('/markov', function(request, response) {
+    response
   });
 
   return router;
