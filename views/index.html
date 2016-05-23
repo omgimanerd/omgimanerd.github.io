@@ -2,142 +2,95 @@
 Author: Alvin Lin (alvin.lin.dev@gmail.com)
 -->
 
-{% import './macros.html' as macros %}
+{% extends 'layout.html' %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Alvin Lin</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet"
-      href="/public/bower/material-design-icons/iconfont/material-icons.css" />
-    <link rel="stylesheet"
-      href="/public/bower/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet"
-      href="/public/bower/Materialize/dist/css/materialize.min.css" />
-    <link rel="stylesheet"
-      href="/public/dist/minified.css" />
-
-    <script src="/public/bower/jquery/dist/jquery.min.js">
-    </script>
-    <script src="/public/bower/Materialize/dist/js/materialize.min.js">
-    </script>
-  </head>
-
-  <body>
-
-    <!-- NAVBAR -->
-    <div class="navbar-fixed">
-      <nav class="blue-grey darken-3">
-        <div class="nav-wrapper">
-          <a href="#" class="alpha">&alpha;</a>
-          <ul class="right hide-on-med-and-down table-of-contents">
-            <li>
-              <a class="blue-text" href="#skills">Skills</a>
-            </li>
-            <li>
-              <a class="blue-text" href="#experience">Experience</a>
-            </li>
-            <li>
-              <a class="blue-text" href="#projects">Projects</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-
-    <!-- PARALLAX -->
-    <div class="parallax-container parallax-1">
-      <div class="parallax">
-        <img src="/public/img/parallax1.png" />
-      </div>
-      <div class="valign-wrapper">
-        <img class="circle responsive-img z-depth-5" id="me"
-            src="/public/img/me.png" />
-      </div>
-    </div>
-
-    <!-- SKILLS -->
-    <div class="section container center-align scrollspy" id="skills">
-      <div class="row center-align">
-        <h2>
-          My name is Alvin Lin
-        </h2>
-        <div class="divider"></div>
-        <h4>
-          I am a full-stack web developer in New York. I work with:
-        </h4>
-      </div>
-      <ul class="row">
-        <li class="row">
-          {{ macros.skillsetImage("col s4 skillset", "/public/img/html.png") }}
-          {{ macros.skillsetImage("col s4 skillset", "/public/img/css.png") }}
-          {{ macros.skillsetImage("col s4 skillset", "/public/img/js.png") }}
-        </li>
-        <li class="row">
-          {{ macros.skillsetImage("col s6 skillset",
-                                  "/public/img/nodejs.png") }}
-          {{ macros.skillsetImage("col s6 skillset",
-                                  "/public/img/python.png") }}
-        </li>
-        <li class="row">
-          {{ macros.skillsetImage("col s6 skillset",
-                                  "/public/img/sql.png") }}
-          {{ macros.skillsetImage("col s6 skillset",
-                                  "/public/img/mongodb.png") }}
-        </li>
-        <li class="row">
-          <h4>...using...</h4>
-        </li>
-        <li class="row valign-wrapper">
-          {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                  "/public/img/aws.png") }}
-          {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                  "/public/img/digitalocean.png") }}
-          {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                  "/public/img/heroku.png") }}
-          {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                  "/public/img/git.png") }}
-          {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                  "/public/img/ubuntu.png") }}
-          {{ macros.skillsetImage("col s4 l2 skillset valign",
-                                  "/public/img/android.png") }}
-        </li>
-      </ul>
-    </div>
-
-    <!-- SECOND PARALLAX -->
-    <div class="parallax-container parallax-2 scrollspy" id="experience">
-      <div class="parallax">
-        <img src="/public/img/parallax2.png" />
-      </div>
-      <div class="container center-align">
-        <h2>Work Experience</h2>
-        <ul class="collapsible popout" data-collapsible="accordion">
-          {% for experience in renderData.experience %}
+{% block body %}
+  <!-- NAVBAR -->
+  <div class="navbar-fixed">
+    <nav class="blue-grey darken-3">
+      <div class="nav-wrapper">
+        <a href="#" class="alpha">&alpha;</a>
+        <ul class="right hide-on-med-and-down table-of-contents">
           <li>
-            <div class="collapsible-header left-align">
-              <i class="material-icons">{{ experience.icon }}</i>
-              {{ experience.title }}
-            </div>
-            <div class="collapsible-body">
-              <p class="white black-text">
-                {{ experience.content }}
-              </p>
-            </div>
+            <a class="blue-text" href="#skills">Skills</a>
           </li>
-          {% endfor %}
+          <li>
+            <a class="blue-text" href="#work">My Work</a>
+          </li>
         </ul>
       </div>
+    </nav>
+  </div>
+
+  <!-- PARALLAX -->
+  <div class="parallax-container parallax-1">
+    <div class="parallax">
+      <img src="/public/img/parallax1.png" />
+    </div>
+    <div class="valign-wrapper">
+      <img class="circle responsive-img z-depth-5" id="me"
+          src="/public/img/me.png" />
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section container center-align scrollspy" id="skills">
+    <div class="row center-align">
+      <h2>
+        My name is Alvin Lin
+      </h2>
+      <div class="divider"></div>
+      <h4>
+        I am a full-stack web developer in New York. I work with:
+      </h4>
+    </div>
+    <ul class="row">
+      <li class="row">
+        {{ macros.skillsetImage("col s4 skillset", "/public/img/html.png") }}
+        {{ macros.skillsetImage("col s4 skillset", "/public/img/css.png") }}
+        {{ macros.skillsetImage("col s4 skillset", "/public/img/js.png") }}
+      </li>
+      <li class="row">
+        {{ macros.skillsetImage("col s6 skillset",
+                                "/public/img/nodejs.png") }}
+        {{ macros.skillsetImage("col s6 skillset",
+                                "/public/img/python.png") }}
+      </li>
+      <li class="row">
+        {{ macros.skillsetImage("col s6 skillset",
+                                "/public/img/sql.png") }}
+        {{ macros.skillsetImage("col s6 skillset",
+                                "/public/img/mongodb.png") }}
+      </li>
+      <li class="row">
+        <h4>...using...</h4>
+      </li>
+      <li class="row valign-wrapper">
+        {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                "/public/img/aws.png") }}
+        {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                "/public/img/digitalocean.png") }}
+        {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                "/public/img/heroku.png") }}
+        {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                "/public/img/git.png") }}
+        {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                "/public/img/ubuntu.png") }}
+        {{ macros.skillsetImage("col s4 l2 skillset valign",
+                                "/public/img/android.png") }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECOND PARALLAX -->
+  <div class="parallax-container parallax-2 scrollspy" id="work">
+    <div class="parallax">
+      <img src="/public/img/parallax2.png" />
     </div>
 
-    <!-- APPS AND PROJECTS -->
-    <div class="container scrollspy" id="projects">
+    <div class="container">
       <div class="row">
-        <h4 class="center-align">Projects</h4>
+        <h2 class="center-align">Projects</h4>
       </div>
       <div class="row">
         {% for app in renderData.apps %}
@@ -169,85 +122,15 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
         {% endfor %}
       </div>
     </div>
+  </div>
+{% endblock %}
 
-    <!-- FOOTER --->
-    <footer class="page-footer blue-grey darken-2">
-      <div class="container">
-        <div class="row">
-          <div class="col s12 m6 l6">
-            <h5 class="white-text">Want to contact me?</h5>
-            Email me at
-            <a href="mailto:alvin.lin.dev@gmail.com"
-              class="white-text">
-              alvin&#46;lin&#46;dev&#64;gmail&#46;com
-            </a>
-            or
-            <a class="modal-trigger white-text" href="#contact-modal">
-              leave a message.
-            </a>
-          </div>
-          <div class="col s12 m6 l6 right-align hide-on-small-only">
-            <h5 class="white-text">Connect with me</h5>
-            <a href="https://twitter.com/omgimanerd"
-              class="twitter-follow-button"
-              data-show-count="true"
-              data-size="large">
-              Follow @omgimanerd
-            </a>
-            <a class="github-button" href="https://github.com/omgimanerd"
-              data-style="mega"
-              data-count-href="/omgimanerd/followers"
-              data-count-api="/users/omgimanerd#followers"
-              data-count-aria-label="# followers on GitHub"
-              aria-label="Follow @omgimanerd on GitHub">
-              Follow @omgimanerd
-            </a>
-          </div>
-          <div class="col s12 m6 l6 left-align hide-on-med-and-up">
-            <h5 class="white-text">Connect with me</h5>
-            <a href="https://twitter.com/omgimanerd"
-              class="twitter-follow-button"
-              data-show-count="true"
-              data-size="large">
-              Follow @omgimanerd
-            </a>
-            <a class="github-button" href="https://github.com/omgimanerd"
-              data-style="mega"
-              data-count-href="/omgimanerd/followers"
-              data-count-api="/users/omgimanerd#followers"
-              data-count-aria-label="# followers on GitHub"
-              aria-label="Follow @omgimanerd on GitHub">
-              Follow @omgimanerd
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright blue-grey darken-3">
-        <div class="container">
-          &copy; Alvin Lin 2016. Made with Materialize and&nbsp;
-          <i class="fa fa-heart red-text accent-4-text"></i>
-        </div>
-      </div>
-    </footer>
-
-    <!-- MODALS -->
-    {% include "./modals.html" %}
-
-  </body>
-
-  <script>
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-  </script>
-  <script async defer id="github-bjs"
-          src="https://buttons.github.io/buttons.js">
-  </script>
-
+{% block scripts %}
   {% if dev_mode %}
-  <script src="/public/js/client.js">
+  <script src="/public/js/index.js">
   </script>
   {% else %}
   <script src="/public/dist/minified.js">
   </script>
   {% endif %}
-
-</html>
+{% endblock %}

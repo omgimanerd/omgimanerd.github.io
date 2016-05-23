@@ -33,17 +33,17 @@ module.exports = {
   ],
   experience: [
     {
-      icon: 'edit',
+      icon: 'school',
       title: 'RoboMindTech - Fresh Meadows, NY',
       content: 'Mentored First Lego League (FLL) and World Robot Olympiad (WRO) robotics teams. Created robotics education content for distribution in Singapore and Taiwan. Taught cryptography, web security, web design, game design, HTML, CSS, JavaScript, Java, Python, and Processing.'
     },
     {
-      icon: 'edit',
-      title: 'SchoolYourself.org - Manhattan, NY',
+      icon: 'web',
+      title: 'SchoolYourself - Manhattan, NY',
       content: 'Developed interactive videos for geometry curriculum in JavaScript used by over 55,000 people in more than 100 countries around the world. Integrated educational content with commercial Learning Management Systems using the Learning Tools Interoperability (LTI) standard.'
     },
     {
-      icon: 'edit',
+      icon: 'school',
       title: 'Florentine School of Music, Art, and Academics - Manhattan, NY',
       content: 'Taught mathematics and music to 3rd, 4th, and 5th graders. Streamlined curriculum for better information retention by students.'
     }

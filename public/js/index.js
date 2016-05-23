@@ -43,6 +43,13 @@ $(document).ready(function() {
       'callback': function() {
         Materialize.showStaggeredList('#skills ul');
       }
+    },
+    {
+      'selector': '#experience',
+      'offset': 0,
+      'callback': function() {
+        $('.collapsible-header').addClass('active');
+      }
     }
   ]);
 });

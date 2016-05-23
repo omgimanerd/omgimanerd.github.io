@@ -1,0 +1,114 @@
+<!--
+Author: Alvin Lin (alvin.lin.dev@gmail.com)
+-->
+
+{% import './macros.html' as macros %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block title %}
+    <title>Alvin Lin</title>
+    {% endblock %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+      href="/public/bower/material-design-icons/iconfont/material-icons.css" />
+    <link rel="stylesheet"
+      href="/public/bower/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet"
+      href="/public/bower/Materialize/dist/css/materialize.min.css" />
+    <link rel="stylesheet"
+      href="/public/dist/minified.css" />
+
+    <script src="/public/bower/jquery/dist/jquery.min.js">
+    </script>
+    <script src="/public/bower/Materialize/dist/js/materialize.min.js">
+    </script>
+
+    {% block head %}
+    {% endblock %}
+  </head>
+
+  <body>
+
+    {% block body %}
+    {% endblock %}
+
+    <!-- FOOTER --->
+    <footer class="page-footer blue-grey darken-2">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 l6">
+            <h5 class="white-text">Want to contact me?</h5>
+            Email me at
+            <a href="mailto:alvin.lin.dev@gmail.com"
+              class="white-text">
+              alvin&#46;lin&#46;dev&#64;gmail&#46;com
+            </a>
+            or
+            <a class="modal-trigger white-text" href="#contact-modal">
+              leave a message.
+            </a>
+          </div>
+          <div class="col s12 m6 l6 right-align hide-on-small-only">
+            <h5 class="white-text">Connect with me</h5>
+            <a href="https://twitter.com/omgimanerd"
+              class="twitter-follow-button"
+              data-show-count="true"
+              data-size="large">
+              Follow @omgimanerd
+            </a>
+            <a class="github-button" href="https://github.com/omgimanerd"
+              data-style="mega"
+              data-count-href="/omgimanerd/followers"
+              data-count-api="/users/omgimanerd#followers"
+              data-count-aria-label="# followers on GitHub"
+              aria-label="Follow @omgimanerd on GitHub">
+              Follow @omgimanerd
+            </a>
+          </div>
+          <div class="col s12 m6 l6 left-align hide-on-med-and-up">
+            <h5 class="white-text">Connect with me</h5>
+            <a href="https://twitter.com/omgimanerd"
+              class="twitter-follow-button"
+              data-show-count="true"
+              data-size="large">
+              Follow @omgimanerd
+            </a>
+            <a class="github-button" href="https://github.com/omgimanerd"
+              data-style="mega"
+              data-count-href="/omgimanerd/followers"
+              data-count-api="/users/omgimanerd#followers"
+              data-count-aria-label="# followers on GitHub"
+              aria-label="Follow @omgimanerd on GitHub">
+              Follow @omgimanerd
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright blue-grey darken-3">
+        <div class="container">
+          &copy; Alvin Lin 2016. Made with Materialize and&nbsp;
+          <i class="fa fa-heart red-text accent-4-text"></i>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MODALS -->
+    {% include "./modals.html" %}
+
+  </body>
+
+  <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
+  <script async defer id="github-bjs"
+    src="https://buttons.github.io/buttons.js">
+  </script>
+
+  {% block scripts %}
+  {% endblock %}
+</html>

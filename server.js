@@ -24,11 +24,13 @@ var http = require('http');
 var morgan = require('morgan');
 var swig = require('swig');
 
+var govRouter = require('./routers/govRouter');
+
 var renderData = require('./shared/data');
 
 // Initialization.
 var app = express();
-var send = gmailSend({
+var email = gmailSend({
   user: process.env.GMAIL_ACCOUNT,
   pass: process.env.GMAIL_APPLICATION_PASSWORD,
   to: process.env.GMAIL_ACCOUNT
@@ -41,20 +43,13 @@ app.set('port', PORT_NUMBER);
 app.set('view engine', 'html');
 
 app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
-app.use('/public', express.static(__dirname + '/public'));
-app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
 
+app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
+app.use('/public', express.static(__dirname + '/public'));
+app.use('/scripts', express.static(__dirname + '/scripts'));
 // Use request.query for GET request params.
 // Use request.body for POST request params.
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use('/auth', function(request, response) {
-  response.sendFile(__dirname + '/misc/auth.sh');
-});
-
-app.use('/alias_shred', function(request, response) {
-  response.sendFile(__dirname + '/misc/alias_shred.sh');
-});
 
 app.get('/', function(request, response) {
   response.render('index.html', {
@@ -70,7 +65,7 @@ app.post('/message', function(request, response) {
       result: null
     });
   } else {
-    send({
+    email({
       from: request.body.email,
       replyTo: request.body.email,
       subject: 'omgimanerd.tech - Message from ' + request.body.name,
@@ -82,6 +77,12 @@ app.post('/message', function(request, response) {
       });
     });
   }
+});
+
+app.use('/gov', govRouter);
+
+app.use(function(request, response) {
+  response.render('404.html');
 });
 
 // Starts the server.

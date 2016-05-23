@@ -13,11 +13,19 @@
 }
 
 .parallax-2 {
-  height: 800px;
+  height: 1000px;
+}
+
+.parallax-3 {
+  height: 650px;
 }
 
 .parallax {
   opacity: 0.6;
+}
+
+.four-oh-four {
+  font-size: 50px;
 }
 
 #me {
@@ -26,4 +34,8 @@
 
 #skills li {
   opacity: 0;
+}
+
+footer {
+  margin: 0 !important;
 }
