@@ -4,24 +4,19 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
 
 {% extends 'layout.html' %}
 
-{% block body %}
+{% block navbar %}
   <!-- NAVBAR -->
-  <div class="navbar-fixed">
-    <nav class="blue-grey darken-3">
-      <div class="nav-wrapper">
-        <a href="#" class="alpha">&alpha;</a>
-        <ul class="right hide-on-med-and-down table-of-contents">
-          <li>
-            <a class="blue-text" href="#skills">Skills</a>
-          </li>
-          <li>
-            <a class="blue-text" href="#work">My Work</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
+  <ul class="right hide-on-med-and-down table-of-contents">
+    <li>
+      <a class="blue-text" href="#skills">Skills</a>
+    </li>
+    <li>
+      <a class="blue-text" href="#work">My Work</a>
+    </li>
+  </ul>
+{% endblock %}
 
+{% block body %}
   <!-- PARALLAX -->
   <div class="parallax-container parallax-1">
     <div class="parallax">
@@ -39,7 +34,7 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
       <h2>
         My name is Alvin Lin
       </h2>
-      <div class="divider"></div>
+      {{ macros.divider() }}
       <h4>
         I am a full-stack web developer in New York. I work with:
       </h4>
@@ -133,4 +128,7 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
   <script src="/public/dist/minified.js">
   </script>
   {% endif %}
+  <script>
+    indexJs();
+  </script>
 {% endblock %}

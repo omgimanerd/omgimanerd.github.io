@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+  <script src="/public/bower/angular/angular.min.js"></script>
+{% endblock %}
+
+{% block body %}
+  <div class="container" ng-app="challenges" ng-cloak>
+    <div class="section">
+      <div class="row center-align">
+        <h2>Challenge Board</h2>
+      </div>
+    </div>
+
+    <div class="section" ng-controller="usernameDisplayController">
+      <div class="row">
+        <div class="col s12" ng-if="username">
+          {{ username }}
+        </div>
+        <div class="col s12 center-align" ng-if="!username">
+          <a href="#loginModal" class="waves-effect btn">Login</a>
+          <a href="#registerModal" class="waves-effect btn">Register</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s6">
+              <a href="#challenges">
+                Challenges
+              </a>
+            </li>
+            <li class="tab col s6">
+              <a href="#leaderboard">
+                Leaderboard
+              </a>
+            </li>
+          </ul>
+        </div>
+        {% raw %}
+          <div id="challenges" class="col s12"
+            ng-controller="challengesDisplayController">
+            <ul class="collapsible popout" data-collapsible="expandable">
+              <li ng-repeat="challenge in challenges">
+                <div class="collapsible-header blue-text">
+                  Challenge {{ challenge._id }}
+                </div>
+                <div class="collapsible-body"
+                  ng-controller="challengeSubmitController">
+                  <div class="section container">
+                    <div class="row">
+                      <div class="col s12">
+                        {{ challenge.challenge }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 green-text">
+                        {{ challenge.points }} point(s)
+                      </div>
+                    </div>
+                    <form class="row" ng-submit="submitChallenge()">
+                      <input type="hidden" ng-value="challenge._id" />
+                      <div class="col s9">
+                        <input type="text" ng-model="answer"/>
+                      </div>
+                      <div class="col s3">
+                        <button type="submit" class="btn waves-effect">
+                          Submit
+                          <i class="material-icons right">send</i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="leaderboard" class="col s12"
+            ng-controller="leaderboardDisplayController">
+            <table class="striped">
+              <thead>
+                <tr>
+                  <th class="center-align">
+                    Username
+                  </th>
+                  <th class="center-align">
+                    Score
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="user in users">
+                  <td class="center-align">
+                    {{ user.username }}
+                  </td>
+                  <td class="center-align">
+                    {{ user.points }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        {% endraw %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  {% if dev_mode %}
+  <script src="/public/js/challenges.js">
+  </script>
+  {% else %}
+  <script src="/public/dist/minified.js">
+  </script>
+  {% endif %}
+  <script>
+    challengesJs();
+  </script>
+{% endblock %}

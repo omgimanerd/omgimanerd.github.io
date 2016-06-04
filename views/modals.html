@@ -3,6 +3,20 @@ This file contains modals used in the site.
 Author: alvin.lin.dev@gmail.com (Alvin Lin)
 -->
 
+{% macro error() %}
+<div id="error-modal" class="modal">
+  <div class="modal-content center-align">
+    <h4>
+      <i class="material-icons">error</i>
+      Error
+    </h4>
+    <p>
+    </p>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro contact() %}
 <div id="contact-modal" class="modal">
   <div class="modal-content container">
     <h4 class="center-align">Leave A Message</h4>
@@ -10,32 +24,65 @@ Author: alvin.lin.dev@gmail.com (Alvin Lin)
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">account_box</i>
-        <input id="name" type="text" class="validate"
-          autocomplete="off" />
-        <label for="name" data-error="Who are you?">Name</label>
+        <input id="contact-name" type="text" autocomplete="off" />
+        <label for="contact-name">Name</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">email</i>
-        <input id="email" type="email" class="validate"
+        <input id="contact-email" type="email" class="validate"
           autocomplete="off" />
-        <label for="email" data-error="Invalid email!">Email</label>
+        <label for="contact-email" data-error="Invalid email!">Email</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">subject</i>
-        <textarea id="message" class="materialize-textarea">
+        <textarea id="contact-message" class="materialize-textarea">
         </textarea>
-        <label for="message">Message</label>
+        <label for="contact-message">Message</label>
       </div>
     </div>
   </div>
   <div class="modal-footer">
-    <a class="waves-effect waves-light btn center-align send">
+    <a class="waves-effect waves-light btn center-align contact-send">
       Send
       <i class="material-icons right">send</i>
     </a>
   </div>
 </div>
+{% endmacro %}
+
+{% macro challengeLogin %}
+<div id="challenge-login-modal" class="modal">
+  <div class="modal-content container">
+    <h4 class="center-align">Login</h4>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">email</i>
+        <input id="email" type="email" class="validate" autocomplete="off" />
+        <label for="email" data-error="Invalid email!">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_box</i>
+        <input id="login-username" type="text" autocomplete="off" />
+        <label for="login-username">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="login-password" type="password" autocomplete="off" />
+        <label for="login-password">Password</label>
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro challengeRegister %}
+
+{% endmacro %}
