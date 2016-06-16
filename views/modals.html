@@ -3,22 +3,21 @@ This file contains modals used in the site.
 Author: alvin.lin.dev@gmail.com (Alvin Lin)
 -->
 
-{% macro error() %}
-<div id="error-modal" class="modal">
+<!-- ERROR MODAL -->
+<div id="message-modal" class="modal">
   <div class="modal-content center-align">
-    <h4>
-      <i class="material-icons">error</i>
-      Error
+    <h4 class="large">
+      <i class="material-icons"></i>
+      <span class="title"></span>
     </h4>
-    <p>
-    </p>
+    <h6 class="medium text">
+    </h6>
   </div>
 </div>
-{% endmacro %}
 
-{% macro contact() %}
+<!-- CONTACT MODAL -->
 <div id="contact-modal" class="modal">
-  <div class="modal-content container">
+  <form class="modal-content container">
     <h4 class="center-align">Leave A Message</h4>
     <div class="divider"></div>
     <div class="row">
@@ -44,45 +43,117 @@ Author: alvin.lin.dev@gmail.com (Alvin Lin)
         <label for="contact-message">Message</label>
       </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <a class="waves-effect waves-light btn center-align contact-send">
-      Send
-      <i class="material-icons right">send</i>
-    </a>
-  </div>
+    <div class="row center-align">
+      <button type="submit"
+        class="waves-effect waves-light btn center-align">
+        Send
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
 </div>
-{% endmacro %}
 
-{% macro challengeLogin %}
-<div id="challenge-login-modal" class="modal">
-  <div class="modal-content container">
+<!-- CHALLENGES LOGIN MODAL -->
+<div id="challenges-login-modal" class="modal">
+  <form class="modal-content container">
     <h4 class="center-align">Login</h4>
     <div class="divider"></div>
     <div class="row">
       <div class="input-field col s12">
+        <i class="material-icons prefix">account_box</i>
+        <input id="challenges-login-username" type="text" autocomplete="off" />
+        <label for="challenges-login-username">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">security</i>
+        <input id="challenges-login-password" type="password"
+          autocomplete="off" />
+        <label for="challenges-login-password">Password</label>
+      </div>
+    </div>
+    <div class="row center-align">
+      <button type="submit"
+        class="waves-effect waves-light btn center-align">
+        Login
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- CHALLENGES REGISTER MODAL -->
+<div id="challenges-register-modal" class="modal">
+  <form class="modal-content container">
+    <h4 class="center-align">Register</h4>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="input-field col s12">
         <i class="material-icons prefix">email</i>
-        <input id="email" type="email" class="validate" autocomplete="off" />
-        <label for="email" data-error="Invalid email!">Email</label>
+        <input id="challenges-register-email" type="email" class="validate"
+          autocomplete="off" />
+        <label for="challenges-register-email" data-error="Invalid email!">
+          Email
+        </label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">account_box</i>
-        <input id="login-username" type="text" autocomplete="off" />
-        <label for="login-username">Username</label>
+        <input id="challenges-register-username" type="text"
+          autocomplete="off" />
+        <label for="challenges-register-username">Username</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="login-password" type="password" autocomplete="off" />
-        <label for="login-password">Password</label>
+        <i class="material-icons prefix">security</i>
+        <input id="challenges-register-password" type="password"
+          autocomplete="off" />
+        <label for="challenges-register-password">Password</label>
       </div>
     </div>
-  </div>
+    <div class="row center-align">
+      <button type="submit"
+        class="waves-effect waves-light btn center-align">
+        Register
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
 </div>
-{% endmacro %}
 
-{% macro challengeRegister %}
-
-{% endmacro %}
+<!-- ADD CHALLENGE MODAL -->
+<div id="add-challenge-modal" class="modal">
+  <form class="modal-content container">
+    <h4 class="center-align">Register</h4>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="add-challenge-challenge"
+          class="materialize-textarea"></textarea>
+        <label for="add-challenge-challenge">Challenge</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="add-challenge-answer" type="text" autocomplete="off" />
+        <label for="add-challenge-answer">Answer Regex</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="add-challenge-points" type="text" autocomplete="off" />
+        <label for="add-challenge-points">Points</label>
+      </div>
+    </div>
+    <div class="row center-align">
+      <button type="submit"
+        class="waves-effect waves-light btn center-align">
+        Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
+</div>

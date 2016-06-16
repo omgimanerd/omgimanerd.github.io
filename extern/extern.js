@@ -14,6 +14,7 @@ jQuery.prototype.parallax = function() {};
 
 jQuery.prototype.scrollSpy = function() {};
 
+
 var Materialize = {};
 
 /**

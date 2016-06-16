@@ -16,9 +16,13 @@ var path = require('path');
 var getClosureCompilerConfiguration = function(outputFile) {
   var basePath = path.dirname(__filename);
   var closureCompiler = compilerPackage.gulp();
-
   return closureCompiler({
     externs: [
+      compilerPackage.compiler.CONTRIB_PATH +
+          '/externs/angular-1.5-http-promise_templated.js',
+      compilerPackage.compiler.CONTRIB_PATH +
+          '/externs/angular-1.5-q_templated.js',
+      compilerPackage.compiler.CONTRIB_PATH + '/externs/angular-1.5.js',
       compilerPackage.compiler.CONTRIB_PATH + '/externs/jquery-1.9.js',
       basePath + '/extern/extern.js'
     ],

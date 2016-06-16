@@ -3,6 +3,16 @@
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
  */
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 .alpha {
   font-size: 50px;
   margin-left: 10px;
@@ -13,11 +23,7 @@
 }
 
 .parallax-2 {
-  height: 1000px;
-}
-
-.parallax-3 {
-  height: 650px;
+  height: 200px;
 }
 
 .parallax {
@@ -25,10 +31,11 @@
 }
 
 .four-oh-four {
-  font-size: 50px;
+  height: 600px;
+  background-image: url('/public/img/404_bg.png');
 }
 
-#me {
+.me {
   margin: 185px auto;
 }
 

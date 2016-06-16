@@ -3,7 +3,6 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
 -->
 
 {% import './macros.html' as macros %}
-{% import './modals.html' as modals %}
 
 <!DOCTYPE html>
 <html>
@@ -110,7 +109,7 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
     </footer>
 
     <!-- MODALS -->
-    {{ modals.contact() }}
+    {% include "./modals.html" %}
 
   </body>
 
@@ -120,6 +119,8 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
   <script async defer id="github-bjs"
     src="https://buttons.github.io/buttons.js">
   </script>
+
+  <script src="/public/js/layout.js">
 
   {% block scripts %}
   {% endblock %}

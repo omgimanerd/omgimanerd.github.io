@@ -19,6 +19,7 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "gmail-send": "^1.2.6",
     "google-closure-compiler": "^20160315.2.0",
     "gulp": "^3.9.1",
@@ -28,6 +29,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-scss": "^1.3.17",
     "gulp-uglify": "^1.5.3",
+    "mongodb": "^2.1.21",
     "morgan": "^1.7.0",
     "swig": "^1.4.2"
   }

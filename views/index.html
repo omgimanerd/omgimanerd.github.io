@@ -23,7 +23,7 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
       <img src="/public/img/parallax1.png" />
     </div>
     <div class="valign-wrapper">
-      <img class="circle responsive-img z-depth-5" id="me"
+      <img class="circle responsive-img z-depth-5 me"
           src="/public/img/me.png" />
     </div>
   </div>
@@ -78,44 +78,45 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
   </div>
 
   <!-- SECOND PARALLAX -->
-  <div class="parallax-container parallax-2 scrollspy" id="work">
+  <div class="parallax-container parallax-2">
     <div class="parallax">
       <img src="/public/img/parallax2.png" />
     </div>
+  </div>
 
-    <div class="container">
-      <div class="row">
-        <h2 class="center-align">Projects</h4>
-      </div>
-      <div class="row">
-        {% for app in renderData.apps %}
-        <div class="col s12 m12 l4">
-          <div class="card teal lighten-5 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{ app.image }}" />
-            </div>
-            <div class="card-content">
-              <span class="card-title activator">
-                {{ app.name }}
-                <i class="material-icons right">expand_less</i>
-              </span>
-            </div>
-            <div class="card-action">
-              <a href="{{ app.link }}">Get It Here!</a>
-            </div>
-            <div class="card-reveal teal lighten-5">
-              <span class="card-title activator">
-                {{ app.name }}
-                <i class="material-icons right">close</i>
-              </span>
-              <p>
-                {{ app.description }}
-              </p>
-            </div>
+  <!-- WORK -->
+  <div class="container scrollspy" id="work">
+    <div class="row">
+      <h2 class="center-align">Projects</h4>
+    </div>
+    <div class="row">
+      {% for app in renderData.apps %}
+      <div class="col s12 m12 l4">
+        <div class="card teal lighten-5 hoverable">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="{{ app.image }}" />
+          </div>
+          <div class="card-content">
+            <span class="card-title activator">
+              {{ app.name }}
+              <i class="material-icons right">expand_less</i>
+            </span>
+          </div>
+          <div class="card-action">
+            <a href="{{ app.link }}">Get It Here!</a>
+          </div>
+          <div class="card-reveal teal lighten-5">
+            <span class="card-title activator">
+              {{ app.name }}
+              <i class="material-icons right">close</i>
+            </span>
+            <p>
+              {{ app.description }}
+            </p>
           </div>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
   </div>
 {% endblock %}
@@ -128,7 +129,4 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
   <script src="/public/dist/minified.js">
   </script>
   {% endif %}
-  <script>
-    indexJs();
-  </script>
 {% endblock %}

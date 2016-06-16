@@ -19,19 +19,17 @@ process.argv.forEach(function(value, index, array) {
 var assert = require('assert');
 var bodyParser = require('body-parser');
 var express = require('express');
+var expressSession = require('express-session');
 var gmailSend = require('gmail-send');
 var http = require('http');
 var morgan = require('morgan');
 var swig = require('swig');
 
-var govRouter = require('./routers/govRouter')({
-  dev_mode: DEV_MODE
-});
-
-var renderData = require('./shared/data');
+var DatabaseManager = require('./lib/DatabaseManager');
 
 // Initialization.
 var app = express();
+var dbm = DatabaseManager.create();
 var email = gmailSend({
   user: process.env.GMAIL_ACCOUNT,
   pass: process.env.GMAIL_APPLICATION_PASSWORD,
@@ -39,13 +37,25 @@ var email = gmailSend({
 });
 var server = http.Server(app);
 
+var challengesRouter = require('./routers/challengesRouter')({
+  dbm: dbm,
+  dev_mode: DEV_MODE
+});
+var renderData = require('./shared/data');
+
 app.engine('html', swig.renderFile);
 
 app.set('port', PORT_NUMBER);
 app.set('view engine', 'html');
 
+app.use(expressSession({
+  cookie: { maxAge: 600000 },
+  resave: true,
+  rolling: true,
+  saveUninitialized: true,
+  secret: process.env.OMGIMANERD_SESSION_SECRET
+}));
 app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
-
 app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/scripts'));
@@ -62,10 +72,12 @@ app.get('/', function(request, response) {
 
 app.post('/message', function(request, response) {
   if (DEV_MODE) {
-    response.send({
-      error: null,
-      result: null
-    });
+    setTimeout(function() {
+      response.send({
+        error: null,
+        result: null
+      });
+    }, 2500);
   } else {
     email({
       from: request.body.email,
@@ -81,10 +93,10 @@ app.post('/message', function(request, response) {
   }
 });
 
-app.use('/gov', govRouter);
+app.use('/challenges', challengesRouter);
 
 app.use(function(request, response) {
-  response.render('404.html');
+  response.status(400).render('404.html');
 });
 
 // Starts the server.
