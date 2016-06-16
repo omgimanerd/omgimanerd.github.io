@@ -68,7 +68,7 @@ app.post('/message', function(request, response) {
     var message = request.body.message.strip();
     if (!sender || !name || !message) {
       response.send({
-        error: 'One of your message fields was blank!'
+        error: 'One of your message fields was blank!',
         result: null
       });
       return;
