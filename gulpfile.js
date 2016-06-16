@@ -6,25 +6,27 @@
 
 var gulp = require('gulp');
 
+var async = require('async');
+var fs = require('fs');
+var path = require('path');
+
+var del = require('del');
 var compilerPackage = require('google-closure-compiler');
 var cleanCss = require('gulp-clean-css');
 var gjslint = require('gulp-gjslint');
 var rename = require('gulp-rename');
 var scss = require('gulp-scss');
-var path = require('path');
+var merge = require('merge-stream');
+
+var JS_DIRECTORY = './public/js';
+var OUTPUT_DIRECTORY = './public/dist';
 
 var getClosureCompilerConfiguration = function(outputFile) {
-  var basePath = path.dirname(__filename);
   var closureCompiler = compilerPackage.gulp();
   return closureCompiler({
     externs: [
-      compilerPackage.compiler.CONTRIB_PATH +
-          '/externs/angular-1.5-http-promise_templated.js',
-      compilerPackage.compiler.CONTRIB_PATH +
-          '/externs/angular-1.5-q_templated.js',
-      compilerPackage.compiler.CONTRIB_PATH + '/externs/angular-1.5.js',
       compilerPackage.compiler.CONTRIB_PATH + '/externs/jquery-1.9.js',
-      basePath + '/extern/extern.js'
+      path.dirname(__filename) + '/extern/extern.js'
     ],
     warning_level: 'VERBOSE',
     compilation_level: 'ADVANCED_OPTIMIZATIONS',
@@ -54,22 +56,32 @@ gulp.task('js-lint', function() {
 });
 
 gulp.task('js-compile', function() {
-  return gulp.src(['./public/js/*.js'])
-    .pipe(getClosureCompilerConfiguration('minified.js'))
-    .pipe(gulp.dest('./public/dist'));
+  var jsFiles = fs.readdirSync(JS_DIRECTORY).filter(function(file) {
+    return fs.statSync(path.join(JS_DIRECTORY, file)).isFile();
+  });
+  var tasks = jsFiles.map(function(file) {
+    return gulp.src(path.join(JS_DIRECTORY, file))
+      .pipe(getClosureCompilerConfiguration(
+        path.basename(file, '.js') + '.min.js'))
+      .pipe(gulp.dest(OUTPUT_DIRECTORY));
+  });
+  return merge(tasks);
 });
 
 gulp.task('scss', function() {
-  return gulp.src(['./public/scss/styles.scss'])
+  return gulp.src(['./public/scss/*.scss'])
     .pipe(scss())
     .pipe(cleanCss())
     .pipe(rename('minified.css'))
-    .pipe(gulp.dest('./public/dist'));
+    .pipe(gulp.dest(OUTPUT_DIRECTORY));
+});
+
+gulp.task('clean', function() {
+  return del(OUTPUT_DIRECTORY);
 });
 
 gulp.task('watch-js', function() {
   gulp.watch(['./public/js/*.js',
-              './shared/*.js',
               './extern/*.js'], ['js-compile']);
 });
 
