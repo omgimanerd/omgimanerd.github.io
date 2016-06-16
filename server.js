@@ -19,7 +19,6 @@ process.argv.forEach(function(value, index, array) {
 var assert = require('assert');
 var bodyParser = require('body-parser');
 var express = require('express');
-var expressSession = require('express-session');
 var gmailSend = require('gmail-send');
 var http = require('http');
 var morgan = require('morgan');
@@ -40,14 +39,6 @@ app.engine('html', swig.renderFile);
 
 app.set('port', PORT_NUMBER);
 app.set('view engine', 'html');
-
-app.use(expressSession({
-  cookie: { maxAge: 600000 },
-  resave: true,
-  rolling: true,
-  saveUninitialized: true,
-  secret: process.env.OMGIMANERD_SESSION_SECRET
-}));
 app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
 app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
 app.use('/public', express.static(__dirname + '/public'));
@@ -72,6 +63,16 @@ app.post('/message', function(request, response) {
       });
     }, 2500);
   } else {
+    var sender = request.body.email.strip();
+    var name = request.body.name.strip();
+    var message = request.body.message.strip();
+    if (!sender || !name || !message) {
+      response.send({
+        error: 'One of your message fields was blank!'
+        result: null
+      });
+      return;
+    }
     email({
       from: request.body.email,
       replyTo: request.body.email,
