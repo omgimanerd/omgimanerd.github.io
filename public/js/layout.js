@@ -11,6 +11,7 @@ $(document).ready(function() {
   $('#message').val('');
   $('#message').trigger('autoresize');
   $('#contact-modal form').submit(function(event) {
+    event.preventDefault();
     $('#contact-modal button').addClass('disabled');
     $('#contact-modal input').attr('disabled', true);
     $.post('/message', {
@@ -21,7 +22,7 @@ $(document).ready(function() {
       $('#contact-modal form').removeClass('disabled');
       $('#contact-modal input').val('');
       $('#contact-modal input').attr('disabled', false);
-      $('.modal').closeModal();
+      $('#contact-modal').closeModal();
       if (result['error']) {
         Materialize.toast('There was an error! Try again later', 4000);
       } else {

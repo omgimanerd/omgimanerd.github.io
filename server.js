@@ -25,11 +25,8 @@ var http = require('http');
 var morgan = require('morgan');
 var swig = require('swig');
 
-var DatabaseManager = require('./lib/DatabaseManager');
-
 // Initialization.
 var app = express();
-var dbm = DatabaseManager.create();
 var email = gmailSend({
   user: process.env.GMAIL_ACCOUNT,
   pass: process.env.GMAIL_APPLICATION_PASSWORD,
@@ -37,10 +34,6 @@ var email = gmailSend({
 });
 var server = http.Server(app);
 
-var challengesRouter = require('./routers/challengesRouter')({
-  dbm: dbm,
-  dev_mode: DEV_MODE
-});
 var renderData = require('./shared/data');
 
 app.engine('html', swig.renderFile);
@@ -92,8 +85,6 @@ app.post('/message', function(request, response) {
     });
   }
 });
-
-app.use('/challenges', challengesRouter);
 
 app.use(function(request, response) {
   response.status(400).render('404.html');
