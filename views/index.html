@@ -87,31 +87,31 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
   <!-- WORK -->
   <div class="container scrollspy" id="work">
     <div class="row">
-      <h2 class="center-align">Projects</h4>
+      <h2 class="center-align">Work Experience and Projects</h4>
     </div>
     <div class="row">
-      {% for app in renderData.apps %}
-      <div class="col s12 m12 l4">
+      {% for work in renderData.work %}
+      <div class="col s12 m6 l3">
         <div class="card teal lighten-5 hoverable">
           <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="{{ app.image }}" />
+            <img class="activator" src="{{ work.image }}" />
           </div>
           <div class="card-content">
             <span class="card-title activator">
-              {{ app.name }}
+              {{ work.name }}
               <i class="material-icons right">expand_less</i>
             </span>
           </div>
-          <div class="card-action">
-            <a href="{{ app.link }}">Get It Here!</a>
+          <div class="card-action truncate">
+            <a href="{{ work.link }}">{{ work.linkText }}!</a>
           </div>
           <div class="card-reveal teal lighten-5">
             <span class="card-title activator">
-              {{ app.name }}
+              {{ work.name }}
               <i class="material-icons right">close</i>
             </span>
             <p>
-              {{ app.description }}
+              {{ work.description }}
             </p>
           </div>
         </div>
