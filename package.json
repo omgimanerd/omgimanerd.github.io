@@ -1,6 +1,6 @@
 {
   "name": "omgimanerd.github.io",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "description": "Personal Webpage",
   "main": "server.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "https://github.com/omgimanerd/omgimanerd.github.io"
   },
   "author": "Alvin Lin",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/omgimanerd/omgimanerd.github.io/issues"
   },
