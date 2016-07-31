@@ -10,7 +10,7 @@ link back here or credit me as its source.
   - 2.0.0 - The second version, contains the futuristic themed build
   - 3.0.0 - The third version, with the terminal emulator and scripts, hosted
     instead of static
-  - 4.0.0 - The latest version, all sexy and shit and built Material Design
+  - 4.0.0 - The latest version, all sexy and shit and built with Material Design
 
 ## License
 Copyright &copy; Alvin Lin 2016

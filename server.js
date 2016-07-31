@@ -63,6 +63,12 @@ app.post('/message', function(request, response) {
       });
     }, 2500);
   } else {
+    /**
+     * The POST request must contain three fields:
+     * email - The sender email that we can reply to.
+     * name - The name of the person.
+     * message - The message content.
+     */
     var sender = request.body.email.strip();
     var name = request.body.name.strip();
     var message = request.body.message.strip();
