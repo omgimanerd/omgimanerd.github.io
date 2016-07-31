@@ -69,9 +69,9 @@ app.post('/message', function(request, response) {
      * name - The name of the person.
      * message - The message content.
      */
-    var sender = request.body.email.strip();
-    var name = request.body.name.strip();
-    var message = request.body.message.strip();
+    var sender = request.body.email;
+    var name = request.body.name;
+    var message = request.body.message;
     if (!sender || !name || !message) {
       response.send({
         error: 'One of your message fields was blank!',
