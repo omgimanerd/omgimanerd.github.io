@@ -1,5 +1,6 @@
 /**
- * @fileoverview This file contains hardcoded text constants.
+ * @fileoverview This file contains text constants used for rendering the
+ *   content in the page.
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
