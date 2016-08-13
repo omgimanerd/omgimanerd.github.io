@@ -1,11 +1,11 @@
 /**
  * This file contains compilation and build rules for the project. This file
  * is imported by the gulpfile during compilation and build.
- * For build system: 1.2.0
+ * For build system: 1.2.2
  */
 
 module.exports = {
-  VERSION: "1.2.1",
+  GULPFILE_VERSION: "1.2.2",
   JS_LINT_RULES: [
     {
       name: 'client side javascript',

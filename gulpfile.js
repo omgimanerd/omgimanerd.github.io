@@ -1,17 +1,17 @@
 /**
  * Multipurpose Javascript Task Runner to compile my projects.
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
- * @version 1.2.1
+ * @version 1.2.2
  */
 
-const version = "1.2.1";
+const version = "1.2.2";
 
 var gulp = require('gulp');
 var merge = require('merge-stream');
 
 try {
   var BUILD = require('./BUILD');
-  if (BUILD.VERSION !== version) {
+  if (BUILD.GULPFILE_VERSION !== version) {
     console.warn(
       'WARNING: Your BUILD.js and gulpfile.js versions do not match!');
   }
