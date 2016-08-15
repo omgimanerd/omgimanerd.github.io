@@ -1,21 +1,21 @@
 /**
  * Multipurpose Javascript Task Runner to compile my projects.
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
- * @version 1.2.3
+ * @version 1.3.0
  */
 
-const version = "1.2.3";
+const version = "1.3.0";
 
-var semvar = require('semver');
+var semver = require('semver');
 
 var gulp = require('gulp');
 var merge = require('merge-stream');
 
 try {
   var BUILD = require('./BUILD');
-  if (semvar.gt(BUILD.GULPFILE_VERSION, version)) {
+  if (semver.gt(BUILD.GULPFILE_VERSION, version)) {
     console.warn('Your gulpfile.js is outdated and may not work properly!');
-  } else if (semvar.gt(version, BUILD.GULPFILE_VERSION)) {
+  } else if (semver.gt(version, BUILD.GULPFILE_VERSION)) {
     console.warn('Your BUILD.js is using an older format. Consider updating ' +
         'it as certain features may not work.');
   }
@@ -52,7 +52,7 @@ gulp.task('js-lint', function() {
          });
     }));
   } else {
-    console.error('JS_LINT_RULES are not defined in your BUILD.js');
+    console.warn('JS_LINT_RULES are not defined in your BUILD.js');
   }
 });
 
@@ -86,7 +86,7 @@ gulp.task('js-compile', function() {
         });
     }));
   } else {
-    console.error('JS_BUILD_RULES are not defined in your BUILD.js');
+    console.warn('JS_BUILD_RULES are not defined in your BUILD.js');
   }
 });
 
@@ -121,7 +121,7 @@ gulp.task('less', function() {
         });
     }));
   } else {
-    console.error('LESS_BUILD_RULES are not defined in your BUILD.js');
+    console.warn('LESS_BUILD_RULES are not defined in your BUILD.js');
   }
 });
 
@@ -144,9 +144,18 @@ gulp.task('sass', function() {
         })
     }));
   } else {
-    console.error('SASS_BUILD_RULES are not defined in your BUILD.js');
+    console.warn('SASS_BUILD_RULES are not defined in your BUILD.js');
   }
 });
+
+gulp.task('clean', function() {
+  if (BUILD.CLEAN_PROJECT_RULES) {
+    var del = require('del');
+    return del(BUILD.CLEAN_PROJECT_RULES.paths);
+  } else {
+    console.warn('CLEAN_PROJECT_RULES are not defined in your BUILD.js');
+  }
+})
 
 gulp.task('watch-js', function() {
   BUILD.JS_BUILD_RULES.map(function(rule) {
