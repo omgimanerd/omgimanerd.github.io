@@ -19,12 +19,12 @@ $(document).ready(function() {
       'email': $('#contact-email').val(),
       'message': $('#contact-message').val()
     }, function(result) {
-      $('#contact-modal form').removeClass('disabled');
+      $('#contact-modal button').removeClass('disabled');
       $('#contact-modal input, #contact-message').attr('disabled', false);
       $('#contact-modal input').val('');
       $('#contact-modal').closeModal();
       if (result['error']) {
-        Materialize.toast('There was an error! Try again later', 4000);
+        Materialize.toast(result['error'], 4000);
       } else {
         Materialize.toast('Message sent!', 4000);
       }
