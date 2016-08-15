@@ -1,11 +1,11 @@
 /**
  * This file contains compilation and build rules for the project. This file
  * is imported by the gulpfile during compilation and build.
- * For build system: 1.3.0
+ * For build system: 1.3.1
  */
 
 module.exports = {
-  GULPFILE_VERSION: "1.3.0",
+  GULPFILE_VERSION: "1.3.1",
   DEFAULT_TASKS: ['js', 'sass'],
   JS_LINT_RULES: [
     {
@@ -54,6 +54,6 @@ module.exports = {
     }
   ],
   CLEAN_PROJECT_RULES: [
-    './public/dist'
+    './public/dist/*'
   ]
 };

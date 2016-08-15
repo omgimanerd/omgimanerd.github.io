@@ -1,10 +1,10 @@
 /**
  * Multipurpose Javascript Task Runner to compile my projects.
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
- * @version 1.3.0
+ * @version 1.3.1
  */
 
-const version = "1.3.0";
+const version = "1.3.1";
 
 var semver = require('semver');
 
@@ -151,7 +151,9 @@ gulp.task('sass', function() {
 gulp.task('clean', function() {
   if (BUILD.CLEAN_PROJECT_RULES) {
     var del = require('del');
-    return del(BUILD.CLEAN_PROJECT_RULES.paths);
+    return del(BUILD.CLEAN_PROJECT_RULES).then(function(paths) {
+      console.log('Cleaned:\n' + paths.join('\n'));
+    });
   } else {
     console.warn('CLEAN_PROJECT_RULES are not defined in your BUILD.js');
   }
