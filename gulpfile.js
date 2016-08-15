@@ -1,10 +1,10 @@
 /**
  * Multipurpose Javascript Task Runner to compile my projects.
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
- * @version 1.2.2
+ * @version 1.2.3
  */
 
-const version = "1.2.2";
+const version = "1.2.3";
 
 var semvar = require('semver');
 
@@ -23,7 +23,7 @@ try {
   throw new Error('Unable to locate BUILD.js');
 }
 
-gulp.task('default', ['js', 'less', 'sass']);
+gulp.task('default', BUILD.DEFAULT_TASKS || ['js', 'less', 'sass']);
 
 gulp.task('js', ['js-lint', 'js-compile']);
 
