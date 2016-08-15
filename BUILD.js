@@ -17,17 +17,30 @@ module.exports = {
   ],
   JS_BUILD_RULES: [
     {
-      name: 'client side javascript',
+      name: 'layout.js',
       externs: [
         './node_modules/google-closure-compiler/contrib/externs/jquery-1.9.js',
         './extern/extern.js'
       ],
       compilationLevel: 'ADVANCED_OPTIMIZATIONS',
       sourceFiles: [
-        './public/js/**/*.js',
+        './public/js/layout.js',
       ],
       outputDirectory: './public/dist',
-      outputFile: 'minified.js'
+      outputFile: 'layout.min.js'
+    },
+    {
+      name: 'index.js',
+      externs: [
+        './node_modules/google-closure-compiler/contrib/externs/jquery-1.9.js',
+        './extern/extern.js'
+      ],
+      compilationLevel: 'ADVANCED_OPTIMIZATIONS',
+      sourceFiles: [
+        './public/js/index.js',
+      ],
+      outputDirectory: './public/dist',
+      outputFile: 'index.min.js'
     }
   ],
   SASS_BUILD_RULES: [

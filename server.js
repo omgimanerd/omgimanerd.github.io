@@ -80,10 +80,10 @@ app.post('/message', function(request, response) {
       return;
     }
     email({
-      from: request.body.email,
-      replyTo: request.body.email,
-      subject: 'omgimanerd.tech - Message from ' + request.body.name,
-      text: request.body.message
+      from: sender,
+      replyTo: sender,
+      subject: 'omgimanerd.tech - Message from ' + name,
+      text: message
     }, function(error, result) {
       response.send({
         error: error,
