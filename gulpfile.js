@@ -6,7 +6,7 @@
 
 const version = "1.2.2";
 
-var semvar = require('semvar');
+var semvar = require('semver');
 
 var gulp = require('gulp');
 var merge = require('merge-stream');
@@ -14,9 +14,10 @@ var merge = require('merge-stream');
 try {
   var BUILD = require('./BUILD');
   if (semvar.gt(BUILD.GULPFILE_VERSION, version)) {
-    console.warn('Your gulpfile is outdated!');
+    console.warn('Your gulpfile.js is outdated and may not work properly!');
   } else if (semvar.gt(version, BUILD.GULPFILE_VERSION)) {
-    console.warn('Your BUILD.js is using an older format. Consider updating it as certain features may not work');
+    console.warn('Your BUILD.js is using an older format. Consider updating ' +
+        'it as certain features may not work.');
   }
 } catch (error) {
   throw new Error('Unable to locate BUILD.js');
