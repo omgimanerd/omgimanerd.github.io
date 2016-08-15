@@ -5,5 +5,5 @@
     "node_modules/*",
     "public/bower/*"
   ],
-  "ext": "js html json css less png"
+  "ext": "js html json css scss png"
 }

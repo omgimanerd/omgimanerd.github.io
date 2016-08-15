@@ -61,5 +61,5 @@ module.exports = {
       linkText: 'Get It Here!',
       image: '/public/img/tap.png'
     }
-  ]
+  ] 
 };

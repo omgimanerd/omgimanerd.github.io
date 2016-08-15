@@ -34,7 +34,9 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
       <h2>
         My name is Alvin Lin
       </h2>
+
       {{ macros.divider() }}
+
       <h4>
         I am a full-stack web developer in New York. I work with:
       </h4>
@@ -75,6 +77,16 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
                                 "/public/img/android.png") }}
       </li>
     </ul>
+
+    {{ macros.divider() }}
+
+    <div class="section center-align">
+      <a class="btn-large waves-effect waves-light blue-grey darken-2"
+        href="/public/resume.pdf" target="_blank">
+        <i class="material-icons left">work</i>
+        R&eacute;sum&eacute;
+      </a>
+    </div>
   </div>
 
   <!-- SECOND PARALLAX -->
@@ -87,7 +99,7 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
   <!-- WORK -->
   <div class="container scrollspy" id="work">
     <div class="row">
-      <h2 class="center-align">Work Experience and Projects</h4>
+      <h2 class="center-align">Highlighted Projects</h4>
     </div>
     <div class="row">
       {% for work in renderData.work %}
@@ -117,6 +129,13 @@ Author: Alvin Lin (alvin.lin.dev@gmail.com)
         </div>
       </div>
       {% endfor %}
+    </div>
+    <div class="row center-align">
+      <a class="btn-large waves-effect waves-light blue-grey darken-2"
+        href="http://github.com/omgimanerd" target="_blank">
+        <i class="fa fa-github left"></i>
+        GitHub
+      </a>
     </div>
   </div>
 {% endblock %}

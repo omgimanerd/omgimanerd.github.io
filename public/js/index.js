@@ -8,13 +8,4 @@ $(document).ready(function() {
   $('.modal-trigger').leanModal();
   $('.scrollspy').scrollSpy();
 
-  Materialize.scrollFire([
-    {
-      'selector': '#skills',
-      'offset': 0,
-      'callback': function() {
-        Materialize.showStaggeredList('#skills ul');
-      }
-    }
-  ]);
 });
