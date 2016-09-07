@@ -94,7 +94,7 @@ app.post('/message', function(request, response) {
 });
 
 app.use(function(request, response) {
-  response.status(400).render('404.html');
+  response.status(404).render('404.html');
 });
 
 // Starts the server.

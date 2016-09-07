@@ -1,0 +1,3 @@
+[submodule "public/rit-notes"]
+	path = public/rit-notes
+	url = git@github.com:omgimanerd/rit-notes
