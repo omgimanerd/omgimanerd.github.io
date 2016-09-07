@@ -3,10 +3,11 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-// Constants
+// Important globals
 var DEV_MODE = false;
 var IP = process.env.IP || 'localhost';
 var PORT_NUMBER = process.env.PORT || 5000;
+var NOTES_PATH = './public/rit-notes/latex';
 
 // Sets the DEV_MODE constant during development if we run 'node server --dev'
 process.argv.forEach(function(value, index, array) {
@@ -16,17 +17,17 @@ process.argv.forEach(function(value, index, array) {
 });
 
 // Dependencies.
-var assert = require('assert');
+var fs = require('fs');
+var path = require('path');
+var _ = require('lodash');
+
+var async = require('async');
 var bodyParser = require('body-parser');
 var express = require('express');
 var gmailSend = require('gmail-send');
 var http = require('http');
 var morgan = require('morgan');
 var swig = require('swig');
-
-var ritNotesRouter = require('./router/ritNotesRouter')({
-  dev_mode: DEV_MODE
-});
 
 // Initialization.
 var app = express();
@@ -36,8 +37,6 @@ var email = gmailSend({
   to: process.env.GMAIL_ACCOUNT
 });
 var server = http.Server(app);
-
-var renderData = require('./shared/data');
 
 app.engine('html', swig.renderFile);
 
@@ -56,7 +55,37 @@ app.get('/', function(request, response) {
   });
 });
 
-app.use('/notes', ritNotesRouter)
+app.use('/notes', function(request, response) {
+  var join = path.join;
+
+  async.waterfall([
+    function(callback) {
+      fs.readdir(NOTES_PATH, callback);
+    },
+    function(dirs, callback) {
+      async.filter(dirs, function(dir, filterCallback) {
+        fs.stat(join(NOTES_PATH, dir), function(error, stats) {
+          filterCallback(error, stats.isDirectory());
+        });
+      }, callback);
+    },
+    function(dirs, callback) {
+      var pdfs = {};
+      async.map(dirs, function(dir, mapCallback) {
+        fs.readdir(join(NOTES_PATH, dir, 'output'), function(error, files) {
+          pdfs[dir] = files.filter(function(file) {
+            return file.indexOf('.pdf') > 0;
+          });
+          return mapCallback(error);
+        });
+      }, function(error, results) {
+        return callback(error, pdfs);
+      });
+    }
+  ], function(error, results) {
+    response.send(results);
+  });
+});
 
 app.post('/message', function(request, response) {
   if (DEV_MODE) {
