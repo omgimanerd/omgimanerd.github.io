@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div class="col s12 four-oh-four">
+  <div class="col s12 error">
     <div class="col s12 center-align">
       <h1>
         <i class="material-icons medium">error</i>
-        404: Page not found!
+        {{ error }}
         <i class="material-icons medium">error</i>
       </h1>
       <a class="waves-effect waves-light btn" href="/">

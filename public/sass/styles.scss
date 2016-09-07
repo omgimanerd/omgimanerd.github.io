@@ -13,6 +13,10 @@ main {
   flex: 1 0 auto;
 }
 
+footer {
+  margin-top: 0px !important;
+}
+
 .alpha {
   font-size: 50px;
   margin-left: 10px;
@@ -30,9 +34,9 @@ main {
   height: 200px;
 }
 
-.four-oh-four {
-  height: 100%;
-  background-image: url('/public/img/404_bg.png');
+.error {
+  height: 700px;
+  background-image: url('/public/img/error.png');
 }
 
 .me {

@@ -4,7 +4,7 @@
   "description": "Personal Webpage",
   "main": "server.js",
   "scripts": {
-    "postinstall": "bower install && gulp"
+    "postinstall": "gulp"
   },
   "repository": {
     "type": "git",

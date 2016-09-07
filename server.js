@@ -38,8 +38,9 @@ var email = gmailSend({
 });
 var server = http.Server(app);
 
-app.engine('html', swig.renderFile);
+var renderData = require('./shared/data');
 
+app.engine('html', swig.renderFile);
 app.set('port', PORT_NUMBER);
 app.set('view engine', 'html');
 app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
@@ -65,25 +66,35 @@ app.use('/notes', function(request, response) {
     function(dirs, callback) {
       async.filter(dirs, function(dir, filterCallback) {
         fs.stat(join(NOTES_PATH, dir), function(error, stats) {
-          filterCallback(error, stats.isDirectory());
+          return filterCallback(error, stats.isDirectory());
         });
-      }, callback);
+      }, function(error, results) {
+        callback(error, results);
+      });
     },
     function(dirs, callback) {
-      var pdfs = {};
+      var hierarchy = {};
       async.map(dirs, function(dir, mapCallback) {
         fs.readdir(join(NOTES_PATH, dir, 'output'), function(error, files) {
-          pdfs[dir] = files.filter(function(file) {
+          hierarchy[dir] = files.filter(function(file) {
             return file.indexOf('.pdf') > 0;
           });
           return mapCallback(error);
         });
       }, function(error, results) {
-        return callback(error, pdfs);
+        callback(error, hierarchy)
       });
     }
   ], function(error, results) {
-    response.send(results);
+    if (error) {
+      response.status(500).render('error.html', {
+        error: 'An error occurred. This has been logged. Try again later'
+      });
+    } else {
+      response.render('notes.html', {
+        notes: results
+      });
+    }
   });
 });
 
@@ -127,7 +138,9 @@ app.post('/message', function(request, response) {
 });
 
 app.use(function(request, response) {
-  response.status(404).render('404.html');
+  response.status(404).render('error.html', {
+    error: '404: Page not found!'
+  });
 });
 
 // Starts the server.
