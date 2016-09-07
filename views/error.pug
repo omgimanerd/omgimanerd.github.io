@@ -1,0 +1,17 @@
+extends layout.pug
+
+block body
+  div(class='col s12 center-align error')
+    h1
+      i(class='material-icons medium') error
+      span= error
+      i(class='material-icons medium') error
+    a(class='btn waves-effect waves-light' href='/')
+      i(class='material-icons right') home
+      | Home
+
+block scripts
+  script.
+    $(document).ready(function() {
+      $('.parallax').parallax();
+    });

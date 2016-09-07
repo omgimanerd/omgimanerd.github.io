@@ -1,10 +1,10 @@
 /**
  * Multipurpose Javascript Task Runner to compile my projects.
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
- * @version 2.0.0
+ * @version 2.0.1
  */
 
-const version = "2.0.0";
+const version = "2.0.1";
 
 var semver = require('semver');
 
@@ -20,7 +20,7 @@ try {
         'it as certain features may not work.');
   }
 } catch (error) {
-  throw new Error('Unable to locate BUILD.js');
+  throw new Error('Unable to read BUILD.js');
 }
 
 gulp.task('default', BUILD.DEFAULT_TASKS || ['js', 'less', 'sass']);
@@ -28,6 +28,8 @@ gulp.task('default', BUILD.DEFAULT_TASKS || ['js', 'less', 'sass']);
 gulp.task('js', ['js-lint', 'js-compile']);
 
 gulp.task('lint', ['js-lint']);
+
+gulp.task('scss', ['sass']);
 
 gulp.task('js-lint', function() {
   if (BUILD.JS_LINT_RULES) {
@@ -172,21 +174,36 @@ gulp.task('test', function() {
 });
 
 gulp.task('watch-js', function() {
-  BUILD.JS_BUILD_RULES.map(function(rule) {
-    gulp.watch(rule.sourceFiles, ['js'])
-  });
+  if (BUILD.JS_BUILD_RULES) {
+    BUILD.JS_BUILD_RULES.map(function(rule) {
+      gulp.watch(rule.sourceFiles, ['js'])
+    });
+  } else {
+    console.warn('JS_BUILD_RULES are not defined in your BUILD.js');
+  }
 });
 
 gulp.task('watch-less', function() {
-  BUILD.LESS_BUILD_RULES.map(function(rule) {
-    gulp.watch(rule.sourceFiles, ['less']);
-  })
+  if (BUILD.LESS_BUILD_RULES) {
+    BUILD.LESS_BUILD_RULES.map(function(rule) {
+      gulp.watch(rule.sourceFiles, ['less']);
+    });
+  } else {
+    console.warn('LESS_BUILD_RULES are not defined in your BUILD.js');
+  }
 });
+
+gulp.task('watch-scss', ['watch-sass']);
 
 gulp.task('watch-sass', function() {
-  BUILD.SASS_BUILD_RULES.map(function(rule) {
-    gulp.watch(rule.sourceFiles, ['sass']);
-  })
+  if (BUILD.SASS_BUILD_RULES) {
+    BUILD.SASS_BUILD_RULES.map(function(rule) {
+      gulp.watch(rule.sourceFiles, ['sass']);
+    });
+  } else {
+    console.warn('SASS_BUILD_RULES are not defined in your BUILD.js');
+  }
 });
 
-gulp.task('watch', ['watch-js', 'watch-less', 'watch-sass']);
+gulp.task('watch',
+          BUILD.DEFAULT_WATCH || ['watch-js', 'watch-less', 'watch-sass']);

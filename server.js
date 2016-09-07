@@ -27,7 +27,6 @@ var express = require('express');
 var gmailSend = require('gmail-send');
 var http = require('http');
 var morgan = require('morgan');
-var swig = require('swig');
 
 // Initialization.
 var app = express();
@@ -40,9 +39,8 @@ var server = http.Server(app);
 
 var renderData = require('./shared/data');
 
-app.engine('html', swig.renderFile);
 app.set('port', PORT_NUMBER);
-app.set('view engine', 'html');
+app.set('view engine', 'pug');
 app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
 app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
 app.use('/public', express.static(__dirname + '/public'));
@@ -50,7 +48,7 @@ app.use('/scripts', express.static(__dirname + '/scripts'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function(request, response) {
-  response.render('index.html', {
+  response.render('index', {
     dev_mode: DEV_MODE,
     renderData: renderData
   });
@@ -87,11 +85,11 @@ app.use('/notes', function(request, response) {
     }
   ], function(error, results) {
     if (error) {
-      response.status(500).render('error.html', {
+      response.status(500).render('error', {
         error: 'An error occurred. This has been logged. Try again later'
       });
     } else {
-      response.render('notes.html', {
+      response.render('notes', {
         notes: results
       });
     }
@@ -138,7 +136,7 @@ app.post('/message', function(request, response) {
 });
 
 app.use(function(request, response) {
-  response.status(404).render('error.html', {
+  response.status(404).render('error', {
     error: '404: Page not found!'
   });
 });

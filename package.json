@@ -4,7 +4,7 @@
   "description": "Personal Webpage",
   "main": "server.js",
   "scripts": {
-    "postinstall": "gulp"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,6 @@
     "gulp-sass": "^2.3.2",
     "merge-stream": "^1.0.0",
     "morgan": "^1.7.0",
-    "swig": "^1.4.2"
+    "pug": "^2.0.0-beta6"
   }
 }

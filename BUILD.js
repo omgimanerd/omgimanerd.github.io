@@ -1,12 +1,12 @@
 /**
  * This file contains compilation and build rules for the project. This file
  * is imported by the gulpfile during compilation and build.
- * For build system: 2.0.0
  */
 
 module.exports = {
-  GULPFILE_VERSION: "2.0.0",
+  GULPFILE_VERSION: "2.0.1",
   DEFAULT_TASKS: ['js', 'sass'],
+  DEFAULT_WATCH: ['watch-js', 'watch-sass'],
   JS_LINT_RULES: [
     {
       name: 'client side javascript',
