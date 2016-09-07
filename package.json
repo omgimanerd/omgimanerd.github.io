@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/omgimanerd/omgimanerd.github.io",
   "dependencies": {
+    "async": "^2.0.1",
     "body-parser": "^1.15.0",
     "del": "^2.2.2",
     "express": "^4.13.4",

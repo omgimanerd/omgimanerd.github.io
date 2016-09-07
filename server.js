@@ -24,6 +24,10 @@ var http = require('http');
 var morgan = require('morgan');
 var swig = require('swig');
 
+var ritNotesRouter = require('./router/ritNotesRouter')({
+  dev_mode: DEV_MODE
+});
+
 // Initialization.
 var app = express();
 var email = gmailSend({
@@ -43,8 +47,6 @@ app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
 app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/scripts'));
-// Use request.query for GET request params.
-// Use request.body for POST request params.
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function(request, response) {
@@ -53,6 +55,8 @@ app.get('/', function(request, response) {
     renderData: renderData
   });
 });
+
+app.use('/notes', ritNotesRouter)
 
 app.post('/message', function(request, response) {
   if (DEV_MODE) {
