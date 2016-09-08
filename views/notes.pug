@@ -1,0 +1,17 @@
+extends layout.pug
+
+block body
+  div(class='row center-align')
+    h2 Notes
+    +divider
+
+    ul(class='notes collapsible left-align' data-collapsible='expandable')
+      each pdfs,section in notes
+        li
+          div(class='collapsible-header active')
+            =section
+          div(class='collapsible-body')
+            div(class='collection')
+              each pdf in pdfs
+                a(class='collection-item' href=pdf)
+                  =pdf

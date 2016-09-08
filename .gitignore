@@ -1,6 +1,7 @@
 node_modules
 public/bower
 public/dist
+public/rit-notes
 .gulp-scss-cache
 .sass-cache
 setup

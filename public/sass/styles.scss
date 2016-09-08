@@ -17,9 +17,26 @@ footer {
   margin-top: 0px !important;
 }
 
+#skills li {
+  opacity: 0;
+}
+
 .alpha {
   font-size: 50px;
   margin-left: 10px;
+}
+
+.error {
+  height: 700px;
+  background-image: url('/public/img/error.png');
+}
+
+.me {
+  margin: 185px auto;
+}
+
+.notes {
+  width: 600px !important;
 }
 
 .parallax {
@@ -32,17 +49,4 @@ footer {
 
 .parallax-2 {
   height: 200px;
-}
-
-.error {
-  height: 700px;
-  background-image: url('/public/img/error.png');
-}
-
-.me {
-  margin: 185px auto;
-}
-
-#skills li {
-  opacity: 0;
 }

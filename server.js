@@ -19,7 +19,6 @@ process.argv.forEach(function(value, index, array) {
 // Dependencies.
 var fs = require('fs');
 var path = require('path');
-var _ = require('lodash');
 
 var async = require('async');
 var bodyParser = require('body-parser');
@@ -27,6 +26,7 @@ var express = require('express');
 var gmailSend = require('gmail-send');
 var http = require('http');
 var morgan = require('morgan');
+var pug = require('pug');
 
 // Initialization.
 var app = express();
@@ -36,8 +36,8 @@ var email = gmailSend({
   to: process.env.GMAIL_ACCOUNT
 });
 var server = http.Server(app);
-
 var renderData = require('./shared/data');
+pug.filters = require('./lib/filters');
 
 app.set('port', PORT_NUMBER);
 app.set('view engine', 'pug');
@@ -76,6 +76,8 @@ app.use('/notes', function(request, response) {
         fs.readdir(join(NOTES_PATH, dir, 'output'), function(error, files) {
           hierarchy[dir] = files.filter(function(file) {
             return file.indexOf('.pdf') > 0;
+          }).map(function(current, index, array) {
+            return '/' + join(NOTES_PATH, dir, 'output', current);
           });
           return mapCallback(error);
         });
@@ -85,8 +87,15 @@ app.use('/notes', function(request, response) {
     }
   ], function(error, results) {
     if (error) {
-      response.status(500).render('error', {
-        error: 'An error occurred. This has been logged. Try again later'
+      email({
+        from: 'alert@omgimanerd.tech',
+        replyTo: 'alert@omgimanerd.tech',
+        subject: 'omgimanerd.tech - Error',
+        text: 'Error: ' + error
+      }, function() {
+        response.status(500).render('error', {
+          error: 'An error occurred. This has been logged. Try again later.'
+        });
       });
     } else {
       response.render('notes', {
@@ -119,19 +128,19 @@ app.post('/message', function(request, response) {
         error: 'One of your message fields was blank!',
         result: null
       });
-      return;
-    }
-    email({
-      from: sender,
-      replyTo: sender,
-      subject: 'omgimanerd.tech - Message from ' + name,
-      text: message
-    }, function(error, result) {
-      response.send({
-        error: error,
-        result: result
+    } else {
+      email({
+        from: sender,
+        replyTo: sender,
+        subject: 'omgimanerd.tech - Message from ' + name,
+        text: message
+      }, function(error, result) {
+        response.send({
+          error: error,
+          result: result
+        });
       });
-    });
+    }
   }
 });
 
