@@ -27,16 +27,15 @@ footer {
 }
 
 .error {
-  height: 700px;
-  background-image: url('/public/img/error.png');
+  height: 800px;
+
+  span {
+    margin: 40px;
+  }
 }
 
 .me {
   margin: 185px auto;
-}
-
-.notes {
-  width: 600px !important;
 }
 
 .parallax {

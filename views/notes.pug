@@ -1,17 +1,18 @@
 extends layout.pug
 
 block body
-  div(class='row center-align')
+  div(class='col s12 center-align blue-grey lighten-3')
     h2 Notes
-    +divider
 
-    ul(class='notes collapsible left-align' data-collapsible='expandable')
-      each pdfs,section in notes
-        li
-          div(class='collapsible-header')
-            =section
-          div(class='collapsible-body')
-            div(class='collection')
-              each pdf in pdfs
-                a(class='collection-item' href=pdf)
-                  =pdf
+    div(class='row center-align')
+      div(class='col s6 offset-s3')
+        ul(class='collapsible left-align notes' data-collapsible='expandable')
+          each pdfs,section in notes
+            li
+              div(class='collapsible-header')
+                =section
+              div(class='collapsible-body')
+                div(class='collection')
+                  each pdf in pdfs
+                    a(class='collection-item' href=pdf)
+                      =pdf
