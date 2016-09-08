@@ -1,10 +1,10 @@
 /**
  * Multipurpose Javascript Task Runner to compile my projects.
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
- * @version 2.0.1
+ * @version 2.0.2
  */
 
-const version = "2.0.1";
+const version = "2.0.2";
 
 var semver = require('semver');
 
@@ -153,7 +153,7 @@ gulp.task('sass', function() {
 gulp.task('clean', function() {
   if (BUILD.CLEAN_PROJECT_PATHS) {
     var del = require('del');
-    return del(BUILD.CLEAN_PROJECT_RULES).then(function(paths) {
+    return del(BUILD.CLEAN_PROJECT_PATHS).then(function(paths) {
       console.log('Cleaned:\n' + paths.join('\n'));
     });
   } else {
