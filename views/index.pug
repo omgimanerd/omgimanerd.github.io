@@ -100,6 +100,12 @@ block body
         | GitHub
 
 block scripts
+  script.
+    $(document).ready(function() {
+      $('.parallax').parallax();
+      $('.modal-trigger').leanModal();
+      $('.scrollspy').scrollSpy();
+    });
   if dev_mode
     script(src='/public/js/index.js')
   else

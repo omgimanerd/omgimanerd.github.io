@@ -11,7 +11,8 @@ module.exports = {
     {
       name: 'client side javascript',
       sourceFiles: [
-        './public/js/**/*.js'
+        './public/js/**/*.js',
+        './routers/*.js'
       ]
     }
   ],

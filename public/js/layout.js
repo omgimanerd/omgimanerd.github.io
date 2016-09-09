@@ -23,11 +23,11 @@ $(document).ready(function() {
         Materialize.toast(result['error'], 4000);
       } else {
         Materialize.toast('Message sent!', 4000);
-        $('#contact-modal').closeModal();
-        $('#contact-modal button').removeClass('disabled');
-        $('#contact-modal input, #contact-message').attr('disabled', false);
-        $('#contact-modal input, #contact-message').val('');
       }
+      $('#contact-modal').closeModal();
+      $('#contact-modal button').removeClass('disabled');
+      $('#contact-modal input, #contact-message').attr('disabled', false);
+      $('#contact-modal input, #contact-message').val('');
     });
   });
 
