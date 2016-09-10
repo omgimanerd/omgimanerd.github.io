@@ -14,6 +14,12 @@ module.exports = {
         './public/js/**/*.js',
         './routers/*.js'
       ]
+    },
+    {
+      name: 'library javascript',
+      sourceFiles: [
+        './lib/*.js'
+      ]
     }
   ],
   JS_BUILD_RULES: [
