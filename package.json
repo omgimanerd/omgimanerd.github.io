@@ -21,7 +21,6 @@
     "body-parser": "^1.15.0",
     "del": "^2.2.2",
     "express": "^4.13.4",
-    "github-webhook-handler": "^0.6.0",
     "gmail-send": "^1.2.6",
     "google-closure-compiler": "^20160315.2.0",
     "gulp": "^3.9.1",
@@ -32,6 +31,7 @@
     "gulp-sass": "^2.3.2",
     "merge-stream": "^1.0.0",
     "morgan": "^1.7.0",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "shelljs": "^0.7.4"
   }
 }

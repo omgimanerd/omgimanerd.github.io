@@ -4,19 +4,12 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-const NOTES_PATH = './public/rit-notes/latex';
-
 var async = require('async');
-var crypto = require('crypto');
+var bufferEqual = require('buffer-equal-constant-time');
 var express = require('express');
+var shellJs = require('shelljs');
 var fs = require('fs');
-var githubWebhookHandler = require('github-webhook-handler');
 var path = require('path');
-
-var handler = githubWebhookHandler({
-  path: '/',
-  secret: 'secret'
-});
 
 /**
  * Defines the router that will be used to handle access to the LaTeK notes.
@@ -30,11 +23,11 @@ module.exports = function(options) {
   router.get('/', function(request, response) {
     async.waterfall([
       function(callback) {
-        fs.readdir(NOTES_PATH, callback);
+        fs.readdir(options.notesPath, callback);
       },
       function(dirs, callback) {
         async.filter(dirs, function(dir, filterCallback) {
-          fs.stat(join(NOTES_PATH, dir), function(error, stats) {
+          fs.stat(join(options.notesPath, dir), function(error, stats) {
             return filterCallback(error, stats.isDirectory());
           });
         }, function(error, results) {
@@ -44,11 +37,11 @@ module.exports = function(options) {
       function(dirs, callback) {
         var hierarchy = {};
         async.map(dirs, function(dir, mapCallback) {
-          fs.readdir(join(NOTES_PATH, dir, 'output'), function(error, files) {
+          fs.readdir(join(options.notesPath, dir, 'output'), function(error, files) {
             hierarchy[dir] = files.filter(function(file) {
               return file.indexOf('.pdf') > 0;
             }).map(function(current, index, array) {
-              return '/' + join(NOTES_PATH, dir, 'output', current);
+              return '/' + join(options.notesPath, dir, 'output', current);
             });
             return mapCallback(error);
           });
@@ -77,13 +70,19 @@ module.exports = function(options) {
   });
 
   /**
-   * This route handles the
+   * This route handles the request from GitHub when the rit-notes repository
+   * receives a push.
    */
-  handler.on('push', function(event) {
-    console.log('worked');
-    console.log(event);
+  router.post('/update', function(request, response) {
+    var match = bufferEqual(new Buffer(request.receivedHash),
+                            new Buffer(request.computedHash));
+    if (typeof(request.receivedHash) == 'string' &&
+        typeof(request.computedHash) == 'string' && match) {
+      shellJs.cd(options.notesPath);
+      shellJs.exec('git pull');
+    }
+    response.send(null);
   });
-  router.post('/update', handler);
 
   return router;
 };
