@@ -21,7 +21,6 @@
     "body-parser": "^1.15.0",
     "del": "^2.2.2",
     "express": "^4.13.4",
-    "gmail-send": "^1.2.6",
     "google-closure-compiler": "^20160315.2.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.0.7",
