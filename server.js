@@ -79,7 +79,9 @@ server.listen(PORT_NUMBER, function() {
   if (!process.env.GITHUB_WEBHOOK_SECRET) {
     throw new Error('No Github webhook secret specified!');
   }
+  shellJs.pushd('./');
   if (shellJs.cd(NOTES_PATH).stderr) {
-    throw new Error('rit-notes directory not found!')
+    throw new Error('rit-notes directory not found!');
   }
+  shellJs.popd();
 });

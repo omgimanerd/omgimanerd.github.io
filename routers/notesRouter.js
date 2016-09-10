@@ -78,8 +78,10 @@ module.exports = function(options) {
                             new Buffer(request.computedHash));
     if (typeof(request.receivedHash) == 'string' &&
         typeof(request.computedHash) == 'string' && match) {
+      shellJs.pushd('./');
       shellJs.cd(options.notesPath);
       shellJs.exec('git pull');
+      shellJs.popd();
     }
     response.send(null);
   });
