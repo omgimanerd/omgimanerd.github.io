@@ -6,6 +6,7 @@
 
 var express = require('express');
 
+var alert = require('../lib/alert')(process.env.SENDGRID_API_KEY);
 var renderData = require('../shared/data');
 
 /**
@@ -47,25 +48,14 @@ module.exports = function(options) {
           result: null
         });
       } else {
-        options.email({
-          from: sender,
-          replyTo: sender,
-          subject: 'omgimanerd.tech - Message from ' + name,
-          text: message
-        }, function(error, result) {
+        name = 'omgimanerd.tech - Message from ' + name;
+        alert(name, message, function(error, result) {
           response.send({
-            error: error,
-            result: result
+            error: error
           });
         });
       }
     }
-  });
-
-  router.use(function(request, response) {
-    response.status(404).render('error', {
-      error: '404: Page not found!'
-    });
   });
 
   return router;

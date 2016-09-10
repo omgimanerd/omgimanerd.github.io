@@ -24,26 +24,21 @@ var gmailSend = require('gmail-send');
 var http = require('http');
 var morgan = require('morgan');
 var pug = require('pug');
+var sendgrid = require('sendgrid');
 var shellJs = require('shelljs');
 
 // Initialization.
 var app = express();
-var email = gmailSend({
-  user: process.env.GMAIL_ACCOUNT,
-  pass: process.env.GMAIL_APPLICATION_PASSWORD,
-  to: process.env.GMAIL_ACCOUNT
-});
+var helper = sendgrid.mail;
 var server = http.Server(app);
 pug.filters = require('./lib/filters');
 
 // Routers
 var baseRouter = require('./routers/baseRouter')({
-  devMode: DEV_MODE,
-  email: email
+  devMode: DEV_MODE
 });
 var notesRouter = require('./routers/notesRouter')({
   devMode: DEV_MODE,
-  email: email,
   notesPath: NOTES_PATH
 });
 
@@ -53,7 +48,8 @@ app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
 app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/scripts'));
-app.use(bodyParser.json({
+app.use(bodyParser.urlencoded({
+  extended: true,
   verify: function(request, response, buffer, encoding) {
     request.receivedHash = request.headers['x-hub-signature'];
     request.computedHash = 'sha1=' + crypto.createHmac('sha1',
@@ -61,8 +57,13 @@ app.use(bodyParser.json({
   }
 }));
 
-app.use('/notes', notesRouter);
 app.use('/', baseRouter);
+app.use('/notes', notesRouter);
+app.use(function(request, response) {
+  response.status(404).render('error', {
+    error: '404: Page not found!'
+  });
+});
 
 // Starts the server.
 server.listen(PORT_NUMBER, function() {
@@ -70,15 +71,13 @@ server.listen(PORT_NUMBER, function() {
   if (DEV_MODE) {
     console.log('DEVELOPMENT MODE ENABLED: SERVING UNCOMPILED JAVASCRIPT!');
   }
-  if (!process.env.GMAIL_ACCOUNT) {
-    throw new Error('No Gmail account specified!');
-  }
-  if (!process.env.GMAIL_APPLICATION_PASSWORD) {
-    throw new Error('No Gmail application password specified!');
-  }
   if (!process.env.GITHUB_WEBHOOK_SECRET) {
     throw new Error('No Github webhook secret specified!');
   }
+  if (!process.env.SENDGRID_API_KEY) {
+    throw new Error('No SendGrid API key specified!');
+  }
+  shellJs.config.silent = true;
   shellJs.pushd('./');
   if (shellJs.cd(NOTES_PATH).stderr) {
     throw new Error('rit-notes directory not found!');

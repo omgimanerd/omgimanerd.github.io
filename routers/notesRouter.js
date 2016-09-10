@@ -11,6 +11,8 @@ var shellJs = require('shelljs');
 var fs = require('fs');
 var path = require('path');
 
+var alert = require('../lib/alert')(process.env.SENDGRID_API_KEY);
+
 /**
  * Defines the router that will be used to handle access to the LaTeK notes.
  * @param {Object} options Options that modify the behavior of the router.
@@ -19,15 +21,16 @@ var path = require('path');
 module.exports = function(options) {
   var router = express.Router();
   var join = path.join;
+  var notesPath = notesPath;
 
   router.get('/', function(request, response) {
     async.waterfall([
       function(callback) {
-        fs.readdir(options.notesPath, callback);
+        fs.readdir(notesPath, callback);
       },
       function(dirs, callback) {
         async.filter(dirs, function(dir, filterCallback) {
-          fs.stat(join(options.notesPath, dir), function(error, stats) {
+          fs.stat(join(notesPath, dir), function(error, stats) {
             return filterCallback(error, stats.isDirectory());
           });
         }, function(error, results) {
@@ -37,11 +40,11 @@ module.exports = function(options) {
       function(dirs, callback) {
         var hierarchy = {};
         async.map(dirs, function(dir, mapCallback) {
-          fs.readdir(join(options.notesPath, dir, 'output'), function(error, files) {
+          fs.readdir(join(notesPath, dir, 'output'), function(error, files) {
             hierarchy[dir] = files.filter(function(file) {
               return file.indexOf('.pdf') > 0;
             }).map(function(current, index, array) {
-              return '/' + join(options.notesPath, dir, 'output', current);
+              return '/' + join(notesPath, dir, 'output', current);
             });
             return mapCallback(error);
           });
@@ -51,12 +54,7 @@ module.exports = function(options) {
       }
     ], function(error, results) {
       if (error) {
-        options.email({
-          from: 'alert@omgimanerd.tech',
-          replyTo: 'alert@omgimanerd.tech',
-          subject: 'omgimanerd.tech - Error',
-          text: 'Error: ' + error
-        }, function() {
+        alert('omgimanerd.tech - Error', error, function(error, response) {
           response.status(500).render('error', {
             error: 'An error occurred. This has been logged. Try again later.'
           });
@@ -78,8 +76,9 @@ module.exports = function(options) {
                             new Buffer(request.computedHash));
     if (typeof(request.receivedHash) == 'string' &&
         typeof(request.computedHash) == 'string' && match) {
+      shellJs.config.silent = true;
       shellJs.pushd('./');
-      shellJs.cd(options.notesPath);
+      shellJs.cd(notesPath);
       shellJs.exec('git pull');
       shellJs.popd();
     }
