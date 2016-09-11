@@ -20,16 +20,13 @@ process.argv.forEach(function(value, index, array) {
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
 var express = require('express');
-var gmailSend = require('gmail-send');
 var http = require('http');
 var morgan = require('morgan');
 var pug = require('pug');
-var sendgrid = require('sendgrid');
 var shellJs = require('shelljs');
 
 // Initialization.
 var app = express();
-var helper = sendgrid.mail;
 var server = http.Server(app);
 pug.filters = require('./lib/filters');
 

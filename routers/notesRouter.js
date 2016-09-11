@@ -21,7 +21,7 @@ var alert = require('../lib/alert')(process.env.SENDGRID_API_KEY);
 module.exports = function(options) {
   var router = express.Router();
   var join = path.join;
-  var notesPath = notesPath;
+  var notesPath = options.notesPath;
 
   router.get('/', function(request, response) {
     async.waterfall([
