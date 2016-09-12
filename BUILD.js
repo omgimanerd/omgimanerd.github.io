@@ -35,6 +35,19 @@ module.exports = {
       ],
       outputDirectory: './public/dist',
       outputFile: 'layout.min.js'
+    },
+    {
+      name: 'notes.js',
+      externs: [
+        './node_modules/google-closure-compiler/contrib/externs/jquery-1.9.js',
+        './extern/extern.js'
+      ],
+      compilationLevel: 'ADVANCED_OPTIMIZATIONS',
+      sourceFiles: [
+        './public/js/notes.js',
+      ],
+      outputDirectory: './public/dist',
+      outputFile: 'notes.min.js'
     }
   ],
   SASS_BUILD_RULES: [

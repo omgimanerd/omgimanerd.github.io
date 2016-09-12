@@ -1,5 +1,5 @@
 /**
- * @fileoverview Client side script.
+ * @fileoverview Client side script for layout.pug
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
