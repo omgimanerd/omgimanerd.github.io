@@ -22,13 +22,11 @@ var crypto = require('crypto');
 var express = require('express');
 var http = require('http');
 var morgan = require('morgan');
-var pug = require('pug');
 var shellJs = require('shelljs');
 
 // Initialization.
 var app = express();
 var server = http.Server(app);
-pug.filters = require('./lib/filters');
 
 // Routers
 var baseRouter = require('./routers/baseRouter')({

@@ -19,6 +19,7 @@
   "dependencies": {
     "async": "^2.0.1",
     "body-parser": "^1.15.0",
+    "buffer-equal-constant-time": "^1.0.1",
     "del": "^2.2.2",
     "express": "^4.13.4",
     "google-closure-compiler": "^20160315.2.0",
