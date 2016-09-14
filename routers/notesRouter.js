@@ -81,8 +81,15 @@ module.exports = function(options) {
       shellJs.cd(notesPath);
       shellJs.exec('git pull');
       shellJs.popd();
+      response.send({
+        success: true
+      });
+    } else {
+      response.send({
+        success: false,
+        error: 'Invalid hash'
+      })
     }
-    response.send(null);
   });
 
   return router;
