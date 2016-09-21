@@ -21,6 +21,7 @@
     "body-parser": "^1.15.0",
     "buffer-equal-constant-time": "^1.0.1",
     "del": "^2.2.2",
+    "email-alerts": "^2.1.0",
     "express": "^4.13.4",
     "google-closure-compiler": "^20160315.2.0",
     "gulp": "^3.9.1",
@@ -32,7 +33,6 @@
     "merge-stream": "^1.0.0",
     "morgan": "^1.7.0",
     "pug": "^2.0.0-beta6",
-    "sendgrid": "^4.1.0",
     "shelljs": "^0.7.4"
   }
 }

@@ -11,14 +11,13 @@ module.exports = {
     {
       name: 'client side javascript',
       sourceFiles: [
-        './public/js/**/*.js',
-        './routers/*.js'
+        './public/js/**/*.js'
       ]
     },
     {
-      name: 'library javascript',
+      name: 'routers',
       sourceFiles: [
-        './lib/*.js'
+        './routers/*.js'
       ]
     }
   ],

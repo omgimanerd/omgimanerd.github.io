@@ -8,10 +8,9 @@ var async = require('async');
 var bufferEqual = require('buffer-equal-constant-time');
 var express = require('express');
 var shellJs = require('shelljs');
+shellJs.config.silent = true;
 var fs = require('fs');
 var path = require('path');
-
-var alert = require('../lib/alert')(process.env.SENDGRID_API_KEY);
 
 /**
  * Defines the router that will be used to handle access to the LaTeK notes.
@@ -19,9 +18,10 @@ var alert = require('../lib/alert')(process.env.SENDGRID_API_KEY);
  * @return {express.Router}
  */
 module.exports = function(options) {
-  var router = express.Router();
+  var alert = options.alert;
   var join = path.join;
   var notesPath = options.notesPath;
+  var router = express.Router();
 
   router.get('/', function(request, response) {
     async.waterfall([
@@ -52,19 +52,17 @@ module.exports = function(options) {
           callback(error, hierarchy);
         });
       }
-    ], function(error, results) {
+    ], alert.errorHandler(function(error, results) {
       if (error) {
-        alert('omgimanerd.tech - Error', error, function(error, response) {
-          response.status(500).render('error', {
-            error: 'An error occurred. This has been logged. Try again later.'
-          });
+        response.status(500).render('error', {
+          error: 'An error occurred. This has been logged. Try again later.'
         });
       } else {
         response.render('notes', {
           notes: results
         });
       }
-    });
+    }));
   });
 
   /**
@@ -76,7 +74,6 @@ module.exports = function(options) {
                             new Buffer(request.computedHash));
     if (typeof(request.receivedHash) == 'string' &&
         typeof(request.computedHash) == 'string' && match) {
-      shellJs.config.silent = true;
       shellJs.pushd('./');
       shellJs.cd(notesPath);
       shellJs.exec('git pull');
@@ -88,7 +85,7 @@ module.exports = function(options) {
       response.send({
         success: false,
         error: 'Invalid hash'
-      })
+      });
     }
   });
 

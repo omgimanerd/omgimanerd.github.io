@@ -4,6 +4,8 @@
  */
 
 // Important globals
+const ALERT_RECEIVER_EMAIL = 'alvin.lin.dev@gmail.com';
+const ALERT_SENDER_EMAIL = 'alert@omgimanerd.tech';
 const IP = process.env.IP || 'localhost';
 const NOTES_PATH = './public/rit-notes/latex';
 const PORT_NUMBER = process.env.PORT || 5000;
@@ -19,20 +21,30 @@ process.argv.forEach(function(value, index, array) {
 // Dependencies.
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
+var emailAlerts = require('email-alerts');
 var express = require('express');
 var http = require('http');
 var morgan = require('morgan');
 var shellJs = require('shelljs');
+shellJs.config.silent = true;
 
 // Initialization.
+var alert = emailAlerts({
+  fromEmail: ALERT_SENDER_EMAIL,
+  toEmail: ALERT_RECEIVER_EMAIL,
+  apiKey: process.env.SENDGRID_API_KEY,
+  subject: 'Error - omgimanerd.tech'
+});
 var app = express();
 var server = http.Server(app);
 
 // Routers
 var baseRouter = require('./routers/baseRouter')({
+  alert: alert,
   devMode: DEV_MODE
 });
 var notesRouter = require('./routers/notesRouter')({
+  alert: alert,
   devMode: DEV_MODE,
   notesPath: NOTES_PATH
 });
@@ -63,19 +75,22 @@ app.use(function(request, response) {
 // Starts the server.
 server.listen(PORT_NUMBER, function() {
   console.log('STARTING SERVER ON PORT ' + PORT_NUMBER);
+  var errorAction = function(error) {
+    throw new Error(error);
+  }
   if (DEV_MODE) {
     console.log('DEVELOPMENT MODE ENABLED: SERVING UNCOMPILED JAVASCRIPT!');
+    errorAction = console.warn;
   }
   if (!process.env.GITHUB_WEBHOOK_SECRET) {
-    throw new Error('No Github webhook secret specified!');
+    errorAction('No Github webhook secret specified!');
   }
   if (!process.env.SENDGRID_API_KEY) {
-    throw new Error('No SendGrid API key specified!');
+    errorAction('No SendGrid API key specified!');
   }
-  shellJs.config.silent = true;
   shellJs.pushd('./');
   if (shellJs.cd(NOTES_PATH).stderr) {
-    throw new Error('rit-notes directory not found!');
+    errorAction('rit-notes directory not found!');
   }
   shellJs.popd();
 });

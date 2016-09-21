@@ -6,7 +6,6 @@
 
 var express = require('express');
 
-var alert = require('../lib/alert')(process.env.SENDGRID_API_KEY);
 var renderData = require('../shared/data');
 
 /**
@@ -15,6 +14,7 @@ var renderData = require('../shared/data');
  * @return {express.Router}
  */
 module.exports = function(options) {
+  var alert = options.alert;
   var router = express.Router();
 
   router.get('/', function(request, response) {
