@@ -49,7 +49,7 @@ module.exports = function(options) {
         });
       } else {
         name = 'omgimanerd.tech - Message from ' + name;
-        alert(name, message, function(error, result) {
+        alert.alert(name, message, function(error, result) {
           response.send({
             error: error
           });
