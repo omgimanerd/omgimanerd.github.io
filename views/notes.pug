@@ -14,13 +14,15 @@ block body
               div(class='collapsible-body')
                 div(class='collection')
                   each pdf in pdfs
-                    a(class='collection-item' href=pdf)
+                    a(class='collection-item' href=pdf target='_blank')
                       =pdf
 
 block scripts
   script.
     $(document).ready(function() {
-      $('#notes-modal').openModal();
+      $('#notes-modal').openModal({
+        dismissible: false
+      });
     });
   if dev_mode
     script(src='/public/dist/notes.min.js')
