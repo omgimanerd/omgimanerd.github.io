@@ -18,6 +18,10 @@ block body
                       =pdf
 
 block scripts
+  script.
+    $(document).ready(function() {
+      $('#notes-modal').openModal();
+    });
   if dev_mode
     script(src='/public/dist/notes.min.js')
   else
