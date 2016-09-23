@@ -20,5 +20,9 @@ module.exports = function(options) {
     response.send(null);
   });
 
+  router.get('/:post', function(request, response, next) {
+    next();
+  });
+
   return router;
 };
