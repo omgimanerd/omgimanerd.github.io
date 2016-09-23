@@ -19,8 +19,10 @@ var path = require('path');
  */
 module.exports = function(options) {
   var alert = options.alert;
-  var join = path.join;
+  var dev_mode = options.dev_mode;
   var notesPath = options.notesPath;
+  
+  var join = path.join;
   var router = express.Router();
 
   router.get('/', function(request, response) {
@@ -59,6 +61,7 @@ module.exports = function(options) {
         });
       } else {
         response.render('notes', {
+          dev_mode: dev_mode,
           notes: results
         });
       }

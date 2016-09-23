@@ -39,22 +39,28 @@ var app = express();
 var server = http.Server(app);
 
 // Routers
-var baseRouter = require('./routers/baseRouter')({
+var routerData = {
   alert: alert,
-  devMode: DEV_MODE
-});
-var notesRouter = require('./routers/notesRouter')({
-  alert: alert,
-  devMode: DEV_MODE,
-  notesPath: NOTES_PATH
-});
+  dev_mode: DEV_MODE,
+  notes_path: NOTES_PATH
+}
+var baseRouter = require('./routers/baseRouter')(routerData);
+var blogRouter = require('./routers/blogRouter')(routerData);
+var notesRouter = require('./routers/notesRouter')(routerData);
 
 app.set('port', PORT_NUMBER);
 app.set('view engine', 'pug');
+
 app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
 app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/scripts'));
+
+/**
+ * This piece of middleware handles any requests sent by the GitHub webhook
+ * and calculuates the HMAC hash of the request body to authenticate the
+ * request from GitHub.
+ */
 app.use(bodyParser.urlencoded({
   extended: true,
   verify: function(request, response, buffer, encoding) {
@@ -65,7 +71,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('/', baseRouter);
+app.use('/blog', blogRouter);
 app.use('/notes', notesRouter);
+
 app.use(function(request, response) {
   response.status(404).render('error', {
     error: '404: Page not found!'

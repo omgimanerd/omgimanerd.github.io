@@ -1,6 +1,5 @@
 /**
- * @fileoverview This file contains the base routes for the homepage and
- *   general handling.
+ * @fileoverview This file contains the router that will handle the homepage.
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
@@ -15,17 +14,19 @@ var renderData = require('../shared/data');
  */
 module.exports = function(options) {
   var alert = options.alert;
+  var dev_mode = options.dev_mode;
+
   var router = express.Router();
 
   router.get('/', function(request, response) {
     response.render('index', {
-      dev_mode: options.dev_mode,
+      dev_mode: dev_mode,
       renderData: renderData
     });
   });
 
   router.post('/message', function(request, response) {
-    if (options.dev_mode) {
+    if (dev_mode) {
       setTimeout(function() {
         response.send({
           error: 'blah',
