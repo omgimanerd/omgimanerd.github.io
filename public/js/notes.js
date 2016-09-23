@@ -4,7 +4,6 @@
  */
 
 $(document).ready(function() {
-  console.log($('.collapsible-header').text());
   $('.collapsible-header').each(function(index, element) {
     var parts = element.textContent.split('_');
     var label = parts[0].toUpperCase().replace('-', ' ') + ': ';
