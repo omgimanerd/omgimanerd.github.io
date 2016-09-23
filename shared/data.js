@@ -34,7 +34,7 @@ module.exports = {
   ],
   work: [
     {
-      name: 'SchoolYourself Inc',
+      name: 'SchoolYourself',
       description: 'An online education MOOC (Massive Open Online Course) that I developed interactive geometry curriculum for using JavaScript. This content has been used by over 55,000 people around the world. I also integrated the educational content with commercial Learning Management Systems by setting up an authentication protocol allowing it to be embedded in providers such as BrightSpace, Canvas, Moodle, etc.',
       link: 'https://schoolyourself.org',
       linkText: 'Homepage',
