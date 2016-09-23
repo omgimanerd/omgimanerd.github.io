@@ -21,7 +21,7 @@ module.exports = function(options) {
   var alert = options.alert;
   var dev_mode = options.dev_mode;
   var notesPath = options.notesPath;
-  
+
   var join = path.join;
   var router = express.Router();
 
