@@ -45,7 +45,6 @@ var routerOptions = {
   notesPath: NOTES_PATH
 }
 var baseRouter = require('./routers/baseRouter')(routerOptions);
-var blogRouter = require('./routers/blogRouter')(routerOptions);
 var notesRouter = require('./routers/notesRouter')(routerOptions);
 
 app.set('port', PORT_NUMBER);
@@ -68,7 +67,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('/', baseRouter);
-app.use('/blog', blogRouter);
 app.use('/notes', notesRouter);
 app.use(function(request, response) {
   response.status(404).render('error', {
