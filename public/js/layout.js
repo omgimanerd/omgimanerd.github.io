@@ -4,6 +4,8 @@
  */
 
 $(document).ready(function() {
+  console.log('executed');
+  $('.button-collapse').sideNav();
   $('.parallax').parallax();
   $('.modal-trigger').leanModal();
   $('.scrollspy').scrollSpy();

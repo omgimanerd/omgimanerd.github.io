@@ -34,8 +34,31 @@ html
     div(class='navbar-fixed')
       nav(class='blue-grey darken-3')
         div(class='nav-wrapper')
-          a(class='alpha' href='/') &alpha;
-            block navbar
+          a(class='alpha hide-on-med-and-down' href='/') &alpha;
+          a(class='button-collapse' data-activates='mobile-demo' href='#')
+            i(class='material-icons') menu
+          ul(class='right hide-on-med-and-down')
+            li
+              a(class='blue-text' href='/#skills') Skills
+            li
+              a(class='blue-text' href='/#work') Work
+            li
+              a(class='blue-text' href='/notes') Notes
+            li
+              a(class='blue-text' href='https://medium.com/@alvin.lin.dev'
+                target='_blank') Blog
+          ul(id='mobile-demo' class='side-nav')
+            li
+              a(class='blue-text' href='/') Home
+            li
+              a(class='blue-text' href='/#skills') Skills
+            li
+              a(class='blue-text' href='/#work') Work
+            li
+              a(class='blue-text' href='/notes') Notes
+            li
+              a(class='blue-text' href='https://medium.com/@alvin.lin.dev'
+                target='_blank') Blog
 
     block body
 
@@ -97,7 +120,7 @@ html
     id='github-bjs'
     src='https://buttons.github.io/buttons.js'
   )
-  if dev_mode
+  if devMode
     script(src='/public/js/layout.js')
   else
     script(src='/public/dist/layout.min.js')

@@ -8,6 +8,10 @@ var async = require('async');
 var bufferEqual = require('buffer-equal-constant-time');
 var express = require('express');
 var shellJs = require('shelljs');
+/**
+ * Suppresses output from shellJs.
+ * @type {Boolean}
+ */
 shellJs.config.silent = true;
 var fs = require('fs');
 var path = require('path');
@@ -19,7 +23,7 @@ var path = require('path');
  */
 module.exports = function(options) {
   var alert = options.alert;
-  var dev_mode = options.dev_mode;
+  var devMode = options.devMode;
   var notesPath = options.notesPath;
 
   var join = path.join;
@@ -61,7 +65,7 @@ module.exports = function(options) {
         });
       } else {
         response.render('notes', {
-          dev_mode: dev_mode,
+          devMode: devMode,
           notes: results
         });
       }

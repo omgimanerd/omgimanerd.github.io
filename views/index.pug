@@ -1,16 +1,5 @@
 extends layout.pug
 
-block navbar
-  ul(class='right hide-on-med-and-down')
-    li
-      a(class='blue-text' href='#skills') Skills
-    li
-      a(class='blue-text' href='#work') Work
-    li
-      a(class='blue-text' href='/notes') Notes
-    li
-      a(class='blue-text' href='https://medium.com/@alvin.lin.dev') Blog
-
 block body
 
   // FIRST PARALLAX
@@ -38,13 +27,21 @@ block body
       li(class='row')
         +skillsetImage('col s6 skillset', '/public/img/sql.png')
         +skillsetImage('col s6 skillset', '/public/img/mongodb.png')
-      li(class='row')
-        +skillsetImage('col s4 l2 skillset', '/public/img/aws.png')
-        +skillsetImage('col s4 l2 skillset', '/public/img/digitalocean.png')
-        +skillsetImage('col s4 l2 skillset', '/public/img/heroku.png')
-        +skillsetImage('col s4 l2 skillset', '/public/img/git.png')
-        +skillsetImage('col s4 l2 skillset', '/public/img/ubuntu.png')
-        +skillsetImage('col s4 l2 skillset', '/public/img/android.png')
+      li(class='row hide-on-med-and-down')
+        +skillsetImage('col l2 skillset', '/public/img/aws.png')
+        +skillsetImage('col l2 skillset', '/public/img/digitalocean.png')
+        +skillsetImage('col l2 skillset', '/public/img/heroku.png')
+        +skillsetImage('col l2 skillset', '/public/img/git.png')
+        +skillsetImage('col l2 skillset', '/public/img/ubuntu.png')
+        +skillsetImage('col l2 skillset', '/public/img/android.png')
+      li(class='row hide-on-large-only')
+        +skillsetImage('col s4 skillset', '/public/img/aws.png')
+        +skillsetImage('col s4 skillset', '/public/img/digitalocean.png')
+        +skillsetImage('col s4 skillset', '/public/img/heroku.png')
+      li(class='row hide-on-large-only')
+        +skillsetImage('col s4 skillset', '/public/img/git.png')
+        +skillsetImage('col s4 skillset', '/public/img/ubuntu.png')
+        +skillsetImage('col s4 skillset', '/public/img/android.png')
       li(class='row')
         +skillsetImage('col s12 l12 skillset', '/public/img/unity.png')
 
@@ -104,11 +101,3 @@ block body
       )
         i(class='fa fa-github left')
         | GitHub
-
-block scripts
-  script.
-    $(document).ready(function() {
-      $('.parallax').parallax();
-      $('.modal-trigger').leanModal();
-      $('.scrollspy').scrollSpy();
-    });

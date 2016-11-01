@@ -14,19 +14,19 @@ var renderData = require('../shared/data');
  */
 module.exports = function(options) {
   var alert = options.alert;
-  var dev_mode = options.dev_mode;
+  var devMode = options.devMode;
 
   var router = express.Router();
 
   router.get('/', function(request, response) {
     response.render('index', {
-      dev_mode: dev_mode,
+      devMode: devMode,
       renderData: renderData
     });
   });
 
   router.post('/message', function(request, response) {
-    if (dev_mode) {
+    if (devMode) {
       setTimeout(function() {
         response.send({
           error: 'blah',
