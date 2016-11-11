@@ -47,6 +47,9 @@ module.exports = function(options) {
         var hierarchy = {};
         async.map(dirs, function(dir, mapCallback) {
           fs.readdir(join(notesPath, dir, 'output'), function(error, files) {
+            if (error) {
+              return mapCallback(error);
+            }
             hierarchy[dir] = files.filter(function(file) {
               return file.indexOf('.pdf') > 0;
             }).map(function(current, index, array) {
