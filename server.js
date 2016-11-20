@@ -8,7 +8,7 @@ const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL;
 const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL;
 const IP = process.env.IP || 'localhost';
 const NOTES_PATH = './public/rit-notes/latex';
-const PORT_NUMBER = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 // Sets the devMode variable during development if we run 'node server --dev'
 var DEV_MODE = false;
