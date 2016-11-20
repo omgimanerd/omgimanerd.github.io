@@ -4,8 +4,8 @@
  */
 
 // Important globals
-const ALERT_RECEIVER_EMAIL = 'alvin.lin.dev@gmail.com';
-const ALERT_SENDER_EMAIL = 'alert@omgimanerd.tech';
+const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL;
+const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL;
 const IP = process.env.IP || 'localhost';
 const NOTES_PATH = './public/rit-notes/latex';
 const PORT_NUMBER = process.env.PORT || 5000;
@@ -47,7 +47,7 @@ var routerOptions = {
 var baseRouter = require('./routers/baseRouter')(routerOptions);
 var notesRouter = require('./routers/notesRouter')(routerOptions);
 
-app.set('port', PORT_NUMBER);
+app.set('port', PORT);
 app.set('view engine', 'pug');
 app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
 app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
@@ -75,14 +75,20 @@ app.use(function(request, response) {
 });
 
 // Starts the server.
-server.listen(PORT_NUMBER, function() {
-  console.log('STARTING SERVER ON PORT ' + PORT_NUMBER);
+server.listen(PORT, function() {
+  console.log('STARTING SERVER ON PORT ' + PORT);
   var errorAction = function(error) {
     throw new Error(error);
   }
   if (DEV_MODE) {
     console.log('DEVELOPMENT MODE ENABLED: SERVING UNCOMPILED JAVASCRIPT!');
     errorAction = console.warn;
+  }
+  if (!process.env.ALERT_RECEIVER_EMAIL) {
+    errorAction('No alert receiver email specified!');
+  }
+  if (!process.env.ALERT_SENDER_EMAIL) {
+    errorAction('No alert sender email specified!');
   }
   if (!process.env.GITHUB_WEBHOOK_SECRET) {
     errorAction('No Github webhook secret specified!');
