@@ -84,15 +84,15 @@ module.exports = function(options) {
                             new Buffer(request.computedHash));
     if (typeof(request.receivedHash) == 'string' &&
         typeof(request.computedHash) == 'string' && match) {
+      response.send({
+        success: true
+      });
       shellJs.pushd('./');
       shellJs.cd(notesPath);
       shellJs.exec('git pull');
       shellJs.exec('make clean');
       shellJs.exec('make');
       shellJs.popd();
-      response.send({
-        success: true
-      });
     } else {
       response.send({
         success: false,
