@@ -87,6 +87,7 @@ module.exports = function(options) {
       shellJs.pushd('./');
       shellJs.cd(notesPath);
       shellJs.exec('git pull');
+      shellJs.exec('make clean');
       shellJs.exec('make');
       shellJs.popd();
       response.send({
