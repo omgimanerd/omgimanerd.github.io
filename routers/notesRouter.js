@@ -46,13 +46,14 @@ module.exports = function(options) {
       function(dirs, callback) {
         var hierarchy = {};
         async.map(dirs, function(dir, mapCallback) {
-          fs.readdir(join(notesPath, dir, 'output'), function(error, files) {
+          fs.readdir(join(notesPath, dir), function(error, files) {
             if (error) {
               return mapCallback(error);
             }
             hierarchy[dir] = files.filter(function(file) {
-              return file.indexOf('.pdf') > 0;
+              return file.includes('.tex');
             }).map(function(current, index, array) {
+              current = current.replace('.tex', '.pdf');
               return '/' + join(notesPath, dir, 'output', current);
             });
             return mapCallback(error);
@@ -90,7 +91,6 @@ module.exports = function(options) {
       shellJs.pushd('./');
       shellJs.cd(notesPath);
       shellJs.exec('git pull');
-      shellJs.exec('make clean');
       shellJs.exec('make');
       shellJs.popd();
     } else {
@@ -98,6 +98,24 @@ module.exports = function(options) {
         success: false,
         error: 'Invalid hash'
       });
+    }
+  });
+
+  /**
+   * If development mode is enabled, then an update can be forced through the
+   * /update route.
+   */
+  router.get('/update', function(request, response) {
+    if (devMode) {
+      shellJs.pushd('./');
+      shellJs.cd(notesPath);
+      shellJs.exec('git pull');
+      shellJs.exec('make');
+      shellJs.popd();
+      console.log('Update complete!');
+      response.send('Update complete!');
+    } else {
+      response.redirect('/notes');
     }
   });
 
