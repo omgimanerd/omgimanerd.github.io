@@ -20,9 +20,10 @@ block body
 block scripts
   script.
     $(document).ready(function() {
-      $('#notes-modal').openModal({
+      $('#notes-modal').modal({
         dismissible: false
       });
+      $('#notes-modal').modal('open');
     });
   if devMode
     script(src='/public/dist/notes.min.js')

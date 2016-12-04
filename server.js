@@ -21,12 +21,11 @@ process.argv.forEach(function(value, index, array) {
 // Dependencies.
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
+var exec = require('child_process').exec;
 var emailAlerts = require('email-alerts');
 var express = require('express');
 var http = require('http');
 var morgan = require('morgan');
-var shellJs = require('shelljs');
-shellJs.config.silent = true;
 
 // Initialization.
 var alert = emailAlerts({
@@ -96,9 +95,11 @@ server.listen(PORT, function() {
   if (!process.env.SENDGRID_API_KEY) {
     errorAction('No SendGrid API key specified!');
   }
-  shellJs.pushd('./');
-  if (shellJs.cd(NOTES_PATH).stderr) {
-    errorAction('rit-notes directory not found!');
-  }
-  shellJs.popd();
+  exec('ls', {
+    cwd: NOTES_PATH
+  }, function(error) {
+    if (error) {
+      errorAction(error);
+    }
+  });
 });

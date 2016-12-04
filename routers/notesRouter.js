@@ -6,13 +6,8 @@
 
 var async = require('async');
 var bufferEqual = require('buffer-equal-constant-time');
+var exec = require('child_process').exec;
 var express = require('express');
-var shellJs = require('shelljs');
-/**
- * Suppresses output from shellJs.
- * @type {Boolean}
- */
-shellJs.config.silent = true;
 var fs = require('fs');
 var path = require('path');
 
@@ -28,6 +23,17 @@ module.exports = function(options) {
 
   var join = path.join;
   var router = express.Router();
+
+  var updateNotes = function(done) {
+    async.series([
+      function(callback) {
+        exec('git pull', { cwd: notesPath }, callback);
+      },
+      function(callback) {
+        exec('make', { cwd: notesPath }, callback);
+      }
+    ], alert.errorHandler(done));
+  };
 
   router.get('/', function(request, response) {
     async.waterfall([
@@ -88,11 +94,7 @@ module.exports = function(options) {
       response.send({
         success: true
       });
-      shellJs.pushd('./');
-      shellJs.cd(notesPath);
-      shellJs.exec('git pull');
-      shellJs.exec('make');
-      shellJs.popd();
+      updateNotes();
     } else {
       response.send({
         success: false,
@@ -107,13 +109,9 @@ module.exports = function(options) {
    */
   router.get('/update', function(request, response) {
     if (devMode) {
-      shellJs.pushd('./');
-      shellJs.cd(notesPath);
-      shellJs.exec('git pull');
-      shellJs.exec('make');
-      shellJs.popd();
-      console.log('Update complete!');
-      response.send('Update complete!');
+      updateNotes(function() {
+        response.send('Update complete!');
+      });
     } else {
       response.redirect('/notes');
     }

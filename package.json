@@ -23,7 +23,7 @@
     "del": "^2.2.2",
     "email-alerts": "^2.2.2",
     "express": "^4.13.4",
-    "google-closure-compiler": "^20160315.2.0",
+    "google-closure-compiler": "^20161024.3.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.0.7",
     "gulp-gjslint": "^0.1.5",
@@ -32,7 +32,6 @@
     "gulp-sass": "^2.3.2",
     "merge-stream": "^1.0.0",
     "morgan": "^1.7.0",
-    "pug": "^2.0.0-beta6",
-    "shelljs": "^0.7.4"
+    "pug": "^2.0.0-beta6"
   }
 }

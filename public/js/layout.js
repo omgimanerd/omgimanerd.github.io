@@ -4,10 +4,11 @@
  */
 
 $(document).ready(function() {
-  console.log('executed');
   $('.button-collapse').sideNav();
   $('.parallax').parallax();
-  $('.modal-trigger').leanModal();
+  $('.modal-trigger').modal({
+    dismissible: false
+  });
   $('.scrollspy').scrollSpy();
 
   $('#contact-message').val('');
@@ -26,7 +27,7 @@ $(document).ready(function() {
       } else {
         Materialize.toast('Message sent!', 4000);
       }
-      $('#contact-modal').closeModal();
+      $('#contact-modal').modal('close');
       $('#contact-modal button').removeClass('disabled');
       $('#contact-modal input, #contact-message').attr('disabled', false);
       $('#contact-modal input, #contact-message').val('');

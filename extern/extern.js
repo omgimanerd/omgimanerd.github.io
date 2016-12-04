@@ -6,16 +6,13 @@
 
 var jQuery = {};
 
-jQuery.prototype.closeModal = function() {};
-
-jQuery.prototype.leanModal = function() {};
+jQuery.prototype.modal = function(arg) {};
 
 jQuery.prototype.parallax = function() {};
 
 jQuery.prototype.scrollSpy = function() {};
 
 jQuery.prototype.sideNav = function() {};
-
 
 var Materialize = {};
 
