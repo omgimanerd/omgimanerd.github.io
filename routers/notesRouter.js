@@ -109,8 +109,13 @@ module.exports = function(options) {
    */
   router.get('/update', function(request, response) {
     if (devMode) {
-      updateNotes(function() {
-        response.send('Update complete!');
+      updateNotes(function(error) {
+        if (error) {
+          console.error('error');
+          response.send(error);
+        } else {
+          response.send('Update complete!');
+        }
       });
     } else {
       response.redirect('/notes');
