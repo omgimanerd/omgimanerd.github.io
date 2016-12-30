@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-  GULPFILE_VERSION: "2.0.2",
+  GULPFILE_VERSION: '3.0.0',
   DEFAULT_TASKS: ['js', 'sass'],
   DEFAULT_WATCH: ['watch-js', 'watch-sass'],
   JS_LINT_RULES: [
@@ -32,8 +32,7 @@ module.exports = {
       sourceFiles: [
         './public/js/layout.js',
       ],
-      outputDirectory: './public/dist',
-      outputFile: 'layout.min.js'
+      outputFile: './public/dist/layout.min.js'
     },
     {
       name: 'notes.js',
@@ -45,8 +44,7 @@ module.exports = {
       sourceFiles: [
         './public/js/notes.js',
       ],
-      outputDirectory: './public/dist',
-      outputFile: 'notes.min.js'
+      outputFile: './public/dist/notes.min.js'
     }
   ],
   SASS_BUILD_RULES: [
@@ -55,8 +53,7 @@ module.exports = {
       sourceFiles: [
         './public/sass/styles.scss'
       ],
-      outputDirectory: './public/dist',
-      outputFile: 'minified.css'
+      outputFile: './public/dist/minified.css'
     }
   ],
   CLEAN_PROJECT_PATHS: [
