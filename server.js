@@ -6,7 +6,6 @@
 // Important globals
 const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL;
 const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL;
-const IP = process.env.IP || 'localhost';
 const NOTES_PATH = './public/rit-notes/latex';
 const PORT = process.env.PORT || 5000;
 
@@ -78,7 +77,7 @@ server.listen(PORT, function() {
   console.log('STARTING SERVER ON PORT ' + PORT);
   var errorAction = function(error) {
     throw new Error(error);
-  }
+  };
   if (DEV_MODE) {
     console.log('DEVELOPMENT MODE ENABLED: SERVING UNCOMPILED JAVASCRIPT!');
     errorAction = console.warn;
