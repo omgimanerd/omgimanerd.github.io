@@ -1,6 +1,6 @@
 /**
  * @fileoverview This file contains the router that handles access to the
- *   LaTeK notes.
+ *   LaTeX notes.
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
@@ -30,7 +30,7 @@ module.exports = function(options) {
         exec('git pull', { cwd: notesPath }, callback);
       },
       function(callback) {
-        exec('make', { cwd: notesPath }, callback);
+        exec('gulp latex', { cwd: notesPath }, callback);
       }
     ], alert.errorHandler(done));
   };
