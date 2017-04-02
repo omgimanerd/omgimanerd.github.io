@@ -55,6 +55,13 @@ module.exports = {
       image: '/public/img/npm.png'
     },
     {
+      name: 'gulp-pdflatex2',
+      description: 'This npm module is a gulp-plugin wrapper around pdflatex for compiling .tex files into .pdf files.',
+      link: 'https://www.npmjs.com/package/gulp-pdflatex2',
+      linkText: 'npm registery',
+      image: '/public/img/npm.png'
+    },
+    {
       name: 'nycurl',
       description: 'A web server that fetches data from the New York Times and formats it for display in the terminal. Use "curl nycurl.sytes.net" from your terminal to use this application',
       link: 'http://nycurl.sytes.net',
