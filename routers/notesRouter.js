@@ -30,6 +30,9 @@ module.exports = function(options) {
         exec('git pull', { cwd: notesPath }, callback);
       },
       function(callback) {
+        exec('gulp clean', { cwd: notesPath }, callback);
+      },
+      function(callback) {
         exec('gulp latex', { cwd: notesPath }, callback);
       }
     ], alert.errorHandler(done));
