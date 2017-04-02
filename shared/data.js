@@ -58,7 +58,7 @@ module.exports = {
       name: 'gulp-pdflatex2',
       description: 'This npm module is a gulp-plugin wrapper around pdflatex for compiling .tex files into .pdf files.',
       link: 'https://www.npmjs.com/package/gulp-pdflatex2',
-      linkText: 'npm registery',
+      linkText: 'npm registry',
       image: '/public/img/npm.png'
     },
     {
