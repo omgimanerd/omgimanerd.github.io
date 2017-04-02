@@ -48,8 +48,15 @@ module.exports = {
       image: '/public/img/npm.png'
     },
     {
+      name: 'doclt',
+      description: 'This npm module is a command line tool for managing Digital Ocean resources. Install it using "npm install -g doclt"',
+      link: 'https://www.npmjs.com/package/doclt',
+      linkText: 'npm registry',
+      image: '/public/img/npm.png'
+    },
+    {
       name: 'nycurl',
-      description: 'A web server that fetches data from the New York Times and formats it for display in the terminal. Use "curl nycurl.sytes.net" from your terminal to use thie application',
+      description: 'A web server that fetches data from the New York Times and formats it for display in the terminal. Use "curl nycurl.sytes.net" from your terminal to use this application',
       link: 'http://nycurl.sytes.net',
       linkText: 'Link',
       image: 'public/img/nycurl.png'
