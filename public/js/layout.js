@@ -5,10 +5,10 @@
 
 $(document).ready(function() {
   $('.button-collapse').sideNav();
-  $('.parallax').parallax();
-  $('.modal-trigger').modal({
+  $('.modal').modal({
     dismissible: false
   });
+  $('.parallax').parallax();
   $('.scrollspy').scrollSpy();
 
   $('#contact-message').val('');

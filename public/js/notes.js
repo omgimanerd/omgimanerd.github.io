@@ -4,6 +4,8 @@
  */
 
 $(document).ready(function() {
+  $('#notes-modal').modal('open');
+
   $('.collapsible-header').each(function(index, element) {
     var parts = element.textContent.split('_');
     var label = parts[0].toUpperCase().replace('-', ' ') + ': ';

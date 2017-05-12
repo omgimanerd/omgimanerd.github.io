@@ -77,6 +77,7 @@ module.exports = function(options) {
           error: 'An error occurred. This has been logged. Try again later.'
         });
       } else {
+        console.log(devMode);
         response.render('notes', {
           devMode: devMode,
           notes: results

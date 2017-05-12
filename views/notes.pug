@@ -1,7 +1,7 @@
 extends layout.pug
 
 block body
-  div(class='col s12 center-align blue-grey lighten-3')
+  div(class='col s12 center-align blue-grey lighten-3 notes-container')
     h2 Notes
 
     div(class='row center-align')
@@ -18,14 +18,7 @@ block body
                       =pdf
 
 block scripts
-  script.
-    $(document).ready(function() {
-      $('#notes-modal').modal({
-        dismissible: false
-      });
-      $('#notes-modal').modal('open');
-    });
   if devMode
-    script(src='/public/dist/notes.min.js')
-  else
     script(src='/public/js/notes.js')
+  else
+    script(src='/public/dist/notes.min.js')
