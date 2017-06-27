@@ -15,4 +15,4 @@ link back here or credit me as its source.
   - 4.0.0 - The latest version, all sexy and shit and built with Material Design
 
 ## License
-MIT
+[MIT](https://github.com/omgimanerd/omgimanerd.github.io/blob/4.0.0/LICENSE)
