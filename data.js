@@ -6,33 +6,6 @@
 /* eslint-disable max-len */
 
 module.exports = {
-  skills: [
-    {
-      text: 'HTML/CSS',
-      image: '/client/img/html.png',
-      value: 9
-    },
-    {
-      text: 'CSS',
-      image: '/client/img/css.png',
-      value: 8
-    },
-    {
-      text: 'JavaScript',
-      image: '/client/img/js.png',
-      value: 10
-    },
-    {
-      text: 'NodeJS',
-      image: '/client/img/nodejs.png',
-      value: 10
-    },
-    {
-      text: 'Python',
-      image: '/client/img/python.png',
-      value: 9
-    }
-  ],
   work: [
     {
       name: 'SchoolYourself',
@@ -63,11 +36,11 @@ module.exports = {
       image: '/client/img/npm.png'
     },
     {
-      name: 'nycurl',
-      description: 'A web server that fetches data from the New York Times and formats it for display in the terminal. Use "curl nycurl.sytes.net" from your terminal to use this application',
-      link: 'http://nycurl.sytes.net',
+      name: 'getnews.tech',
+      description: 'A web server that fetches news data and formats it for display in the terminal. Use "curl getnews.tech" from your terminal to use this application.',
+      link: 'http://getnews.tech',
       linkText: 'Link',
-      image: '/client/img/nycurl.png'
+      image: '/client/img/getnews.tech.png'
     },
     {
       name: 'Bouncy Square',

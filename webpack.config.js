@@ -7,7 +7,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    index: './client/js/index.js',
+    layout: './client/js/layout.js',
     notes: './client/js/notes.js',
     analytics: './client/js/analytics.js'
   },

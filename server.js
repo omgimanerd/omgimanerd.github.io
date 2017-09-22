@@ -3,12 +3,8 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-// Important globals
-const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL
-const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL
 const NOTES_PATH = './client/rit-notes/latex'
 const PORT = process.env.PORT || 5000
-
 const PROD_MODE = process.argv.includes('--prod')
 
 // Dependencies.

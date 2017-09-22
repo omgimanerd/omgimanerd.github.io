@@ -13,9 +13,7 @@ const Materialize = require('materialize-css')
 
 $(document).ready(() => {
   $('.button-collapse').sideNav()
-  $('.modal').modal({
-    dismissible: false
-  })
+  $('.modal').modal()
   $('.parallax').parallax()
   $('.scrollspy').scrollSpy()
 
