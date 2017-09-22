@@ -9,7 +9,7 @@ const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL
 const NOTES_PATH = './client/rit-notes/latex'
 const PORT = process.env.PORT || 5000
 
-const DEV_MODE = process.argv.includes('--dev')
+const PROD_MODE = process.argv.includes('--prod')
 
 // Dependencies.
 const exec = require('child_process').exec
@@ -17,16 +17,23 @@ const express = require('express')
 const http = require('http')
 const path = require('path')
 
+const analyticsFile = path.join(__dirname, 'logs/analytics.log')
+const errorFile = path.join(__dirname, 'logs/error.log')
+
+const loggers = require('./server/loggers')({
+  PROD_MODE, analyticsFile, errorFile
+})
+
 // Initialization.
 const app = express()
 const server = http.Server(app)
 
 // Routers
 const routerOptions = {
-  devMode: DEV_MODE,
+  devMode: !PROD_MODE,
   notesPath: NOTES_PATH
 }
-const baseRouter = require('./routers/baseRouter')(routerOptions)
+const baseRouter = require('./server/baseRouter')(routerOptions)
 // const notesRouter = require('./routers/notesRouter')(routerOptions)
 
 app.set('port', PORT)
@@ -34,6 +41,9 @@ app.set('view engine', 'pug')
 app.use('/favicon.ico', express.static(path.join(__dirname,
   '/client/img/alpha.png')))
 app.use('/client', express.static(path.join(__dirname, '/client')))
+app.use('/dist', express.static(path.join(__dirname, '/dist')))
+
+app.use(loggers.devLoggerMiddleware)
 
 app.use('/', baseRouter)
 // app.use('/notes', notesRouter)
@@ -54,8 +64,8 @@ server.listen(PORT, () => {
   let errorAction = error => {
     throw new Error(error)
   }
-  if (DEV_MODE) {
-    console.log('DEVELOPMENT MODE ENABLED!')
+  if (PROD_MODE) {
+    console.log('DEPLOYING IN PRODUCTION MODE!')
     errorAction = console.warn
   }
   if (!process.env.GITHUB_WEBHOOK_SECRET) {

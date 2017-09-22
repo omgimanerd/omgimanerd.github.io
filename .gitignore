@@ -1,4 +1,5 @@
 /node_modules
 /client/mdb
 /client/rit-notes
+/dist
 setup

@@ -5,9 +5,9 @@ block body
   // FIRST PARALLAX
   div(class='parallax-container parallax-1')
     div(class='parallax')
-      img(src='/public/img/parallax1.png')
+      img(src='/client/img/parallax1.png')
     div(class='valign-wrapper')
-      img(class='circle responsive-img me' src='/public/img/me.png')
+      img(class='me' src='/client/img/me.png')
 
   // SKILLS
   div(id='skills' class='section container center-align scrollspy')
@@ -18,39 +18,39 @@ block body
 
     ul(class='row')
       li(class='row')
-        +skillsetImage('col s4 skillset', '/public/img/html.png')
-        +skillsetImage('col s4 skillset', '/public/img/css.png')
-        +skillsetImage('col s4 skillset', '/public/img/js.png')
+        +skillsetImage('col s4 skillset', '/client/img/html.png')
+        +skillsetImage('col s4 skillset', '/client/img/css.png')
+        +skillsetImage('col s4 skillset', '/client/img/js.png')
       li(class='row')
-        +skillsetImage('col s6 skillset', '/public/img/nodejs.png')
-        +skillsetImage('col s6 skillset', '/public/img/python.png')
+        +skillsetImage('col s6 skillset', '/client/img/nodejs.png')
+        +skillsetImage('col s6 skillset', '/client/img/python.png')
       li(class='row')
-        +skillsetImage('col s6 skillset', '/public/img/sql.png')
-        +skillsetImage('col s6 skillset', '/public/img/mongodb.png')
+        +skillsetImage('col s6 skillset', '/client/img/sql.png')
+        +skillsetImage('col s6 skillset', '/client/img/mongodb.png')
       li(class='row hide-on-med-and-down')
-        +skillsetImage('col l2 skillset', '/public/img/aws.png')
-        +skillsetImage('col l2 skillset', '/public/img/digitalocean.png')
-        +skillsetImage('col l2 skillset', '/public/img/heroku.png')
-        +skillsetImage('col l2 skillset', '/public/img/git.png')
-        +skillsetImage('col l2 skillset', '/public/img/ubuntu.png')
-        +skillsetImage('col l2 skillset', '/public/img/android.png')
+        +skillsetImage('col l2 skillset', '/client/img/aws.png')
+        +skillsetImage('col l2 skillset', '/client/img/digitalocean.png')
+        +skillsetImage('col l2 skillset', '/client/img/heroku.png')
+        +skillsetImage('col l2 skillset', '/client/img/git.png')
+        +skillsetImage('col l2 skillset', '/client/img/ubuntu.png')
+        +skillsetImage('col l2 skillset', '/client/img/android.png')
       li(class='row hide-on-large-only')
-        +skillsetImage('col s4 skillset', '/public/img/aws.png')
-        +skillsetImage('col s4 skillset', '/public/img/digitalocean.png')
-        +skillsetImage('col s4 skillset', '/public/img/heroku.png')
+        +skillsetImage('col s4 skillset', '/client/img/aws.png')
+        +skillsetImage('col s4 skillset', '/client/img/digitalocean.png')
+        +skillsetImage('col s4 skillset', '/client/img/heroku.png')
       li(class='row hide-on-large-only')
-        +skillsetImage('col s4 skillset', '/public/img/git.png')
-        +skillsetImage('col s4 skillset', '/public/img/ubuntu.png')
-        +skillsetImage('col s4 skillset', '/public/img/android.png')
+        +skillsetImage('col s4 skillset', '/client/img/git.png')
+        +skillsetImage('col s4 skillset', '/client/img/ubuntu.png')
+        +skillsetImage('col s4 skillset', '/client/img/android.png')
       li(class='row')
-        +skillsetImage('col s12 l12 skillset', '/public/img/unity.png')
+        +skillsetImage('col s12 l12 skillset', '/client/img/unity.png')
 
     +divider
 
     div(class='section center-align')
       a(
         class='btn-large waves-effect waves-light blue-grey darken-2'
-        href='/public/resume.pdf' target='_blank'
+        href='/client/resume.pdf' target='_blank'
       )
         i(class='material-icons left') work
         | R&eacute;sum&eacute;
@@ -59,13 +59,13 @@ block body
         class='btn-large waves-effect waves-light blue-grey darken-2'
         href='https://github.com/omgimanerd' target='_blank'
       )
-        i(class='fa fa-github left')
+        i(class='material-icons left') code
         | GitHub
 
   // SECOND PARALLAX
   div(class='parallax-container parallax-2')
     div(class='parallax')
-      img(src='/public/img/parallax2.png')
+      img(src='/client/img/parallax2.png')
 
   // WORK
   div(id='work' class='container scrollspy')
@@ -90,7 +90,7 @@ block body
     div(class='row center-align')
       a(
         class='btn-large waves-effect waves-light blue-grey darken-3'
-        href='/public/resume.pdf' target='_blank'
+        href='/client/resume.pdf' target='_blank'
       )
         i(class='material-icons left') work
         | R&eacute;sum&eacute;
@@ -99,5 +99,8 @@ block body
         class='btn-large waves-effect waves-light blue-grey darken-3'
         href='http://github.com/omgimanerd' target='_blank'
       )
-        i(class='fa fa-github left')
+        i(class='material-icons left') code
         | GitHub
+
+block scripts
+  script(src='/dist/index.bundle.js')

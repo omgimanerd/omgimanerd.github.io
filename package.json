@@ -19,10 +19,19 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.18.1",
+    "css-loader": "^0.28.7",
     "express": "^4.15.4",
     "express-winston": "^2.4.0",
+    "file-loader": "^0.11.2",
+    "jquery": "^3.2.1",
+    "material-design-icons": "^3.0.1",
+    "materialize-css": "^0.100.2",
+    "mdi": "^2.0.46",
+    "node-sass": "^4.5.3",
     "pug": "^2.0.0-rc.4",
+    "sass-loader": "^6.0.6",
     "sendgrid": "^5.2.3",
+    "style-loader": "^0.18.2",
     "webpack": "^3.6.0",
     "winston": "^2.3.1"
   }

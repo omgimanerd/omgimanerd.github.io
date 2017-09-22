@@ -7,6 +7,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
+    index: './client/js/index.js',
+    notes: './client/js/notes.js',
     analytics: './client/js/analytics.js'
   },
   output: {
@@ -24,7 +26,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|sass)$/,
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
@@ -37,7 +39,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(ttf|woff|woff2|svg|eot)$/,
+        test: /\.(ttf|woff|woff2|svg|eot|jpg|png|gif)$/,
         use: {
           loader: 'file-loader',
           options: {

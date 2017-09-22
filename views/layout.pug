@@ -11,26 +11,6 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1')
     meta(name='google-site-verification' content='K6uEqFU1ofm9uCxdxm_APbmnn20xR_EGRAduwX9XSR4')
 
-    link(
-      rel='stylesheet'
-      href='/public/bower/material-design-icons/iconfont/material-icons.css'
-    )
-    link(
-      rel='stylesheet'
-      href='/public/bower/font-awesome/css/font-awesome.min.css'
-    )
-    link(
-      rel='stylesheet'
-      href='/public/bower/Materialize/dist/css/materialize.min.css'
-    )
-    link(
-      rel='stylesheet'
-      href='/public/dist/minified.css'
-    )
-
-    script(src='/public/bower/jquery/dist/jquery.min.js')
-    script(src='/public/bower/Materialize/dist/js/materialize.min.js')
-
   body
     div(class='navbar-fixed')
       nav(class='blue-grey darken-3')
@@ -85,32 +65,30 @@ html
             a(
               href='https://twitter.com/omgimanerd'
               class='twitter-follow-button'
-              data-show-count='true'
               data-size='large'
+              data-show-count='true'
             ) Follow &#64;omgimanerd
             br
             a(
               href='https://github.com/omgimanerd'
               class='github-button'
-              data-style='mega'
-              data-count-href='/omgimanerd/followers'
-              data-count-api='/users/omgimanerd/#followers'
+              data-size='large'
+              data-show-count='true'
             ) Follow &#64;omgimanerd
           div(class='col s12 m6 l6 left-align hide-on-med-and-up')
             h5(class='white-text') Connect with me
             a(
               href='https://twitter.com/omgimanerd'
               class='twitter-follow-button'
-              data-show-count='true'
               data-size='large'
+              data-show-count='true'
             ) Follow &#64;omgimanerd
             br
             a(
               href='https://github.com/omgimanerd'
               class='github-button'
-              data-style='mega'
-              data-count-href='/omgimanerd/followers'
-              data-count-api='/users/omgimanerd/#followers'
+              data-size='large'
+              data-show-count='true'
             ) Follow &#64;omgimanerd
       div(class='footer-copyright blue-grey darken-3')
         div(class='container')
@@ -127,9 +105,5 @@ html
     id='github-bjs'
     src='https://buttons.github.io/buttons.js'
   )
-  if devMode
-    script(src='/public/js/layout.js')
-  else
-    script(src='/public/dist/layout.min.js')
 
   block scripts

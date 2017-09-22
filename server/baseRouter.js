@@ -5,7 +5,7 @@
 
 const express = require('express')
 
-const renderData = require('../shared/data')
+const renderData = require('../data')
 
 /**
  * Defines the router that will be used to handle the homepage.
