@@ -13,17 +13,16 @@ const renderData = require('../data')
  * @return {express.Router}
  */
 module.exports = options => {
-  const alert = options.alert
-  const devMode = options.devMode
+  const prodMode = options.prodMode
 
   const router = express.Router()
 
   router.get('/', (request, response) => {
-    response.render('index', { devMode, renderData })
+    response.render('index', { renderData })
   })
 
   router.post('/message', (request, response) => {
-    if (devMode) {
+    if (!prodMode) {
       setTimeout(() => {
         response.send({
           error: 'blah',
@@ -47,9 +46,9 @@ module.exports = options => {
         })
       } else {
         name = `omgimanerd.tech - Message from ${name}`
-        alert.alert(name, message, error => {
-          response.send({ error })
-        })
+        // alert.alert(name, message, error => {
+        //   response.send({ error })
+        // })
       }
     }
   })

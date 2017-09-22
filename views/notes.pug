@@ -18,7 +18,4 @@ block body
                       =pdf
 
 block scripts
-  if devMode
-    script(src='/public/js/notes.js')
-  else
-    script(src='/public/dist/notes.min.js')
+  script(src='/dist/notes.bundle.js')
