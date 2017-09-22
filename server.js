@@ -4,101 +4,72 @@
  */
 
 // Important globals
-const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL;
-const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL;
-const NOTES_PATH = './public/rit-notes/latex';
-const PORT = process.env.PORT || 5000;
+const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL
+const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL
+const NOTES_PATH = './client/rit-notes/latex'
+const PORT = process.env.PORT || 5000
 
-// Sets the devMode variable during development if we run 'node server --dev'
-var DEV_MODE = false;
-process.argv.forEach(function(value, index, array) {
-  if (value == '--dev' || value == '--development') {
-    DEV_MODE = true;
-  }
-});
+const DEV_MODE = process.argv.includes('--dev')
 
 // Dependencies.
-var bodyParser = require('body-parser');
-var crypto = require('crypto');
-var exec = require('child_process').exec;
-var emailAlerts = require('email-alerts');
-var express = require('express');
-var http = require('http');
-var morgan = require('morgan');
+const exec = require('child_process').exec
+const express = require('express')
+const http = require('http')
+const path = require('path')
 
 // Initialization.
-var alert = emailAlerts({
-  fromEmail: ALERT_SENDER_EMAIL,
-  toEmail: ALERT_RECEIVER_EMAIL,
-  apiKey: process.env.SENDGRID_API_KEY,
-  subject: 'Error - omgimanerd.tech'
-});
-var app = express();
-var server = http.Server(app);
+const app = express()
+const server = http.Server(app)
 
 // Routers
-var routerOptions = {
-  alert: alert,
+const routerOptions = {
   devMode: DEV_MODE,
   notesPath: NOTES_PATH
 }
-var baseRouter = require('./routers/baseRouter')(routerOptions);
-var notesRouter = require('./routers/notesRouter')(routerOptions);
+const baseRouter = require('./routers/baseRouter')(routerOptions)
+// const notesRouter = require('./routers/notesRouter')(routerOptions)
 
-app.set('port', PORT);
-app.set('view engine', 'pug');
-app.use(morgan(':date[web] :method :url :req[header] :remote-addr :status'));
-app.use('/favicon.ico', express.static(__dirname + '/public/img/alpha.png'));
-app.use('/public', express.static(__dirname + '/public'));
-app.use('/scripts', express.static(__dirname + '/scripts'));
-/**
- * This middleware function calculates the HMAC SHA1 hash of the request body
- * to authenticate requests coming from GitHub's webhook.
- */
-app.use(bodyParser.urlencoded({
-  extended: true,
-  verify: function(request, response, buffer, encoding) {
-    request.receivedHash = request.headers['x-hub-signature'];
-    request.computedHash = 'sha1=' + crypto.createHmac('sha1',
-        process.env.GITHUB_WEBHOOK_SECRET).update(buffer).digest('hex');
-  }
-}));
+app.set('port', PORT)
+app.set('view engine', 'pug')
+app.use('/favicon.ico', express.static(path.join(__dirname,
+  '/client/img/alpha.png')))
+app.use('/client', express.static(path.join(__dirname, '/client')))
 
-app.use('/', baseRouter);
-app.use('/notes', notesRouter);
-app.use(function(request, response) {
+app.use('/', baseRouter)
+// app.use('/notes', notesRouter)
+app.use((request, response) => {
   response.status(404).render('error', {
     error: '404: Page not found!'
-  });
-});
+  })
+})
 
 // Starts the server.
-server.listen(PORT, function() {
-  console.log('STARTING SERVER ON PORT ' + PORT);
-  var errorAction = function(error) {
-    throw new Error(error);
-  };
+server.listen(PORT, () => {
+  /* eslint-disable no-console */
+  console.log(`STARTING SERVER ON PORT ${PORT}`)
+  /**
+   * The action to take when throw an error
+   * @param {Object} error The error to throw or show
+   */
+  let errorAction = error => {
+    throw new Error(error)
+  }
   if (DEV_MODE) {
-    console.log('DEVELOPMENT MODE ENABLED: SERVING UNCOMPILED JAVASCRIPT!');
-    errorAction = console.warn;
-  }
-  if (!process.env.ALERT_RECEIVER_EMAIL) {
-    errorAction('No alert receiver email specified!');
-  }
-  if (!process.env.ALERT_SENDER_EMAIL) {
-    errorAction('No alert sender email specified!');
+    console.log('DEVELOPMENT MODE ENABLED!')
+    errorAction = console.warn
   }
   if (!process.env.GITHUB_WEBHOOK_SECRET) {
-    errorAction('No Github webhook secret specified!');
+    errorAction('No Github webhook secret specified!')
   }
   if (!process.env.SENDGRID_API_KEY) {
-    errorAction('No SendGrid API key specified!');
+    errorAction('No SendGrid API key specified!')
   }
   exec('ls', {
     cwd: NOTES_PATH
-  }, function(error) {
+  }, error => {
     if (error) {
-      errorAction(error);
+      errorAction(error)
     }
-  });
-});
+  })
+  /* eslint-enable no-console */
+})

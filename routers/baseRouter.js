@@ -3,36 +3,33 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-var express = require('express');
+const express = require('express')
 
-var renderData = require('../shared/data');
+const renderData = require('../shared/data')
 
 /**
  * Defines the router that will be used to handle the homepage.
  * @param {Object} options Options that modify the behavior of the router.
  * @return {express.Router}
  */
-module.exports = function(options) {
-  var alert = options.alert;
-  var devMode = options.devMode;
+module.exports = options => {
+  const alert = options.alert
+  const devMode = options.devMode
 
-  var router = express.Router();
+  const router = express.Router()
 
-  router.get('/', function(request, response) {
-    response.render('index', {
-      devMode: devMode,
-      renderData: renderData
-    });
-  });
+  router.get('/', (request, response) => {
+    response.render('index', { devMode, renderData })
+  })
 
-  router.post('/message', function(request, response) {
+  router.post('/message', (request, response) => {
     if (devMode) {
-      setTimeout(function() {
+      setTimeout(() => {
         response.send({
           error: 'blah',
           result: null
-        });
-      }, 2500);
+        })
+      }, 2500)
     } else {
       /**
        * The POST request must contain three fields:
@@ -40,24 +37,22 @@ module.exports = function(options) {
        * name - The name of the person.
        * message - The message content.
        */
-      var sender = request.body.email;
-      var name = request.body.name;
-      var message = request.body.message;
+      const sender = request.body.email
+      let name = request.body.name
+      const message = request.body.message
       if (!sender || !name || !message) {
         response.send({
           error: 'One of your message fields was blank!',
           result: null
-        });
+        })
       } else {
-        name = 'omgimanerd.tech - Message from ' + name;
-        alert.alert(name, message, function(error, result) {
-          response.send({
-            error: error
-          });
-        });
+        name = `omgimanerd.tech - Message from ${name}`
+        alert.alert(name, message, error => {
+          response.send({ error })
+        })
       }
     }
-  });
+  })
 
-  return router;
-};
+  return router
+}

@@ -1,5 +1,4 @@
 /node_modules
-/public/bower
-/public/dist
-/public/rit-notes
+/client/mdb
+/client/rit-notes
 setup

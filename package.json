@@ -17,21 +17,13 @@
   },
   "homepage": "https://github.com/omgimanerd/omgimanerd.github.io",
   "dependencies": {
-    "async": "^2.0.1",
-    "body-parser": "^1.15.0",
-    "buffer-equal-constant-time": "^1.0.1",
-    "del": "^2.2.2",
-    "email-alerts": "^2.2.2",
-    "express": "^4.13.4",
-    "google-closure-compiler": "^20161024.3.0",
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.0.7",
-    "gulp-gjslint": "^0.1.5",
-    "gulp-plumber": "^1.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.2",
-    "merge-stream": "^1.0.0",
-    "morgan": "^1.7.0",
-    "pug": "^2.0.0-beta6"
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "express-winston": "^2.4.0",
+    "pug": "^2.0.0-rc.4",
+    "sendgrid": "^5.2.3",
+    "webpack": "^3.6.0",
+    "winston": "^2.3.1"
   }
 }
