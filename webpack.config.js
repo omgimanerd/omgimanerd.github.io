@@ -3,7 +3,8 @@
  * @author alvin@omgimanerd.tech (Alvin Lin)
  */
 
-const path = require('path');
+const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {

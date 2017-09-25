@@ -26,7 +26,11 @@ const app = express()
 const server = http.Server(app)
 
 // Routers
-const routerOptions = { prodMode: PROD_MODE, notesPath: NOTES_PATH }
+const routerOptions = {
+  prodMode: PROD_MODE,
+  notesPath: NOTES_PATH,
+  logError: logError
+}
 const baseRouter = require('./server/baseRouter')(routerOptions)
 const notesRouter = require('./server/notesRouter')(routerOptions)
 

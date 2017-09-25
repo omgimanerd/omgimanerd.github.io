@@ -49,7 +49,9 @@ footer {
 }
 
 .notes {
-  width: 100% !important;
+  .collapsible-body {
+    padding: 0
+  }
 }
 
 .parallax {

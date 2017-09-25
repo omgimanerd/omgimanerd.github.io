@@ -4,6 +4,7 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
+const _ = require('lodash')
 const Promise = require('bluebird')
 const express = require('express')
 const fs = require('fs')
@@ -17,11 +18,9 @@ const exec = Promise.promisify(require('child_process').exec)
  * @return {express.Router}
  */
 module.exports = function(options) {
-  const alert = options.alert
-  const devMode = options.devMode
   const notesPath = options.notesPath
+  const logError = options.logError
 
-  const join = path.join
   const router = express.Router()
 
   const updateNotes = () => {
@@ -34,53 +33,25 @@ module.exports = function(options) {
 
   router.get('/', (request, response) => {
     fs.readdirAsync(notesPath).then(dirs => {
-      console.log(dirs)
+      return Promise.all(dirs.map(dir => {
+        const dirPath = path.join(notesPath, dir)
+        return fs.readdirAsync(dirPath).then(files => {
+          return files.filter(file => file.endsWith('.tex'))
+            .map(file => {
+              return path.join(notesPath, dir, 'output', file)
+            })
+        }).then(data => {
+          return { [dir]: data }
+        })
+      })).reduce(_.merge)
+    }).then(hierarchy => {
+      response.render('notes', { notes: hierarchy })
+    }).catch(error => {
+      logError(error)
+      response.render('error', {
+        error: 'There was an error fetching the notes! Try again later!'
+      })
     })
-    response.send(0);
-    // async.waterfall([
-    //   function(callback) {
-    //     fs.readdir(notesPath, callback)
-    //   },
-    //   function(dirs, callback) {
-    //     async.filter(dirs, (dir, filterCallback) => {
-    //       fs.stat(join(notesPath, dir), (error, stats) => {
-    //         return filterCallback(error, stats.isDirectory())
-    //       })
-    //     }, (error, results) => {
-    //       callback(error, results)
-    //     })
-    //   },
-    //   function(dirs, callback) {
-    //     const hierarchy = {}
-    //     async.map(dirs, (dir, mapCallback) => {
-    //       fs.readdir(join(notesPath, dir), (error, files) => {
-    //         if (error) {
-    //           return mapCallback(error)
-    //         }
-    //         hierarchy[dir] = files.filter(file => {
-    //           return file.includes('.tex')
-    //         }).map((current, index, array) => {
-    //           current = current.replace('.tex', '.pdf')
-    //           return `/${join(notesPath, dir, 'output', current)}`
-    //         })
-    //         return mapCallback(error)
-    //       })
-    //     }, (error, results) => {
-    //       callback(error, hierarchy)
-    //     })
-    //   }
-    // ], alert.errorHandler((error, results) => {
-    //   if (error) {
-    //     response.status(500).render('error', {
-    //       error: 'An error occurred. This has been logged. Try again later.'
-    //     })
-    //   } else {
-    //     response.render('notes', {
-    //       devMode: devMode,
-    //       notes: results
-    //     })
-    //   }
-    // }))
   })
 
   /**
