@@ -1,6 +1,5 @@
 /node_modules
-/client/mdb
-/client/rit-notes
 /dist
 /logs
+/rit-notes
 setup

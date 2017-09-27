@@ -3,7 +3,7 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-const NOTES_PATH = './client/rit-notes/latex'
+const NOTES_PATH = './rit-notes/latex'
 const PORT = process.env.PORT || 5000
 const PROD_MODE = process.argv.includes('--prod')
 
@@ -38,7 +38,6 @@ app.set('port', PORT)
 app.set('view engine', 'pug')
 app.use('/favicon.ico', express.static(path.join(__dirname,
   '/client/img/alpha.png')))
-app.use('/client', express.static(path.join(__dirname, '/client')))
 app.use('/dist', express.static(path.join(__dirname, '/dist')))
 
 app.use(loggers.devLoggerMiddleware)

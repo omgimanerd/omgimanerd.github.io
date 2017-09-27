@@ -23,6 +23,10 @@ module.exports = function(options) {
 
   const router = express.Router()
 
+  /**
+   * Invokes the commands in the notes directory to pull and update the notes.
+   * @return {Promise}
+   */
   const updateNotes = () => {
     return exec('git pull', { cwd: notesPath }).then(() => {
       return exec('gulp clean', { cwd: notesPath })
@@ -30,6 +34,8 @@ module.exports = function(options) {
       return exec('gulp latex', { cwd: notesPath })
     })
   }
+
+  router.use('/latex', express.static(path.join(__dirname, '../', notesPath)))
 
   router.get('/', (request, response) => {
     fs.readdirAsync(notesPath).then(dirs => {
