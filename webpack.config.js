@@ -21,23 +21,17 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
       },
       {
         test: /\.(scss|sass)$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          {
-            loader: 'sass-loader',
-            options: {
-              includePaths: [path.resolve(__dirname, './client/scss')]
-            }
-          }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader'
+        })
       },
       {
         test: /\.(ttf|woff|woff2|svg|eot|jpg|png|gif)$/,
@@ -50,5 +44,8 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new ExtractTextPlugin('styles.bundle.css')
+  ],
   devtool: 'cheap-eval-source-map'
 }

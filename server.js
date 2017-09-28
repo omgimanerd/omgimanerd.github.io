@@ -3,16 +3,16 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-const NOTES_PATH = './rit-notes/latex'
-const PORT = process.env.PORT || 5000
-const PROD_MODE = process.argv.includes('--prod')
-
 // Dependencies.
 const Promise = require('bluebird')
 const express = require('express')
 const fs = Promise.promisifyAll(require('fs'))
 const http = require('http')
 const path = require('path')
+
+const NOTES_PATH = path.join(__dirname, process.env.NOTES_PATH)
+const PORT = process.env.PORT || 5000
+const PROD_MODE = process.argv.includes('--prod')
 
 const analyticsFile = path.join(__dirname, 'logs/analytics.log')
 const errorFile = path.join(__dirname, 'logs/error.log')
@@ -29,7 +29,7 @@ const server = http.Server(app)
 const routerOptions = {
   prodMode: PROD_MODE,
   notesPath: NOTES_PATH,
-  logError: logError
+  loggers: loggers
 }
 const baseRouter = require('./server/baseRouter')(routerOptions)
 const notesRouter = require('./server/notesRouter')(routerOptions)
@@ -38,6 +38,7 @@ app.set('port', PORT)
 app.set('view engine', 'pug')
 app.use('/favicon.ico', express.static(path.join(__dirname,
   '/client/img/alpha.png')))
+app.use('/client', express.static(path.join(__dirname, '/client')))
 app.use('/dist', express.static(path.join(__dirname, '/dist')))
 
 app.use(loggers.devLoggerMiddleware)
@@ -73,7 +74,7 @@ server.listen(PORT, () => {
   if (!process.env.SENDGRID_API_KEY) {
     throw new Error('No SendGrid API key specified!')
   }
-  fs.accessAsync(path.join(__dirname, NOTES_PATH)).then(error => {
+  fs.accessAsync(NOTES_PATH).then(error => {
     if (error) {
       throw new Error('Unable to access notes!')
     }

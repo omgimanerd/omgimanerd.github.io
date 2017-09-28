@@ -18,8 +18,9 @@ const exec = Promise.promisify(require('child_process').exec)
  * @return {express.Router}
  */
 module.exports = function(options) {
+  const prodMode = options.prodMode
   const notesPath = options.notesPath
-  const logError = options.logError
+  const loggers = options.loggers
 
   const router = express.Router()
 
@@ -35,7 +36,17 @@ module.exports = function(options) {
     })
   }
 
-  router.use('/latex', express.static(path.join(__dirname, '../', notesPath)))
+  /**
+   * Given the class directory and the tex file name, this function returns
+   * the path to file relative to the root.
+   * @param {string} directory The class directory name
+   * @param {string} file The tex file name
+   * @return {string}
+   */
+  const formatFilePath = (directory, file) => {
+    return path.join(
+      'notes/latex', directory, 'output', file.replace('.tex', '.pdf'))
+  }
 
   router.get('/', (request, response) => {
     fs.readdirAsync(notesPath).then(dirs => {
@@ -43,9 +54,7 @@ module.exports = function(options) {
         const dirPath = path.join(notesPath, dir)
         return fs.readdirAsync(dirPath).then(files => {
           return files.filter(file => file.endsWith('.tex'))
-            .map(file => {
-              return path.join(notesPath, dir, 'output', file)
-            })
+            .map(formatFilePath)
         }).then(data => {
           return { [dir]: data }
         })
@@ -59,6 +68,10 @@ module.exports = function(options) {
       })
     })
   })
+
+  router.use('/latex', loggers.analyticsLoggerMiddleware)
+
+  router.use('/latex', express.static(notesPath))
 
   /**
    * This route handles the request from GitHub when the rit-notes repository
@@ -82,23 +95,22 @@ module.exports = function(options) {
   // })
 
   /**
-   * If development mode is enabled, then an update can be forced through the
+   * If we are not in production, then an update can be forced through the
    * /update route.
    */
-  // router.get('/update', (request, response) => {
-  //   if (devMode) {
-  //     updateNotes(error => {
-  //       if (error) {
-  //         console.error('error')
-  //         response.send(error)
-  //       } else {
-  //         response.send('Update complete!')
-  //       }
-  //     })
-  //   } else {
-  //     response.redirect('/notes')
-  //   }
-  // })
+  router.get('/update', (request, response) => {
+    if (!prodMode) {
+      updateNotes(error => {
+        if (error) {
+          response.send(error)
+        } else {
+          response.send('Update complete!')
+        }
+      })
+    } else {
+      response.redirect('/notes')
+    }
+  })
 
   return router
 }
