@@ -4,12 +4,8 @@
  */
 
 const $ = require('jquery')
-// eslint-disable-next-line no-unused-vars
-const Materialize = require('materialize-css')
 
 $(document).ready(() => {
-  $('#notes-modal').modal('open')
-
   $('.collapsible-header').each((index, element) => {
     const parts = element.textContent.split('_')
     const label = `${parts[0].toUpperCase().replace('-', ' ')}: `
@@ -22,4 +18,6 @@ $(document).ready(() => {
     const parts = element.textContent.split('/')
     element.innerHTML = parts[parts.length - 1]
   })
+
+  $('#notes-modal').modal('open')
 })

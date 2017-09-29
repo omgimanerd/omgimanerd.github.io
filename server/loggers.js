@@ -8,6 +8,10 @@ const sendgrid = require('sendgrid')
 const winston = require('winston')
 const util = require('util')
 
+const PROD = process.argv.includes('--prod')
+const ALERT_EMAIL = process.env.ALERT_EMAIL
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
+
 // eslint-disable-next-line no-unused-vars, require-jsdoc
 const dynamicMetaFunction = (request, response) => {
   return {
@@ -16,10 +20,7 @@ const dynamicMetaFunction = (request, response) => {
 }
 
 module.exports = exports = options => {
-  const PROD_MODE = options.PROD_MODE
-  const ALERT_EMAIL = process.env.ALERT_EMAIL
-  const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
-  if (PROD_MODE && (!ALERT_EMAIL || !SENDGRID_API_KEY)) {
+  if (PROD && (!ALERT_EMAIL || !SENDGRID_API_KEY)) {
     throw new Error('Production configuration not provided!')
   }
   const sg = sendgrid(SENDGRID_API_KEY)
@@ -64,16 +65,16 @@ module.exports = exports = options => {
     logError: data => {
       const unpacked = util.inspect(data)
       errorLogger.error(unpacked)
-      if (PROD_MODE) {
+      if (PROD) {
         const request = sg.emptyRequest({
           method: 'POST',
           path: '/v3/mail/send',
           body: {
             personalizations: [{
               to: [{ email: ALERT_EMAIL }],
-              subject: 'Error from getnews.tech'
+              subject: 'Error from omgimanerd.tech'
             }],
-            from: { email: 'alert@getnews.tech' },
+            from: { email: 'alert@omgimanerd.tech' },
             content: [{
               type: 'text/plain',
               value: unpacked

@@ -8,9 +8,13 @@ const _ = require('lodash')
 const Promise = require('bluebird')
 const express = require('express')
 const fs = require('fs')
+const githubWebhook = require('github-webhook-middleware')
 const path = require('path')
 
 const exec = Promise.promisify(require('child_process').exec)
+
+const PROD = process.argv.includes('--prod')
+const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
 
 /**
  * Defines the router that will be used to handle access to the LaTeK notes.
@@ -18,7 +22,6 @@ const exec = Promise.promisify(require('child_process').exec)
  * @return {express.Router}
  */
 module.exports = function(options) {
-  const prodMode = options.prodMode
   const notesPath = options.notesPath
   const loggers = options.loggers
 
@@ -54,7 +57,7 @@ module.exports = function(options) {
         const dirPath = path.join(notesPath, dir)
         return fs.readdirAsync(dirPath).then(files => {
           return files.filter(file => file.endsWith('.tex'))
-            .map(formatFilePath)
+            .map(file => formatFilePath(dir, file))
         }).then(data => {
           return { [dir]: data }
         })
@@ -62,7 +65,7 @@ module.exports = function(options) {
     }).then(hierarchy => {
       response.render('notes', { notes: hierarchy })
     }).catch(error => {
-      logError(error)
+      loggers.logError(error)
       response.render('error', {
         error: 'There was an error fetching the notes! Try again later!'
       })
@@ -77,29 +80,28 @@ module.exports = function(options) {
    * This route handles the request from GitHub when the rit-notes repository
    * receives a push.
    */
-  // router.post('/update', (request, response) => {
-  //   const match = bufferEqual(new Buffer(request.receivedHash),
-  //     new Buffer(request.computedHash))
-  //   if (typeof request.receivedHash === 'string' &&
-  //       typeof request.computedHash === 'string' && match) {
-  //     response.send({
-  //       success: true
-  //     })
-  //     updateNotes()
-  //   } else {
-  //     response.send({
-  //       success: false,
-  //       error: 'Invalid hash'
-  //     })
-  //   }
-  // })
+  const middleware = githubWebhook({
+    secret: GITHUB_WEBHOOK_SECRET
+  })
+  router.post('/update', middleware, (request, response) => {
+    if (request.headers['x-github-event'] === 'push') {
+      updateNotes().then(() => {
+        response.send('OK')
+      }).catch(error => {
+        loggers.logError(error)
+        response.status(500).send('Something broke!')
+      })
+    } else {
+      response.status(200).end()
+    }
+  })
 
   /**
    * If we are not in production, then an update can be forced through the
    * /update route.
    */
   router.get('/update', (request, response) => {
-    if (!prodMode) {
+    if (!PROD) {
       updateNotes(error => {
         if (error) {
           response.send(error)

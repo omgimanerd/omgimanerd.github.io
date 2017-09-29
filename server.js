@@ -5,6 +5,7 @@
 
 // Dependencies.
 const Promise = require('bluebird')
+const bodyParser = require('body-parser')
 const express = require('express')
 const fs = Promise.promisifyAll(require('fs'))
 const http = require('http')
@@ -12,13 +13,13 @@ const path = require('path')
 
 const NOTES_PATH = path.join(__dirname, process.env.NOTES_PATH)
 const PORT = process.env.PORT || 5000
-const PROD_MODE = process.argv.includes('--prod')
+const PROD = process.argv.includes('--prod')
 
 const analyticsFile = path.join(__dirname, 'logs/analytics.log')
 const errorFile = path.join(__dirname, 'logs/error.log')
 
 const loggers = require('./server/loggers')({
-  PROD_MODE, analyticsFile, errorFile
+  analyticsFile, errorFile
 })
 const logError = loggers.logError
 
@@ -27,7 +28,6 @@ const server = http.Server(app)
 
 // Routers
 const routerOptions = {
-  prodMode: PROD_MODE,
   notesPath: NOTES_PATH,
   loggers: loggers
 }
@@ -41,6 +41,7 @@ app.use('/favicon.ico', express.static(path.join(__dirname,
 app.use('/client', express.static(path.join(__dirname, '/client')))
 app.use('/dist', express.static(path.join(__dirname, '/dist')))
 
+app.use(bodyParser.json())
 app.use(loggers.devLoggerMiddleware)
 
 app.use('/', baseRouter)
@@ -65,7 +66,7 @@ app.use((error, request, response, next) => {
 server.listen(PORT, () => {
   /* eslint-disable no-console */
   console.log(`STARTING SERVER ON PORT ${PORT}`)
-  if (PROD_MODE) {
+  if (PROD) {
     console.log('DEPLOYING IN PRODUCTION MODE!')
   }
   if (!process.env.GITHUB_WEBHOOK_SECRET) {

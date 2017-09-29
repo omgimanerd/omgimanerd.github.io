@@ -24,6 +24,7 @@
     "express-winston": "^2.4.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
+    "github-webhook-middleware": "^0.0.2",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "material-design-icons": "^3.0.1",
