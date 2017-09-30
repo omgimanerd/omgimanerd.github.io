@@ -9,8 +9,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   entry: {
     layout: './client/js/layout.js',
-    notes: './client/js/notes.js',
-    analytics: './client/js/analytics.js'
+    notes: './client/js/notes.js'
   },
   output: {
     filename: '[name].bundle.js',

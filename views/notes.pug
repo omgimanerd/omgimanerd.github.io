@@ -16,6 +16,26 @@ block body
                   each pdf in pdfs
                     a(class='collection-item' href=pdf.path target='_blank')
                       =pdf.filename
+        button(class='btn waves-effect waves-light') Analytics
+
+  // Notes modal
+  div(id='notes-modal' class='modal')
+    div(class='container')
+      div(class='row section center-align')
+        h4(class='col s12')
+          | Notes
+        h5(class='col s12 left-align')
+          | This page contains links to notes taken from my classes
+          | at Rochester Institute of Technology. It is designed for the deaf
+          | and hard-of-hearing/NTID students who have requested me to take
+          | notes for them. These notes are freely available to the public,
+          | and you may use and distribute them as long as you credit me and
+          | link back here.
+        div(class='col s12')
+          input(type='checkbox' id='notes-agreement-checkbox' class='filled-in')
+          button(class='btn waves-effect waves-light modal-close')
+            | I Agree
+
 
 block scripts
   script(src='/dist/notes.bundle.js')
