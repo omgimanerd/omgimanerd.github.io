@@ -29,6 +29,19 @@ const updateNotes = () => {
 }
 
 /**
+ * Given a latex file directory name, this function separates out the parts by
+ * delimiter and formats it into a displayable format.
+ * @param {string} directory The class directory name
+ * @return {string}
+ */
+const formatClassName = directory => {
+  const parts = directory.split('_')
+  const label = `${parts[0].toUpperCase().replace('-', ' ')}: `
+  const className = parts[1].split('-').map(_.capitalize).join(' ')
+  return label + className
+}
+
+/**
  * Given the class directory and the tex file name, this function returns
  * the path to file relative to the root.
  * @param {string} directory The class directory name
@@ -41,15 +54,17 @@ const formatFilePath = (directory, file) => {
 }
 
 /**
- * Fetches and creates the hierarchy of notes for caching.
- * @return {Object}
+ * Fetches and creates the hierarchy of notes for caching. This is invoked
+ * during server startup and the internal cache is updated each time the notes
+ * update endpoint is hit.
+ * @return {Promise}
  */
 const getNotes = () => {
   // Iterate through each directory in the latex folder.
-  return fs.readdirAsync(config.NOTES_PATH).then(dirs => {
+  return fs.readdirAsync(config.NOTES_PATH).then(directories => {
     // For each directory
-    return Promise.all(dirs.map(dir => {
-      const dirPath = path.join(config.NOTES_PATH, dir)
+    return Promise.all(directories.map(directory => {
+      const dirPath = path.join(config.NOTES_PATH, directory)
       // Read the names of all the files in the directory
       return fs.readdirAsync(dirPath).then(files => {
         /**
@@ -58,10 +73,13 @@ const getNotes = () => {
          * render the expandable accordion.
          */
         return files.filter(file => file.endsWith('.tex')).map(file => {
-          return formatFilePath(dir, file)
+          return {
+            filename: file,
+            path: formatFilePath(directory, file)
+          }
         })
       }).then(data => {
-        return { [dir]: data }
+        return { [formatClassName(directory)]: data }
       })
     })).reduce(_.merge)
   })
@@ -69,24 +87,45 @@ const getNotes = () => {
 
 /**
  * Fetches and stores the analytics data for caching.
- * @return {Object}
+ * @return {Promise}
  */
 const getAnalytics = () => {
   return fs.readFileAsync(config.ANALYTICS_LOG, 'utf-8').then(data => {
+    if (!data) {
+      return []
+    }
     return data.trim().split('\n').map(JSON.parse)
   })
 }
 
 /**
- * Populate the caches when we first start the server.
+ * Populate the caches when we first start the server. Unless something scary
+ * occurs, these Promises should always be fulfilled when we need their data
+ * during a request.
  */
-const analyticsCache = getAnalytics()
-const notesCache = getNotes()
+let analyticsCache = getAnalytics()
+let notesCache = getNotes()
 
 const router = express.Router()
 
 router.get('/', (request, response) => {
-  response.render({ notes: notesCache })
+  if (notesCache.isFulfilled()) {
+    response.render('notes', { notes: notesCache.value() })
+  } else {
+    notesCache.then(data => {
+      response.render('notes', { notes: data })
+    })
+  }
+})
+
+router.post('/analytics', (request, response) => {
+  if (analyticsCache.isFulfilled()) {
+    response.send(analyticsCache.value())
+  } else {
+    analyticsCache.then(data => {
+      response.send(data)
+    })
+  }
 })
 
 router.use('/latex', loggers.analyticsLoggerMiddleware)
@@ -102,12 +141,8 @@ const middleware = githubWebhook({
 })
 router.post('/update', middleware, (request, response) => {
   if (request.headers['x-github-event'] === 'push') {
-    updateNotes().then(() => {
-      response.send('OK')
-    }).catch(error => {
-      loggers.logError(error)
-      response.status(500).send('Something broke!')
-    })
+    notesCache = getNotes()
+    response.send('OK')
   } else {
     response.status(200).end()
   }
@@ -130,6 +165,5 @@ router.get('/update', (request, response) => {
     response.redirect('/notes')
   }
 })
-
 
 module.exports = exports = router

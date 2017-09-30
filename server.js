@@ -44,7 +44,6 @@ app.use((request, response) => {
 
 // eslint-disable-next-line no-unused-vars
 app.use((error, request, response, next) => {
-  logError(request)
   logError(error)
   response.status(500).render('error', {
     error: '500: Internal error!'

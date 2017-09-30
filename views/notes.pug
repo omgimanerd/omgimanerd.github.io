@@ -14,8 +14,8 @@ block body
               div(class='collapsible-body')
                 div(class='collection')
                   each pdf in pdfs
-                    a(class='collection-item' href=pdf target='_blank')
-                      =pdf
+                    a(class='collection-item' href=pdf.path target='_blank')
+                      =pdf.filename
 
 block scripts
   script(src='/dist/notes.bundle.js')
