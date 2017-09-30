@@ -99,30 +99,33 @@ const getAnalytics = () => {
 }
 
 /**
- * Populate the caches when we first start the server. Unless something scary
- * occurs, these Promises should always be fulfilled when we need their data
- * during a request.
+ * TODO: Refactor the caches so they're not part of the router file
  */
-let analyticsCache = getAnalytics()
-let notesCache = getNotes()
+let analyticsCache = null
+let analyticsExpirationTime = 0
+let notesCache = null
 
 const router = express.Router()
 
 router.get('/', (request, response) => {
-  if (notesCache.isFulfilled()) {
-    response.render('notes', { notes: notesCache.value() })
+  if (notesCache) {
+    response.render('notes', { notes: notesCache })
   } else {
-    notesCache.then(data => {
-      response.render('notes', { notes: data })
+    getNotes().then(data => {
+      notesCache = data
+      response.render('notes', { notes: notesCache })
     })
   }
 })
 
 router.post('/analytics', (request, response) => {
-  if (analyticsCache.isFulfilled()) {
-    response.send(analyticsCache.value())
+  const currentTime = Date.now()
+  if (analyticsCache && analyticsExpirationTime > currentTime) {
+    response.send(analyticsCache)
   } else {
-    analyticsCache.then(data => {
+    getAnalytics().then(data => {
+      analyticsCache = data
+      analyticsExpirationTime = currentTime + 600000
       response.send(data)
     })
   }
