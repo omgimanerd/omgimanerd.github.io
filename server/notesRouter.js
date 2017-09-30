@@ -8,27 +8,10 @@ const express = require('express')
 const githubWebhook = require('github-webhook-middleware')
 
 const config = require('../config')
+
+const analytics = require('./analytics')
 const loggers = require('./loggers')
 const notes = require('./notes')
-
-/**
- * Fetches and stores the analytics data for caching.
- * @return {Promise}
- */
-// const getAnalytics = () => {
-//   return fs.readFileAsync(config.ANALYTICS_LOG, 'utf-8').then(data => {
-//     if (!data) {
-//       return []
-//     }
-//     return data.trim().split('\n').map(JSON.parse)
-//   })
-// }
-
-/**
- * TODO: Refactor the caches so they're not part of the router file
- */
-// let analyticsCache = null
-// let analyticsExpirationTime = 0
 
 const router = express.Router()
 
@@ -38,18 +21,11 @@ router.get('/', (request, response) => {
   })
 })
 
-// router.post('/analytics', (request, response) => {
-//   const currentTime = Date.now()
-//   if (analyticsCache && analyticsExpirationTime > currentTime) {
-//     response.send(analyticsCache)
-//   } else {
-//     getAnalytics().then(data => {
-//       analyticsCache = data
-//       analyticsExpirationTime = currentTime + 600000
-//       response.send(data)
-//     })
-//   }
-// })
+router.post('/analytics', (request, response) => {
+  analytics.getAnalytics().then(data => {
+    response.send(data)
+  })
+})
 
 router.use('/latex', loggers.analyticsLoggerMiddleware)
 
@@ -65,7 +41,9 @@ const middleware = githubWebhook({
 router.post('/update', middleware, (request, response) => {
   if (request.headers['x-github-event'] === 'push') {
     notes.updateNotes().then(() => {
-      response.send('OK')
+      notes.getNotes().then(data => {
+        response.send(data)
+      })
     }).catch(error => {
       loggers.logError(error)
       response.status(500).send('Something failed!')

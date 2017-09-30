@@ -1,6 +1,6 @@
 /**
  * @fileoverview This file handles the fetching, caching, and updating of the
- * LaTeX notes. It is contains the functionality needed by notesRouter.js
+ * LaTeX notes.
  * @author alvin@omgimanerd.tech (Alvin Lin)
  */
 
@@ -54,9 +54,10 @@ const formatFilePath = (directory, file) => {
 }
 
 /**
- * Fetches and creates the hierarchy of notes for caching. This is invoked
- * during server startup and the internal cache is updated each time the notes
- * update endpoint is hit.
+ * This function returns the hierarchy of notes needed for rendering the
+ * /notes page. If the hierarchy has been cached, then this function returns
+ * the data stored in the cache, otherwise it updates the cache by traversing
+ * through the notes directory.
  * @return {Promise}
  */
 const getNotes = () => {
