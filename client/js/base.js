@@ -1,5 +1,5 @@
 /**
- * @fileoverview Client side script for layout.pug
+ * @fileoverview Base client side script required by all pages.
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
@@ -12,11 +12,6 @@ const $ = require('jquery')
 const Materialize = require('materialize-css')
 
 $(document).ready(() => {
-  $('.button-collapse').sideNav()
-  $('.modal').modal()
-  $('.parallax').parallax()
-  $('.scrollspy').scrollSpy()
-
   $('#contact-message').val('')
   $('#contact-message').trigger('autoresize')
   $('#contact-modal form').submit(event => {
@@ -39,12 +34,4 @@ $(document).ready(() => {
       $('#contact-modal input, #contact-message').val('')
     })
   })
-
-  Materialize.scrollFire([{
-    selector: '#skills',
-    offset: 350,
-    callback: function() {
-      Materialize.showStaggeredList('#skills ul')
-    }
-  }])
 })
