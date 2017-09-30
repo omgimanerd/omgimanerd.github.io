@@ -4,13 +4,11 @@
  */
 
 const expressWinston = require('express-winston')
-const sendgrid = require('sendgrid')
 const winston = require('winston')
 const util = require('util')
 
-const PROD = process.argv.includes('--prod')
-const ALERT_EMAIL = process.env.ALERT_EMAIL
-const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
+const config = require('../config')
+const email = require('./email')
 
 // eslint-disable-next-line no-unused-vars, require-jsdoc
 const dynamicMetaFunction = (request, response) => {
@@ -19,74 +17,50 @@ const dynamicMetaFunction = (request, response) => {
   }
 }
 
-module.exports = exports = options => {
-  if (PROD && (!ALERT_EMAIL || !SENDGRID_API_KEY)) {
-    throw new Error('Production configuration not provided!')
-  }
-  const sg = sendgrid(SENDGRID_API_KEY)
+const errorLogger = new winston.Logger({
+  transports: [
+    new winston.transports.Console({
+      prettyPrint: true,
+      timestamp: true
+    }),
+    new winston.transports.File({
+      filename: config.ERROR_LOG,
+      timestamp: true
+    })
+  ]
+})
 
-  const analyticsFile = options.analyticsFile
-  const errorFile = options.errorFile
-
-  const errorLogger = new winston.Logger({
+module.exports = exports = {
+  analyticsLoggerMiddleware: expressWinston.logger({
     transports: [
-      new winston.transports.Console({
-        prettyPrint: true,
-        timestamp: true
-      }),
       new winston.transports.File({
-        filename: errorFile,
+        json: true,
+        filename: config.ANALYTICS_LOG,
+        showLevel: false,
         timestamp: true
       })
-    ]
-  })
-
-  return {
-    analyticsLoggerMiddleware: expressWinston.logger({
-      transports: [
-        new winston.transports.File({
-          json: true,
-          filename: analyticsFile,
-          showLevel: false,
-          timestamp: true
-        })
-      ],
-      skip: (request, response) => response.statusCode !== 200,
-      dynamicMeta: dynamicMetaFunction
-    }),
-    devLoggerMiddleware: expressWinston.logger({
-      transports: [
-        new winston.transports.Console({ showLevel: false, timestamp: true })
-      ],
-      expressFormat: true,
-      colorize: true,
-      dynamicMeta: dynamicMetaFunction
-    }),
-    logError: data => {
-      const unpacked = util.inspect(data)
-      errorLogger.error(unpacked)
-      if (PROD) {
-        const request = sg.emptyRequest({
-          method: 'POST',
-          path: '/v3/mail/send',
-          body: {
-            personalizations: [{
-              to: [{ email: ALERT_EMAIL }],
-              subject: 'Error from omgimanerd.tech'
-            }],
-            from: { email: 'alert@omgimanerd.tech' },
-            content: [{
-              type: 'text/plain',
-              value: unpacked
-            }]
-          }
-        })
-        sg.API(request).then(() => {
-          errorLogger.info('Alert email successfully sent!')
-        }).catch(() => {
-          errorLogger.info('Alert email could not be sent!')
-        })
-      }
+    ],
+    skip: (request, response) => response.statusCode !== 200,
+    dynamicMeta: dynamicMetaFunction
+  }),
+  devLoggerMiddleware: expressWinston.logger({
+    transports: [
+      new winston.transports.Console({ showLevel: false, timestamp: true })
+    ],
+    expressFormat: true,
+    colorize: true,
+    dynamicMeta: dynamicMetaFunction
+  }),
+  logError: data => {
+    const unpacked = util.inspect(data)
+    errorLogger.error(unpacked)
+    if (config.PRODUCTION) {
+      email(config.ALERT_RECEIVER_EMAIL, config.ALERT_RECEIVER_EMAIL,
+        unpacked).then(() => {
+        errorLogger.info('Alert email successfully sent!')
+      }).catch(() => {
+        errorLogger.info('Alert email could not be sent!')
+      })
     }
   }
 }

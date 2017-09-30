@@ -4,37 +4,24 @@
  */
 
 // Dependencies.
-const Promise = require('bluebird')
 const bodyParser = require('body-parser')
 const express = require('express')
-const fs = Promise.promisifyAll(require('fs'))
 const http = require('http')
 const path = require('path')
 
-const NOTES_PATH = path.join(__dirname, process.env.NOTES_PATH)
-const PORT = process.env.PORT || 5000
-const PROD = process.argv.includes('--prod')
+const config = require('./config')
 
-const analyticsFile = path.join(__dirname, 'logs/analytics.log')
-const errorFile = path.join(__dirname, 'logs/error.log')
-
-const loggers = require('./server/loggers')({
-  analyticsFile, errorFile
-})
+const loggers = require('./server/loggers')
 const logError = loggers.logError
 
 const app = express()
 const server = http.Server(app)
 
 // Routers
-const routerOptions = {
-  notesPath: NOTES_PATH,
-  loggers: loggers
-}
-const baseRouter = require('./server/baseRouter')(routerOptions)
-const notesRouter = require('./server/notesRouter')(routerOptions)
+const baseRouter = require('./server/baseRouter')
+const notesRouter = require('./server/notesRouter')
 
-app.set('port', PORT)
+app.set('port', config.PORT)
 app.set('view engine', 'pug')
 app.use('/favicon.ico', express.static(path.join(__dirname,
   '/client/img/alpha.png')))
@@ -63,22 +50,11 @@ app.use((error, request, response, next) => {
 })
 
 // Starts the server.
-server.listen(PORT, () => {
+server.listen(config.PORT, () => {
   /* eslint-disable no-console */
-  console.log(`STARTING SERVER ON PORT ${PORT}`)
-  if (PROD) {
+  console.log(`STARTING SERVER ON PORT ${config.PORT}`)
+  if (config.PRODUCTION) {
     console.log('DEPLOYING IN PRODUCTION MODE!')
   }
-  if (!process.env.GITHUB_WEBHOOK_SECRET) {
-    throw new Error('No Github webhook secret specified!')
-  }
-  if (!process.env.SENDGRID_API_KEY) {
-    throw new Error('No SendGrid API key specified!')
-  }
-  fs.accessAsync(NOTES_PATH).then(error => {
-    if (error) {
-      throw new Error('Unable to access notes!')
-    }
-  })
   /* eslint-enable no-console */
 })
