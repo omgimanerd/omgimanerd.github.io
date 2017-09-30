@@ -15,17 +15,18 @@ const sg = sendgrid(config.SENDGRID_API_KEY)
  * to the given email via the SendGrid API.
  * @param {string} recipient The recipient email
  * @param {string} sender The sender email
+ * @param {string} subject The email header
  * @param {string} content The content of the email
  * @return {Promise}
  */
-const email = (recipient, sender, content) => {
+const email = (recipient, sender, subject, content) => {
   return sg.API(sg.emptyRequest({
     method: 'POST',
     path: '/v3/mail/send',
     body: {
       personalizations: [{
         to: [{ email: recipient }],
-        subject: 'Error from getnews.tech'
+        subject: subject
       }],
       from: { email: sender },
       content: [{

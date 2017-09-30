@@ -23,11 +23,13 @@ const notesRouter = require('./server/notesRouter')
 
 app.set('port', config.PORT)
 app.set('view engine', 'pug')
+app.disable('etag')
 app.use('/favicon.ico', express.static(path.join(__dirname,
   '/client/img/alpha.png')))
 app.use('/client', express.static(path.join(__dirname, '/client')))
 app.use('/dist', express.static(path.join(__dirname, '/dist')))
 
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(loggers.devLoggerMiddleware)
 

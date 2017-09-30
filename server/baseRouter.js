@@ -6,6 +6,7 @@
 const express = require('express')
 
 const config = require('../config')
+const email = require('./email')
 const renderData = require('./data')
 
 const router = express.Router()
@@ -17,10 +18,7 @@ router.get('/', (request, response) => {
 router.post('/message', (request, response) => {
   if (config.PRODUCTION) {
     setTimeout(() => {
-      response.send({
-        error: 'blah',
-        result: null
-      })
+      response.send({ error: null })
     }, 2500)
   } else {
     /**
@@ -34,14 +32,15 @@ router.post('/message', (request, response) => {
     const message = request.body.message
     if (!sender || !name || !message) {
       response.send({
-        error: 'One of your message fields was blank!',
-        result: null
+        error: 'One of your message fields was blank!'
       })
     } else {
       name = `omgimanerd.tech - Message from ${name}`
-      // alert.alert(name, message, error => {
-      //   response.send({ error })
-      // })
+      email(config.ALERT_RECEIVER_EMAIL, sender, name, message).then(() => {
+        response.send({ error: null })
+      }).catch(error => {
+        throw error
+      })
     }
   }
 })

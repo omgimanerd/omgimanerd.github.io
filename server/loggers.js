@@ -56,7 +56,7 @@ module.exports = exports = {
     errorLogger.error(unpacked)
     if (config.PRODUCTION) {
       email(config.ALERT_RECEIVER_EMAIL, config.ALERT_RECEIVER_EMAIL,
-        unpacked).then(() => {
+        'Error from omgimanerd.tech', unpacked).then(() => {
         errorLogger.info('Alert email successfully sent!')
       }).catch(() => {
         errorLogger.info('Alert email could not be sent!')
