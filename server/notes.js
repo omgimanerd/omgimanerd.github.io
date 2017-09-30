@@ -66,7 +66,7 @@ const getNotes = () => {
    * which case we should update the cache with the new notes hierarchy.
    */
   if (cache.data && !cache.expired) {
-    return Promise.resolve(cache)
+    return Promise.resolve(cache.data)
   }
   // Iterate through each directory in the latex folder.
   return fs.readdirAsync(config.NOTES_PATH).then(directories => {
