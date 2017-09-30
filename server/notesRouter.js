@@ -15,6 +15,10 @@ const notes = require('./notes')
 
 const router = express.Router()
 
+const githubMiddleware = githubWebhook({
+  secret: config.GITHUB_WEBHOOK_SECRET
+})
+
 router.get('/', (request, response) => {
   notes.getNotes().then(data => {
     response.render('notes', { notes: data })
@@ -35,10 +39,7 @@ router.use('/latex', express.static(config.NOTES_PATH))
  * This route handles the request from GitHub when the rit-notes repository
  * receives a push.
  */
-const middleware = githubWebhook({
-  secret: config.GITHUB_WEBHOOK_SECRET
-})
-router.post('/update', middleware, (request, response) => {
+router.post('/update', githubMiddleware, (request, response) => {
   if (request.headers['x-github-event'] === 'push') {
     notes.updateNotes().then(() => {
       notes.getNotes().then(data => {
