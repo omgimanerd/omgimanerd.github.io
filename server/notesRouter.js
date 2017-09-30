@@ -7,7 +7,7 @@
 const _ = require('lodash')
 const Promise = require('bluebird')
 const express = require('express')
-const fs = require('fs')
+const fs = Promise.promisifyAll(require('fs'))
 const githubWebhook = require('github-webhook-middleware')
 const path = require('path')
 
@@ -40,29 +40,53 @@ const formatFilePath = (directory, file) => {
     'notes/latex', directory, 'output', file.replace('.tex', '.pdf'))
 }
 
-const notesCache = {}
-
-const router = express.Router()
-
-router.get('/', (request, response) => {
-  fs.readdirAsync(config.NOTES_PATH).then(dirs => {
+/**
+ * Fetches and creates the hierarchy of notes for caching.
+ * @return {Object}
+ */
+const getNotes = () => {
+  // Iterate through each directory in the latex folder.
+  return fs.readdirAsync(config.NOTES_PATH).then(dirs => {
+    // For each directory
     return Promise.all(dirs.map(dir => {
       const dirPath = path.join(config.NOTES_PATH, dir)
+      // Read the names of all the files in the directory
       return fs.readdirAsync(dirPath).then(files => {
-        return files.filter(file => file.endsWith('.tex'))
-          .map(file => formatFilePath(dir, file))
+        /**
+         * Filter out all the .tex files and infer the names of all the
+         * .pdf files. Return an object which the template will use to
+         * render the expandable accordion.
+         */
+        return files.filter(file => file.endsWith('.tex')).map(file => {
+          return formatFilePath(dir, file)
+        })
       }).then(data => {
         return { [dir]: data }
       })
     })).reduce(_.merge)
-  }).then(hierarchy => {
-    response.render('notes', { notes: hierarchy })
-  }).catch(error => {
-    loggers.logError(error)
-    response.render('error', {
-      error: 'There was an error fetching the notes! Try again later!'
-    })
   })
+}
+
+/**
+ * Fetches and stores the analytics data for caching.
+ * @return {Object}
+ */
+const getAnalytics = () => {
+  return fs.readFileAsync(config.ANALYTICS_LOG, 'utf-8').then(data => {
+    return data.trim().split('\n').map(JSON.parse)
+  })
+}
+
+/**
+ * Populate the caches when we first start the server.
+ */
+const analyticsCache = getAnalytics()
+const notesCache = getNotes()
+
+const router = express.Router()
+
+router.get('/', (request, response) => {
+  response.render({ notes: notesCache })
 })
 
 router.use('/latex', loggers.analyticsLoggerMiddleware)
@@ -106,5 +130,6 @@ router.get('/update', (request, response) => {
     response.redirect('/notes')
   }
 })
+
 
 module.exports = exports = router

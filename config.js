@@ -7,7 +7,6 @@
 
 const path = require('path')
 
-console.log('Configuration initialized')
 const PORT = process.env.PORT || 5000
 const PRODUCTION = process.argv.includes('--prod')
 
