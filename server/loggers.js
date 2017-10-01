@@ -4,6 +4,7 @@
  */
 
 const expressWinston = require('express-winston')
+const fs = require('fs')
 const winston = require('winston')
 const util = require('util')
 
@@ -17,6 +18,13 @@ const dynamicMetaFunction = (request, response) => {
   }
 }
 
+const analyticsFileStream = fs.createWriteStream(config.ANALYTICS_LOG, {
+  flags: 'a'
+})
+const errorFileStream = fs.createWriteStream(config.ERROR_LOG, {
+  flags: 'a'
+})
+
 const errorLogger = new winston.Logger({
   transports: [
     new winston.transports.Console({
@@ -24,7 +32,7 @@ const errorLogger = new winston.Logger({
       timestamp: true
     }),
     new winston.transports.File({
-      filename: config.ERROR_LOG,
+      stream: errorFileStream,
       timestamp: true
     })
   ]
@@ -35,8 +43,8 @@ module.exports = exports = {
     transports: [
       new winston.transports.File({
         json: true,
-        filename: config.ANALYTICS_LOG,
         showLevel: false,
+        stream: analyticsFileStream,
         timestamp: true
       })
     ],
