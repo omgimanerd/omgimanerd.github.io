@@ -16,7 +16,8 @@ block body
                   each pdf in pdfs
                     a(class='collection-item' href=pdf.path target='_blank')
                       =pdf.filename
-        button(class='btn waves-effect waves-light') Analytics
+        button(class='btn waves-effect waves-light modal-trigger'
+          href='#analytics-modal') Analytics
 
   // Notes modal
   div(id='notes-modal' class='modal')
@@ -35,6 +36,12 @@ block body
           input(type='checkbox' id='notes-agreement-checkbox' class='filled-in')
           button(class='btn waves-effect waves-light modal-close')
             | I Agree
+  
+  // Analytics modal
+  div(id='analytics-modal' class='modal')
+    div(class='container')
+      h4 Traffic Over Time (requests per day)
+      div(id='traffic' class='graph')
 
 block scripts
   script(src='/dist/notes.bundle.js')

@@ -19,7 +19,9 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.18.1",
+    "c3": "^0.4.18",
     "css-loader": "^0.28.7",
+    "d3": "^4.10.2",
     "express": "^4.15.4",
     "express-winston": "^2.4.0",
     "extract-text-webpack-plugin": "^3.0.0",
