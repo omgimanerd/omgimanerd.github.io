@@ -4,7 +4,6 @@
  */
 
 require('./base')
-require('c3/c3.min.css')
 
 const $ = require('jquery')
 // eslint-disable-next-line no-unused-vars

@@ -10,5 +10,10 @@ const $ = require('jquery')
 const Materialize = require('materialize-css')
 
 $(document).ready(() => {
-  $('#notes-modal').modal('open')
+  $('#notes-modal').modal({
+    dismissible: false,
+    opacity: 0.75,
+    inDuration: 100,
+    outDuration: 100
+  }).modal('open')
 })

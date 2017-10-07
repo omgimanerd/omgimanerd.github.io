@@ -16,7 +16,9 @@ block body
                   each pdf in pdfs
                     a(class='collection-item' href=pdf.path target='_blank')
                       =pdf.filename
-        a(class='btn waves-effect waves-light modal-trigger'
+        button(class='btn waves-effect waves-light modal-trigger'
+          href='#notes-modal') Terms of Use
+        a(class='btn waves-effect waves-light'
           href='/notes/analytics') Analytics
 
   // Notes modal
