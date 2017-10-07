@@ -117,17 +117,18 @@ const getResponseTimeData = data => {
  * @param {Array<Object>} data The analytics data series.
  * @return {Object}
  */
-const getSectionFrequencyData = data => {
+const getFrequencyData = data => {
   const frequencies = new Map()
   data.forEach(entry => {
-    const url = (entry.req.url || '').split('/')[3]
-    frequencies.set(url, (frequencies.get(url) || 0) + 1)
+    const className = (entry.req.url || '').split('/')[3]
+    const classId = className.split('_')[0].toUpperCase()
+    frequencies.set(classId, (frequencies.get(classId) || 0) + 1)
   })
   const sortedSlice = new Map(
-    [...frequencies.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8)
+    [...frequencies.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12)
   )
   return [
-    ['sections', ...sortedSlice.keys()],
+    ['class', ...sortedSlice.keys()],
     ['frequency', ...sortedSlice.values()]
   ]
 }
@@ -146,6 +147,31 @@ $(document).ready(() => {
       },
       points: { show: false },
       padding: { right: 25 }
+    })
+    const responseTimeChart = c3.generate({
+      bindto: '#response-time',
+      axis: {
+        x: { padding: 0, type: 'timeseries' },
+        y: { label: 'Milliseconds', min: 0, padding: 0 }
+      },
+      data: {
+        x: 'date',
+        columns: getResponseTimeData(data),
+        type: 'area'
+      },
+      point: { show: false }
+    })
+    const frequenciesChart = c3.generate({
+      bindto: '#frequencies',
+      axis: {
+        x: { type: 'category', tick: { multiline: true } }
+      },
+      data: {
+        x: 'class',
+        columns: getFrequencyData(data),
+        type: 'bar'
+      },
+      padding: { bottom: 15 }
     })
   })
 })

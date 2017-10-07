@@ -1,8 +1,19 @@
 extends layout.pug
 
 block body
-  div(class='col s12 center-align')
-    div(id='traffic' class='graph')
+  div(class='container')
+    h4(class='center-align') Analytics
+    div(class='row center-align')
+      div(class='col s6')
+        h5 Site Traffic
+        div(id='traffic' class='graph')
+      div(class='col s6')
+        h5 Response Time (milliseconds)
+        div(id='response-time' class='graph')
+    div(class='row center-align')
+      div(class='col s12')
+        h5 Frequencies
+        div(id='frequencies' class='graph')
   
 block scripts
   script(src='/dist/analytics.bundle.js')
