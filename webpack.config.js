@@ -8,6 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
+    analytics: './client/js/analytics.js',
     error: './client/js/error.js',
     index: './client/js/index.js',
     notes: './client/js/notes.js'

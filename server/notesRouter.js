@@ -25,6 +25,10 @@ router.get('/', (request, response) => {
   })
 })
 
+router.get('/analytics', (request, response) => {
+  response.render('analytics')
+})
+
 router.post('/analytics', (request, response) => {
   analytics.getAnalytics().then(data => {
     response.send(data)

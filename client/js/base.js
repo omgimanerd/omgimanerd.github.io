@@ -12,6 +12,9 @@ const $ = require('jquery')
 const Materialize = require('materialize-css')
 
 $(document).ready(() => {
+  $('.modal').modal()
+  $('.button-collapse').sideNav()
+
   $('#contact-message').val('')
   $('#contact-message').trigger('autoresize')
   $('#contact-modal form').submit(event => {
