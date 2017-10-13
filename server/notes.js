@@ -83,7 +83,7 @@ const getNotes = () => {
          */
         return files.filter(file => file.endsWith('.tex')).map(file => {
           return {
-            filename: file,
+            filename: file.replace('.tex', '.pdf'),
             path: formatFilePath(directory, file)
           }
         })
