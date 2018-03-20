@@ -1,7 +1,5 @@
 # omgimanerd.github.io
-[![Build Status](https://travis-ci.org/omgimanerd/omgimanerd.github.io.svg?branch=4.0.0)](https://travis-ci.org/omgimanerd/omgimanerd.github.io)
-
-Repository for my personal webpage.
+Repository for my [personal webpage](http://omgimanerd.tech).
 
 You are free to use any of the source code in this repository so long as you
 link back here or credit me as its source.
