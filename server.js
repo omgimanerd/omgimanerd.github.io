@@ -9,6 +9,10 @@ const express = require('express')
 const http = require('http')
 const path = require('path')
 
+/**
+ * The config module ensures the necessary preconditions are met before starting
+ * the server, for example, the logs folder has been created, etc.
+ */
 const config = require('./config')
 
 const loggers = require('./server/loggers')
