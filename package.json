@@ -4,7 +4,7 @@
   "description": "Personal Webpage",
   "main": "server.js",
   "scripts": {
-    "test": "gulp test"
+    "setup": "webpack && mdkir logs && git clone https://github.com/omgimanerd/rit"
   },
   "repository": {
     "type": "git",

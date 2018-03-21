@@ -57,7 +57,9 @@ server.listen(config.PORT, () => {
   /* eslint-disable no-console */
   console.log(`STARTING SERVER ON PORT ${config.PORT}`)
   if (config.IS_PRODUCTION) {
-    console.log('DEPLOYING IN PRODUCTION MODE!')
+    console.log('RUNNING IN PRODUCTION MODE!')
+  } else {
+    console.log('RUNNING IN DEV MODE!')
   }
   /* eslint-enable no-console */
 })

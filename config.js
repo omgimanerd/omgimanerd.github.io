@@ -28,13 +28,32 @@ const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL
 const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
 
-const NECESSARY_PATHS = [CLIENT_PATH, DIST_PATH, LOGS_PATH, NOTES_PATH]
-NECESSARY_PATHS.forEach(directory => {
-  fs.access(directory, CONST_AVAILABLE, error => {
-    if (error) {
-      throw new Error(`Unable to reach ${directory}!`)
-    }
-  })
+if (process.env.PROJECT !== 'omgimanerd.tech') {
+  throw new Error('Missing environment variables!')
+}
+
+fs.access(CLIENT_PATH, CONST_AVAILABLE, error => {
+  if (error) {
+    throw new Error('Unable to access /client, maybe reclone the project?')
+  }
+})
+
+fs.access(DIST_PATH, CONST_AVAILABLE, error => {
+  if (error) {
+    throw new Error('Unable to access /dist, remember to run webpack.')
+  }
+})
+
+fs.access(LOGS_PATH, CONST_AVAILABLE, error => {
+  if (error) {
+    throw new Error('Unable to access /logs, remember to make the folder.')
+  }
+})
+
+fs.access(NOTES_PATH, CONST_AVAILABLE, error => {
+  if (error) {
+    throw new Error('Unable to access /notes, please clone the notes repo.')
+  }
 })
 
 if (IS_PRODUCTION) {
