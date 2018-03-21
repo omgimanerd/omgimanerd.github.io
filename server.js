@@ -10,7 +10,7 @@ const http = require('http')
 
 /**
  * The config module ensures the necessary preconditions are met before starting
- * the server, for example, the logs folder has been created, etc.
+ * the server, such as creating the logs folder, etc.
  */
 const config = require('./config')
 

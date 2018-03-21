@@ -29,7 +29,7 @@ const updateNotes = () => {
 }
 
 /**
- * Given a latex file directory name, this function separates out the parts by
+ * Given a LaTeX file directory name, this function separates out the parts by
  * delimiter and formats it into a displayable format.
  * @param {string} directory The class directory name
  * @return {string}
