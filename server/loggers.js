@@ -62,7 +62,7 @@ module.exports = exports = {
   logError: data => {
     const unpacked = util.inspect(data)
     errorLogger.error(unpacked)
-    if (config.PRODUCTION) {
+    if (config.IS_PRODUCTION) {
       email(config.ALERT_RECEIVER_EMAIL, config.ALERT_RECEIVER_EMAIL,
         'Error from omgimanerd.tech', unpacked).then(() => {
         errorLogger.info('Alert email successfully sent!')

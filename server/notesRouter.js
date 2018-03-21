@@ -63,7 +63,7 @@ router.post('/update', githubMiddleware, (request, response) => {
  * /update route.
  */
 router.get('/update', (request, response) => {
-  if (!config.PRODUCTION) {
+  if (!config.IS_PRODUCTION) {
     notes.updateNotes().then(() => {
       response.redirect('/notes')
     }).catch(error => {

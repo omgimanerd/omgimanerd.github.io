@@ -16,7 +16,7 @@ router.get('/', (request, response) => {
 })
 
 router.post('/message', (request, response) => {
-  if (!config.PRODUCTION) {
+  if (!config.IS_PRODUCTION) {
     setTimeout(() => {
       response.send({ error: null })
     }, 2500)

@@ -8,12 +8,18 @@
 const fs = require('fs')
 const path = require('path')
 
-const PORT = process.env.PORT || 5000
-const PRODUCTION = process.argv.includes('--prod')
+const CONST_AVAILABLE =
+  fs.constants.F_OK | fs.constants.R_OK | fs.constants.W_OK
 
-const LOG_FOLDER = path.join(__dirname, 'logs')
-const ANALYTICS_LOG = path.join(LOG_FOLDER, 'analytics.log')
-const ERROR_LOG = path.join(LOG_FOLDER, 'error.log')
+const PORT = process.env.PORT || 5000
+const IS_PRODUCTION = process.argv.includes('--prod')
+
+const CLIENT_PATH = path.join(__dirname, 'client')
+const FAVICON_PATH = path.join(CLIENT_PATH, 'img/alpha.png')
+const DIST_PATH = path.join(__dirname, 'dist')
+const LOGS_PATH = path.join(__dirname, 'logs')
+const ANALYTICS_LOG = path.join(LOGS_PATH, 'analytics.log')
+const ERROR_LOG = path.join(LOGS_PATH, 'error.log')
 
 const NOTES_PATH = path.join(__dirname, process.env.NOTES_PATH)
 const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
@@ -22,33 +28,27 @@ const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL
 const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
 
-fs.access(LOG_FOLDER,
-  fs.constants.F_OK | fs.constants.R_OK | fs.constants.W_OK, error => {
+const NECESSARY_PATHS = [CLIENT_PATH, DIST_PATH, LOGS_PATH, NOTES_PATH]
+NECESSARY_PATHS.forEach(directory => {
+  fs.access(directory, CONST_AVAILABLE, error => {
     if (error) {
-      throw new Error('Unable to access logs directory!')
-    }
-  }
-)
-
-if (!NOTES_PATH) {
-  throw new Error('NOTES_PATH unspecified!')
-} else {
-  fs.access(NOTES_PATH, fs.constants.F_OK, error => {
-    if (error) {
-      throw new Error('NOTES_PATH unreachable!')
+      throw new Error(`Unable to reach ${directory}!`)
     }
   })
-}
+})
 
-if (PRODUCTION) {
+if (IS_PRODUCTION) {
   if (!ALERT_RECEIVER_EMAIL || !ALERT_SENDER_EMAIL || !SENDGRID_API_KEY) {
-    throw new Error('Production configuration not provided!')
+    throw new Error('Production email configuration not provided!')
   }
 }
 
 module.exports = exports = {
   PORT,
-  PRODUCTION,
+  IS_PRODUCTION,
+  CLIENT_PATH,
+  FAVICON_PATH,
+  DIST_PATH,
   ANALYTICS_LOG,
   ERROR_LOG,
   NOTES_PATH,

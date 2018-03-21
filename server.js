@@ -7,7 +7,6 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const http = require('http')
-const path = require('path')
 
 /**
  * The config module ensures the necessary preconditions are met before starting
@@ -28,10 +27,9 @@ const notesRouter = require('./server/notesRouter')
 app.set('port', config.PORT)
 app.set('view engine', 'pug')
 app.disable('etag')
-app.use('/favicon.ico', express.static(path.join(__dirname,
-  '/client/img/alpha.png')))
-app.use('/client', express.static(path.join(__dirname, '/client')))
-app.use('/dist', express.static(path.join(__dirname, '/dist')))
+app.use('/favicon.ico', express.static(config.FAVICON_PATH))
+app.use('/client', express.static(config.CLIENT_PATH))
+app.use('/dist', express.static(config.DIST_PATH))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -58,7 +56,7 @@ app.use((error, request, response, next) => {
 server.listen(config.PORT, () => {
   /* eslint-disable no-console */
   console.log(`STARTING SERVER ON PORT ${config.PORT}`)
-  if (config.PRODUCTION) {
+  if (config.IS_PRODUCTION) {
     console.log('DEPLOYING IN PRODUCTION MODE!')
   }
   /* eslint-enable no-console */
