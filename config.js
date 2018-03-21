@@ -21,7 +21,7 @@ const LOGS_PATH = path.join(__dirname, 'logs')
 const ANALYTICS_LOG = path.join(LOGS_PATH, 'analytics.log')
 const ERROR_LOG = path.join(LOGS_PATH, 'error.log')
 
-const NOTES_PATH = path.join(__dirname, process.env.NOTES_PATH)
+const NOTES_PATH = path.join(__dirname, process.env.NOTES_PATH || '')
 const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
 
 const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL
