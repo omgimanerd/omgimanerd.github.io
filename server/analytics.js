@@ -25,7 +25,7 @@ const getAnalytics = () => {
     return Promise.resolve(cache.data)
   }
   return fs.readFileAsync(config.ANALYTICS_LOG, 'utf-8').then(data => {
-    return data ? data.trim().split('\n').map(JSON.parse) : {}
+    return data ? data.trim().split('\n').map(JSON.parse) : null
   }).tap(data => {
     cache.data = data
     cache.expires = currentTime + CACHE_EXPIRATION_TIME

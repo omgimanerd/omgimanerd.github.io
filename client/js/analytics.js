@@ -135,7 +135,11 @@ const getFrequencyData = data => {
 
 $(document).ready(() => {
   $.post('/notes/analytics', data => {
-    const trafficChart = c3.generate({
+    if (data !== null) {
+      window.alert('No analytics data available! Check back later!')
+      return
+    }
+    c3.generate({
       bindto: '#traffic',
       axis: {
         x: { padding: 0, type: 'timeseries' },
@@ -148,7 +152,7 @@ $(document).ready(() => {
       points: { show: false },
       padding: { right: 25 }
     })
-    const responseTimeChart = c3.generate({
+    c3.generate({
       bindto: '#response-time',
       axis: {
         x: { padding: 0, type: 'timeseries' },
@@ -161,7 +165,7 @@ $(document).ready(() => {
       },
       point: { show: false }
     })
-    const frequenciesChart = c3.generate({
+    c3.generate({
       bindto: '#frequencies',
       axis: {
         x: { type: 'category', tick: { multiline: true } }
