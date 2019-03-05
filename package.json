@@ -3,9 +3,6 @@
   "version": "4.0.0",
   "description": "Personal Webpage",
   "main": "server.js",
-  "scripts": {
-    "setup": "webpack && mdkir logs && git clone https://github.com/omgimanerd/rit"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/omgimanerd/omgimanerd.github.io"
