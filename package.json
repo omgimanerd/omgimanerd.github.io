@@ -3,9 +3,6 @@
   "version": "4.0.0",
   "description": "Personal Webpage",
   "main": "server.js",
-  "scripts": {
-    "setup": "webpack && mdkir logs && git clone https://github.com/omgimanerd/rit"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/omgimanerd/omgimanerd.github.io"
@@ -36,8 +33,10 @@
     "sass-loader": "^6.0.7",
     "sendgrid": "^5.2.3",
     "style-loader": "^0.18.2",
-    "webpack": "^3.12.0",
     "winston": "^2.4.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
 }
