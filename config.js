@@ -25,10 +25,6 @@ const ERROR_LOG = path.join(LOGS_PATH, 'error.log')
 const NOTES_PATH = path.join(__dirname, process.env.NOTES_PATH || '')
 const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
 
-const ALERT_RECEIVER_EMAIL = process.env.ALERT_RECEIVER_EMAIL
-const ALERT_SENDER_EMAIL = process.env.ALERT_SENDER_EMAIL
-const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
-
 if (process.env.PROJECT !== 'omgimanerd.tech') {
   throw new Error('Missing environment variables!')
 }
@@ -51,12 +47,6 @@ fs.access(NOTES_PATH, CONST_AVAILABLE, error => {
   }
 })
 
-if (IS_PRODUCTION) {
-  if (!ALERT_RECEIVER_EMAIL || !ALERT_SENDER_EMAIL || !SENDGRID_API_KEY) {
-    throw new Error('Production email configuration not provided!')
-  }
-}
-
 module.exports = exports = {
   PORT,
   IS_PRODUCTION,
@@ -66,8 +56,5 @@ module.exports = exports = {
   ANALYTICS_LOG,
   ERROR_LOG,
   NOTES_PATH,
-  GITHUB_WEBHOOK_SECRET,
-  ALERT_RECEIVER_EMAIL,
-  ALERT_SENDER_EMAIL,
-  SENDGRID_API_KEY
+  GITHUB_WEBHOOK_SECRET
 }

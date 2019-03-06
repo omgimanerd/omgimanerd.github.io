@@ -4,7 +4,6 @@
  */
 
 // Dependencies.
-const bodyParser = require('body-parser')
 const express = require('express')
 const http = require('http')
 
@@ -31,8 +30,6 @@ app.use('/favicon.ico', express.static(config.FAVICON_PATH))
 app.use('/client', express.static(config.CLIENT_PATH))
 app.use('/node_modules', express.static(config.NODE_MODULES_PATH))
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
 app.use(loggers.devLoggerMiddleware)
 
 app.use('/', baseRouter)

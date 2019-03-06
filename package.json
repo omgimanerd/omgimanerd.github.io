@@ -15,7 +15,6 @@
   "homepage": "https://github.com/omgimanerd/omgimanerd.github.io",
   "dependencies": {
     "bluebird": "^3.5.3",
-    "body-parser": "^1.18.3",
     "c3": "^0.4.23",
     "d3": "^4.13.0",
     "express": "^4.16.4",
@@ -27,7 +26,6 @@
     "materialize-css": "^0.100.2",
     "moment": "^2.24.0",
     "pug": "^2.0.3",
-    "sendgrid": "^5.2.3",
     "winston": "^2.4.4"
   },
   "devDependencies": {}

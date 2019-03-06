@@ -9,7 +9,6 @@ const winston = require('winston')
 const util = require('util')
 
 const config = require('../config')
-const email = require('./email')
 
 // eslint-disable-next-line no-unused-vars, require-jsdoc
 const dynamicMetaFunction = (request, response) => {
@@ -62,13 +61,5 @@ module.exports = exports = {
   logError: data => {
     const unpacked = util.inspect(data)
     errorLogger.error(unpacked)
-    if (config.IS_PRODUCTION) {
-      email(config.ALERT_RECEIVER_EMAIL, config.ALERT_RECEIVER_EMAIL,
-        'Error from omgimanerd.tech', unpacked).then(() => {
-        errorLogger.info('Alert email successfully sent!')
-      }).catch(() => {
-        errorLogger.info('Alert email could not be sent!')
-      })
-    }
   }
 }
