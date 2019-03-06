@@ -9,7 +9,19 @@ html
 
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
-    meta(name='google-site-verification' content='K6uEqFU1ofm9uCxdxm_APbmnn20xR_EGRAduwX9XSR4')
+    meta(name='google-site-verification'
+      content='K6uEqFU1ofm9uCxdxm_APbmnn20xR_EGRAduwX9XSR4')
+      
+    link(rel='stylesheet' type='text/css'
+      href='/node_modules/materialize-css/dist/css/materialize.min.css')
+    link(rel='stylesheet' type='text/css'
+      href='/node_modules/material-design-icons/iconfont/material-icons.css')
+    link(rel='stylesheet' type='text/css'
+      href='/node_modules/c3/c3.min.css')
+    link(rel='stylesheet' type='text/css'
+      href='/client/css/styles.css')
+      
+    block head
 
   body
     div(class='navbar-fixed')
@@ -106,5 +118,8 @@ html
     id='github-bjs'
     src='https://buttons.github.io/buttons.js'
   )
+  script(src='/node_modules/jquery/dist/jquery.min.js')
+  script(src='/node_modules/materialize-css/dist/js/materialize.min.js')
+  script(src='/client/js/base.js')
 
   block scripts

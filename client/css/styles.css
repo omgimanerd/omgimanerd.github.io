@@ -3,7 +3,6 @@
  * @author Alvin Lin (alvin.lin.dev@gmail.com)
  */
 
-// Applied globally to fix the spacing between the footer and content
 body {
   display: flex;
   min-height: 100vh;
@@ -18,13 +17,11 @@ footer {
   margin-top: 0px !important;
 }
 
-// Applied globally to style the alpha icon
 .alpha {
   font-size: 50px;
   margin-left: 10px;
 }
 
-// Applied to the homepage
 #skills li {
   opacity: 0;
 }
@@ -47,35 +44,30 @@ footer {
   height: 200px;
 }
 
-// Applied to the error page
 .error {
   height: 800px;
-
-  h1 span {
-    margin: 40px;
-  }
-
-  h5 span {
-    margin: 10px;
-  }
 }
 
-// Applied to the notes page
+.error h1 span {
+  margin: 40px;
+}
+
+.erro h5 span {
+  margin: 10px;
+}
+
 .notes-container {
   min-height: 75vh;
-
-  button {
-    margin-right: 10px;
-  }
 }
 
-.notes {
-  .collapsible-body {
-    padding: 0
-  }
+.notes-container button {
+  margin-right: 10px;
 }
 
-// Applied to the analytics page
+.notes .collapsible-body {
+  padding: 0
+}
+
 .graph {
   display: inline-block;
   width: 100%;

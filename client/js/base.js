@@ -1,16 +1,8 @@
+/* global $, Materialize */
 /**
  * @fileoverview Base client side script required by all pages.
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
-
-require('materialize-css/dist/css/materialize.min.css')
-require('material-design-icons/iconfont/material-icons.css')
-require('c3/c3.min.css')
-
-require('../sass/styles.scss')
-
-const $ = require('jquery')
-const Materialize = require('materialize-css')
 
 $(document).ready(() => {
   $('.modal').modal()

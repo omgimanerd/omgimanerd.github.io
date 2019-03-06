@@ -1,5 +1,8 @@
 extends layout.pug
 
+block head
+  link(rel='stylesheet' type='text/css' href='/dist/notes.bundle.css')
+    
 block body
   div(class='col s12 center-align blue-grey lighten-3 notes-container')
     h2 Notes
@@ -40,4 +43,4 @@ block body
             | I Agree
 
 block scripts
-  script(src='/dist/notes.bundle.js')
+  script(src='/client/js/notes.js')

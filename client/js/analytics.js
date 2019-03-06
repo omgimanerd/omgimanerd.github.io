@@ -1,15 +1,8 @@
+/* globals $, c3, moment */
 /**
  * @fileoverview Client side script for notes analytics display.
  * @author alvin@omgimanerd.tech (Alvin Lin)
  */
-
-require('./base')
-
-const $ = require('jquery')
-// eslint-disable-next-line no-unused-vars
-const d3 = require('d3')
-const c3 = require('c3')
-const moment = require('moment')
 
 /**
  * Iterates through a date range day by day.

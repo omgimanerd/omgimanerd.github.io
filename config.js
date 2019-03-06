@@ -16,8 +16,9 @@ const IS_PRODUCTION = process.argv.includes('--prod')
 
 const CLIENT_PATH = path.join(__dirname, 'client')
 const FAVICON_PATH = path.join(CLIENT_PATH, 'img/alpha.png')
-const DIST_PATH = path.join(__dirname, 'dist')
 const LOGS_PATH = path.join(__dirname, 'logs')
+const NODE_MODULES_PATH = path.join(__dirname, 'node_modules')
+
 const ANALYTICS_LOG = path.join(LOGS_PATH, 'analytics.log')
 const ERROR_LOG = path.join(LOGS_PATH, 'error.log')
 
@@ -35,12 +36,6 @@ if (process.env.PROJECT !== 'omgimanerd.tech') {
 fs.access(CLIENT_PATH, CONST_AVAILABLE, error => {
   if (error) {
     throw new Error('Unable to access /client, maybe reclone the project?')
-  }
-})
-
-fs.access(DIST_PATH, CONST_AVAILABLE, error => {
-  if (error) {
-    throw new Error('Unable to access /dist, remember to run webpack.')
   }
 })
 
@@ -67,7 +62,7 @@ module.exports = exports = {
   IS_PRODUCTION,
   CLIENT_PATH,
   FAVICON_PATH,
-  DIST_PATH,
+  NODE_MODULES_PATH,
   ANALYTICS_LOG,
   ERROR_LOG,
   NOTES_PATH,
