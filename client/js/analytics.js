@@ -128,7 +128,7 @@ const getFrequencyData = data => {
 
 $(document).ready(() => {
   $.post('/notes/analytics', data => {
-    if (data !== null) {
+    if (data === null) {
       window.alert('No analytics data available! Check back later!')
       return
     }
