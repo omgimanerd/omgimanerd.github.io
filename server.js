@@ -6,21 +6,13 @@
 // Dependencies.
 const express = require('express')
 const http = require('http')
+const morgan = require('morgan')
 
-/**
- * The config module ensures the necessary preconditions are met before starting
- * the server, such as creating the logs folder, etc.
- */
 const config = require('./config')
-
-const loggers = require('./server/loggers')
-const logError = loggers.logError
 
 const app = express()
 const server = http.Server(app)
 
-// Routers
-const baseRouter = require('./server/baseRouter')
 const notesRouter = require('./server/notesRouter')
 
 app.set('port', config.PORT)
@@ -29,7 +21,7 @@ app.set('view engine', 'pug')
 app.use('/favicon.ico', express.static(config.FAVICON_PATH))
 app.use('/client', express.static(config.CLIENT_PATH))
 
-app.use(loggers.devLoggerMiddleware)
+app.use(morgan('combined'))
 
 app.use('/', (request, response) => {
   response.render('index')
@@ -45,7 +37,6 @@ app.use((request, response) => {
 
 // eslint-disable-next-line no-unused-vars
 app.use((error, request, response, next) => {
-  logError(error)
   response.status(500).render('error', {
     error: '500: Internal error!'
   })

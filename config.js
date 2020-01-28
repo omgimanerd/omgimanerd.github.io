@@ -14,13 +14,8 @@ const CONST_AVAILABLE =
 const PORT = process.env.PORT || 5000
 const IS_PRODUCTION = process.argv.includes('--prod')
 
-const CLIENT_PATH = path.join(__dirname, 'dist')
-const FAVICON_PATH = path.join(CLIENT_PATH, 'img/alpha.png')
-const LOGS_PATH = path.join(__dirname, 'logs')
-const NODE_MODULES_PATH = path.join(__dirname, 'node_modules')
-
-const ANALYTICS_LOG = path.join(LOGS_PATH, 'analytics.log')
-const ERROR_LOG = path.join(LOGS_PATH, 'error.log')
+const DIST_PATH = path.join(__dirname, 'dist')
+const FAVICON_PATH = path.join(DIST_PATH, 'img/alpha.png')
 
 const NOTES_PATH = path.join(__dirname, process.env.NOTES_PATH || '')
 const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
@@ -29,15 +24,9 @@ if (process.env.PROJECT !== 'omgimanerd.tech') {
   throw new Error('Missing environment variables!')
 }
 
-fs.access(CLIENT_PATH, CONST_AVAILABLE, error => {
+fs.access(DIST_PATH, CONST_AVAILABLE, error => {
   if (error) {
     throw new Error('Unable to access /client, maybe reclone the project?')
-  }
-})
-
-fs.access(LOGS_PATH, CONST_AVAILABLE, error => {
-  if (error) {
-    throw new Error('Unable to access /logs, remember to make the folder.')
   }
 })
 
@@ -50,11 +39,8 @@ fs.access(NOTES_PATH, CONST_AVAILABLE, error => {
 module.exports = exports = {
   PORT,
   IS_PRODUCTION,
-  CLIENT_PATH,
+  DIST_PATH,
   FAVICON_PATH,
-  NODE_MODULES_PATH,
-  ANALYTICS_LOG,
-  ERROR_LOG,
   NOTES_PATH,
   GITHUB_WEBHOOK_SECRET
 }
