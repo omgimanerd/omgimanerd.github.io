@@ -2,25 +2,30 @@
  * @fileoverview Gulpfile for compiling website assets.
  * @author alvin@omgimanerd.tech (Alvin Lin)
  */
+/* eslint-disable require-jsdoc */
 
 const del = require('del')
 const gulp = require('gulp')
-const cssnano = require('gulp-cssnano')
-const less = require('gulp-less')
+const gulpCssnano = require('gulp-cssnano')
+const gulpLess = require('gulp-less')
 
-exports.clean = callback => {
+const clean = callback => {
   return del.sync('dist', callback)
 }
 
-exports.less = () => {
+const less = () => {
   return gulp.src('src/less/*.less')
-    .pipe(less())
-    .pipe(cssnano())
+    .pipe(gulpLess())
+    .pipe(gulpCssnano())
     .pipe(gulp.dest('dist'))
 }
 
-exports.watch = () => {
-  return gulp.watch('src/**/*', ['less'])
+const watch = () => {
+  return gulp.watch('src/**/*', less)
 }
 
-exports.default = exports.less
+module.exports = {
+  clean,
+  less,
+  watch
+}

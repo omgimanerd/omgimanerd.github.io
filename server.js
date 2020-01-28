@@ -13,21 +13,17 @@ const config = require('./config')
 const app = express()
 const server = http.Server(app)
 
-const notesRouter = require('./server/notesRouter')
-
 app.set('port', config.PORT)
 app.set('view engine', 'pug')
 
 app.use('/favicon.ico', express.static(config.FAVICON_PATH))
-app.use('/client', express.static(config.CLIENT_PATH))
+app.use('/dist', express.static(config.DIST_PATH))
 
 app.use(morgan('combined'))
 
 app.use('/', (request, response) => {
   response.render('index')
 })
-
-app.use('/notes', notesRouter)
 
 app.use((request, response) => {
   response.status(404).render('error', {

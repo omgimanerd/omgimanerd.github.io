@@ -9,8 +9,6 @@ const githubWebhook = require('github-webhook-middleware')
 
 const config = require('../config')
 
-const analytics = require('./analytics')
-const loggers = require('./loggers')
 const notes = require('./notes')
 
 const router = express.Router()
@@ -25,18 +23,6 @@ router.get('/', (request, response) => {
   })
 })
 
-router.get('/analytics', (request, response) => {
-  response.render('analytics')
-})
-
-router.post('/analytics', (request, response) => {
-  analytics.getAnalytics().then(data => {
-    response.send(data)
-  })
-})
-
-router.use('/latex', loggers.analyticsLoggerMiddleware)
-
 router.use('/latex', express.static(config.NOTES_PATH))
 
 /**
@@ -49,8 +35,7 @@ router.post('/update', githubMiddleware, (request, response) => {
       notes.getNotes().then(data => {
         response.send(data)
       })
-    }).catch(error => {
-      loggers.logError(error)
+    }).catch(() => {
       response.status(500).send('Something failed!')
     })
   } else {
