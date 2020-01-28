@@ -14,7 +14,7 @@ const CONST_AVAILABLE =
 const PORT = process.env.PORT || 5000
 const IS_PRODUCTION = process.argv.includes('--prod')
 
-const CLIENT_PATH = path.join(__dirname, 'client')
+const CLIENT_PATH = path.join(__dirname, 'dist')
 const FAVICON_PATH = path.join(CLIENT_PATH, 'img/alpha.png')
 const LOGS_PATH = path.join(__dirname, 'logs')
 const NODE_MODULES_PATH = path.join(__dirname, 'node_modules')

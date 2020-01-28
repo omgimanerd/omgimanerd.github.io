@@ -1,81 +1,23 @@
-include mixins.pug
-
 doctype html
 
-html
+html(lang='en')
   head
-    block title
-      title Alvin Lin
+    title omgimanerd.tech
 
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(name='description' content='omgimanerd.tech')
       
-    link(rel='stylesheet' type='text/css'
-      href='/node_modules/materialize-css/dist/css/materialize.min.css')
-    link(rel='stylesheet' type='text/css'
-      href='/node_modules/material-design-icons/iconfont/material-icons.css')
-    link(rel='stylesheet' type='text/css'
-      href='/node_modules/c3/c3.min.css')
     link(rel='stylesheet' type='text/css'
       href='/client/css/styles.css')
       
     block head
 
   body
-    div(class='navbar-fixed')
-      nav(class='blue-grey darken-3')
-        div(class='nav-wrapper')
-          a(class='alpha hide-on-med-and-down' href='/') &alpha;
-          a(class='button-collapse' data-activates='side-nav' href='#')
-            i(class='material-icons') menu
-          ul(class='right hide-on-med-and-down')
-            +navElements
-    ul(id='side-nav' class='side-nav')
-      +navElements
+    h1 Alvin Lin (@omgimanerd)
 
     block body
 
-    footer(class='page-footer blue-grey darken-2')
-      div(class='container')
-        div(class='row')
-          div(class='col s12 m6 l6')
-            h5(class='white-text') Want to contact me?
-            | Email me at&nbsp;
-            a(class='blue-text' href='mailto:alvin@omgimanerd.tech')
-              | alvin&#64;omgimanerd&#46;tech
-          div(class='col s12 m6 l6 right-align hide-on-small-only')
-            h5(class='white-text') Connect with me
-            a(
-              href='https://twitter.com/omgimanerd'
-              class='twitter-follow-button'
-              data-size='large'
-              data-show-count='true'
-            ) Follow &#64;omgimanerd
-            br
-            a(
-              href='https://github.com/omgimanerd'
-              class='github-button'
-              data-size='large'
-              data-show-count='true'
-            ) Follow &#64;omgimanerd
-          div(class='col s12 m6 l6 left-align hide-on-med-and-up')
-            h5(class='white-text') Connect with me
-            a(
-              href='https://twitter.com/omgimanerd'
-              class='twitter-follow-button'
-              data-size='large'
-              data-show-count='true'
-            ) Follow &#64;omgimanerd
-            br
-            a(
-              href='https://github.com/omgimanerd'
-              class='github-button'
-              data-size='large'
-              data-show-count='true'
-            ) Follow &#64;omgimanerd
-      div(class='footer-copyright blue-grey darken-3')
-        div(class='container')
-          | &#9400; Alvin Lin 2016
 
   script.
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
@@ -85,8 +27,5 @@ html
     id='github-bjs'
     src='https://buttons.github.io/buttons.js'
   )
-  script(src='/node_modules/jquery/dist/jquery.min.js')
-  script(src='/node_modules/materialize-css/dist/js/materialize.min.js')
-  script(src='/client/js/base.js')
 
   block scripts

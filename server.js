@@ -25,14 +25,16 @@ const notesRouter = require('./server/notesRouter')
 
 app.set('port', config.PORT)
 app.set('view engine', 'pug')
-app.disable('etag')
+
 app.use('/favicon.ico', express.static(config.FAVICON_PATH))
 app.use('/client', express.static(config.CLIENT_PATH))
-app.use('/node_modules', express.static(config.NODE_MODULES_PATH))
 
 app.use(loggers.devLoggerMiddleware)
 
-app.use('/', baseRouter)
+app.use('/', (request, response) => {
+  response.render('index')
+})
+
 app.use('/notes', notesRouter)
 
 app.use((request, response) => {
