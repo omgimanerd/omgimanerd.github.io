@@ -8,3 +8,33 @@ html {
   color: @text;
   font-family: 'Open Sans', serif;
 }
+
+body {
+  font-size: 1.1em;
+  line-height: 1.8;
+  margin: 2em auto;
+  max-width: 800px;
+  text-align: justify;
+}
+
+a {
+  color: @accentBlue;
+
+  &:hover {
+    opacity: 0.5;
+    transition: all 0.2s;
+  }
+}
+
+.navbar {
+  a {
+    margin: 0 2px;
+  }
+}
+
+.footer {
+  div {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}

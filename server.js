@@ -16,12 +16,11 @@ const server = http.Server(app)
 app.set('port', config.PORT)
 app.set('view engine', 'pug')
 
-app.use('/favicon.ico', express.static(config.FAVICON_PATH))
-app.use('/dist', express.static(config.DIST_PATH))
+app.use('/dist', express.static('dist'))
 
 app.use(morgan('combined'))
 
-app.use('/', (request, response) => {
+app.get('/', (request, response) => {
   response.render('index')
 })
 
@@ -42,10 +41,5 @@ app.use((error, request, response, next) => {
 server.listen(config.PORT, () => {
   /* eslint-disable no-console */
   console.log(`STARTING SERVER ON PORT ${config.PORT}`)
-  if (config.IS_PRODUCTION) {
-    console.log('RUNNING IN PRODUCTION MODE!')
-  } else {
-    console.log('RUNNING IN DEV MODE!')
-  }
   /* eslint-enable no-console */
 })

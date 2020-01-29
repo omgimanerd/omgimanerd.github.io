@@ -1,17 +1,5 @@
 extends layout.pug
     
 block body
-  div(class='col s12 blue-grey lighten-2 valign-wrapper error')
-    div(class='row valign center-align')
-      h3(class='hide-on-small-only')
-        i(class='material-icons') warning
-        span= error
-        i(class='material-icons') warning
-      h5(class='hide-on-med-and-up')
-        i(class='material-icons') warning
-        span= error
-        i(class='material-icons') warning
-      a(class='btn waves-effect waves-light' href='/')
-        i(class='material-icons right') home
-        | Home
+  h3= error
         

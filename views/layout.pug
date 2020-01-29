@@ -7,26 +7,63 @@ html(lang='en')
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     meta(name='description' content='omgimanerd.tech')
-      
-    link(rel='stylesheet' type='text/css'
+    
+    link(rel='shortcut icon'
+      type='image/png'
+      href='/dist/alpha.png')
+    link(rel='icon'
+      type='image/png'
+      href='/dist/alpha.png')
+
+    link(rel='stylesheet'
+      type='text/css'
       href='https://fonts.googleapis.com/css?family=Open+Sans&display=swap')
-    link(rel='stylesheet' type='text/css'
+    link(rel='stylesheet'
+      type='text/css'
       href='/dist/main.css')
       
     block head
 
   body
     h1 Alvin Lin (@omgimanerd)
-
+    div(class='navbar')
+      a(href='/') Home
+      | |
+      a(href='https://medium.com/@omgimanerd') Blog
+      | |
+      a(href='https://github.com/omgimanerd') GitHub
+      | |
+      a(href='/dist/resume.pdf') R&eacute;sum&eacute;
+      | |
+      a(href='/notes') Notes
     block body
 
+    hr
+      
+    div(class='footer')
+      div
+        a(
+          href='https://github.com/omgimanerd'
+          class='github-button'
+          data-size='large'
+          data-show-count='true'
+        ) Follow &#64;omgimanerd
+      div
+        a(
+          href='https://twitter.com/omgimanerd'
+          class='twitter-follow-button'
+          data-size='large'
+          data-show-count='true'
+        ) Follow &#64;omgimanerd
 
-  script.
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
   script(
     async
     defer
-    id='github-bjs'
+    src='https://platform.twitter.com/widgets.js'
+  )
+  script(
+    async
+    defer
     src='https://buttons.github.io/buttons.js'
   )
 
