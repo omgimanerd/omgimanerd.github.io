@@ -18,6 +18,11 @@ const copy = () => {
     .pipe(gulp.dest('dist'))
 }
 
+const js = () => {
+  return gulp.src('src/js/*.js')
+    .pipe(gulp.dest('dist'))
+}
+
 const less = () => {
   return gulp.src('src/less/*.less')
     .pipe(gulpLess())
@@ -26,12 +31,13 @@ const less = () => {
 }
 
 const watch = () => {
-  return gulp.watch('src/**/*', gulp.parallel(copy, less))
+  return gulp.watch('src/**/*', gulp.parallel(copy, js, less))
 }
 
 module.exports = {
-  copy,
   clean,
+  copy,
+  js,
   less,
   watch
 }

@@ -17,6 +17,7 @@ app.set('port', config.PORT)
 app.set('view engine', 'pug')
 
 app.use('/dist', express.static('dist'))
+app.use('/node_modules', express.static('node_modules'))
 
 app.use(morgan('combined'))
 
