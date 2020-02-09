@@ -25,6 +25,8 @@ app.get('/', (request, response) => {
   response.render('index')
 })
 
+app.use('/notes', require('./server/notesRouter'))
+
 app.use((request, response) => {
   response.status(404).render('error', {
     error: '404: Page not found!'

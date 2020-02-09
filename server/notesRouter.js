@@ -43,20 +43,4 @@ router.post('/update', githubMiddleware, (request, response) => {
   }
 })
 
-/**
- * If we are not in production, then an update can be forced through the
- * /update route.
- */
-router.get('/update', (request, response) => {
-  if (!config.IS_PRODUCTION) {
-    notes.updateNotes().then(() => {
-      response.redirect('/notes')
-    }).catch(error => {
-      response.status(500).send(error)
-    })
-  } else {
-    response.redirect('/notes')
-  }
-})
-
 module.exports = exports = router

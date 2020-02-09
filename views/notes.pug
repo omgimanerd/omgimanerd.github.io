@@ -1,43 +1,9 @@
 extends layout.pug
 
 block body
-  div(class='col s12 center-align blue-grey lighten-3 notes-container')
-    h2 Notes
-
-    div(class='row center-align')
-      div(class='col s12 m12 l6 offset-l3')
-        ul(class='collapsible left-align notes' data-collapsible='expandable')
-          each pdfs,section in notes
-            li
-              div(class='collapsible-header')
-                =section
-              div(class='collapsible-body')
-                div(class='collection')
-                  each pdf in pdfs
-                    a(class='collection-item' href=pdf.path target='_blank')
-                      =pdf.filename
-        button(class='btn waves-effect waves-light modal-trigger'
-          href='#notes-modal') Terms of Use
-        a(class='btn waves-effect waves-light'
-          href='/notes/analytics') Analytics
-
-  // Notes modal
-  div(id='notes-modal' class='modal')
-    div(class='container')
-      div(class='row section center-align')
-        h4(class='col s12')
-          | Notes
-        h5(class='col s12 left-align')
-          | This page contains links to notes taken from my classes
-          | at Rochester Institute of Technology. It is designed for the deaf
-          | and hard-of-hearing/NTID students who have requested me to take
-          | notes for them. These notes are freely available to the public
-          | under the terms of the MIT license, and you may use and distribute
-          | them as long as you credit me and link back here.
-        div(class='col s12')
-          input(type='checkbox' id='notes-agreement-checkbox' class='filled-in')
-          button(class='btn waves-effect waves-light modal-close')
-            | I Agree
-
-block scripts
-  script(src='/client/js/notes.js')
+  div
+    each pdfs, section in notes
+      =section
+      each pdf in pdfs
+        a(href=pdf.path target='_blank')
+          =pdf.filename
