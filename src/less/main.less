@@ -68,10 +68,24 @@ a {
       transition: all 200ms;
     }
   }
+}
 
-  pre {
-    display: inline;
-    margin: 0;
+.notes-section {
+  h3 {
+    margin: 5px 0;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  ol {
+    display: none;
+
+    &.visible {
+      display: block;
+    }
   }
 }
 

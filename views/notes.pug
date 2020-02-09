@@ -1,9 +1,12 @@
 extends layout.pug
 
 block body
-  div
-    each pdfs, section in notes
-      =section
-      each pdf in pdfs
-        a(href=pdf.path target='_blank')
-          =pdf.filename
+  each pdfs, section in notes
+    div.notes-section
+      h3.notes-header
+        =section
+      ol
+        each pdf in pdfs
+          li
+            a(href=pdf.path target='_blank')
+              =pdf.filename
