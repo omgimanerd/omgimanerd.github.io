@@ -2,6 +2,6 @@
  * @author alvin@omgimanerd.tech (Alvin Lin)
  */
 
-window.onload = () => {
+window.addEventListener('load', () => {
   document.body.classList.add('loaded')
-}
+})

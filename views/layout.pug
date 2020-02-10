@@ -19,9 +19,20 @@ html(lang='en')
       type='text/css'
       href='/dist/main.css')
       
+    script(
+      async
+      defer
+      src='https://platform.twitter.com/widgets.js'
+    )
+    script(
+      async
+      defer
+      src='https://buttons.github.io/buttons.js'
+    )
+      
     script(src='/dist/main.js')
       
-    block head
+    block head  
 
   body
     h1 Alvin Lin (@omgimanerd)
@@ -54,16 +65,3 @@ html(lang='en')
           data-size='large'
           data-show-count='true'
         ) Follow &#64;omgimanerd
-
-  script(
-    async
-    defer
-    src='https://platform.twitter.com/widgets.js'
-  )
-  script(
-    async
-    defer
-    src='https://buttons.github.io/buttons.js'
-  )
-
-  block scripts

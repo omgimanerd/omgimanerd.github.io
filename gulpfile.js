@@ -13,7 +13,7 @@ const clean = callback => {
   return del.sync('dist', callback)
 }
 
-const copy = () => {
+const img = () => {
   return gulp.src('src/img/*.png')
     .pipe(gulp.dest('dist'))
 }
@@ -31,12 +31,12 @@ const less = () => {
 }
 
 const watch = () => {
-  return gulp.watch('src/**/*', gulp.parallel(copy, js, less))
+  return gulp.watch('src/**/*', gulp.parallel(img, js, less))
 }
 
 module.exports = {
   clean,
-  copy,
+  img,
   js,
   less,
   watch

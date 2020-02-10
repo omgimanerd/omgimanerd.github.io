@@ -1,11 +1,14 @@
 extends layout.pug
 
+block head
+  script(src='/dist/notes.js')
+
 block body
   each pdfs, section in notes
     div.notes-section
-      h3.notes-header
+      h3(class='notes-header no-select')
         =section
-      ol
+      ol.notes-content
         each pdf in pdfs
           li
             a(href=pdf.path target='_blank')
