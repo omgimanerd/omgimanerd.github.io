@@ -1,5 +1,3 @@
 /node_modules
-/dist
 /rit
-/logs/*.log
 setup
