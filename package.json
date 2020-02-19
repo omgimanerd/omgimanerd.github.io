@@ -15,18 +15,15 @@
   "homepage": "https://github.com/omgimanerd/omgimanerd.github.io",
   "dependencies": {
     "bluebird": "^3.5.3",
-    "c3": "^0.4.23",
-    "d3": "^3.5.17",
     "express": "^4.16.4",
-    "express-winston": "^2.6.0",
     "github-webhook-middleware": "^0.0.2",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "material-design-icons": "^3.0.1",
     "materialize-css": "^0.100.2",
     "moment": "^2.24.0",
-    "pug": "^2.0.3",
-    "winston": "^2.4.4"
+    "morgan": "^1.9.1",
+    "pug": "^2.0.3"
   },
   "devDependencies": {}
 }

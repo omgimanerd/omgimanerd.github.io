@@ -43,33 +43,3 @@ footer {
 .parallax-2 {
   height: 200px;
 }
-
-.error {
-  height: 800px;
-}
-
-.error h1 span {
-  margin: 40px;
-}
-
-.erro h5 span {
-  margin: 10px;
-}
-
-.notes-container {
-  min-height: 75vh;
-}
-
-.notes-container button {
-  margin-right: 10px;
-}
-
-.notes .collapsible-body {
-  padding: 0
-}
-
-.graph {
-  display: inline-block;
-  width: 100%;
-  margin: 20px;
-}
