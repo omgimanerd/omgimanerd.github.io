@@ -8,19 +8,43 @@
 const fs = require('fs')
 const path = require('path')
 
-const CONST_AVAILABLE =
-  fs.constants.F_OK | fs.constants.R_OK | fs.constants.W_OK
-
-const NOTES_PATH = path.join(__dirname, 'rit/latex')
-const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
-
-fs.access(NOTES_PATH, CONST_AVAILABLE, error => {
-  if (error) {
-    throw new Error('Unable to access /notes, please clone the notes repo.')
+/**
+ * Parses a dictionary of settings and their corresponding value from the
+ * config file in the project root directory. Uses the equal sign as a
+ * delimeter.
+ * @param {String} filepath The path to the config file.
+ * @return {Map}
+ */
+const parseEnvFile = filepath => {
+  /* eslint-disable no-sync */
+  const data = fs.readFileSync(filepath, { encoding: 'utf-8' })
+  /* eslint-enable no-sync */
+  const env = new Map()
+  for (const line of data.split('\n')) {
+    const pieces = line.split('=')
+    if (pieces.length !== 2) {
+      throw Error(`Unable to parse env file at ${filepath}`)
+    }
+    console.log(`Loaded config value: ${pieces[0]} = ${pieces[1]}`)
+    env.set(pieces[0], pieces[1])
   }
-})
+  return env
+}
+
+const env = parseEnvFile(path.join(__dirname, '.env'))
+
+const GITHUB_WEBHOOK_SECRET = env.get('GITHUB_WEBHOOK_SECRET')
+const NOTES_PATH = path.join(__dirname, env.get('NOTES_PATH'))
+const PRODUCTION = process.argv.includes('--prod')
+
+/* eslint-disable no-sync */
+if (!fs.existsSync(NOTES_PATH)) {
+  throw new Error('Unable to find RIT notes directory')
+}
+/* eslint-enable no-sync */
 
 module.exports = exports = {
   NOTES_PATH,
-  GITHUB_WEBHOOK_SECRET
+  GITHUB_WEBHOOK_SECRET,
+  PRODUCTION
 }

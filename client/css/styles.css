@@ -22,10 +22,6 @@ footer {
   margin-left: 10px;
 }
 
-#skills li {
-  opacity: 0;
-}
-
 .me {
   height: 350px;
   border-radius: 25px;

@@ -1,90 +1,38 @@
 extends layout.pug
     
 block body
-  // FIRST PARALLAX
   div(class='parallax-container parallax-1')
     div(class='parallax')
       img(src='/client/img/parallax1.png')
     div(class='valign-wrapper')
       img(class='me' src='/client/img/me.png')
 
-  // SKILLS
-  div(id='skills' class='section container center-align scrollspy')
+  div(id='skills' class='section container center-align')
+    
     div(class='row center-align')
       h2 My name is Alvin Lin
       +divider
-      h4 I am a software developer from New York City. I work with:
+      h4 I am a software developer from New York City.
 
-    ul(class='row')
-      li(class='row')
-        +skillsetImage('col s4 skillset', '/client/img/html.png')
-        +skillsetImage('col s4 skillset', '/client/img/css.png')
-        +skillsetImage('col s4 skillset', '/client/img/js.png')
-      li(class='row')
-        +skillsetImage('col s6 skillset', '/client/img/nodejs.png')
-        +skillsetImage('col s6 skillset', '/client/img/python.png')
-      li(class='row')
-        +skillsetImage('col s6 skillset', '/client/img/sql.png')
-        +skillsetImage('col s6 skillset', '/client/img/mongodb.png')
-      li(class='row hide-on-med-and-down')
-        +skillsetImage('col l2 skillset', '/client/img/aws.png')
-        +skillsetImage('col l2 skillset', '/client/img/digitalocean.png')
-        +skillsetImage('col l2 skillset', '/client/img/heroku.png')
-        +skillsetImage('col l2 skillset', '/client/img/git.png')
-        +skillsetImage('col l2 skillset', '/client/img/ubuntu.png')
-        +skillsetImage('col l2 skillset', '/client/img/android.png')
-      li(class='row hide-on-large-only')
-        +skillsetImage('col s4 skillset', '/client/img/aws.png')
-        +skillsetImage('col s4 skillset', '/client/img/digitalocean.png')
-        +skillsetImage('col s4 skillset', '/client/img/heroku.png')
-      li(class='row hide-on-large-only')
-        +skillsetImage('col s4 skillset', '/client/img/git.png')
-        +skillsetImage('col s4 skillset', '/client/img/ubuntu.png')
-        +skillsetImage('col s4 skillset', '/client/img/android.png')
-      li(class='row')
-        +skillsetImage('col s12 l12 skillset', '/client/img/unity.png')
-
-    +divider
-
-    div(class='section center-align')
-      a(
-        class='btn-large waves-effect waves-light blue-grey darken-2'
-        href='/client/resume.pdf' target='_blank'
-      )
-        i(class='material-icons left') work
-        | R&eacute;sum&eacute;
-      span &nbsp;
-      a(
-        class='btn-large waves-effect waves-light blue-grey darken-2'
-        href='https://github.com/omgimanerd' target='_blank'
-      )
-        i(class='material-icons left') code
-        | GitHub
-
-  // SECOND PARALLAX
-  div(class='parallax-container parallax-2')
-    div(class='parallax')
-      img(src='/client/img/parallax2.png')
-
-  // WORK
-  div(id='work' class='container scrollspy')
-    div(class='row')
-      h2(class='center-align') Highlighted Work
-    div(class='row')
-      each work in renderData.work
-        div(class='col s12 m6 l3')
-          div(class='card teal lighten-5 hoverable')
-            div(class='card-image waves-effect waves-block waves-light')
-              img(class='activator' src=work.image)
-            div(class='card-content')
-              span(class='card-title activator')= work.name
-                i(class='material-icons right') expand_less
-            div(class='card-action')
-              a(href=work.link)= work.linkText
-            div(class='card-reveal teal lighten-5')
-              span(class='card-title activator')= work.name
-                i(class='material-icons right') close
-              p= work.description
+    div(class='container')
+      div(class='row')
+        h2(class='center-align') Highlighted Work
+        
+      //- div(class='row')
+      //-   each work in renderData.work
+      //-     div(class='col s12 m6 l3')
+      //-       div(class='card teal lighten-5 hoverable')
+      //-         div(class='card-image waves-effect waves-block waves-light')
+      //-           img(class='activator' src=work.image)
+      //-         div(class='card-content')
+      //-           span(class='card-title activator')= work.name
+      //-             i(class='material-icons right') expand_less
+      //-         div(class='card-action')
+      //-           a(href=work.link)= work.linkText
+      //-         div(class='card-reveal teal lighten-5')
+      //-           span(class='card-title activator')= work.name
+      //-             i(class='material-icons right') close
+      //-           p= work.description
 
     div(class='row center-align')
       a(
@@ -100,6 +48,3 @@ block body
       )
         i(class='material-icons left') code
         | GitHub
-        
-block scripts
-  script(src='/client/js/index.js')

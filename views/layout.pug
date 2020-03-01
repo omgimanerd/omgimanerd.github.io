@@ -19,11 +19,9 @@ html
       href='/client/img/alpha.png')
       
     link(rel='stylesheet' type='text/css'
-      href='/node_modules/materialize-css/dist/css/materialize.min.css')
-    link(rel='stylesheet' type='text/css'
       href='/node_modules/material-design-icons/iconfont/material-icons.css')
     link(rel='stylesheet' type='text/css'
-      href='/node_modules/c3/c3.min.css')
+      href='/node_modules/materialize-css/dist/css/materialize.min.css')
     link(rel='stylesheet' type='text/css'
       href='/client/css/styles.css')
       
@@ -33,12 +31,13 @@ html
     div(class='navbar-fixed')
       nav(class='blue-grey darken-3')
         div(class='nav-wrapper')
-          a(class='alpha hide-on-med-and-down' href='/') &alpha;
-          a(class='button-collapse' data-activates='side-nav' href='#')
+          a(class='alpha hide-on-med-and-down' href='#!') &alpha;      
+          a(class='sidenav-trigger'
+            data-target='mobile-side-nav' href='#')
             i(class='material-icons') menu
           ul(class='right hide-on-med-and-down')
             +navElements
-    ul(id='side-nav' class='side-nav')
+    ul.sidenav(id='mobile-side-nav')
       +navElements
 
     block body
@@ -93,8 +92,9 @@ html
     id='github-bjs'
     src='https://buttons.github.io/buttons.js'
   )
-  script(src='/node_modules/jquery/dist/jquery.min.js')
   script(src='/node_modules/materialize-css/dist/js/materialize.min.js')
-  script(src='/client/js/base.js')
+  
+  script.
+    M.AutoInit()
 
   block scripts

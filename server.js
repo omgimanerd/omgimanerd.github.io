@@ -13,8 +13,6 @@ const morgan = require('morgan')
 const app = express()
 const server = http.Server(app)
 
-// Routers
-const baseRouter = require('./server/baseRouter')
 const notesRouter = require('./server/notesRouter')
 
 app.set('port', PORT)
@@ -24,7 +22,10 @@ app.use(morgan('combined'))
 app.use('/client', express.static('client'))
 app.use('/node_modules', express.static('node_modules'))
 
-app.use('/', baseRouter)
+app.use('/', (request, response) => {
+  response.render('index')
+})
+
 app.use('/notes', notesRouter)
 
 app.use((request, response) => {
