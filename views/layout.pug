@@ -1,5 +1,3 @@
-include mixins.pug
-
 doctype html
 
 html
@@ -36,9 +34,33 @@ html
             data-target='mobile-side-nav' href='#')
             i(class='material-icons') menu
           ul(class='right hide-on-med-and-down')
-            +navElements
+            li
+              a(class='blue-text' href='/') Home
+            li
+              a(class='blue-text' href='https://github.com/omgimanerd'
+                target='_blank') GitHub
+            li
+              a(class='blue-text' href='/client/resume.pdf'
+                target='_blank') R&eacute;sum&eacute;
+            li
+              a(class='blue-text' href='https://medium.com/@omgimanerd'
+                target='_blank') Blog
+            li
+              a(class='blue-text' href='/notes') Notes
     ul.sidenav(id='mobile-side-nav')
-      +navElements
+      li
+        a(class='blue-text' href='/') Home
+      li
+        a(class='blue-text' href='https://github.com/omgimanerd'
+          target='_blank') GitHub
+      li
+        a(class='blue-text' href='/client/resume.pdf'
+          target='_blank') R&eacute;sum&eacute;
+      li
+        a(class='blue-text' href='https://medium.com/@omgimanerd'
+          target='_blank') Blog
+      li
+        a(class='blue-text' href='/notes') Notes
 
     block body
 
