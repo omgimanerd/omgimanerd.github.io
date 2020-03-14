@@ -22,7 +22,7 @@ app.use(morgan('combined'))
 app.use('/client', express.static('client'))
 app.use('/node_modules', express.static('node_modules'))
 
-app.use('/', (request, response) => {
+app.get('/', (request, response) => {
   response.render('index')
 })
 

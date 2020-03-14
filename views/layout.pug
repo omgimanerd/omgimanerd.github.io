@@ -7,8 +7,7 @@ html
 
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
-      
-      
+    
     link(rel='shortcut icon'
       type='image/png'
       href='/client/img/alpha.png')
@@ -70,7 +69,7 @@ html
           div(class='col s12 m6 l6')
             h5(class='white-text') Want to contact me?
             | Email me at&nbsp;
-            a(class='blue-text' href='mailto:alvin@omgimanerd.tech')
+            a(id='email-link' class='blue-text' href='javascript:void(0)')
               | alvin&#64;omgimanerd&#46;tech
           div(class='col s12 m6 l6 right-align hide-on-small-only')
             h5(class='white-text') Connect with me
@@ -115,6 +114,7 @@ html
     src='https://buttons.github.io/buttons.js'
   )
   script(src='/node_modules/materialize-css/dist/js/materialize.min.js')
+  script(src='/client/js/copy-email.js')
   
   script.
     M.AutoInit()
