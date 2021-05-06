@@ -17,7 +17,7 @@
     "bluebird": "^3.5.3",
     "express": "^4.16.4",
     "github-webhook-middleware": "^0.0.2",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "material-design-icons": "^3.0.1",
     "materialize-css": "^1.0.0-rc.2",
     "morgan": "^1.9.1",
