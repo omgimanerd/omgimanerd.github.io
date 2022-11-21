@@ -5,8 +5,8 @@
  * @author alvin@omgimanerd.tech (Alvin Lin)
  */
 
-const fs = require('fs')
-const path = require('path')
+import { readFileSync, existsSync } from 'fs'
+import { join } from 'path'
 
 /**
  * Parses a dictionary of settings and their corresponding value from the
@@ -17,7 +17,7 @@ const path = require('path')
  */
 const parseEnvFile = filepath => {
   /* eslint-disable no-sync */
-  const data = fs.readFileSync(filepath, { encoding: 'utf-8' })
+  const data = readFileSync(filepath, { encoding: 'utf-8' })
   /* eslint-enable no-sync */
   const env = new Map()
   for (const line of data.split('\n')) {
@@ -31,19 +31,19 @@ const parseEnvFile = filepath => {
   return env
 }
 
-const env = parseEnvFile(path.join(__dirname, '.env'))
+const env = parseEnvFile(join(__dirname, '.env'))
 
 const GITHUB_WEBHOOK_SECRET = env.get('GITHUB_WEBHOOK_SECRET')
-const NOTES_PATH = path.join(__dirname, env.get('NOTES_PATH'))
+const NOTES_PATH = join(__dirname, env.get('NOTES_PATH'))
 const PRODUCTION = process.argv.includes('--prod')
 
 /* eslint-disable no-sync */
-if (!fs.existsSync(NOTES_PATH)) {
+if (!existsSync(NOTES_PATH)) {
   throw new Error('Unable to find RIT notes directory')
 }
 /* eslint-enable no-sync */
 
-module.exports = exports = {
+export default exports = {
   NOTES_PATH,
   GITHUB_WEBHOOK_SECRET,
   PRODUCTION
