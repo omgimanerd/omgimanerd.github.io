@@ -4,12 +4,11 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
-const express = require('express')
-const githubWebhook = require('github-webhook-middleware')
+import express from 'express';
+import githubWebhook from 'github-webhook-middleware';
 
-const config = require('../config')
-
-const notes = require('./notes')
+import config from '../config.js';
+import notes from './notes.js';
 
 const router = express.Router()
 
@@ -43,4 +42,4 @@ router.post('/update', githubMiddleware, (request, response) => {
   }
 })
 
-module.exports = exports = router
+export default router;

@@ -4,13 +4,11 @@
  * @author alvin@omgimanerd.tech (Alvin Lin)
  */
 
-const _ = require('lodash')
-const Promise = require('bluebird')
-const exec = Promise.promisify(require('child_process').exec)
-const fs = Promise.promisifyAll(require('fs'))
-const path = require('path')
+import child_process from 'child_process';
+import fs from 'fs';
+import path from 'path';
 
-const config = require('../config')
+import config from '../config.js';
 
 // Local cache
 const cache = {}
@@ -20,11 +18,11 @@ const cache = {}
  * @return {Promise}
  */
 const updateNotes = () => {
-  return exec('git pull', { cwd: config.NOTES_PATH }).then(() => {
-    return exec('gulp clean', { cwd: config.NOTES_PATH })
+  return child_process.exec('git pull', { cwd: config.NOTES_PATH }).then(() => {
+    return child_process.exec('gulp clean', { cwd: config.NOTES_PATH })
   }).then(() => {
     cache.expired = true
-    return exec('gulp latex', { cwd: config.NOTES_PATH })
+    return child_process.exec('gulp latex', { cwd: config.NOTES_PATH })
   })
 }
 
@@ -96,7 +94,7 @@ const getNotes = () => {
   })
 }
 
-module.exports = exports = {
+export default {
   updateNotes,
   getNotes
 }

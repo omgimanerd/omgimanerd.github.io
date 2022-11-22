@@ -5,33 +5,30 @@
  * @author alvin@omgimanerd.tech (Alvin Lin)
  */
 
-const fs = require('fs')
-const path = require('path')
+import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
 
 const CONST_AVAILABLE =
-  fs.constants.F_OK | fs.constants.R_OK | fs.constants.W_OK
+  fs.constants.F_OK | fs.constants.R_OK | fs.constants.W_OK;
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 
-const DIST_PATH = path.join(__dirname, 'dist')
-const NOTES_PATH = path.join(__dirname, 'rit', 'latex')
-const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
+dotenv.config();
 
-fs.access(DIST_PATH, CONST_AVAILABLE, error => {
-  if (error) {
-    throw new Error('Unable to access /dist, invoke gulp.')
-  }
-})
+const dirname = path.dirname(url.fileURLToPath(import.meta.url));
+const NOTES_PATH = path.join(dirname, 'rit', 'latex');
+const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET;
 
 fs.access(NOTES_PATH, CONST_AVAILABLE, error => {
   if (error) {
-    throw new Error('Unable to access /notes, please clone the notes repo.')
+    throw new Error('Unable to access /notes, please clone the notes repo.');
   }
-})
+});
 
-module.exports = exports = {
+export default {
   PORT,
-  DIST_PATH,
   NOTES_PATH,
   GITHUB_WEBHOOK_SECRET
-}
+};
