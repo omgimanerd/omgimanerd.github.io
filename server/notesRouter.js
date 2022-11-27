@@ -16,7 +16,7 @@ const githubMiddleware = githubWebhook({
   secret: config.GITHUB_WEBHOOK_SECRET
 })
 
-router.get('/', (request, response) => {
+router.get('/', (_, response) => {
   notes.getNotes().then(data => {
     response.render('notes', { notes: data })
   })

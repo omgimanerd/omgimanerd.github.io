@@ -5,13 +5,10 @@
  */
 
 import child_process from 'child_process';
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 
 import config from '../config.js';
-
-// Local cache
-const cache = {}
 
 /**
  * Invokes the commands in the notes directory to pull and update the notes.
@@ -21,9 +18,12 @@ const updateNotes = () => {
   return child_process.exec('git pull', { cwd: config.NOTES_PATH }).then(() => {
     return child_process.exec('gulp clean', { cwd: config.NOTES_PATH })
   }).then(() => {
-    cache.expired = true
     return child_process.exec('gulp latex', { cwd: config.NOTES_PATH })
   })
+}
+
+const capitalize = word => {
+  return `${word[0].toUpperCase()}${word.substring(1)}`
 }
 
 /**
@@ -35,7 +35,7 @@ const updateNotes = () => {
 const formatClassName = directory => {
   const parts = directory.split('_')
   const label = `${parts[0].toUpperCase().replace('-', ' ')}: `
-  const className = parts[1].split('-').map(_.capitalize).join(' ')
+  const className = parts[1].split('-').map(capitalize).join(' ')
   return label + className
 }
 
@@ -53,27 +53,17 @@ const formatFilePath = (directory, file) => {
 
 /**
  * This function returns the hierarchy of notes needed for rendering the
- * /notes page. If the hierarchy has been cached, then this function returns
- * the data stored in the cache, otherwise it updates the cache by traversing
- * through the notes directory.
+ * /notes page.
  * @return {Promise}
  */
 const getNotes = () => {
-  /**
-   * We first check if the notes hierarchy has been previously requested and
-   * cached. The cache is considered expired if updateNotes() was invoked, in
-   * which case we should update the cache with the new notes hierarchy.
-   */
-  if (cache.data && !cache.expired) {
-    return Promise.resolve(cache.data)
-  }
   // Iterate through each directory in the latex folder.
-  return fs.readdirAsync(config.NOTES_PATH).then(directories => {
+  return fs.readdir(config.NOTES_PATH).then(directories => {
     // For each directory
     return Promise.all(directories.map(directory => {
       const dirPath = path.join(config.NOTES_PATH, directory)
       // Read the names of all the files in the directory
-      return fs.readdirAsync(dirPath).then(files => {
+      return fs.readdir(dirPath).then(files => {
         /**
          * Filter out all the .tex files and infer the names of all the
          * .pdf files. Return an object which the template will use to
@@ -88,9 +78,16 @@ const getNotes = () => {
       }).then(data => {
         return { [formatClassName(directory)]: data }
       })
-    })).reduce(_.merge)
-  }).tap(data => {
-    cache.data = data
+    })).then(data => {
+      return data.flat().reduce((accumulator, directory) => {
+        for (const name in directory) {
+          // Must use JSON object setting instead of ES6 .set since
+          // pugjs will not interpolate the object correctly.
+          accumulator[name] = directory[name]
+        }
+        return accumulator
+      }, new Map())
+    })
   })
 }
 

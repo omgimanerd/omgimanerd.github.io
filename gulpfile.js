@@ -4,10 +4,10 @@
  */
 /* eslint-disable require-jsdoc */
 
-const del = require('del')
-const gulp = require('gulp')
-const gulpCssnano = require('gulp-cssnano')
-const gulpLess = require('gulp-less')
+import del from 'del'
+import gulp from 'gulp'
+import gulpCssnano from 'gulp-cssnano'
+import gulpLess from 'gulp-less'
 
 const clean = callback => {
   return del.sync('dist', callback)
@@ -34,10 +34,10 @@ const watch = () => {
   return gulp.watch('src/**/*', gulp.parallel(img, js, less))
 }
 
-module.exports = {
+export {
   clean,
+  less,
   img,
   js,
-  less,
-  watch
+  watch as default,
 }
