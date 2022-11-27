@@ -39,5 +39,6 @@ export {
   less,
   img,
   js,
+  watch,
   watch as default,
 }
