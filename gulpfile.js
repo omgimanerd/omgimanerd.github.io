@@ -13,13 +13,18 @@ const clean = callback => {
   return del.sync('dist', callback)
 }
 
-const img = () => {
+const copyImg = () => {
   return gulp.src('src/img/*.png')
     .pipe(gulp.dest('dist'))
 }
 
-const js = () => {
+const copyJs = () => {
   return gulp.src('src/js/*.js')
+    .pipe(gulp.dest('dist'))
+}
+
+const copyPng = () => {
+  return gulp.src('src/*.pdf')
     .pipe(gulp.dest('dist'))
 }
 
@@ -31,14 +36,15 @@ const less = () => {
 }
 
 const watch = () => {
-  return gulp.watch('src/**/*', gulp.parallel(img, js, less))
+  return gulp.watch('src/**/*', gulp.parallel(copyImg, copyJs, copyPng, less))
 }
 
 export {
   clean,
+  copyImg as img,
+  copyJs as js,
+  copyPng as png,
   less,
-  img,
-  js,
   watch,
   watch as default,
 }
