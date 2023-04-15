@@ -7,18 +7,21 @@
 import child_process from 'child_process';
 import fs from 'fs/promises';
 import path from 'path';
+import util from 'util';
 
 import config from '../config.js';
+
+const exec = util.promisify(child_process.exec);
 
 /**
  * Invokes the commands in the notes directory to pull and update the notes.
  * @return {Promise}
  */
 const updateNotes = () => {
-  return child_process.exec('git pull', { cwd: config.NOTES_PATH }).then(() => {
-    return child_process.exec('gulp clean', { cwd: config.NOTES_PATH })
+  const context = { cwd: config.NOTES_PATH }
+  return exec('git pull', context).then(() => {
   }).then(() => {
-    return child_process.exec('gulp latex', { cwd: config.NOTES_PATH })
+    return exec('gulp latex', context)
   })
 }
 

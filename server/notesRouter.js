@@ -27,14 +27,16 @@ router.use('/latex', express.static(config.NOTES_PATH))
 /**
  * This route handles the request from GitHub when the rit-notes repository
  * receives a push.
+ *
+ * To trigger this route:
+ *   curl localhost:5000 -X POST -H "x-github-event: push"
  */
 router.post('/update', githubMiddleware, (request, response) => {
   if (request.headers['x-github-event'] === 'push') {
     notes.updateNotes().then(() => {
-      notes.getNotes().then(data => {
-        response.send(data)
-      })
-    }).catch(() => {
+      response.status(200).end()
+    }).catch(error => {
+      console.error(error)
       response.status(500).send('Something failed!')
     })
   } else {

@@ -4,6 +4,9 @@
   "description": "Personal Webpage",
   "main": "server.js",
   "type": "module",
+  "scripts": {
+    "pm2": "PORT=5000 pm2 start server.js --name omgimanerd.tech"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/omgimanerd/omgimanerd.github.io"
