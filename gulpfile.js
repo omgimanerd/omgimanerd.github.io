@@ -4,27 +4,17 @@
  */
 /* eslint-disable require-jsdoc */
 
-import del from 'del'
+import { deleteAsync } from 'del'
 import gulp from 'gulp'
 import gulpCssnano from 'gulp-cssnano'
 import gulpLess from 'gulp-less'
 
-const clean = callback => {
-  return del.sync('dist', callback)
+const clean = () => {
+  return deleteAsync('dist')
 }
 
-const copyImg = () => {
-  return gulp.src('src/img/*.png')
-    .pipe(gulp.dest('dist'))
-}
-
-const copyJs = () => {
-  return gulp.src('src/js/*.js')
-    .pipe(gulp.dest('dist'))
-}
-
-const copyPng = () => {
-  return gulp.src('src/*.pdf')
+const copyAssets = () => {
+  return gulp.src(['src/assets/*', 'src/img/*.png', 'src/js/*.js'])
     .pipe(gulp.dest('dist'))
 }
 
@@ -36,14 +26,13 @@ const less = () => {
 }
 
 const watch = () => {
-  return gulp.watch('src/**/*', gulp.parallel(copyImg, copyJs, copyPng, less))
+  return gulp.watch('src/**/*', gulp.parallel(
+    copyAssets, less))
 }
 
 export {
   clean,
-  copyImg as img,
-  copyJs as js,
-  copyPng as png,
+  copyAssets as copy,
   less,
   watch,
   watch as default,
