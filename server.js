@@ -3,6 +3,7 @@
  * @author alvin.lin.dev@gmail.com (Alvin Lin)
  */
 
+import cors from 'cors'
 import express from 'express'
 import http from 'http'
 import morgan from 'morgan'
@@ -17,7 +18,10 @@ const server = http.Server(app)
 app.set('port', config.PORT)
 app.set('view engine', 'pug')
 
-app.use('/dist', express.static('dist'))
+app.use('/dist', cors({
+  origin: 'https://archiveofourown.org',
+  optionsSuccessStatus: 200,
+}), express.static('dist'))
 app.use('/node_modules', express.static('node_modules'))
 
 app.use(morgan('combined'))
