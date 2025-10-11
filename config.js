@@ -19,7 +19,13 @@ dotenv.config()
 
 const dirname = path.dirname(url.fileURLToPath(import.meta.url))
 const NOTES_PATH = path.join(dirname, 'rit', 'latex')
-const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET
+const GITHUB_WEBHOOK_SECRET = (() => {
+  if (process.argv.includes('--dev')) {
+    console.log('Using empty github webhook secret for dev mode.')
+    return 'empty'
+  }
+  return process.env.GITHUB_WEBHOOK_SECRET
+})();
 
 fs.access(NOTES_PATH, CONST_AVAILABLE, error => {
   if (error) {

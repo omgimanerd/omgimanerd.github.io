@@ -21,7 +21,7 @@ const updateNotes = () => {
   const context = { cwd: config.NOTES_PATH }
   return exec('git pull', context).then(() => {
   }).then(() => {
-    return exec('gulp latex', context)
+    return exec('make all', context)
   })
 }
 

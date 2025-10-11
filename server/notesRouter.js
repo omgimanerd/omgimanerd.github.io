@@ -28,7 +28,7 @@ router.use('/latex', express.static(config.NOTES_PATH))
  * This route handles the request from GitHub when the rit-notes repository
  * receives a push.
  *
- * To trigger this route:
+ * To trigger this route for debugging:
  *   curl localhost:5000 -X POST -H "x-github-event: push"
  */
 router.post('/update', githubMiddleware, (request, response) => {
