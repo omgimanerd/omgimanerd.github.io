@@ -5,6 +5,11 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "start": "node server.js --dev",
+    "build": "concurrently 'cp -t dist src/assets/* src/img/* src/js/*' 'lessc src/less/main.less dist/main.css'",
+    "build:notes": "git clone https://github.com/omgimanerd/rit && cd rit && make all",
+    "watch": "concurrently 'nodemon run server.js --dev' 'lessc-watch src/less/main.less dist/main.css'",
+    "clean": "rm -rf dist/*",
     "pm2": "PORT=5000 pm2 start server.js --name omgimanerd.tech"
   },
   "repository": {
@@ -31,12 +36,9 @@
     "winston": "^2.4.4"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.3",
-    "@types/morgan": "^1.9.10",
-    "del": "^7.0.0",
-    "gulp": "^5.0.1",
-    "gulp-cssnano": "^2.1.3",
-    "gulp-less": "^5.0.0"
+    "nodemon": "^1.3.0",
+    "concurrently": "^9.2.1",
+    "less": "^4.4.2",
+    "lessc-watch": "^1.2.0"
   }
 }

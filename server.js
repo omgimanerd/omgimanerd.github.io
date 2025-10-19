@@ -10,7 +10,7 @@ import morgan from 'morgan'
 
 import config from './config.js'
 
-import notesRouter from './server/notesRouter.js'
+import notesRouter from './src/server/notesRouter.js'
 
 const app = express()
 const server = http.Server(app)
@@ -18,10 +18,14 @@ const server = http.Server(app)
 app.set('port', config.PORT)
 app.set('view engine', 'pug')
 
-app.use('/dist', cors({
-  origin: 'https://archiveofourown.org',
-  optionsSuccessStatus: 200,
-}), express.static('dist'))
+app.use(
+  '/dist',
+  cors({
+    origin: 'https://archiveofourown.org',
+    optionsSuccessStatus: 200,
+  }),
+  express.static('dist'),
+)
 app.use('/node_modules', express.static('node_modules'))
 
 app.use(morgan('combined'))
@@ -34,14 +38,14 @@ app.use('/notes', notesRouter)
 
 app.use((_, response) => {
   response.status(404).render('error', {
-    error: '404: Page not found!'
+    error: '404: Page not found!',
   })
 })
 
 app.use((error, _, response, __) => {
   console.error(error)
   response.status(500).render('error', {
-    error: '500: Internal error!'
+    error: '500: Internal error!',
   })
 })
 

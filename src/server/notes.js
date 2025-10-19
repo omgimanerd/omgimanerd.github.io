@@ -4,14 +4,14 @@
  * @author alvin@omgimanerd.tech (Alvin Lin)
  */
 
-import child_process from 'child_process';
-import fs from 'fs/promises';
-import path from 'path';
-import util from 'util';
+import child_process from 'child_process'
+import fs from 'fs/promises'
+import path from 'path'
+import util from 'util'
 
-import config from '../config.js';
+import config from '../../config.js'
 
-const exec = util.promisify(child_process.exec);
+const exec = util.promisify(child_process.exec)
 
 /**
  * Invokes the commands in the notes directory to pull and update the notes.
@@ -19,13 +19,14 @@ const exec = util.promisify(child_process.exec);
  */
 const updateNotes = () => {
   const context = { cwd: config.NOTES_PATH }
-  return exec('git pull', context).then(() => {
-  }).then(() => {
-    return exec('make all', context)
-  })
+  return exec('git pull', context)
+    .then(() => {})
+    .then(() => {
+      return exec('make all', context)
+    })
 }
 
-const capitalize = word => {
+const capitalize = (word) => {
   return word[0]?.toUpperCase() + word.slice(1)
 }
 
@@ -35,7 +36,7 @@ const capitalize = word => {
  * @param {string} directory The class directory name
  * @return {string}
  */
-const formatClassName = directory => {
+const formatClassName = (directory) => {
   const parts = directory.split('_')
   const label = `${parts[0].toUpperCase().replace('-', ' ')}: `
   const className = parts[1].split('-').map(capitalize).join(' ')
@@ -51,7 +52,11 @@ const formatClassName = directory => {
  */
 const formatFilePath = (directory, file) => {
   return path.join(
-    'notes/latex', directory, 'output', file.replace('.tex', '.pdf'))
+    'notes/latex',
+    directory,
+    'output',
+    file.replace('.tex', '.pdf'),
+  )
 }
 
 /**
@@ -61,27 +66,34 @@ const formatFilePath = (directory, file) => {
  */
 const getNotes = () => {
   // Iterate through each directory in the latex folder.
-  return fs.readdir(config.NOTES_PATH).then(directories => {
+  return fs.readdir(config.NOTES_PATH).then((directories) => {
     // For each directory
-    return Promise.all(directories.map(directory => {
-      const dirPath = path.join(config.NOTES_PATH, directory)
-      // Read the names of all the files in the directory
-      return fs.readdir(dirPath).then(files => {
-        /**
-         * Filter out all the .tex files and infer the names of all the
-         * .pdf files. Return an object which the template will use to
-         * render the expandable accordion.
-         */
-        return files.filter(file => file.endsWith('.tex')).map(file => {
-          return {
-            filename: file.replace('.tex', '.pdf'),
-            path: formatFilePath(directory, file)
-          }
-        })
-      }).then(data => {
-        return { [formatClassName(directory)]: data }
-      })
-    })).then(data => {
+    return Promise.all(
+      directories.map((directory) => {
+        const dirPath = path.join(config.NOTES_PATH, directory)
+        // Read the names of all the files in the directory
+        return fs
+          .readdir(dirPath)
+          .then((files) => {
+            /**
+             * Filter out all the .tex files and infer the names of all the
+             * .pdf files. Return an object which the template will use to
+             * render the expandable accordion.
+             */
+            return files
+              .filter((file) => file.endsWith('.tex'))
+              .map((file) => {
+                return {
+                  filename: file.replace('.tex', '.pdf'),
+                  path: formatFilePath(directory, file),
+                }
+              })
+          })
+          .then((data) => {
+            return { [formatClassName(directory)]: data }
+          })
+      }),
+    ).then((data) => {
       return data.flat().reduce((accumulator, directory) => {
         for (const name in directory) {
           // Must use JSON object setting instead of ES6 .set since
@@ -96,5 +108,5 @@ const getNotes = () => {
 
 export default {
   updateNotes,
-  getNotes
+  getNotes,
 }
