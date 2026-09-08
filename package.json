@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js --dev",
-    "build": "concurrently 'cp -t dist src/assets/* src/img/* src/js/*' 'lessc src/less/main.less dist/main.css'",
+    "build": "concurrently 'cp -t dist -r src/assets/* src/img/* src/js/*' 'lessc src/less/main.less dist/main.css'",
     "build:notes": "git clone https://github.com/omgimanerd/rit && cd rit && make all",
     "watch": "concurrently 'nodemon run server.js --dev' 'lessc-watch src/less/main.less dist/main.css'",
     "clean": "rm -rf dist/*",

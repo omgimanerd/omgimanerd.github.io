@@ -27,6 +27,7 @@ app.use(
   }),
   express.static('dist'),
 )
+app.use('/open-sans', express.static('node_modules/npm-font-open-sans'))
 
 app.get('/', (_, response) => {
   response.render('index')

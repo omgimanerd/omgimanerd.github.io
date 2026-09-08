@@ -3,13 +3,19 @@ extends layout.pug
 block body
   p.
     I'm a software developer from New York City with a permanent case of bed
-    hair. I'm currently employed at Google, and I enjoy tinkering and hacking
-    in my free time.
+    hair. I'm currently employed at Google, and I enjoy woodworking and creative
+    writing in my free time.
 
   br
 
   h2 Interesting Links
   div.interesting
+    p
+      a.highlight(
+        href='https://www.curseforge.com/minecraft/modpacks/create-advanced-industries')
+        | Create Advanced Industries
+      | &mdash; A factory-building Minecraft modpack centered around the Create
+      | mod and its ecosystem.
     p
       a.highlight(href='https://github.com/omgimanerd/doclt') doclt
       | &mdash; an aesthetically pleasing command line interface to&nbsp;
@@ -22,20 +28,12 @@ block body
       a(href='https://newsapi.org') News API
       | .
     p
-      a.highlight(href='https://tankanarchy.herokuapp.com') tank anarchy
+      a.highlight(href='https://tankanarchy.omgimanerd.tech') tank anarchy
       | &mdash; a multiplayer tank battle game written entirely in JavaScript.
       | See my&nbsp;
       a(href='https://github.com/omgimanerd/how-to-build-a-multiplayer-game')
         | blog series
       | &nbsp;on how to create multiplayer browser games from scratch.
-    p
-      a.highlight(href='https://play.google.com/store/apps/details?id=io.github.omgimanerd.bouncysquare') bouncy square
-      | &mdash; an Android game combining the Stroop test with Doodle Jump.
-    p
-      a.highlight(href='https://github.com/omgimanerd/audio-spatializer')
-        | audio spatializer
-      | &mdash; a web app to intelligently apply stereoscopic transform to music
-      | to increase immersion and accentuate rhythmic elements.
     p
       a.highlight(href='https://github.com/omgimanerd/gulp-pdflatex2')
         | gulp-pdflatex2

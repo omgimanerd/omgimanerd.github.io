@@ -7,7 +7,7 @@ html(lang='en')
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     meta(name='description' content='omgimanerd.tech')
-    
+
     link(rel='shortcut icon'
       type='image/png'
       href='/dist/alpha.png')
@@ -18,21 +18,10 @@ html(lang='en')
     link(rel='stylesheet'
       type='text/css'
       href='/dist/main.css')
-      
-    script(
-      async
-      defer
-      src='https://platform.twitter.com/widgets.js'
-    )
-    script(
-      async
-      defer
-      src='https://buttons.github.io/buttons.js'
-    )
-      
+
     script(src='/dist/main.js')
-      
-    block head  
+
+    block head
 
   body
     h1 Alvin Lin (@omgimanerd)
@@ -49,19 +38,7 @@ html(lang='en')
     block body
 
     hr
-      
+
     div(class='footer')
       div
-        a(
-          href='https://github.com/omgimanerd'
-          class='github-button'
-          data-size='large'
-          data-show-count='true'
-        ) Follow &#64;omgimanerd
-      div
-        a(
-          href='https://twitter.com/omgimanerd'
-          class='twitter-follow-button'
-          data-size='large'
-          data-show-count='true'
-        ) Follow &#64;omgimanerd
+        | Send me an email: alvin@omgimanerd.tech
