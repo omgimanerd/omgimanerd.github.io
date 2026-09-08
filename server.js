@@ -18,6 +18,7 @@ const server = http.Server(app)
 app.set('port', config.PORT)
 app.set('view engine', 'pug')
 
+app.use(morgan('combined'))
 app.use(
   '/dist',
   cors({
@@ -26,9 +27,6 @@ app.use(
   }),
   express.static('dist'),
 )
-app.use('/node_modules', express.static('node_modules'))
-
-app.use(morgan('combined'))
 
 app.get('/', (_, response) => {
   response.render('index')
